@@ -1,7 +1,7 @@
 import styles from './page.module.css';
 import { client } from '@/app/client';
 import groq from 'groq';
-import { ComponentA } from '@/cms-kit/src';
+import { ComponentA } from '@focusreactive/cms-kit';
 
 export default async function Home() {
   const query = groq`*[_type == "cardsSection"]`;
