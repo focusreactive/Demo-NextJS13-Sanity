@@ -1,10 +1,18 @@
 import React from 'react';
 import styles from './advertise.module.scss';
 import SectionHead from '../section/head/SectionHead';
+import cn from 'classnames';
+interface AdvertiseProps {
+  positionImg?: string;
+}
 
-export const Advertise = () => {
+export const Advertise = ({ positionImg = 'right' }: AdvertiseProps) => {
   return (
-    <div className={styles.advertise}>
+    <div
+      className={cn(styles.advertise, {
+        [styles.imgLeft]: positionImg == 'left',
+      })}
+    >
       <div>
         <SectionHead
           title="Advertise and grow with <strong>confidence.</strong>"

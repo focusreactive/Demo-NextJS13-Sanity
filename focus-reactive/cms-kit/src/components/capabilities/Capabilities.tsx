@@ -10,7 +10,7 @@ export const Capabilities = () => {
 
       <div className={styles.capabilities}>
         <div>
-          <div style={{ '--color': '#4D62D6' }}>
+          <div style={{ '--color': '#4D62D6' } as React.CSSProperties}>
             <img src="https://i.ibb.co/G5m44G0/Vector.png" alt="" />
             <h3>
               <strong>Universal ad fraud</strong> prevention
@@ -29,7 +29,7 @@ export const Capabilities = () => {
         </div>
 
         <div>
-          <div style={{ '--color': '#1EB280' }}>
+          <div style={{ '--color': '#1EB280' } as React.CSSProperties}>
             <img src="https://i.ibb.co/G5m44G0/Vector.png" alt="" />
             <h3>
               <strong>Universal ad fraud</strong> prevention
@@ -48,7 +48,7 @@ export const Capabilities = () => {
         </div>
 
         <div>
-          <div style={{ '--color': '#822E81' }}>
+          <div style={{ '--color': '#822E81' } as React.CSSProperties}>
             <img src="https://i.ibb.co/G5m44G0/Vector.png" alt="" />
             <h3>
               <strong>Universal ad fraud</strong> prevention

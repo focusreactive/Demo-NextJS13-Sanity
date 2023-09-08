@@ -7,13 +7,13 @@ interface SectionProps {
   isLight?: boolean;
   className?: string;
   radius?: string;
-  neighborBg?: string;
+  neighborBg?: string | number;
 }
 
 const Section = ({ children, isLight, radius, neighborBg }: SectionProps) => {
   return (
     <section
-      style={{ '--neighborBg': neighborBg }}
+      style={{ '--neighborBg': neighborBg } as React.CSSProperties}
       className={cn(styles.section, {
         [styles.isLight]: isLight,
         [styles.isDark]: !isLight,

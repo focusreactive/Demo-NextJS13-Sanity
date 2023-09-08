@@ -27,6 +27,14 @@
   }
 }
 
+@media screen and (min-width: 601px) {
+  .advertise {
+    &.imgLeft {
+      flex-direction: row-reverse;
+    }
+  }
+}
+
 @media screen and (max-width: 600px) {
   .advertise {
     flex-direction: column;
