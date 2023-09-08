@@ -1,0 +1,39 @@
+.advertise {
+  display: flex;
+  align-items: flex-end;
+  gap: 50px 30px;
+
+  & > div:first-child {
+    flex: 1;
+  }
+  & > div:nth-child(2) {
+    flex: none;
+
+    margin-bottom: calc(clamp(80px, 15vw, 160px) * -1);
+    max-width: 45%;
+
+    img {
+      width: 100%;
+      max-width: 450px;
+      display: block;
+    }
+  }
+  p {
+    font-size: clamp(16px, 2vw, 18px);
+    line-height: 1.5;
+    &:not(:last-child) {
+      margin-bottom: 25px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .advertise {
+    flex-direction: column;
+    & > div:nth-child(2) {
+      margin-left: auto;
+      max-width: 80%;
+      margin-right: -40px;
+    }
+  }
+}

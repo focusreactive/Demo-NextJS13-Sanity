@@ -1,0 +1,73 @@
+.section {
+  padding: clamp(80px, 15vw, 160px) 0;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+
+  &.isLight {
+    background: #fff;
+    color: #333;
+  }
+  &.isDark {
+    background: #32408b;
+    color: #fff;
+    h2 {
+      color: inherit;
+    }
+  }
+  &.radiusTop {
+    &:after,
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: clamp(60px, 10vw, 160px);
+      height: clamp(60px, 10vw, 160px);
+      pointer-events: none;
+    }
+    &:before {
+      z-index: 1;
+      background: var(--neighborBg);
+    }
+    &:after {
+      z-index: 2;
+      border-top-left-radius: clamp(60px, 10vw, 160px);
+      background: inherit;
+    }
+  }
+  &.radiusBottom {
+    &:after,
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: clamp(60px, 10vw, 160px);
+      height: clamp(60px, 10vw, 160px);
+      pointer-events: none;
+    }
+    &:before {
+      z-index: 1;
+      background: var(--neighborBg);
+    }
+    &:after {
+      z-index: 2;
+      border-bottom-left-radius: clamp(60px, 10vw, 160px);
+      background: inherit;
+    }
+  }
+  & > div {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(80px, 10vw, 160px) 0;
+  }
+}
+
+.section.is-top-left-radius {
+  border-radius: 160px 0 0 0;
+}
+
+.section.is-bottom-left-radius {
+  border-radius: 0 0 0 160px;
+}
