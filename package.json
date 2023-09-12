@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@linaria/babel-preset": "^4.5.4",
+    "@linaria/core": "^4.5.4",
+    "@linaria/react": "^4.5.4",
     "@portabletext/react": "^3.0.7",
     "@sanity/client": "^6.4.9",
     "@sanity/image-url": "^1.0.2",
@@ -20,6 +23,7 @@
     "eslint-config-next": "13.4.19",
     "next": "13.4.19",
     "next-sanity": "^5.4.6",
+    "next-with-linaria": "^0.5.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sass": "^1.66.1",
