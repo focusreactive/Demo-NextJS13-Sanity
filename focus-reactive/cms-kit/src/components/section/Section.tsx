@@ -15,7 +15,7 @@ const StyledSection = styled.section<{ neighborBg?: string; isDark?: boolean; ra
   overflow: hidden;
   z-index: 2;
   background: ${({ isDark }) => (isDark ? '#32408b' : '#fff')};
-  color: ${({ isDark }) => (isDark ? '#fff' : '#333')};
+  color: ${({ isDark }) => (isDark ? '#fff' : '#32408b')};
 
   &:after,
   &:before {

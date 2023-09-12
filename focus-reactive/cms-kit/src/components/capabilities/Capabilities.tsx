@@ -144,13 +144,13 @@ const Capability = ({ color }: { color?: string }) => (
 
 export const Capabilities = () => {
   return (
-    <>
+    <div>
       <SectionHead title="Our <strong>capabilities.</strong>" icon="https://i.ibb.co/fCKR73f/Group-407.png" />
       <StyledCapabilities>
         <Capability />
         <Capability color="#1EB280" />
         <Capability color="#822E81" />
       </StyledCapabilities>
-    </>
+    </div>
   );
 };
