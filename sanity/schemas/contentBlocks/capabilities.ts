@@ -5,6 +5,7 @@ import { documentTitleField, titleField } from '../common/title';
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { GiStrong } from 'react-icons/gi';
 import { button } from '../common/links';
+import { sectionConfigFields, sectionGroup } from '../common/section';
 
 const capability = {
   name: 'capability',
@@ -41,6 +42,7 @@ export const capabilities = defineType({
       subtitle: '_type',
     },
   },
+  groups: [sectionGroup],
   fields: [
     titleField,
     defineField({
@@ -49,6 +51,7 @@ export const capabilities = defineType({
       type: 'array',
       of: [defineArrayMember({ type: capability.name })],
     }),
+    ...sectionConfigFields,
   ],
 });
 

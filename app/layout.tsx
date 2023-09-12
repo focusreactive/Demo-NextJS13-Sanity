@@ -12,11 +12,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={dmSans.className}>
-        <header>
-          <h1>Next.js 13 + Sanity</h1>
-        </header>
+        <header>Header</header>
 
         {children}
+
+        <footer>Footer</footer>
       </body>
     </html>
   );

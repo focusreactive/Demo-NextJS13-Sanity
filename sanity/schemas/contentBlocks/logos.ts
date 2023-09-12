@@ -1,6 +1,7 @@
 import { defineField, defineType } from 'sanity';
 import { BiImage } from 'react-icons/bi';
 import { documentTitleField } from '../common/title';
+import { sectionConfigFields, sectionGroup } from '../common/section';
 
 const logo = defineType({
   name: 'logo',
@@ -55,6 +56,7 @@ export const logos = defineType({
       subtitle: '_type',
     },
   },
+  groups: [sectionGroup],
   fields: [
     documentTitleField,
     defineField({
@@ -68,6 +70,7 @@ export const logos = defineType({
       title: 'Button',
       type: 'button',
     }),
+    ...sectionConfigFields,
   ],
 });
 

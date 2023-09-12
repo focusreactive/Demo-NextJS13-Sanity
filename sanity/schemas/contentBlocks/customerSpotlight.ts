@@ -3,6 +3,7 @@ import { getCommonPreview } from '../common/preview';
 import { documentTitleField, titleField } from '../common/title';
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { RiFocus3Line } from 'react-icons/ri';
+import { sectionConfigFields, sectionGroup } from '../common/section';
 
 export const customerSpotlightArticle = defineType({
   name: 'customerSpotlightArticle',
@@ -12,11 +13,6 @@ export const customerSpotlightArticle = defineType({
   fields: [
     documentTitleField,
     descriptionField,
-    defineField({
-      name: 'bgColor',
-      title: 'Background Color',
-      type: 'simplerColor',
-    }),
     defineField({
       name: 'author',
       title: 'Author',
@@ -87,6 +83,7 @@ export const customerSpotlight = defineType({
       subtitle: '_type',
     },
   },
+  groups: [sectionGroup],
   fields: [
     titleField,
     defineField({
@@ -100,6 +97,7 @@ export const customerSpotlight = defineType({
       type: 'array',
       of: [defineArrayMember({ type: customerSpotlightArticle.name })],
     }),
+    ...sectionConfigFields,
   ],
 });
 

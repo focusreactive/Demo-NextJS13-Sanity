@@ -9,11 +9,6 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  width: 100wv;
-  background: #323f8a;
-}
-
 a {
   color: inherit;
   text-decoration: none;
