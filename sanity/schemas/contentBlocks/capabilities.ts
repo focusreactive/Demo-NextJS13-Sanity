@@ -1,17 +1,23 @@
 import { colorOptions } from '../../constants';
 import { descriptionField } from '../common/description';
-import { getCommonPreview } from '../common/preview';
-import { documentTitleField, titleField } from '../common/title';
+import { titleField } from '../common/title';
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { GiStrong } from 'react-icons/gi';
 import { button } from '../common/links';
-import { sectionConfigField, sectionGroup } from '../common/section';
+import { sectionConfigField } from '../common/section';
+import { BiMedal } from 'react-icons/bi';
+import { getContentBlockDefaultOptions } from '../utils/getContentBlockDefaultOptions';
 
 const capability = {
   name: 'capability',
   type: 'object',
+  icon: BiMedal,
+  preview: {
+    select: {
+      title: 'title',
+    },
+  },
   fields: [
-    documentTitleField,
     titleField,
     descriptionField,
     defineField({
@@ -28,7 +34,6 @@ const capability = {
       },
     }),
   ],
-  preview: getCommonPreview({ select: { media: 'image.asset' } }),
 };
 
 export const capabilities = defineType({
@@ -36,13 +41,7 @@ export const capabilities = defineType({
   title: 'Capabilities',
   type: 'object',
   icon: GiStrong,
-  preview: {
-    select: {
-      title: 'title',
-      subtitle: '_type',
-    },
-  },
-  groups: [sectionGroup],
+  ...getContentBlockDefaultOptions(),
   fields: [
     titleField,
     defineField({

@@ -1,8 +1,9 @@
 import { defineField, defineType } from 'sanity';
 import { BiImage } from 'react-icons/bi';
 import { documentTitleField } from '../common/title';
-import { sectionConfigField, sectionGroup } from '../common/section';
+import { sectionConfigField } from '../common/section';
 import { imageWithAltField } from '../common/imageWithAlt';
+import { getContentBlockDefaultOptions } from '../utils/getContentBlockDefaultOptions';
 
 const logo = defineType({
   name: 'logo',
@@ -41,13 +42,7 @@ export const logos = defineType({
   title: 'Logos',
   type: 'object',
   icon: BiImage,
-  preview: {
-    select: {
-      title: 'documentTitle',
-      subtitle: '_type',
-    },
-  },
-  groups: [sectionGroup],
+  ...getContentBlockDefaultOptions({ title: documentTitleField.name }),
   fields: [
     documentTitleField,
     defineField({

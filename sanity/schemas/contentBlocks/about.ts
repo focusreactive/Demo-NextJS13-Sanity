@@ -2,21 +2,16 @@ import { defineField, defineType } from 'sanity';
 import { titleField } from '../common/title';
 import { descriptionField } from '../common/description';
 import { BiInfoCircle } from 'react-icons/bi';
-import { sectionConfigField, sectionGroup } from '../common/section';
+import { sectionConfigField } from '../common/section';
 import { imageWithAltField } from '../common/imageWithAlt';
+import { getContentBlockDefaultOptions } from '../utils/getContentBlockDefaultOptions';
 
 export const about = defineType({
   name: 'about',
   title: 'About',
   type: 'object',
   icon: BiInfoCircle,
-  preview: {
-    select: {
-      title: 'title',
-      subtitle: '_type',
-    },
-  },
-  groups: [sectionGroup],
+  ...getContentBlockDefaultOptions(),
   fields: [
     titleField,
     descriptionField,
