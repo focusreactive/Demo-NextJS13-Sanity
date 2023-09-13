@@ -1227,7 +1227,7 @@
 
 "@portabletext/react@^3.0.7":
   version "3.0.7"
-  resolved "https://registry.npmjs.org/@portabletext/react/-/react-3.0.7.tgz"
+  resolved "https://registry.yarnpkg.com/@portabletext/react/-/react-3.0.7.tgz#a5f5e9b9fde6ae09409fb70769db7612b7bdecb6"
   integrity sha512-Hx4rohr3rul/IQMDl07nRhdXLeey2fZPE/3Nbn0I+k8Zr5DsqKdkqMgkla3iBNS8h0a0LTSclS5GKVXoQlzrWg==
   dependencies:
     "@portabletext/toolkit" "^2.0.8"

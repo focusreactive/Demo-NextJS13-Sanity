@@ -3,6 +3,7 @@ import { titleField } from '../common/title';
 import { descriptionField } from '../common/description';
 import { BiInfoCircle } from 'react-icons/bi';
 import { sectionConfigFields, sectionGroup } from '../common/section';
+import { imageWithAltField } from '../common/imageWithAlt';
 
 export const about = defineType({
   name: 'about',
@@ -19,13 +20,23 @@ export const about = defineType({
   fields: [
     titleField,
     descriptionField,
+    imageWithAltField,
     defineField({
-      name: 'image',
-      title: 'Image',
-      type: 'image',
+      name: 'imagePosition',
+      title: 'Image position',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Left', value: 'left' },
+          { title: 'Right', value: 'right' },
+        ],
+      },
     }),
     ...sectionConfigFields,
   ],
+  initialValue: {
+    imagePosition: 'right',
+  },
 });
 
 export default [about];

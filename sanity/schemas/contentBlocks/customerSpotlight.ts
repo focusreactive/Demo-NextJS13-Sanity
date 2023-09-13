@@ -4,6 +4,7 @@ import { documentTitleField, titleField } from '../common/title';
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { RiFocus3Line } from 'react-icons/ri';
 import { sectionConfigFields, sectionGroup } from '../common/section';
+import { imageWithAlt } from '../common/imageWithAlt';
 
 export const customerSpotlightArticle = defineType({
   name: 'customerSpotlightArticle',
@@ -21,53 +22,17 @@ export const customerSpotlightArticle = defineType({
     defineField({
       name: 'photo',
       title: 'Photo',
-      type: 'object',
-      fields: [
-        defineField({
-          name: 'asset',
-          title: 'Asset',
-          type: 'image',
-        }),
-        defineField({
-          name: 'alt',
-          title: 'Alternate Text',
-          type: 'string',
-        }),
-      ],
+      type: imageWithAlt.name,
     }),
     defineField({
       name: 'logo',
       title: 'Logo',
-      type: 'object',
-      fields: [
-        defineField({
-          name: 'asset',
-          title: 'Asset',
-          type: 'image',
-        }),
-        defineField({
-          name: 'alt',
-          title: 'Alternate Text',
-          type: 'string',
-        }),
-      ],
+      type: imageWithAlt.name,
     }),
     defineField({
       name: 'logoInText',
       title: 'Logo In Text',
-      type: 'object',
-      fields: [
-        defineField({
-          name: 'asset',
-          title: 'Asset',
-          type: 'image',
-        }),
-        defineField({
-          name: 'alt',
-          title: 'Alternate Text',
-          type: 'string',
-        }),
-      ],
+      type: imageWithAlt.name,
     }),
   ],
 });

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { styled } from '@linaria/react';
 
 interface SectionHeadProps {
   icon?: string;
-  title: string;
+  title: ReactNode;
 }
 
 const StyledHeading = styled.div`
@@ -27,7 +27,7 @@ const Section = ({ icon, title }: SectionHeadProps) => {
   return (
     <StyledHeading>
       {icon && <img src={icon} alt="" />}
-      <h2 dangerouslySetInnerHTML={{ __html: `${title}` }}></h2>
+      <h2>{title}</h2>
     </StyledHeading>
   );
 };

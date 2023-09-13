@@ -1,9 +1,6 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import SectionHead from '../section/head/SectionHead';
 import { styled } from '@linaria/react';
-interface AdvertiseProps {
-  positionImg?: string;
-}
 
 const StyledAdvertise = styled.div<{ imageLeft?: boolean }>`
   display: flex;
@@ -49,23 +46,27 @@ const StyledAdvertise = styled.div<{ imageLeft?: boolean }>`
   }
 `;
 
-export const Advertise = ({ positionImg = 'right' }: AdvertiseProps) => {
-  return (
-    <StyledAdvertise imageLeft={positionImg === 'left'}>
-      <div>
-        <SectionHead
-          title="Advertise and grow with <strong>confidence.</strong>"
-          icon="https://i.ibb.co/fCKR73f/Group-407.png"
-        />
+type AdvertiseProps = {
+  title: ReactNode;
+  description: ReactNode;
+  image: {
+    src: string;
+    alt: string;
+  };
+  imagePosition?: string;
+};
 
-        <p>We believe the best advertising performance comes from decisions based on accurate data.</p>
-        <p>
-          With complete trust and confidence in the data you use to drive performance, you can act faster and be bolder
-          to get the best results.
-        </p>
-      </div>
+export const Advertise = (props: AdvertiseProps) => {
+  return (
+    <StyledAdvertise imageLeft={props.imagePosition === 'left'}>
       <div>
-        <img src="https://i.ibb.co/dmgrk4h/Component-1.png" alt="" />
+        <SectionHead title={props.title} icon="https://i.ibb.co/fCKR73f/Group-407.png" />
+
+        {props.description}
+      </div>
+
+      <div>
+        <img src={props.image.src} alt={props.image.alt} />
       </div>
     </StyledAdvertise>
   );

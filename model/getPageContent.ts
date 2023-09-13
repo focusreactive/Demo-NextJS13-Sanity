@@ -8,5 +8,6 @@ export const getPageContent = async ({ slug }: { slug: string }) => {
       }[0]
   `;
 
-  return await client.fetch(query, { slug });
+  // TODO: return cache
+  return await client.fetch(query, { slug }, { cache: 'no-store' });
 };

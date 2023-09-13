@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { CustomLink } from '../customLInk/CustomLink';
 import SectionHead from '../section/head/SectionHead';
 import { styled } from '@linaria/react';
@@ -130,49 +130,63 @@ const StyledImage = styled.div`
   }
 `;
 
-const Customer = () => (
+type CustomerProps = {
+  title: string;
+  description: ReactNode;
+  photo: { src: string; alt: string };
+  logo: { src: string; alt: string };
+  logoInText: { src: string; alt: string };
+  author: string;
+};
+
+const Customer = ({ src, alt }: { src: string; alt: string }) => (
   <div>
-    <img src="https://i.ibb.co/K26gVnJ/Group-165.png" alt="" />
+    <img src={src} alt={alt} />
   </div>
 );
 
-export const Customers = () => {
+type CustomersProps = {
+  title: ReactNode;
+  button: { title: string };
+  items: CustomerProps[];
+};
+
+export const Customers = (props: CustomersProps) => {
+  const selectedItem = props.items[0];
+
   return (
     <>
       <div>
-        <SectionHead title="Customers spotlight" icon="https://i.ibb.co/fCKR73f/Group-407.png" />
+        <SectionHead title={props.title} icon="https://i.ibb.co/fCKR73f/Group-407.png" />
         <StyledCustomersSection>
           <div>
             <StyledLogos>
-              <Customer />
-              <Customer />
-              <Customer />
-              <Customer />
+              {props.items.map((item, index) => (
+                <Customer key={index} src={selectedItem.logo.src} alt={selectedItem.logo.alt} />
+              ))}
             </StyledLogos>
 
             <StyledContent>
               <StyledImage>
-                <img src="https://i.ibb.co/tpL1QNj/Mask-Group.png" alt="" />
+                <img src={selectedItem.logo.src} alt={selectedItem.logo.alt} />
               </StyledImage>
+
               <StyledText>
-                <p>
-                  “By having cleaner traffic, we could find reliable sources and allocate budget better, putting money
-                  where it is really bringing results. Having a fraud prevention solution is a must for any growth
-                  professional. TrafficGuard is a key partner to helping us achieve our results..”
-                </p>
-                <p>
-                  <strong>Gabriel Sampaio, Grow lead-Digital Channel, Rappi</strong>
-                </p>
+                {selectedItem.description}
+
+                {selectedItem.author}
               </StyledText>
 
-              <img src="https://i.ibb.co/J3qgrM7/Group-165.png" alt="" />
+              <img src={selectedItem.logoInText.src} alt={selectedItem.logoInText.alt} />
             </StyledContent>
           </div>
+
           <div>
-            <img src="https://i.ibb.co/tpL1QNj/Mask-Group.png" alt="" />
+            <img src={selectedItem.photo.src} alt={selectedItem.photo.alt} />
           </div>
         </StyledCustomersSection>
-        <CustomLink>Check the Case Study</CustomLink>
+
+        <CustomLink>{props.button.title}</CustomLink>
       </div>
     </>
   );

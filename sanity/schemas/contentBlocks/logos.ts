@@ -2,6 +2,7 @@ import { defineField, defineType } from 'sanity';
 import { BiImage } from 'react-icons/bi';
 import { documentTitleField } from '../common/title';
 import { sectionConfigFields, sectionGroup } from '../common/section';
+import { imageWithAltField } from '../common/imageWithAlt';
 
 const logo = defineType({
   name: 'logo',
@@ -10,8 +11,8 @@ const logo = defineType({
   preview: {
     select: {
       title: 'title',
-      alt: 'alt',
-      media: 'image',
+      alt: 'imageWithAlt.alt',
+      media: 'imageWithAlt.image',
     },
     prepare: ({ title, alt, media }) => ({ title: title || alt, media }),
   },
@@ -26,17 +27,7 @@ const logo = defineType({
       title: 'Description',
       type: 'string',
     }),
-    defineField({
-      name: 'alt',
-      title: 'Alternative Image Text',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-    }),
+    imageWithAltField,
     defineField({
       name: 'link',
       title: 'Link',

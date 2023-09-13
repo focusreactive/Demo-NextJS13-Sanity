@@ -44,29 +44,32 @@ const StyledSponsors = styled.div`
   }
 `;
 
-const Sponsor = () => (
+type Logo = { src: string; alt: string };
+
+const Sponsor = ({ src, alt }: Logo) => (
   <div>
-    <img src="https://i.ibb.co/K26gVnJ/Group-165.png" alt="" />
+    <img src={src} alt={alt} />
   </div>
 );
 
-export const Sponsors = () => {
+type SponsorsProps = {
+  logos: Logo[];
+  button: {
+    title: string;
+    link: string;
+  };
+};
+
+export const Sponsors = ({ logos, button }: SponsorsProps) => {
   return (
     <StyledSponsors>
       <div>
-        <Sponsor />
-        <Sponsor />
-        <Sponsor />
-        <Sponsor />
-        <Sponsor />
-        <Sponsor />
-        <Sponsor />
-        <Sponsor />
-        <Sponsor />
-        <Sponsor />
+        {logos.map((logo, index) => (
+          <Sponsor key={index} {...logo} />
+        ))}
       </div>
 
-      <CustomLink>Meet our Customers</CustomLink>
+      <CustomLink>{button.title}</CustomLink>
     </StyledSponsors>
   );
 };

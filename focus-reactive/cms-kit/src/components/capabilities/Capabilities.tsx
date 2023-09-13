@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import SectionHead from '../section/head/SectionHead';
 import { Button } from '../button/Button';
 import { styled } from '@linaria/react';
+import { brandColors } from '@focusreactive/cms-kit/src/components/capabilities/colors';
 
 const StyledCapabilities = styled.div`
   display: flex;
@@ -121,19 +122,25 @@ const StyledCapability = styled.div<{ color?: string }>`
   }
 `;
 
-const Capability = ({ color }: { color?: string }) => (
-  <StyledCapability color={color}>
+type CapabilityProps = {
+  title: ReactNode;
+  description: ReactNode;
+  button: {
+    title: string;
+  };
+  bgColor?: string;
+};
+
+const Capability = ({ title, description, button, bgColor }: CapabilityProps) => (
+  <StyledCapability color={brandColors[bgColor as keyof typeof brandColors]}>
     <div>
       <img src="https://i.ibb.co/G5m44G0/Vector.png" alt="" />
-      <h3>
-        <strong>Universal ad fraud</strong> prevention
-      </h3>
-      <p>
-        Trust TrafficGuard to stop invalid traffic in real time across the whole advertising journey. With our surgical
-        fraud prevention, your budget is always protected helping you scale and grow with confidence. Protect any
-        campaign type and all channels from one specialist solution.
-      </p>
-      <Button>Learn more</Button>
+
+      <h3>{title}</h3>
+
+      {description}
+
+      <Button>{button.title}</Button>
     </div>
 
     <div>
@@ -142,14 +149,19 @@ const Capability = ({ color }: { color?: string }) => (
   </StyledCapability>
 );
 
-export const Capabilities = () => {
+type CapabilitiesProps = {
+  title: ReactNode;
+  list: CapabilityProps[];
+};
+
+export const Capabilities = (props: CapabilitiesProps) => {
   return (
     <div>
-      <SectionHead title="Our <strong>capabilities.</strong>" icon="https://i.ibb.co/fCKR73f/Group-407.png" />
+      <SectionHead title={props.title} icon="https://i.ibb.co/fCKR73f/Group-407.png" />
       <StyledCapabilities>
-        <Capability />
-        <Capability color="#1EB280" />
-        <Capability color="#822E81" />
+        {props.list.map((item, index) => (
+          <Capability key={index} {...item} />
+        ))}
       </StyledCapabilities>
     </div>
   );
