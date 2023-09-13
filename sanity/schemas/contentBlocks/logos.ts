@@ -1,7 +1,7 @@
 import { defineField, defineType } from 'sanity';
 import { BiImage } from 'react-icons/bi';
 import { documentTitleField } from '../common/title';
-import { sectionConfigFields, sectionGroup } from '../common/section';
+import { sectionConfigField, sectionGroup } from '../common/section';
 import { imageWithAltField } from '../common/imageWithAlt';
 
 const logo = defineType({
@@ -61,7 +61,7 @@ export const logos = defineType({
       title: 'Button',
       type: 'button',
     }),
-    ...sectionConfigFields,
+    sectionConfigField,
   ],
 });
 

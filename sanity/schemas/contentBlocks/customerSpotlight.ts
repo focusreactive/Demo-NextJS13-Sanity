@@ -3,7 +3,7 @@ import { getCommonPreview } from '../common/preview';
 import { documentTitleField, titleField } from '../common/title';
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { RiFocus3Line } from 'react-icons/ri';
-import { sectionConfigFields, sectionGroup } from '../common/section';
+import { sectionConfigField, sectionGroup } from '../common/section';
 import { imageWithAlt } from '../common/imageWithAlt';
 
 export const customerSpotlightArticle = defineType({
@@ -62,7 +62,7 @@ export const customerSpotlight = defineType({
       type: 'array',
       of: [defineArrayMember({ type: customerSpotlightArticle.name })],
     }),
-    ...sectionConfigFields,
+    sectionConfigField,
   ],
 });
 

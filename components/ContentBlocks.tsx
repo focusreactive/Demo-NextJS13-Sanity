@@ -16,11 +16,17 @@ export const ContentBlocks = ({ blocks }: { blocks: BlockType[] }) => {
 
     const { Component, schema } = options;
 
+    const sectionConfig = block.sectionConfig || {};
     // const props = cmsDataToProps(block, schema);
     const neighborBg = block.backgroundColor ? blocks[index + 1]?.backgroundColor || '#fff' : null;
 
     return (
-      <Section key={block._key} bgColor={block.backgroundColor} radius={block.roundCorner} neighborBg={neighborBg}>
+      <Section
+        key={block._key}
+        bgColor={sectionConfig.backgroundColor}
+        radius={sectionConfig.roundCorner}
+        neighborBg={neighborBg}
+      >
         {/* @ts-ignore */}
         <Component {...block} />
       </Section>

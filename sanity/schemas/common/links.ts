@@ -71,7 +71,7 @@ export const button = {
     }),
     defineField({
       name: 'uri',
-      title: 'Link to...',
+      title: 'Link',
       type: 'array',
       of: [{ type: innerLink.name }, { type: externalLink.name }],
       validation: (Rule) => Rule.max(1),

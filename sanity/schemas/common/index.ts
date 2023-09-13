@@ -2,8 +2,7 @@ import * as titleFields from './title';
 import * as descriptionFields from './description';
 import * as links from './links';
 import * as richText from './richText';
-import { video } from './video';
-import { sectionConfigFields } from './section';
+import { sectionConfig } from './section';
 import { imageWithAlt } from './imageWithAlt';
 
 export default [
@@ -11,7 +10,6 @@ export default [
   ...Object.values(descriptionFields),
   ...Object.values(links),
   ...Object.values(richText),
-  video,
-  ...sectionConfigFields,
+  sectionConfig,
   imageWithAlt,
 ];

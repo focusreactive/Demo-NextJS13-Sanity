@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity';
 import { titleField } from '../common/title';
 import { descriptionField } from '../common/description';
 import { BiInfoCircle } from 'react-icons/bi';
-import { sectionConfigFields, sectionGroup } from '../common/section';
+import { sectionConfigField, sectionGroup } from '../common/section';
 import { imageWithAltField } from '../common/imageWithAlt';
 
 export const about = defineType({
@@ -32,7 +32,7 @@ export const about = defineType({
         ],
       },
     }),
-    ...sectionConfigFields,
+    sectionConfigField,
   ],
   initialValue: {
     imagePosition: 'right',
