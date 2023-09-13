@@ -9,5 +9,5 @@ export const getPageContent = async ({ slug }: { slug: string }) => {
   `;
 
   // TODO: return cache
-  return await client.fetch(query, { slug }, { cache: 'no-store' });
+  return await client.fetch(query, { slug }, { next: { revalidate: 60 * 60 } });
 };
