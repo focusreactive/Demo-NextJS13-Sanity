@@ -29,5 +29,8 @@
   },
   "devDependencies": {
     "prettier": "^3.0.3"
+  },
+  "engines": {
+    "pnpm": ">=8"
   }
 }
