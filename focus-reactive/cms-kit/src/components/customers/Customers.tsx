@@ -174,7 +174,9 @@ export const Customers = (props: CustomersProps) => {
               <StyledText>
                 {selectedItem.description}
 
-                <p><strong>{selectedItem.author}</strong></p>
+                <p>
+                  <strong>{selectedItem.author}</strong>
+                </p>
               </StyledText>
 
               <img src={selectedItem.logoInText.src} alt={selectedItem.logoInText.alt} />

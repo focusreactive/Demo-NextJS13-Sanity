@@ -1,5 +1,5 @@
 import groq from 'groq';
-import { client } from '@/utils/client';
+import { client } from '@/sanity/client';
 
 export const getPageContent = async ({ slug }: { slug: string }) => {
   const query = groq`

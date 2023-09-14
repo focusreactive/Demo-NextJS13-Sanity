@@ -1,4 +1,4 @@
-import { getDefaultImageUrl } from '@/utils/getDefaultImageUrl';
+import { getDefaultImageUrl } from '@/sanity/utils/getDefaultImageUrl';
 import { RichText } from '@/components/RichText';
 
 const image = (image: any) => {

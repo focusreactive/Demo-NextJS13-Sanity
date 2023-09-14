@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@linaria/babel-preset": "^4.5.4",
@@ -15,20 +16,30 @@
     "@portabletext/react": "^3.0.7",
     "@sanity/client": "^6.4.9",
     "@sanity/image-url": "^1.0.2",
+    "@sanity/vision": "^3.16.5",
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
     "next": "13.4.19",
-    "next-sanity": "^5.4.6",
+    "next-sanity": "^5.5.3",
     "next-with-linaria": "^0.5.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.11.0",
+    "sanity": "^3.16.7",
+    "sanity-plugin-media": "^2.2.2",
+    "sanity-plugin-simpler-color-input": "^1.1.0",
     "typescript": "5.2.2"
   },
   "devDependencies": {
-    "prettier": "^3.0.3"
+    "@sanity/eslint-config-studio": "^3.0.1",
+    "@types/react": "^18.0.25",
+    "@types/styled-components": "^5.1.26",
+    "eslint": "^8.6.0",
+    "prettier": "^3.0.3",
+    "typescript": "^5.1.6"
   },
   "engines": {
     "pnpm": ">=8"
