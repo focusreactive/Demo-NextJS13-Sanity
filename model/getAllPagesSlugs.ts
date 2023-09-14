@@ -1,4 +1,4 @@
-import groq from 'groq';
+import { groq } from 'next-sanity'
 import { client } from '@/sanity/client';
 
 export const getAllPagesSlugs = async () => {
