@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react';
-import { CustomLink } from '../customLInk/CustomLink';
+
 import SectionHead from '../section/head/SectionHead';
 import { styled } from '@linaria/react';
+import { CustomLink } from '../custom-lInk/CustomLink';
 
 const StyledCustomersSection = styled.div`
   display: flex;
@@ -174,7 +175,9 @@ export const Customers = (props: CustomersProps) => {
               <StyledText>
                 {selectedItem.description}
 
-                <p><strong>{selectedItem.author}</strong></p>
+                <p>
+                  <strong>{selectedItem.author}</strong>
+                </p>
               </StyledText>
 
               <img src={selectedItem.logoInText.src} alt={selectedItem.logoInText.alt} />

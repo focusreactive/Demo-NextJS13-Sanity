@@ -1,6 +1,7 @@
 import React from 'react';
-import { CustomLink } from '../customLInk/CustomLink';
+
 import { styled } from '@linaria/react';
+import { CustomLink } from '../custom-lInk/CustomLink';
 
 const StyledSponsors = styled.div`
   & > div {
