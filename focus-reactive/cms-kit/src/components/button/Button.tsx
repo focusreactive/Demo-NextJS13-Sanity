@@ -21,7 +21,10 @@ const StyledButton = styled.button`
   font-size: 16px;
   font-weight: 700;
   color: #4d62d6;
-  transition: border-color 0.2s linear, color 0.2s linear, background 0.2s linear;
+  transition:
+    border-color 0.2s linear,
+    color 0.2s linear,
+    background 0.2s linear;
   &:hover {
     background: #4d62d6;
     border-color: #fff;

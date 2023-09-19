@@ -1,6 +1,6 @@
 import { config } from '@/cms-connector/cmsConfig';
 import { Section } from '@focusreactive/cms-kit';
-import { cmsDataToProps } from '@/cms-connector/cmsDataToProps';
+// import { cmsDataToProps } from '@/cms-connector/cmsDataToProps';
 
 type BlockType = { [k in string]: any };
 
@@ -14,7 +14,10 @@ export const ContentBlocks = ({ blocks }: { blocks: BlockType[] }) => {
       return null;
     }
 
-    const { Component, schema } = options;
+    const {
+      Component,
+      // schema
+    } = options;
 
     const sectionConfig = block.sectionConfig || {};
     // const props = cmsDataToProps(block, schema);

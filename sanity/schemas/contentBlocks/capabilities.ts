@@ -1,4 +1,4 @@
-import { colorOptions } from '../../constants';
+import { colorOptions } from '../../../sanity/constants';
 import { descriptionField } from '../common/description';
 import { titleField } from '../common/title';
 import { defineArrayMember, defineField, defineType } from 'sanity';

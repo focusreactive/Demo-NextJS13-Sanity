@@ -1,4 +1,4 @@
-import { colorOptions, sizeOptions } from '../../constants';
+import { colorOptions, sizeOptions } from '../../../sanity/constants';
 import { defineField } from 'sanity';
 
 export const descriptionField = defineField({
