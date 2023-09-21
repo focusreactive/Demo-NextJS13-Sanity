@@ -20,7 +20,7 @@ export const innerLink = {
       documentTitle: 'reference.documentTitle',
       pageType: 'reference._type',
     },
-    prepare(props) {
+    prepare(props: any) {
       const { pageTitle, pageType, documentTitle } = props;
 
       return {
@@ -47,7 +47,7 @@ export const externalLink = {
     select: {
       link: 'link',
     },
-    prepare({ link }) {
+    prepare({ link }: any) {
       const url = new URL(link);
       const origin = url.origin;
       return {
