@@ -18,6 +18,7 @@
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^6.4.9",
     "@sanity/image-url": "^1.0.2",
+    "@sanity/ui": "^1.8.2",
     "@sanity/vision": "^3.16.5",
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",

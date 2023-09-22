@@ -14,8 +14,8 @@ export const dynamicPage = defineType({
   fields: [
     documentTitleField,
     defineField({
-      name: 'path',
-      title: 'Page Path',
+      name: 'slug',
+      title: 'Page Slug',
       type: 'slug',
       options: {
         source: 'title',
