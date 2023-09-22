@@ -148,7 +148,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             { link: 'https://www.trafficguard.ai/', text: 'Sign in' },
             { link: 'https://www.trafficguard.ai/', text: 'Get started' },
           ]}
-          ctaCard={''}
+          ctaCard={{
+            buttons: [{ link: 'https://www.trafficguard.ai/', text: 'Sign in' }],
+            title: 'Global mobile game developer levels up against ad fraud',
+            image: {
+              src: 'https://cdn.sanity.io/images/vpu9cxnr/production/5eff15897b8e6c093d7c4d60dc3fcdbac87b1acb-488x286.webp',
+              alt: '',
+            },
+          }}
           contacts={''}
         />
         {children}

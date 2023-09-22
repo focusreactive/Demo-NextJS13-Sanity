@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import React from 'react';
-// import FloatUp from '../float-up/FloatUp';
+import FloatUp from '../float-up/FloatUp';
 import { appTheme } from '../../../theme';
 
 const Container = styled.ul<{ linkSize?: string; iconSize?: string }>`
@@ -148,9 +148,9 @@ const Socials = ({ socials, linkSize, iconSize }: any) => {
   return (
     <Container className="socials" linkSize={linkSize} iconSize={iconSize}>
       {(socials || []).map((item: any, key: any) => (
-        // <FloatUp delay={50 * key} tag="li" key={key}>
-        <Item key={key} {...item} />
-        // </FloatUp>
+        <FloatUp delay={50 * key} tag="li" key={key}>
+          <Item key={key} {...item} />
+        </FloatUp>
       ))}
     </Container>
   );

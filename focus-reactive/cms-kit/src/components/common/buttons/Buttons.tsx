@@ -2,7 +2,7 @@ import React from 'react';
 
 import { styled } from '@linaria/react';
 import Button from '../button/Button';
-// import FloatUp from '../float-up/FloatUp';
+import FloatUp from '../float-up/FloatUp';
 
 const ButtonsBox = styled.div`
   display: flex;
@@ -28,9 +28,9 @@ const Buttons = ({ buttons, className, initialAnimationDelay = 100, animationSte
         }
 
         return (
-          // <FloatUp delay={initialAnimationDelay + animationStep * key} key={key}>
-          <Button {...btn} key={key} link={btn.link || btn.externalLink} />
-          // </FloatUp>
+          <FloatUp delay={initialAnimationDelay + animationStep * key} key={key}>
+            <Button {...btn} key={key} link={btn.link || btn.externalLink} />
+          </FloatUp>
         );
       })}
     </ButtonsBox>

@@ -2,7 +2,7 @@ import { styled } from '@linaria/react';
 import React from 'react';
 import Buttons from '../common/buttons/Buttons';
 import ImageBlock from '../common/image-block/ImageBlock';
-// import FloatUp from '../common/float-up/FloatUp';
+import FloatUp from '../common/float-up/FloatUp';
 import Article from '../common/article/Article';
 import SmartLink from '../common/smart-link/SmartLink';
 import TitleBlock from '../common/title-block/TitleBlock';
@@ -30,7 +30,7 @@ const NavBox = styled.div`
 
   .container {
     position: relative;
-    padding: 0 20px;
+    padding: 20px;
     margin: 0 auto;
     box-sizing: border-box;
     width: 100%;
@@ -242,15 +242,15 @@ const Decor = () => {
 const Promo = ({ image, title, buttons }: any) => {
   return (
     <PromoWrap>
-      {/* <FloatUp> */}
-      <ImageBlock {...image} />
-      <PromoContent>
-        <Description>
-          <Article textRaw={title} />
-        </Description>
-        <Buttons buttons={buttons} />
-      </PromoContent>
-      {/* </FloatUp> */}
+      <FloatUp>
+        <ImageBlock {...image} />
+        <PromoContent>
+          <Description>
+            <Article textRaw={title} />
+          </Description>
+          <Buttons buttons={buttons} />
+        </PromoContent>
+      </FloatUp>
     </PromoWrap>
   );
 };
