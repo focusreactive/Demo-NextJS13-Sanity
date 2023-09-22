@@ -325,7 +325,7 @@ export const Header = ({
     <>
       <HeaderNavMobile
         menu={menu}
-        buttons={buttons}
+        buttons={buttons.length ? updatedButtons : []}
         contacts={contacts}
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}

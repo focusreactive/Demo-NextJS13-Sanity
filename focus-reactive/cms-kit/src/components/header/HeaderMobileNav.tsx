@@ -218,7 +218,6 @@ const Arrow = ({ onClick }: any) => {
 };
 
 const HeaderNavMobile = (props: any) => {
-  // eslint-disable-next-line no-unused-vars
   const { menu, buttons, contacts, isOpen, onClose, bgColor } = props;
 
   React.useEffect(() => {
