@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react';
-import { CustomLink } from '../customLInk/CustomLink';
+
 import SectionHead from '../section/head/SectionHead';
 import { styled } from '@linaria/react';
+import { CustomLink } from '../custom-lInk/CustomLink';
 
 const StyledCustomersSection = styled.div`
   display: flex;
