@@ -20,3 +20,22 @@ a {
     color-scheme: dark;
   }
 }
+
+.container {
+  position: relative;
+  padding: var(--paddingTop) 20px var(--paddingBottom);
+  margin: auto;
+  box-sizing: border-box;
+
+  @media screen and (min-width: 576px) {
+    max-width: 556px;
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 748px;
+  }
+
+  @media screen and (min-width: 1140px) {
+    max-width: 1080px;
+  }
+}

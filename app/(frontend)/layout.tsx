@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header
           isFixed={false}
           buttonsColor={''}
-          linksColor={''}
+          linksColor={'white'}
           heroBackgroundColor={'default'}
           menu={[
             {

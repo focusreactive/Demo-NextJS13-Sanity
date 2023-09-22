@@ -34,9 +34,9 @@ const LogoLink = styled.a`
     margin-right: 50px;
   }
 `;
-// background: ${tm(({ colors }) => colors.transparent)()};
-const HeaderBox = styled.header`
-  background: ${appTheme.colors.violet100};
+
+const HeaderBox = styled.header<{ bgColor: keyof typeof appTheme.colors }>`
+  background: ${({ bgColor }) => appTheme.colors[bgColor]};
   position: absolute;
   top: 0;
   left: 0;
@@ -168,9 +168,9 @@ const Hamburger = styled.button<{ burgerColor?: string }>`
     }
   }
 `;
-// color: ${tm(({ colors }) => colors.white)()};
-const MenuLinkContainer = styled.span`
-  color: ${appTheme.colors.white};
+
+const MenuLinkContainer = styled.span<{ color: string }>`
+  color: ${({ color }) => color};
   position: relative;
   display: flex;
   height: 40px;
@@ -261,6 +261,7 @@ export const Header = ({
     buttonsColor: activeTab ? 'blue400' : buttonsColor,
     linksColor: activeTab ? 'blue700' : linksColor,
     heroBackgroundColor: activeTab ? 'white' : heroBackgroundColor,
+    headerBoxBackgroundColor: activeTab ? 'white' : 'blue400',
   };
 
   const updatedButtons = [
@@ -330,7 +331,11 @@ export const Header = ({
         onClose={() => setIsMobileMenuOpen(false)}
         bgColor={correctColors.heroBackgroundColor}
       />
-      <HeaderBox onMouseLeave={outHandler} data-fixed={isFixed}>
+      <HeaderBox
+        onMouseLeave={outHandler}
+        data-fixed={isFixed}
+        bgColor={correctColors.headerBoxBackgroundColor as keyof typeof appTheme.colors}
+      >
         <div className="container" style={{ zIndex: 2 }}>
           <LogoLink href={'/'}>
             <Logo bgColor={isFixed ? 'white' : correctColors.heroBackgroundColor} />
