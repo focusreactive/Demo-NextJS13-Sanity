@@ -10,6 +10,7 @@ export const PreviewIFrame: UserViewComponent = (props) => {
   const [id, setId] = useState(1);
   const { displayed } = document;
   const [displayUrl, setDisplayUrl] = useState('');
+  const [publicUrl, setPublicUrl] = useState('');
   const iframe = useRef<HTMLIFrameElement>(null);
 
   function handleReload() {
@@ -19,8 +20,9 @@ export const PreviewIFrame: UserViewComponent = (props) => {
 
   useEffect(() => {
     function getUrl() {
-      const productionUrl = resolveProductionUrl(displayed) ?? '';
-      setDisplayUrl(productionUrl);
+      const { privateUrl, publicUrl } = resolveProductionUrl(displayed) ?? '';
+      setDisplayUrl(privateUrl);
+      setPublicUrl(publicUrl);
     }
     getUrl();
   }, [displayed]);
@@ -41,7 +43,7 @@ export const PreviewIFrame: UserViewComponent = (props) => {
           <Flex align="center" gap={2}>
             <Box flex={1}>
               <Text size={0} textOverflow="ellipsis">
-                {displayUrl}
+                {publicUrl}
               </Text>
             </Box>
             <Flex align="center" gap={1}>
@@ -72,7 +74,7 @@ export const PreviewIFrame: UserViewComponent = (props) => {
               key={id}
               ref={iframe}
               title="preview"
-              style={{ width: '100%', height: `100%`, maxHeight: `100%` }}
+              style={{ width: '100%', height: `100%`, maxHeight: `100%`, border: 0 }}
               src={displayUrl}
               referrerPolicy="origin-when-cross-origin"
             />

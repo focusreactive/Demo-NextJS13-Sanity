@@ -14,9 +14,21 @@ function getSlug(slug: any) {
 export default function resolveProductionUrl(doc: Partial<SanityDocument>) {
   const baseUrl = window.location.hostname === 'localhost' ? localUrl : remoteUrl;
   const previewUrl = new URL(baseUrl);
+  const publicPreviewUrl = new URL(baseUrl);
   const slug = doc.slug;
+  const urlSlug = getSlug(slug);
+
   previewUrl.pathname = `/api/draft`;
+  publicPreviewUrl.pathname = urlSlug.length > 1 ? `/${urlSlug}` : '/';
+
   previewUrl.searchParams.append(`secret`, previewSecret);
-  previewUrl.searchParams.append(`slug`, getSlug(slug));
-  return previewUrl.toString().replaceAll('%2F', '/');
+
+  previewUrl.searchParams.append(`slug`, urlSlug);
+
+  const toString = (url: URL) => url.toString().replaceAll('%2F', '/');
+
+  return {
+    privateUrl: toString(previewUrl),
+    publicUrl: toString(publicPreviewUrl),
+  };
 }
