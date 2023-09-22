@@ -11,7 +11,7 @@ export const documentTitleField = defineField({
 export const titleField = defineField({
   name: 'title',
   title: 'Title',
-  type: 'customRichText',
+  type: 'customTitleRichText',
 });
 
 export const titleColorField = defineField({
