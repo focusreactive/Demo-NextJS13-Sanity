@@ -6,7 +6,7 @@ import { appTheme } from '../../../theme';
 const TitleBlockWrap = styled.div`
   position: relative;
   width: 100%;
-  --titleColor: ${appTheme.colors.white};
+  --titleColor: ${appTheme.colors.black};
 `;
 
 const Tip = styled.p`

@@ -21,7 +21,129 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           buttonsColor={''}
           linksColor={''}
           heroBackgroundColor={'default'}
-          menu={['Capabilities', 'Solutions', 'Resources', 'Why us?']}
+          menu={[
+            {
+              group: 'Capabilities',
+              links: [
+                {
+                  title: 'Ad Fraud Protection',
+                  description: 'Short description',
+                  url: 'https://www.trafficguard.ai/',
+                  iconSrc:
+                    'https://cdn.sanity.io/images/q7v95rg2/production/078d0404d2c6a1c30908857b90c78c9e2e2effb1-500x371.png',
+                },
+                {
+                  title: 'Measurement & Verification',
+                  description: 'Short description',
+                  url: 'https://www.trafficguard.ai/',
+                  iconSrc:
+                    'https://cdn.sanity.io/images/q7v95rg2/production/078d0404d2c6a1c30908857b90c78c9e2e2effb1-500x371.png',
+                },
+                {
+                  title: 'PPC Protection',
+                  description: 'Short description',
+                  url: 'https://www.trafficguard.ai/',
+                  iconSrc:
+                    'https://cdn.sanity.io/images/q7v95rg2/production/078d0404d2c6a1c30908857b90c78c9e2e2effb1-500x371.png',
+                },
+                {
+                  title: 'Traffic Quality Audit',
+                  description: 'Short description',
+                  url: 'https://www.trafficguard.ai/',
+                  iconSrc:
+                    'https://cdn.sanity.io/images/q7v95rg2/production/078d0404d2c6a1c30908857b90c78c9e2e2effb1-500x371.png',
+                },
+              ],
+            },
+            {
+              group: 'Solutions',
+              links: [
+                {
+                  title: 'Client obsession',
+                  description: 'Short description',
+                  url: 'https://www.trafficguard.ai/',
+                  iconSrc: 'https://i.ibb.co/fCKR73f/Group-407.png',
+                },
+                {
+                  title: 'Innovation',
+                  description: 'Short description',
+                  url: 'https://www.trafficguard.ai/',
+                  iconSrc: 'https://i.ibb.co/fCKR73f/Group-407.png',
+                },
+                {
+                  title: 'Trust & transparency',
+                  description: 'Short description',
+                  url: 'https://www.trafficguard.ai/',
+                  iconSrc: 'https://i.ibb.co/fCKR73f/Group-407.png',
+                },
+                {
+                  title: 'Customer Stories',
+                  description: 'Short description',
+                  url: 'https://www.trafficguard.ai/',
+                  iconSrc: 'https://i.ibb.co/fCKR73f/Group-407.png',
+                },
+              ],
+            },
+            {
+              group: 'Resources',
+              links: [
+                {
+                  title: 'Insights',
+                  description: 'Short description',
+                  url: 'https://www.trafficguard.ai/',
+                  iconSrc:
+                    'https://cdn.sanity.io/images/q7v95rg2/production/078d0404d2c6a1c30908857b90c78c9e2e2effb1-500x371.png',
+                },
+                {
+                  title: 'News & Media',
+                  description: 'Short description',
+                  url: 'https://www.trafficguard.ai/',
+                  iconSrc:
+                    'https://cdn.sanity.io/images/q7v95rg2/production/078d0404d2c6a1c30908857b90c78c9e2e2effb1-500x371.png',
+                },
+                {
+                  title: 'White papers',
+                  description: 'Short description',
+                  url: 'https://www.trafficguard.ai/',
+                  iconSrc:
+                    'https://cdn.sanity.io/images/q7v95rg2/production/078d0404d2c6a1c30908857b90c78c9e2e2effb1-500x371.png',
+                },
+                {
+                  title: 'Glossary',
+                  description: 'Short description',
+                  url: 'https://www.trafficguard.ai/',
+                  iconSrc:
+                    'https://cdn.sanity.io/images/q7v95rg2/production/078d0404d2c6a1c30908857b90c78c9e2e2effb1-500x371.png',
+                },
+              ],
+            },
+            {
+              group: 'Why us?',
+              links: [
+                {
+                  title: 'Mission',
+                  description: 'Short description',
+                  url: 'https://www.trafficguard.ai/',
+                  iconSrc:
+                    'https://cdn.sanity.io/images/q7v95rg2/production/078d0404d2c6a1c30908857b90c78c9e2e2effb1-500x371.png',
+                },
+                {
+                  title: 'Awards',
+                  description: 'Short description',
+                  url: 'https://www.trafficguard.ai/',
+                  iconSrc:
+                    'https://cdn.sanity.io/images/q7v95rg2/production/078d0404d2c6a1c30908857b90c78c9e2e2effb1-500x371.png',
+                },
+                {
+                  title: 'Privacy & Compliance',
+                  description: 'Short description',
+                  url: 'https://www.trafficguard.ai/',
+                  iconSrc:
+                    'https://cdn.sanity.io/images/q7v95rg2/production/078d0404d2c6a1c30908857b90c78c9e2e2effb1-500x371.png',
+                },
+              ],
+            },
+          ]}
           buttons={[
             { link: 'https://www.trafficguard.ai/', text: 'Sign in' },
             { link: 'https://www.trafficguard.ai/', text: 'Get started' },

@@ -341,13 +341,13 @@ export const Header = ({
               <BigCircle as={animated.div} style={animStyles as any} />
               {menu.map((item, key) => (
                 <MenuItem
-                  text={item}
+                  text={item.group}
                   key={key}
                   color={correctColors.linksColor}
                   onMouseEnter={({ currentTarget }: any) => {
-                    menuItemHandler({ currentTarget, item });
+                    menuItemHandler({ currentTarget, item: item.group });
                   }}
-                  isActive={activeTab === item}
+                  isActive={activeTab === item.group}
                 />
               ))}
             </HeadMenu>
