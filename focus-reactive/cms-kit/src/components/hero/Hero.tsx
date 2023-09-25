@@ -185,11 +185,7 @@ const HeroDecor = styled.div`
   }
 `;
 
-const StyledImage = styled.div`
-  position: relative;
-`;
-
-const Hero = (props: any) => {
+export const Hero = (props: any) => {
   const {
     section,
     title,
@@ -277,5 +273,3 @@ const Hero = (props: any) => {
 Hero.defaultProps = {
   buttons: [],
 };
-
-export default Hero;

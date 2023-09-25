@@ -2,8 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { DM_Sans } from 'next/font/google';
 
-import { Footer, Header } from '@/focus-reactive/cms-kit';
-import Hero from '@/focus-reactive/cms-kit/src/components/hero/Hero';
+import { Footer, Header, Hero } from '@/focus-reactive/cms-kit';
 
 const dmSans = DM_Sans({ subsets: ['latin'] });
 
