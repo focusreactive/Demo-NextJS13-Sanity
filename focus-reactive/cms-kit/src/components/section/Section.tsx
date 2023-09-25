@@ -61,10 +61,29 @@ const StyledSection = styled.section<{ neighborBg?: string; bgColor?: string; ra
   }
 `;
 
+export const StyledContainer = styled.div`
+  position: relative;
+  padding: 10px;
+  margin: auto;
+  box-sizing: border-box;
+
+  @media screen and (min-width: 576px) {
+    max-width: 556px;
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 748px;
+  }
+
+  @media screen and (min-width: 1140px) {
+    max-width: 1080px;
+  }
+`;
+
 export const Section = ({ children, bgColor, radius, neighborBg }: SectionProps) => {
   return (
     <StyledSection neighborBg={neighborBg} bgColor={bgColor} radius={radius}>
-      <div style={{ margin: '0 auto', maxWidth: '1080px', padding: '0 20px', background: '' }}>{children}</div>
+      <StyledContainer>{children}</StyledContainer>
     </StyledSection>
   );
 };

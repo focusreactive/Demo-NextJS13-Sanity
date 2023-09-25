@@ -10,6 +10,7 @@ import useScrollListener from '../../hooks/useScroll';
 import { getUniqElements } from '../../utils/arrayUtils';
 import HeaderNav from './HeaderNav';
 import HeaderNavMobile from './HeaderMobileNav';
+import { StyledContainer } from '../section/Section';
 
 const CustomButtons = styled(Buttons)`
   & > * {
@@ -49,7 +50,7 @@ const HeaderBox = styled.header<{ bgColor: keyof typeof appTheme.colors }>`
     transition: background-color 0.5s ease;
   }
 
-  & > .container {
+  & > #header-container {
     position: relative;
     padding: 10px 20px;
     margin: 0 auto;
@@ -336,7 +337,7 @@ export const Header = ({
         data-fixed={isFixed}
         bgColor={correctColors.headerBoxBackgroundColor as keyof typeof appTheme.colors}
       >
-        <div className="container" style={{ zIndex: 2 }}>
+        <StyledContainer id="header-container" style={{ zIndex: 2 }}>
           <LogoLink href={'/'}>
             <Logo bgColor={isFixed ? 'white' : correctColors.heroBackgroundColor} />
           </LogoLink>
@@ -363,7 +364,7 @@ export const Header = ({
             <span />
             <span />
           </Hamburger>
-        </div>
+        </StyledContainer>
         {activeTab ? (
           <HeaderNavBoxWrapper onClick={outHandler}>
             <animated.div style={headerNavWrapperStyles as any}>

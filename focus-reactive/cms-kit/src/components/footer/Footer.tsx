@@ -6,6 +6,7 @@ import { appTheme } from '../../theme';
 import SmartLink from '../common/smart-link/SmartLink';
 import Contacts from '../common/contacts/Contacts';
 import Socials from '../common/socials/Socials';
+import { StyledContainer } from '../section/Section';
 
 const CustomButtons = styled(Buttons)``;
 
@@ -16,7 +17,7 @@ const FooterBox = styled.footer`
   background: ${appTheme.colors.gray100};
 `;
 
-const FooterTop = styled.div`
+const FooterTop = styled(StyledContainer)`
   display: flex;
   flex-direction: column;
 
@@ -24,7 +25,7 @@ const FooterTop = styled.div`
     flex-direction: row;
   }
 
-  &.container {
+  &#footer-top-container {
     padding: 20px 20px;
 
     ${appTheme.media.md} {
@@ -37,7 +38,7 @@ const FooterTop = styled.div`
   }
 `;
 
-const FooterBottom = styled.div`
+const FooterBottom = styled(StyledContainer)`
   position: relative;
   display: flex;
   flex-direction: column-reverse;
@@ -56,7 +57,7 @@ const FooterBottom = styled.div`
     }
   }
 
-  &.container {
+  &#footer-bottom-container {
     padding: 0 20px 30px;
   }
 
@@ -324,7 +325,7 @@ export const Footer = (props: any) => {
 
   return (
     <FooterBox>
-      <FooterTop className="container">
+      <FooterTop id="footer-top-container">
         <FooterTopL>
           <TopMenu>
             {(menus || []).map((item: any, key: any) => (
@@ -342,7 +343,7 @@ export const Footer = (props: any) => {
         </FooterTopR>
       </FooterTop>
 
-      <FooterBottom className="container">
+      <FooterBottom id="footer-bottom-container">
         <Member>
           Member of{' '}
           <b>
