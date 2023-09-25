@@ -1,17 +1,40 @@
 import { Box, Button, Card, Flex, Spinner, Text, ThemeProvider } from '@sanity/ui';
 import { AiOutlineReload } from 'react-icons/ai';
 import { BiLinkExternal } from 'react-icons/bi';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import resolveProductionUrl from './resolveProductionUrl';
 import { UserViewComponent } from 'sanity/desk';
+import debounce from 'lodash.debounce';
+
+// TODO: move to .env
+const remoteUrl = `https://mvp-nextjs-sanity.vercel.app`;
+const localUrl = `http://localhost:3000`;
 
 export const PreviewIFrame: UserViewComponent = (props) => {
   const { document } = props;
   const [id, setId] = useState(1);
-  const { displayed } = document;
+  const { displayed: currentDocument } = document;
   const [displayUrl, setDisplayUrl] = useState('');
   const [publicUrl, setPublicUrl] = useState('');
   const iframe = useRef<HTMLIFrameElement>(null);
+  const baseUrl = window.location.hostname === 'localhost' ? localUrl : remoteUrl;
+
+  const reloadIframe = () => {
+    const iframeNode = iframe.current;
+
+    if (!iframeNode || !iframeNode.contentWindow) return null;
+
+    const iframeWindow = iframeNode.contentWindow;
+
+    iframeWindow.location.reload();
+  };
+  const debouncedChangeHandler = useCallback(debounce(reloadIframe, 500), []);
+
+  useEffect(() => {
+    if (debouncedChangeHandler) {
+      debouncedChangeHandler();
+    }
+  }, [currentDocument._updatedAt, debouncedChangeHandler]);
 
   function handleReload() {
     if (!iframe?.current) return;
@@ -20,12 +43,12 @@ export const PreviewIFrame: UserViewComponent = (props) => {
 
   useEffect(() => {
     function getUrl() {
-      const { privateUrl, publicUrl } = resolveProductionUrl(displayed) ?? '';
+      const { privateUrl, publicUrl } = resolveProductionUrl(currentDocument, baseUrl) ?? '';
       setDisplayUrl(privateUrl);
       setPublicUrl(publicUrl);
     }
     getUrl();
-  }, [displayed]);
+  }, [currentDocument]);
 
   if (displayUrl === '')
     return (

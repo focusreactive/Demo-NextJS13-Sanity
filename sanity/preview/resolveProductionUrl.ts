@@ -2,8 +2,6 @@ import type { SanityDocument } from 'sanity';
 
 // TODO: move to .env
 const previewSecret = 'secret';
-const remoteUrl = `https://mvp-nextjs-sanity.vercel.app`;
-const localUrl = `http://localhost:3000`;
 
 function getSlug(slug: any) {
   if (!slug) return '/';
@@ -11,8 +9,7 @@ function getSlug(slug: any) {
   return '/';
 }
 
-export default function resolveProductionUrl(doc: Partial<SanityDocument>) {
-  const baseUrl = window.location.hostname === 'localhost' ? localUrl : remoteUrl;
+export default function resolveProductionUrl(doc: Partial<SanityDocument>, baseUrl: string) {
   const previewUrl = new URL(baseUrl);
   const publicPreviewUrl = new URL(baseUrl);
   const slug = doc.slug;
