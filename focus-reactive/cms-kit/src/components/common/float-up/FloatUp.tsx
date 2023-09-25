@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { useSpring, animated } from 'react-spring';
 import { InView } from 'react-intersection-observer';

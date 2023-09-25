@@ -2,12 +2,13 @@ import { styled } from '@linaria/react';
 import React from 'react';
 import Buttons from '../common/buttons/Buttons';
 import ImageBlock from '../common/image-block/ImageBlock';
-// import FloatUp from '../common/float-up/FloatUp';
+import FloatUp from '../common/float-up/FloatUp';
 import Article from '../common/article/Article';
 import SmartLink from '../common/smart-link/SmartLink';
 import TitleBlock from '../common/title-block/TitleBlock';
 import { appTheme } from '../../theme';
 import DescriptionBlock from '../common/description-block/DescriptionBlock';
+import { StyledContainer } from '../section/Section';
 
 const NavBox = styled.div`
   animation: fadeIn linear 0.4s forwards alternate;
@@ -28,9 +29,9 @@ const NavBox = styled.div`
     display: block;
   }
 
-  .container {
+  #nav-container {
     position: relative;
-    padding: 0 20px;
+    padding: 20px;
     margin: 0 auto;
     box-sizing: border-box;
     width: 100%;
@@ -242,15 +243,15 @@ const Decor = () => {
 const Promo = ({ image, title, buttons }: any) => {
   return (
     <PromoWrap>
-      {/* <FloatUp> */}
-      <ImageBlock {...image} />
-      <PromoContent>
-        <Description>
-          <Article textRaw={title} />
-        </Description>
-        <Buttons buttons={buttons} />
-      </PromoContent>
-      {/* </FloatUp> */}
+      <FloatUp>
+        <ImageBlock {...image} />
+        <PromoContent>
+          <Description>
+            <Article textRaw={title} />
+          </Description>
+          <Buttons buttons={buttons} />
+        </PromoContent>
+      </FloatUp>
     </PromoWrap>
   );
 };
@@ -291,7 +292,7 @@ const NavItemCols = ({ navTitle, links, mainKey, ...restProps }: any) => {
 const HeaderNav = ({ className, promo, navigation }: any) => {
   return (
     <NavBox className={className}>
-      <div className="container">
+      <StyledContainer id="nav-container">
         <Decor />
         <NavList>
           {navigation?.length === 1
@@ -301,7 +302,7 @@ const HeaderNav = ({ className, promo, navigation }: any) => {
               ))}
         </NavList>
         {promo ? <Promo {...promo} /> : null}
-      </div>
+      </StyledContainer>
     </NavBox>
   );
 };

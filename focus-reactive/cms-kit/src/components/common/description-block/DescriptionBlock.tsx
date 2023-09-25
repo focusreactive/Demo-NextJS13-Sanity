@@ -6,7 +6,7 @@ import { appTheme } from '../../../theme';
 const DescrBlock = styled.div`
   font-size: 16px;
   line-height: 1.52;
-  color: ${appTheme.colors.gray100};
+  color: ${appTheme.colors.gray400};
 
   ${appTheme.media.md} {
     font-size: 18px;
