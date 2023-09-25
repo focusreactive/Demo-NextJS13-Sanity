@@ -129,7 +129,7 @@ const Hamburger = styled.button<{ burgerColor?: string }>`
 
   span {
     display: flex;
-    width: 20px;
+    width: 24px;
     height: 2px;
 
     ${appTheme.media.md} {
@@ -284,7 +284,7 @@ export const Header = ({
       ...buttons[0],
       color: 'white',
       background: correctColors.buttonsColor,
-      variant: 'blue',
+      variant: 'white',
     },
     {
       ...buttons[1],
@@ -341,7 +341,7 @@ export const Header = ({
       <StyledWrapper>
         <HeaderNavMobile
           menu={menu}
-          buttons={buttons.length ? updatedButtons : []}
+          buttons={buttons.length ? [{ ...updatedButtons[0], variant: 'blue' }] : []}
           contacts={contacts}
           isOpen={isMobileMenuOpen}
           onClose={() => setIsMobileMenuOpen(false)}
