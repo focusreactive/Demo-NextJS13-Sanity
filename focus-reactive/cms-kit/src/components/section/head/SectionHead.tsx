@@ -23,7 +23,7 @@ const StyledHeading = styled.div`
   }
 `;
 
-const Section = ({ icon, title }: SectionHeadProps) => {
+const SectionHead = ({ icon, title }: SectionHeadProps) => {
   return (
     <StyledHeading>
       {icon && <img src={icon} alt="" />}
@@ -32,4 +32,4 @@ const Section = ({ icon, title }: SectionHeadProps) => {
   );
 };
 
-export default Section;
+export default SectionHead;

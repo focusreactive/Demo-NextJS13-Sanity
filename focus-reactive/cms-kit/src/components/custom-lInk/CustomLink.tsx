@@ -3,10 +3,11 @@ import { styled } from '@linaria/react';
 
 interface CustomLinkProps {
   children: ReactNode;
+  color?: string;
 }
 
-const StyledLink = styled.a`
-  color: #4d62d6;
+const StyledLink = styled.a<{ color?: string }>`
+  color: ${({ color }) => (color ? color : '#4d62d6')};
   font-size: 16px;
   font-weight: 700;
   position: relative;
@@ -23,8 +24,8 @@ const StyledLink = styled.a`
     width: 6px;
     height: 6px;
     margin-left: 20px;
-    border-left: 3px solid #4d62d6;
-    border-bottom: 3px solid #4d62d6;
+    border-left: 3px solid ${({ color }) => (color ? color : '#4d62d6')};
+    border-bottom: 3px solid ${({ color }) => (color ? color : '#4d62d6')};
     transform: rotate(-135deg);
   }
 
@@ -37,6 +38,10 @@ const StyledLink = styled.a`
   }
 `;
 
-export const CustomLink = ({ children }: CustomLinkProps) => {
-  return <StyledLink href="#">{children}</StyledLink>;
+export const CustomLink = ({ children, color }: CustomLinkProps) => {
+  return (
+    <StyledLink href="#" color={color}>
+      {children}
+    </StyledLink>
+  );
 };
