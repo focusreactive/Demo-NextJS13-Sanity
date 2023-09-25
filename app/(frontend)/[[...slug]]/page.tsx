@@ -2,6 +2,7 @@ import { ContentBlocks } from '@/components/ContentBlocks';
 import { getPageContent } from '@/model/getPageContent';
 import { getAllPagesSlugs } from '@/model/getAllPagesSlugs';
 import { notFound } from 'next/navigation';
+import { draftMode } from 'next/headers';
 
 export async function generateStaticParams() {
   const slugs = await getAllPagesSlugs();
@@ -11,8 +12,9 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: { params: { slug?: string[] } }) {
   const { slug } = params;
+  const { isEnabled } = draftMode();
 
-  const page = await getPageContent({ slug: slug ? slug.join('/') : '/' });
+  const page = await getPageContent({ slug: slug ? slug.join('/') : '/', isDraftMode: isEnabled });
 
   if (!page) return notFound();
 
