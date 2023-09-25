@@ -129,7 +129,7 @@ const Hamburger = styled.button<{ burgerColor?: string }>`
 
   span {
     display: flex;
-    width: 20px;
+    width: 24px;
     height: 2px;
 
     ${appTheme.media.md} {
