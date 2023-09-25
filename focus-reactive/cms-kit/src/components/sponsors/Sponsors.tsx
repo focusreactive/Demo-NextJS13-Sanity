@@ -11,7 +11,7 @@ const StyledSponsors = styled.div`
     margin: 0 -10px;
 
     & > div {
-      width: 20%;
+      width: 24%;
       padding: 0 10px;
       display: flex;
       align-items: center;
