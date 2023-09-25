@@ -21,13 +21,3 @@ a {
     overflow-x: hidden;
   }
 }
-
-.layout {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 100vh;
-  min-width: 320px;
-  overflow: hidden;
-}

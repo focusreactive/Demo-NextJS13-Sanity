@@ -213,6 +213,20 @@ const HeaderNavBoxWrapper = styled.div`
   perspective-origin: top;
 `;
 
+const StyledWrapper = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  min-width: 100vw;
+  overflow: hidden;
+`;
+
+const StyledLayout = styled.div`
+  position: relative;
+`;
+
 const COLORS = {
   default: {
     burgerColor: 'white',
@@ -323,56 +337,58 @@ export const Header = ({
   }
 
   return (
-    <>
-      <HeaderNavMobile
-        menu={menu}
-        buttons={buttons.length ? updatedButtons : []}
-        contacts={contacts}
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
-        bgColor={correctColors.heroBackgroundColor}
-      />
-      <HeaderBox
-        onMouseLeave={outHandler}
-        data-fixed={isFixed}
-        bgColor={correctColors.headerBoxBackgroundColor as keyof typeof appTheme.colors}
-      >
-        <StyledContainer id="header-container" style={{ zIndex: 2 }}>
-          <LogoLink href={'/'}>
-            <Logo bgColor={isFixed ? 'white' : correctColors.heroBackgroundColor} />
-          </LogoLink>
+    <StyledLayout>
+      <StyledWrapper>
+        <HeaderNavMobile
+          menu={menu}
+          buttons={buttons.length ? updatedButtons : []}
+          contacts={contacts}
+          isOpen={isMobileMenuOpen}
+          onClose={() => setIsMobileMenuOpen(false)}
+          bgColor={correctColors.heroBackgroundColor}
+        />
+        <HeaderBox
+          onMouseLeave={outHandler}
+          data-fixed={isFixed}
+          bgColor={correctColors.headerBoxBackgroundColor as keyof typeof appTheme.colors}
+        >
+          <StyledContainer id="header-container" style={{ zIndex: 2 }}>
+            <LogoLink href={'/'}>
+              <Logo bgColor={isFixed ? 'white' : correctColors.heroBackgroundColor} />
+            </LogoLink>
 
-          <HeaderGroup>
-            <HeadMenu>
-              <BigCircle as={animated.div} style={animStyles as any} />
-              {menu.map((item, key) => (
-                <MenuItem
-                  text={item.group}
-                  key={key}
-                  color={correctColors.linksColor}
-                  onMouseEnter={({ currentTarget }: any) => {
-                    menuItemHandler({ currentTarget, item: item.group });
-                  }}
-                  isActive={activeTab === item.group}
-                />
-              ))}
-            </HeadMenu>
-            <CustomButtons buttons={buttons.length ? updatedButtons : []} buttonsColor={correctColors.buttonsColor} />
-          </HeaderGroup>
-          <Hamburger burgerColor={burgerColor} onClick={() => setIsMobileMenuOpen(true)}>
-            <span />
-            <span />
-            <span />
-          </Hamburger>
-        </StyledContainer>
-        {activeTab ? (
-          <HeaderNavBoxWrapper onClick={outHandler}>
-            <animated.div style={headerNavWrapperStyles as any}>
-              <HeaderNav promo={ctaCard} navigation={currentNavigationElements} />
-            </animated.div>
-          </HeaderNavBoxWrapper>
-        ) : null}
-      </HeaderBox>
-    </>
+            <HeaderGroup>
+              <HeadMenu>
+                <BigCircle as={animated.div} style={animStyles as any} />
+                {menu.map((item, key) => (
+                  <MenuItem
+                    text={item.group}
+                    key={key}
+                    color={correctColors.linksColor}
+                    onMouseEnter={({ currentTarget }: any) => {
+                      menuItemHandler({ currentTarget, item: item.group });
+                    }}
+                    isActive={activeTab === item.group}
+                  />
+                ))}
+              </HeadMenu>
+              <CustomButtons buttons={buttons.length ? updatedButtons : []} buttonsColor={correctColors.buttonsColor} />
+            </HeaderGroup>
+            <Hamburger burgerColor={burgerColor} onClick={() => setIsMobileMenuOpen(true)}>
+              <span />
+              <span />
+              <span />
+            </Hamburger>
+          </StyledContainer>
+          {activeTab ? (
+            <HeaderNavBoxWrapper onClick={outHandler}>
+              <animated.div style={headerNavWrapperStyles as any}>
+                <HeaderNav promo={ctaCard} navigation={currentNavigationElements} />
+              </animated.div>
+            </HeaderNavBoxWrapper>
+          ) : null}
+        </HeaderBox>
+      </StyledWrapper>
+    </StyledLayout>
   );
 };
