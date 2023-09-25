@@ -18,22 +18,7 @@ const logo = defineType({
     prepare: ({ title, alt, media }) => ({ title: title || alt, media }),
   },
   fields: [
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'string',
-    }),
     imageWithAltField,
-    defineField({
-      name: 'link',
-      title: 'Link',
-      type: 'url',
-    }),
   ],
 });
 
