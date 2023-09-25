@@ -1,6 +1,19 @@
 import React from 'react';
 
-const SmartLink = ({ children, url, link, externalLink, hash, ...rest }: any) => {
+const SmartLink = ({
+  children,
+  url,
+
+  // TODO: select props instead of exclusion
+  link,
+  externalLink,
+  hash,
+  textColor,
+  bgColor,
+  borderColor,
+  noWaves,
+  ...rest
+}: any) => {
   return (
     <a href={url} {...rest}>
       {children}

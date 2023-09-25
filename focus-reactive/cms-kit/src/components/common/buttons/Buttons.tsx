@@ -37,8 +37,4 @@ const Buttons = ({ buttons, className, initialAnimationDelay = 100, animationSte
   );
 };
 
-Buttons.defaultProps = {
-  buttons: [],
-};
-
 export default Buttons;
