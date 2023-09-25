@@ -5,6 +5,8 @@ import { Section } from '@focusreactive/cms-kit';
 type BlockType = { [k in string]: any };
 
 export const ContentBlocks = ({ blocks }: { blocks: BlockType[] }) => {
+  if (!blocks) return null;
+
   const { blocks: blocksComponentsMap } = config;
 
   return blocks.map((block, index) => {
