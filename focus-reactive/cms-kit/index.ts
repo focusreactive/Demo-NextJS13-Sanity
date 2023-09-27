@@ -6,3 +6,4 @@ export * from './src/components/sponsors/Sponsors';
 export * from './src/components/header/Header';
 export * from './src/components/footer/Footer';
 export * from './src/components/hero/Hero';
+export * from './src/global.d';

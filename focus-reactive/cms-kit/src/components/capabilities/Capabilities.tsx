@@ -3,6 +3,7 @@ import SectionHead from '../section/head/SectionHead';
 import { Button } from '../button/Button';
 import { styled } from '@linaria/react';
 import { brandColors } from '@focusreactive/cms-kit/src/components/capabilities/colors';
+import { converters } from '../../cms-connector/converters';
 
 const StyledCapabilities = styled.div`
   display: flex;
@@ -165,4 +166,18 @@ export const Capabilities = (props: CapabilitiesProps) => {
       </StyledCapabilities>
     </div>
   );
+};
+
+export const CapabilitiesPropsConverter = {
+  sanity: (block: any) => {
+    return {
+      title: converters.title(block.title),
+      list: block.list.map((item: any) => ({
+        title: converters.title(item.title),
+        description: converters.richText(item.description),
+        button: converters.button(item.button),
+        bgColor: converters.plainText(item.bgColor),
+      })),
+    };
+  },
 };

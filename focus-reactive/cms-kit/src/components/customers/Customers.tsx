@@ -3,6 +3,7 @@ import React, { ReactNode } from 'react';
 import SectionHead from '../section/head/SectionHead';
 import { styled } from '@linaria/react';
 import { CustomLink } from '../custom-lInk/CustomLink';
+import { converters } from '../../cms-connector/converters';
 
 const StyledCustomersSection = styled.div`
   display: flex;
@@ -193,4 +194,21 @@ export const Customers = (props: CustomersProps) => {
       </div>
     </>
   );
+};
+
+export const CustomersPropsConverter = {
+  sanity: (block: any) => {
+    return {
+      title: converters.title(block.title),
+      button: converters.button(block.button),
+      items: block.spotlight.map((item: any) => ({
+        title: converters.title(item.title),
+        description: converters.richText(item.description),
+        photo: converters.imageWithAlt(item.photo),
+        logo: converters.imageWithAlt(item.logo),
+        logoInText: converters.imageWithAlt(item.logoInText),
+        author: converters.title(item.author),
+      })),
+    };
+  },
 };

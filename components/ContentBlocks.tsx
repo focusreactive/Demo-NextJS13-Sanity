@@ -1,13 +1,12 @@
-import { config } from '@/cms-connector/cmsConfig';
+import { config } from '@/model/cmsConfig';
 import { Section } from '@focusreactive/cms-kit';
-// import { cmsDataToProps } from '@/cms-connector/cmsDataToProps';
 
 type BlockType = { [k in string]: any };
 
 export const ContentBlocks = ({ blocks }: { blocks: BlockType[] }) => {
   if (!blocks) return null;
 
-  const { blocks: blocksComponentsMap } = config;
+  const { cmsId, blocks: blocksComponentsMap } = config;
 
   return blocks.map((block, index) => {
     const options = blocksComponentsMap[block._type as keyof typeof blocksComponentsMap];
@@ -16,13 +15,12 @@ export const ContentBlocks = ({ blocks }: { blocks: BlockType[] }) => {
       return null;
     }
 
-    const {
-      Component,
-      // schema
-    } = options;
+    const { Component, cmsDataToProps } = options;
 
     const sectionConfig = block.sectionConfig || {};
-    // const props = cmsDataToProps(block, schema);
+
+    const convertProps = cmsDataToProps[cmsId];
+    const props = convertProps ? convertProps(block) : block;
     const neighborBg = block.backgroundColor ? blocks[index + 1]?.backgroundColor || '#fff' : null;
 
     return (
@@ -32,8 +30,7 @@ export const ContentBlocks = ({ blocks }: { blocks: BlockType[] }) => {
         radius={sectionConfig.roundCorner}
         neighborBg={neighborBg}
       >
-        {/* @ts-ignore */}
-        <Component {...block} />
+        <Component {...props} />
       </Section>
     );
   });
