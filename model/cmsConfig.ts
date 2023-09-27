@@ -1,4 +1,3 @@
-import { ABOUT_CMS_BLOCK, CAPABILITIES_CMS_BLOCK, CUSTOMER_SPOTLIGHT_CMS_BLOCK, LOGOS_CMS_BLOCK } from '@/constants';
 import {
   Advertise,
   AdvertisePropsConverter,
@@ -25,19 +24,19 @@ interface CmsConfig {
 export const config: CmsConfig = {
   cmsId: SupportedCms.sanity,
   blocks: {
-    [LOGOS_CMS_BLOCK]: {
+    logos: {
       Component: Sponsors,
       cmsDataToProps: SponsorsPropsConverter,
     },
-    [ABOUT_CMS_BLOCK]: {
+    about: {
       Component: Advertise,
       cmsDataToProps: AdvertisePropsConverter,
     },
-    [CAPABILITIES_CMS_BLOCK]: {
+    capabilities: {
       Component: Capabilities,
       cmsDataToProps: CapabilitiesPropsConverter,
     },
-    [CUSTOMER_SPOTLIGHT_CMS_BLOCK]: {
+    customerSpotlight: {
       Component: Customers,
       cmsDataToProps: CustomersPropsConverter,
     },
