@@ -77,7 +77,7 @@ const StyledSection = styled.section<{ siblingBg?: SectionProps['siblingBg']; bg
     flex-direction: column;
     gap: clamp(80px, 10vw, 160px) 0;
   }
-`;
+`; 
 
 export const StyledContainer = styled.div`
   position: relative;
