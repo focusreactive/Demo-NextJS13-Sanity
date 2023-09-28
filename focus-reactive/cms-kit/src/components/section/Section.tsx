@@ -39,7 +39,6 @@ const getSiblingBg = ({ siblingBg, radius }: Pick<SectionProps, 'siblingBg' | 'r
 const StyledSection = styled.section<{ siblingBg?: SectionProps['siblingBg']; bgColor?: string; radius?: string }>`
   padding: clamp(80px, 15vw, 160px) 0;
   position: relative;
-  overflow: hidden;
   z-index: 2;
   background: ${({ bgColor }) => getSectionBgColor(bgColor)};
   color: ${({ bgColor }) => getSectionTextColor(bgColor)};
@@ -48,7 +47,7 @@ const StyledSection = styled.section<{ siblingBg?: SectionProps['siblingBg']; bg
   &:before {
     content: '';
     position: absolute;
-    left: -1px;
+    left: 0;
     top: ${({ radius }) => (radius === 'top-left' ? '-1px' : 'auto')};
     bottom: ${({ radius }) => (radius === 'bottom-left' ? '-1px' : 'auto')};
     pointer-events: none;
@@ -64,7 +63,6 @@ const StyledSection = styled.section<{ siblingBg?: SectionProps['siblingBg']; bg
 
   &:after {
     z-index: 2;
-    left: 0;
     top: ${({ radius }) => (radius === 'top-left' ? 0 : 'auto')};
     bottom: ${({ radius }) => (radius === 'bottom-left' ? 0 : 'auto')};
     border-top-left-radius: ${({ radius }) => (radius === 'top-left' ? 'clamp(60px, 10vw, 160px)' : 'auto')};
