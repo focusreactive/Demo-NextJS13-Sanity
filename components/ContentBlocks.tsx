@@ -1,5 +1,6 @@
 import { config } from '@/model/cmsConfig';
 import { Section } from '@focusreactive/cms-kit';
+import { sectionBgColors } from '@focusreactive/cms-kit/src/components/section/colors';
 
 type BlockType = { [k in string]: any };
 
@@ -17,18 +18,22 @@ export const ContentBlocks = ({ blocks }: { blocks: BlockType[] }) => {
 
     const { Component, cmsDataToProps } = options;
 
-    const sectionConfig = block.sectionConfig || {};
-
     const convertProps = cmsDataToProps[cmsId];
     const props = convertProps ? convertProps(block) : block;
-    const neighborBg = block.backgroundColor ? blocks[index + 1]?.backgroundColor || '#fff' : null;
+
+    const sectionConfig = block.sectionConfig || {};
+    const defaultColour = index === 0 ? sectionBgColors.blue : null;
+    const siblingBg = {
+      prev: blocks[index - 1]?.sectionConfig?.backgroundColor || defaultColour,
+      next: blocks[index + 1]?.sectionConfig?.backgroundColor || null,
+    };
 
     return (
       <Section
         key={block._key}
         bgColor={sectionConfig.backgroundColor}
         radius={sectionConfig.roundCorner}
-        neighborBg={neighborBg}
+        siblingBg={siblingBg}
       >
         <Component {...props} />
       </Section>

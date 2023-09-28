@@ -7,7 +7,10 @@ interface SectionProps {
   bgColor?: string;
   className?: string;
   radius?: string;
-  neighborBg?: string;
+  siblingBg?: {
+    prev: string;
+    next: string;
+  };
 }
 
 const getSectionBgColor = (bgColor?: string) => {
@@ -22,7 +25,18 @@ const getSectionTextColor = (bgColor?: string) => {
   return sectionTextColorsByBg[bgColor as keyof typeof sectionTextColorsByBg] || fallbackColor;
 };
 
-const StyledSection = styled.section<{ neighborBg?: string; bgColor?: string; radius?: string }>`
+const getSiblingBg = ({ siblingBg, radius }: Pick<SectionProps, 'siblingBg' | 'radius'>) => {
+  if (radius === 'top-left') {
+    return siblingBg?.prev ? siblingBg.prev : '#fff';
+  }
+  if (radius === 'bottom-left') {
+    return siblingBg?.next ? siblingBg.next : '#fff';
+  }
+
+  return 'none';
+};
+
+const StyledSection = styled.section<{ siblingBg?: SectionProps['siblingBg']; bgColor?: string; radius?: string }>`
   padding: clamp(80px, 15vw, 160px) 0;
   position: relative;
   overflow: hidden;
@@ -44,7 +58,7 @@ const StyledSection = styled.section<{ neighborBg?: string; bgColor?: string; ra
 
   &:before {
     z-index: 1;
-    background: ${({ neighborBg }) => (neighborBg ? neighborBg : '#fff')};
+    background: ${({ siblingBg, radius }) => getSiblingBg({ siblingBg, radius })};
   }
 
   &:after {
@@ -80,9 +94,9 @@ export const StyledContainer = styled.div`
   }
 `;
 
-export const Section = ({ children, bgColor, radius, neighborBg }: SectionProps) => {
+export const Section = ({ children, bgColor, radius, siblingBg }: SectionProps) => {
   return (
-    <StyledSection neighborBg={neighborBg} bgColor={bgColor} radius={radius}>
+    <StyledSection siblingBg={siblingBg} bgColor={bgColor} radius={radius}>
       <StyledContainer>{children}</StyledContainer>
     </StyledSection>
   );

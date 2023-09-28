@@ -161,17 +161,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
           contacts={''}
         />
-        <Hero
-          title="Clarity beyond measure."
-          description="By verifying advertising engagement and protecting budgets, we help businesses get the clarity they need to unlock the best advertising results."
-          buttons={[
-            { link: 'https://www.trafficguard.ai/', text: 'Start now' },
-            { link: 'https://www.trafficguard.ai/', text: 'Contact sales' },
-          ]}
-          decor={{ src: 'https://i.ibb.co/d4yj9wx/image.png', hasParallax: true }}
-          isHomePage
-          bgColor="blue400"
-        />
         {children}
         <Footer
           menus={[

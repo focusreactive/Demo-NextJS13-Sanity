@@ -194,7 +194,7 @@ export const Hero = (props: any) => {
     titleVariant,
     description,
     descriptionVariant,
-    buttons,
+    buttons = [],
     decor = {},
     titleColor,
     descriptionColor,
@@ -268,8 +268,4 @@ export const Hero = (props: any) => {
       </HeroSection>
     </>
   );
-};
-
-Hero.defaultProps = {
-  buttons: [],
 };
