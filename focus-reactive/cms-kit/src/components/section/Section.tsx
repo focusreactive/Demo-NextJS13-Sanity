@@ -64,6 +64,9 @@ const StyledSection = styled.section<{ siblingBg?: SectionProps['siblingBg']; bg
 
   &:after {
     z-index: 2;
+    left: 0;
+    top: ${({ radius }) => (radius === 'top-left' ? 0 : 'auto')};
+    bottom: ${({ radius }) => (radius === 'bottom-left' ? 0 : 'auto')};
     border-top-left-radius: ${({ radius }) => (radius === 'top-left' ? 'clamp(60px, 10vw, 160px)' : 'auto')};
     border-bottom-left-radius: ${({ radius }) => (radius === 'bottom-left' ? 'clamp(60px, 10vw, 160px)' : 'auto')};
     background: inherit;
