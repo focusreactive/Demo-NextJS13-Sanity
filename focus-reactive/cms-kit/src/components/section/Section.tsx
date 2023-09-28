@@ -14,7 +14,7 @@ interface SectionProps {
 }
 
 const getSectionBgColor = (bgColor?: string) => {
-  const fallbackColor = 'none';
+  const fallbackColor = '#fff';
   if (!bgColor) return fallbackColor;
   return sectionBgColors[bgColor as keyof typeof sectionBgColors] || fallbackColor;
 };
