@@ -40,6 +40,8 @@ const StyledSection = styled.section<{ siblingBg?: SectionProps['siblingBg']; bg
   padding: clamp(80px, 15vw, 160px) 0;
   position: relative;
   z-index: 2;
+  overflow: hidden;
+  margin-top: ${({ radius }) => (radius === 'top-left' ? '-1px' : 0)};
   background: ${({ bgColor }) => getSectionBgColor(bgColor)};
   color: ${({ bgColor }) => getSectionTextColor(bgColor)};
 
