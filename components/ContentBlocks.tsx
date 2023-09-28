@@ -1,13 +1,13 @@
-import { config } from '@/cms-connector/cmsConfig';
+import { config } from '@/model/cmsConfig';
 import { Section } from '@focusreactive/cms-kit';
-// import { cmsDataToProps } from '@/cms-connector/cmsDataToProps';
+import { sectionBgColors } from '@focusreactive/cms-kit/src/components/section/colors';
 
 type BlockType = { [k in string]: any };
 
 export const ContentBlocks = ({ blocks }: { blocks: BlockType[] }) => {
   if (!blocks) return null;
 
-  const { blocks: blocksComponentsMap } = config;
+  const { cmsId, blocks: blocksComponentsMap } = config;
 
   return blocks.map((block, index) => {
     const options = blocksComponentsMap[block._type as keyof typeof blocksComponentsMap];
@@ -16,24 +16,26 @@ export const ContentBlocks = ({ blocks }: { blocks: BlockType[] }) => {
       return null;
     }
 
-    const {
-      Component,
-      // schema
-    } = options;
+    const { Component, cmsDataToProps } = options;
+
+    const convertProps = cmsDataToProps[cmsId];
+    const props = convertProps ? convertProps(block) : block;
 
     const sectionConfig = block.sectionConfig || {};
-    // const props = cmsDataToProps(block, schema);
-    const neighborBg = block.backgroundColor ? blocks[index + 1]?.backgroundColor || '#fff' : null;
+    const defaultColour = index === 0 ? sectionBgColors.blue : null;
+    const siblingBg = {
+      prev: blocks[index - 1]?.sectionConfig?.backgroundColor || defaultColour,
+      next: blocks[index + 1]?.sectionConfig?.backgroundColor || null,
+    };
 
     return (
       <Section
         key={block._key}
         bgColor={sectionConfig.backgroundColor}
         radius={sectionConfig.roundCorner}
-        neighborBg={neighborBg}
+        siblingBg={siblingBg}
       >
-        {/* @ts-ignore */}
-        <Component {...block} />
+        <Component {...props} />
       </Section>
     );
   });

@@ -2,6 +2,7 @@ import React from 'react';
 
 import { styled } from '@linaria/react';
 import { CustomLink } from '../custom-lInk/CustomLink';
+import { converters } from '../../cms-connector/converters';
 
 const StyledSponsors = styled.div`
   & > div {
@@ -73,4 +74,13 @@ export const Sponsors = ({ logos, button }: SponsorsProps) => {
       <CustomLink>{button.title}</CustomLink>
     </StyledSponsors>
   );
+};
+
+export const SponsorsPropsConverter = {
+  sanity: (block: any) => {
+    return {
+      logos: block.logos.map((logo: any) => converters.imageWithAlt(logo.imageWithAlt)),
+      button: converters.button(block.button),
+    };
+  },
 };

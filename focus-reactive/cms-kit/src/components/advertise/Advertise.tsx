@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import SectionHead from '../section/head/SectionHead';
 import { styled } from '@linaria/react';
+import { converters } from '../../cms-connector/converters';
 
 const StyledAdvertise = styled.div<{ imageLeft?: boolean }>`
   display: flex;
@@ -70,4 +71,15 @@ export const Advertise = (props: AdvertiseProps) => {
       </div>
     </StyledAdvertise>
   );
+};
+
+export const AdvertisePropsConverter = {
+  sanity: (block: any) => {
+    return {
+      title: converters.title(block.title),
+      description: converters.richText(block.description),
+      image: converters.imageWithAlt(block.imageWithAlt),
+      imagePosition: converters.plainText(block.imagePosition),
+    };
+  },
 };
