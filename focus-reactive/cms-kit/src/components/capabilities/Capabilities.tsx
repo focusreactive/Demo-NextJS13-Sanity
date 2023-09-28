@@ -83,6 +83,7 @@ const StyledCapability = styled.div<{ color?: string }>`
     img {
       display: block;
       max-width: 100%;
+      border-radius: 20px;
     }
   }
 

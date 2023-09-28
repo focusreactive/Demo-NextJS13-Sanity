@@ -51,14 +51,15 @@ const StyledSection = styled.section<{ siblingBg?: SectionProps['siblingBg']; bg
     left: 0;
     top: ${({ radius }) => (radius === 'top-left' ? 0 : 'auto')};
     bottom: ${({ radius }) => (radius === 'bottom-left' ? 0 : 'auto')};
-    width: clamp(60px, 10vw, 160px);
-    height: clamp(60px, 10vw, 160px);
     pointer-events: none;
+    outline: none;
   }
 
   &:before {
     z-index: 1;
     background: ${({ siblingBg, radius }) => getSiblingBg({ siblingBg, radius })};
+    width: clamp(60px, 10vw, 160px);
+    height: clamp(60px, 10vw, 160px);
   }
 
   &:after {
@@ -66,6 +67,8 @@ const StyledSection = styled.section<{ siblingBg?: SectionProps['siblingBg']; bg
     border-top-left-radius: ${({ radius }) => (radius === 'top-left' ? 'clamp(60px, 10vw, 160px)' : 'auto')};
     border-bottom-left-radius: ${({ radius }) => (radius === 'bottom-left' ? 'clamp(60px, 10vw, 160px)' : 'auto')};
     background: inherit;
+    width: clamp(62px, 10vw, 162px);
+    height: clamp(62px, 10vw, 162px);
   }
 
   & > div {
