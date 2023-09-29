@@ -98,10 +98,6 @@ const StyledContent = styled.div`
     max-width: 25%;
   }
 
-  @media screen and (max-width: 767px) {
-    margin-left: -20px;
-    margin-right: -20px;
-  }
 `;
 
 const StyledText = styled.div`
@@ -170,7 +166,7 @@ export const Customers = (props: CustomersProps) => {
 
             <StyledContent>
               <StyledImage>
-                <img src={selectedItem.logo.src} alt={selectedItem.logo.alt} />
+                <img src={selectedItem.photo.src} alt={selectedItem.photo.alt} />
               </StyledImage>
 
               <StyledText>
