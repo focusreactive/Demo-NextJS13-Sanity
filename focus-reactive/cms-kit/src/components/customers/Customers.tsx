@@ -90,26 +90,39 @@ const StyledLogos = styled.div`
 const StyledContent = styled.div`
   border-radius: 60px 60px 60px 0px;
   background: #ff473d;
-  padding: clamp(20px, 3vw, 30px) clamp(20px, 4vw, 50px);
+  padding: 30px 50px;
   color: #fff;
 
   & > img {
     margin-top: 20px;
     max-width: 25%;
   }
-
+  @media screen and (max-width: 1140px) {
+    padding: 30px;
+  }
+  @media screen and (max-width: 575px) {
+    margin-left: -10px;
+    margin-right: -10px;
+    padding: 20px
+  }
 `;
 
 const StyledText = styled.div`
-  font-size: clamp(20px, 2.5vw, 24px);
+  font-size: 24px;
 
   p:not(:last-child) {
     margin-bottom: 25px;
   }
 
   p:nth-child(2) {
-    font-size: clamp(16px, 2vw, 18px);
+    font-size: 18px;
     line-height: 1.5;
+  }
+  @media screen and (max-width: 1140px) {
+    font-size: 20px;
+    p:nth-child(2) {
+      font-size: 16px;
+    }
   }
 `;
 
@@ -125,7 +138,10 @@ const StyledImage = styled.div`
 
   @media screen and (max-width: 767px) {
     display: block;
+    margin-left: -10px;
+    margin-right: -10px;
   }
+  
 `;
 
 type CustomerProps = {
