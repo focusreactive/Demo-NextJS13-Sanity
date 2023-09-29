@@ -41,37 +41,21 @@ const StyledSection = styled.section<{ siblingBg?: SectionProps['siblingBg']; bg
   position: relative;
   z-index: 2;
   overflow: hidden;
-  margin-top: ${({ radius }) => (radius === 'top-left' ? '-1px' : 0)};
-  background: ${({ bgColor }) => getSectionBgColor(bgColor)};
+  background: ${({ siblingBg, radius }) => getSiblingBg({ siblingBg, radius })};
   color: ${({ bgColor }) => getSectionTextColor(bgColor)};
 
-  &:after,
   &:before {
     content: '';
     position: absolute;
     left: 0;
-    top: ${({ radius }) => (radius === 'top-left' ? '-1px' : 'auto')};
-    bottom: ${({ radius }) => (radius === 'bottom-left' ? '-1px' : 'auto')};
-    pointer-events: none;
-    outline: none;
-  }
-
-  &:before {
-    z-index: 1;
-    background: ${({ siblingBg, radius }) => getSiblingBg({ siblingBg, radius })};
-    width: clamp(61px, 10vw, 161px);
-    height: clamp(61px, 10vw, 161px);
-  }
-
-  &:after {
-    z-index: 2;
-    top: ${({ radius }) => (radius === 'top-left' ? 0 : 'auto')};
-    bottom: ${({ radius }) => (radius === 'bottom-left' ? 0 : 'auto')};
+    top: 0;
+    right: 0;
+    bottom: 0;
     border-top-left-radius: ${({ radius }) => (radius === 'top-left' ? 'clamp(60px, 10vw, 160px)' : 'auto')};
     border-bottom-left-radius: ${({ radius }) => (radius === 'bottom-left' ? 'clamp(60px, 10vw, 160px)' : 'auto')};
-    background: inherit;
-    width: clamp(62px, 10vw, 162px);
-    height: clamp(62px, 10vw, 162px);
+    pointer-events: none;
+    outline: none;
+    background: ${({ bgColor }) => getSectionBgColor(bgColor)};
   }
 
   & > div {
