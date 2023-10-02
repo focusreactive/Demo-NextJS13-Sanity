@@ -8,6 +8,7 @@ const LogoContainer = styled.div`
   height: auto;
   fill: ${appTheme.colors.white};
   font-size: 24px;
+  text-wrap: nowrap;
 `;
 
 const COLORS = {

@@ -1,6 +1,7 @@
 import { styled } from '@linaria/react';
 import React from 'react';
 import { appTheme } from '../../../theme';
+import CountrySwitchWrapper from './CountrySwitchWrapper';
 
 const ContactsWrap = styled.div`
   display: flex;
@@ -49,26 +50,20 @@ const ContactsItem = ({ icon, title }: any) => {
 
 const Contacts = (props: any) => {
   const { contacts } = props;
-  const activeLanguageName = 'en';
-  // languages.find((l) => l.name === lang)?.title || languages[0].title;
-
-  // const activeLocationName =
-  //   countries.find((c) => c.code.toLowerCase() === location)?.name ||
-  //   countries[0].name;
 
   return (
     <ContactsWrap>
-      {/* {(contacts || []).map((item, key) => (
+      {(contacts || []).map((item: any, key: any) => (
         <CountrySwitchWrapper key={key}>
-          <ContactsItem {...item} title={activeLocationName} />
+          <ContactsItem {...item} />
         </CountrySwitchWrapper>
-      ))} */}
-      {/* <LanguageSwitchWrapper>
+      ))}
+      <CountrySwitchWrapper>
         <ContactsItem
-          title={activeLanguageName}
+          title="English"
           icon="https://cdn.sanity.io/images/yaj9i7i6/production/b669cd88ded5c8362e9f7b099de5b6f984bbf9af-16x17.svg"
         />
-      </LanguageSwitchWrapper> */}
+      </CountrySwitchWrapper>
     </ContactsWrap>
   );
 };

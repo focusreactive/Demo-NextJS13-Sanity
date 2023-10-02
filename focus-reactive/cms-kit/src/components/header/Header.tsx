@@ -52,7 +52,7 @@ const HeaderBox = styled.header<{ bgColor: keyof typeof appTheme.colors }>`
 
   & > #header-container {
     position: relative;
-    padding: 10px 20px;
+    padding: 20px;
     margin: 0 auto;
     box-sizing: border-box;
     width: 100%;
@@ -199,7 +199,6 @@ const MenuItem = ({ text, isActive, color, ...restProps }: any) => {
 const circleSize = 200;
 const circleOffset = 70;
 
-// background-color: ${tm(({ colors }) => colors.blue700)()};
 const BigCircle = styled.div`
   position: fixed;
   width: ${circleSize}px;

@@ -61,23 +61,29 @@ const HeroSection = styled(Section)`
   }
 `;
 
-const CustomButtons = styled(Buttons)``;
+const CustomButtons = styled(Buttons)`
+  justify-content: space-between;
+
+  ${appTheme.media.md} {
+    justify-content: flex-start;
+  }
+`;
 
 const HeroBox = styled.div`
-  margin-top: 60px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
 
   ${appTheme.media.md} {
     flex-direction: row;
-    margin-top: 140px;
+    margin-top: 40px;
     min-height: 400px;
   }
 
   ${appTheme.media.lg} {
     min-height: 466px;
-    margin-top: 164px;
+    margin-top: 64px;
   }
 `;
 

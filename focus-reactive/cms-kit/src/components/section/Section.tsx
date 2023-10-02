@@ -77,7 +77,7 @@ const StyledSection = styled.section<{ siblingBg?: SectionProps['siblingBg']; bg
 
 export const StyledContainer = styled.div`
   position: relative;
-  padding: 10px;
+  padding: 20px;
   margin: auto;
   box-sizing: border-box;
 
