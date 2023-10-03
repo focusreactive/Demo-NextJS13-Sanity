@@ -29,30 +29,29 @@ const StyledCapability = styled.div<{ color?: string }>`
   position: relative;
   z-index: 2;
 
-  & > div:first-child {
+  & > div:first-child { 
     width: 58%;
     border-radius: 20px;
     background: ${({ color }) => (color ? color : '#4d62d6')};
-    padding: clamp(20px, 5vw, 50px);
-    padding-right: clamp(120px, 17vw, 200px);
+    padding: 50px 200px 50px 50px;
     flex: none;
 
     img {
       display: inline-block;
       vertical-align: middle;
-      max-width: clamp(20px, 3vw, 30px);
+      max-width: 30px;
       margin-bottom: 20px;
     }
 
     h3 {
-      font-size: clamp(25px, 3.3vw, 34px);
+      font-size: 34px;
       font-weight: 400;
       line-height: 1.3;
-      margin-bottom: clamp(20px, 4vw, 40px);
+      margin-bottom: 40px;
     }
 
     p {
-      font-size: clamp(16px, 2vw, 18px);
+      font-size: 18px;
       line-height: 1.45;
 
       &:not(:last-child) {
@@ -62,7 +61,7 @@ const StyledCapability = styled.div<{ color?: string }>`
 
     button {
       color: ${({ color }) => (color ? color : '#4d62d6')};
-      margin-top: clamp(10px, 2vw, 20px);
+      margin-top: 20px;
 
       &:hover {
         color: #fff;
@@ -75,14 +74,37 @@ const StyledCapability = styled.div<{ color?: string }>`
     position: relative;
     z-index: 1;
     flex: none;
-    max-width: calc(43% + clamp(80px, 14vw, 160px));
-    margin-left: calc(clamp(80px, 14vw, 160px) * -1);
+    max-width: calc(43% + 160px);
+    margin-left: -160px;
     display: flex;
     justify-content: flex-start;
 
     img {
       display: block;
       max-width: 100%;
+      border-radius: 20px;
+    }
+  }
+  @media screen and (max-width: 1140px) {
+    & > div:first-child {
+      padding: 30px 120px 30px 30px;
+      img {
+        max-width: 20px;
+      }
+      h3 {
+        font-size: 25px;
+        margin-bottom: 20px;
+      }
+      p {
+        font-size: 16px;
+      }
+      button {
+        margin-top: 10px;
+      }
+    }
+    & > div:nth-child(2) {
+      margin-left: -80px;
+      max-width: calc(43% + 73px);
     }
   }
 
@@ -91,11 +113,23 @@ const StyledCapability = styled.div<{ color?: string }>`
       flex-direction: row-reverse;
       & > div:first-child {
         padding-right: clamp(20px, 5vw, 50px);
-        padding-left: clamp(120px, 17vw, 200px);
+        padding-left: 120px;
       }
       & > div:nth-child(2) {
         margin-left: 0;
-        margin-right: calc(clamp(80px, 14vw, 160px) * -1);
+        margin-right: -80px;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1141px) {
+    &:nth-child(even) {
+      flex-direction: row-reverse;
+      & > div:first-child {
+        padding-left: 200px;
+      }
+      & > div:nth-child(2) {
+        margin-right: -160px;
       }
     }
   }

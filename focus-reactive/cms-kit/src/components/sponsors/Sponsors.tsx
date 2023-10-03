@@ -21,15 +21,19 @@ const StyledSponsors = styled.div`
     }
   }
   img {
-    max-width: 100%;
+    max-width: 140px;
     max-height: 100%;
     display: block;
     border: none;
   }
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1140px) {
     & > div > div {
       width: 25%;
+      height: 70px;
+    }
+    img {
+      max-width: 120px;
     }
   }
 
@@ -42,6 +46,10 @@ const StyledSponsors = styled.div`
   @media screen and (max-width: 480px) {
     & > div > div {
       width: 50%;
+      height: 60px;
+    }
+    img {
+      max-width: 100px;
     }
   }
 `;

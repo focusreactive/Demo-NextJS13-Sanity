@@ -39,33 +39,23 @@ const getSiblingBg = ({ siblingBg, radius }: Pick<SectionProps, 'siblingBg' | 'r
 const StyledSection = styled.section<{ siblingBg?: SectionProps['siblingBg']; bgColor?: string; radius?: string }>`
   padding: clamp(80px, 15vw, 160px) 0;
   position: relative;
-  overflow: hidden;
   z-index: 2;
-  background: ${({ bgColor }) => getSectionBgColor(bgColor)};
+  overflow: hidden;
+  background: ${({ siblingBg, radius }) => getSiblingBg({ siblingBg, radius })};
   color: ${({ bgColor }) => getSectionTextColor(bgColor)};
 
-  &:after,
   &:before {
     content: '';
     position: absolute;
     left: 0;
-    top: ${({ radius }) => (radius === 'top-left' ? 0 : 'auto')};
-    bottom: ${({ radius }) => (radius === 'bottom-left' ? 0 : 'auto')};
-    width: clamp(60px, 10vw, 160px);
-    height: clamp(60px, 10vw, 160px);
-    pointer-events: none;
-  }
-
-  &:before {
-    z-index: 1;
-    background: ${({ siblingBg, radius }) => getSiblingBg({ siblingBg, radius })};
-  }
-
-  &:after {
-    z-index: 2;
+    top: 0;
+    right: 0;
+    bottom: 0;
     border-top-left-radius: ${({ radius }) => (radius === 'top-left' ? 'clamp(60px, 10vw, 160px)' : 'auto')};
     border-bottom-left-radius: ${({ radius }) => (radius === 'bottom-left' ? 'clamp(60px, 10vw, 160px)' : 'auto')};
-    background: inherit;
+    pointer-events: none;
+    outline: none;
+    background: ${({ bgColor }) => getSectionBgColor(bgColor)};
   }
 
   & > div {
@@ -73,7 +63,7 @@ const StyledSection = styled.section<{ siblingBg?: SectionProps['siblingBg']; bg
     flex-direction: column;
     gap: clamp(80px, 10vw, 160px) 0;
   }
-`;
+`; 
 
 export const StyledContainer = styled.div`
   position: relative;
