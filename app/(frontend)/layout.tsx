@@ -236,6 +236,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             { link: '', icon: 'facebook' },
             { link: '', icon: 'linkedin' },
           ]}
+          contacts={[
+            {
+              icon: 'https://i.ibb.co/9Vp3Vmd/image.png',
+              title: 'United Kingdom',
+            },
+          ]}
         />
       </body>
     </html>

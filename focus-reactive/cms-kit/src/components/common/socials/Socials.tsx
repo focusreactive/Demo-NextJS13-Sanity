@@ -9,7 +9,6 @@ const Container = styled.ul<{ linkSize?: string; iconSize?: string }>`
   margin: 15px 12px;
   flex-wrap: wrap;
   list-style: none;
-  gap: 12px;
 
   & > div {
     position: relative;
