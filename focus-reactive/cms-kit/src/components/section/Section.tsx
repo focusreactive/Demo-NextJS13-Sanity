@@ -69,11 +69,11 @@ const StyledSection = styled.section<{
     flex-direction: column;
     gap: clamp(80px, 10vw, 160px) 0;
   }
-`; 
+`;
 
 export const StyledContainer = styled.div`
   position: relative;
-  padding: 20px;
+  padding: 0 20px;
   margin: auto;
   box-sizing: border-box;
 

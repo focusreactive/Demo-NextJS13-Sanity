@@ -28,7 +28,11 @@ export default async function Page({ params }: { params: { slug?: string[] } }) 
           { link: 'https://www.trafficguard.ai/', text: 'Start now' },
           { link: 'https://www.trafficguard.ai/', text: 'Contact sales' },
         ]}
-        decor={{ src: 'https://i.ibb.co/d4yj9wx/image.png', hasParallax: true }}
+        decor={{
+          src: 'https://i.ibb.co/d4yj9wx/image.png',
+          hasParallax: true,
+          // secondSrc: 'https://i.ibb.co/d4yj9wx/image.png',
+        }}
         isHomePage
         bgColor="blue400"
       />

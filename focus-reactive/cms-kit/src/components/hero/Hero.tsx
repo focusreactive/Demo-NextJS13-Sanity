@@ -83,7 +83,6 @@ const HeroBox = styled.div`
 
   ${appTheme.media.lg} {
     min-height: 466px;
-    margin-top: 64px;
   }
 `;
 
