@@ -17,8 +17,8 @@ const ContactsWrap = styled.div`
   }
 `;
 
-const ContactImage = styled.img`
-  width: 16px;
+const ContactImage = styled.img<{ width?: number }>`
+  width: ${({ width }) => (width ? width : 16)}px;
   height: 16px;
 `;
 
@@ -32,17 +32,15 @@ const ContactsItemWrap = styled.div`
   }
 
   img {
-    width: 16px;
-    height: 16px;
     margin: 0 12px 0 0;
     fill: ${appTheme.colors.blue400};
   }
 `;
 
-const ContactsItem = ({ icon, title }: any) => {
+const ContactsItem = ({ icon, title, width }: any) => {
   return (
     <ContactsItemWrap>
-      <ContactImage loading="lazy" src={icon} alt={title} />
+      <ContactImage loading="lazy" src={icon} alt={title} width={width} />
       {title}
     </ContactsItemWrap>
   );
@@ -55,7 +53,7 @@ const Contacts = (props: any) => {
     <ContactsWrap>
       {(contacts || []).map((item: any, key: any) => (
         <CountrySwitchWrapper key={key}>
-          <ContactsItem {...item} />
+          <ContactsItem {...item} width={12} />
         </CountrySwitchWrapper>
       ))}
       <CountrySwitchWrapper>

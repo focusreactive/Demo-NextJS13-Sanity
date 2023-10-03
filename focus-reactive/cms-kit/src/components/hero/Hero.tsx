@@ -125,7 +125,11 @@ const HeroDecor = styled.div`
 
   div {
     width: 100%;
-    height: 100%;
+    height: clamp(200px, 50vw, 400px);
+
+    ${appTheme.media.md} {
+      height: 100%;
+    }
   }
 
   div:nth-child(2) {
@@ -145,9 +149,9 @@ const HeroDecor = styled.div`
   }
 
   img {
-    max-width: 75%;
-    max-height: 240px;
+    max-width: 50%;
     display: block;
+    margin-left: auto;
 
     ${appTheme.media.md} {
       max-height: none;
@@ -227,51 +231,50 @@ export const Hero = (props: any) => {
   ];
 
   return (
-    <>
-      <HeroSection
-        {...section}
-        data-display={isHomePage ? 'block' : 'none'}
-        data-disabledOverflow={Boolean(additionalElement)}
-        bgColor="blue"
-        neighborBg="#32408b"
-      >
-        <HeroBox>
-          <HeroLeft>
-            <FloatUp>
-              {/* make h1 */}
-              <SectionHead title={title}></SectionHead>
-              <HeroTitle tip={titleTip} icon={titleIcon} color={titleColor} variant={titleVariant} />
-            </FloatUp>
-            <FloatUp delay={200}>
-              {description ? (
-                <DescriptionBlock color={descriptionColor} text={description} variant={descriptionVariant} />
-              ) : null}
-            </FloatUp>
+    <HeroSection
+      {...section}
+      data-display={isHomePage ? 'block' : 'none'}
+      data-disabledOverflow={Boolean(additionalElement)}
+      bgColor="blue"
+      neighborBg="#32408b"
+      padding="clamp(80px, 15vw, 160px) 0 0"
+    >
+      <HeroBox>
+        <HeroLeft>
+          <FloatUp>
+            {/* make h1 */}
+            <SectionHead title={title}></SectionHead>
+            <HeroTitle tip={titleTip} icon={titleIcon} color={titleColor} variant={titleVariant} />
+          </FloatUp>
+          <FloatUp delay={200}>
+            {description ? (
+              <DescriptionBlock color={descriptionColor} text={description} variant={descriptionVariant} />
+            ) : null}
+          </FloatUp>
 
-            {/* {form ? <FormBlock form={form} /> : null} */}
+          {/* {form ? <FormBlock form={form} /> : null} */}
 
-            <CustomButtons buttons={updatedButtons} initialAnimationDelay={300} />
-          </HeroLeft>
-          {decor ? (
-            <HeroDecor data-variant={variant}>
-              {secondSrc ? (
-                <>
-                  <SlightParallax disabled={false} amplitude={0.02}>
-                    <NextImage priority src={src} alt={alt} fill unoptimized objectFit="contain" />
-                  </SlightParallax>
-                  <SlightParallax disabled={false} amplitude={0.1}>
-                    <NextImage priority src={secondSrc} alt={alt} fill unoptimized objectFit="contain" />
-                  </SlightParallax>
-                </>
-              ) : (
-                <SlightParallax disabled={!hasParallax}>
+          <CustomButtons buttons={updatedButtons} initialAnimationDelay={300} />
+        </HeroLeft>
+        {decor ? (
+          <HeroDecor data-variant={variant}>
+            {secondSrc ? (
+              <>
+                <SlightParallax disabled={false} amplitude={0.02}>
                   <NextImage priority src={src} alt={alt} fill unoptimized objectFit="contain" />
                 </SlightParallax>
-              )}
-            </HeroDecor>
-          ) : null}
-        </HeroBox>
-      </HeroSection>
-    </>
+                <SlightParallax disabled={false} amplitude={0.1}>
+                  <NextImage priority src={secondSrc} alt={alt} fill unoptimized objectFit="contain" />
+                </SlightParallax>
+              </>
+            ) : (
+              <SlightParallax disabled={!hasParallax}>
+                <NextImage priority src={src} alt={alt} fill unoptimized objectFit="contain" />
+              </SlightParallax>
+            )}
+          </HeroDecor>
+        ) : null}
+      </HeroBox>
+    </HeroSection>
   );
 };
