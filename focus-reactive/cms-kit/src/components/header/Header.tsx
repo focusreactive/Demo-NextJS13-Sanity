@@ -218,12 +218,13 @@ const StyledWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
-  min-width: 100vw;
+  width: 100%;
   overflow: hidden;
 `;
 
 const StyledLayout = styled.div`
   position: relative;
+  width: 100%;
 `;
 
 const COLORS = {
@@ -283,14 +284,14 @@ export const Header = ({
       ...buttons[0],
       color: 'white',
       background: correctColors.buttonsColor,
-      variant: 'white',
+      variant: activeTab ? 'blue' : 'white',
     },
     {
       ...buttons[1],
       color: correctColors.buttonsColor,
       borderColor: correctColors.buttonsColor,
       background: null,
-      variant: 'bordered',
+      variant: activeTab ? 'blue' : 'bordered',
     },
   ];
 

@@ -159,7 +159,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               alt: '',
             },
           }}
-          contacts={''}
+          contacts={[
+            {
+              icon: 'https://i.ibb.co/9Vp3Vmd/image.png',
+              title: 'United Kingdom',
+            },
+          ]}
         />
         {children}
         <Footer
