@@ -284,14 +284,14 @@ export const Header = ({
       ...buttons[0],
       color: 'white',
       background: correctColors.buttonsColor,
-      variant: 'white',
+      variant: activeTab ? 'blue' : 'white',
     },
     {
       ...buttons[1],
       color: correctColors.buttonsColor,
       borderColor: correctColors.buttonsColor,
       background: null,
-      variant: 'bordered',
+      variant: activeTab ? 'blue' : 'bordered',
     },
   ];
 
