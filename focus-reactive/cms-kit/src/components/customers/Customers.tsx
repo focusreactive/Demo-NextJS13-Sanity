@@ -103,7 +103,6 @@ const StyledContent = styled.div`
   @media screen and (max-width: 575px) {
     margin-left: -10px;
     margin-right: -10px;
-    padding: 20px
   }
 `;
 
@@ -141,7 +140,6 @@ const StyledImage = styled.div`
     margin-left: -10px;
     margin-right: -10px;
   }
-  
 `;
 
 type CustomerProps = {
@@ -155,7 +153,7 @@ type CustomerProps = {
 
 const Customer = ({ src, alt }: { src: string; alt: string }) => (
   <div>
-    <img src={src} alt={alt} />
+    <img src={src} alt={alt} loading="lazy" />
   </div>
 );
 
@@ -186,7 +184,7 @@ export const Customers = (props: CustomersProps) => {
 
             <StyledContent>
               <StyledImage>
-                <img src={selectedItem.photo?.src} alt={selectedItem.photo?.alt} />
+                <img src={selectedItem.photo?.src} alt={selectedItem.photo?.alt} loading="lazy" />
               </StyledImage>
 
               <StyledText>
@@ -197,12 +195,12 @@ export const Customers = (props: CustomersProps) => {
                 </p>
               </StyledText>
 
-              <img src={selectedItem.logoInText?.src} alt={selectedItem.logoInText?.alt} />
+              <img src={selectedItem.logoInText?.src} alt={selectedItem.logoInText?.alt} loading="lazy" />
             </StyledContent>
           </div>
 
           <div>
-            <img src={selectedItem.photo?.src} alt={selectedItem.photo?.alt} />
+            <img src={selectedItem.photo?.src} alt={selectedItem.photo?.alt} loading="lazy" />
           </div>
         </StyledCustomersSection>
 

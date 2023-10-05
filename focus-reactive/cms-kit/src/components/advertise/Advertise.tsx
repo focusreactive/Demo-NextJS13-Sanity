@@ -67,7 +67,7 @@ export const Advertise = (props: AdvertiseProps) => {
       </div>
 
       <div>
-        <img src={props.image?.src} alt={props.image?.alt} />
+        <img src={props.image?.src} alt={props.image?.alt} loading="lazy" />
       </div>
     </StyledAdvertise>
   );
