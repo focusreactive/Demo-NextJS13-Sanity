@@ -1,9 +1,10 @@
-import { ContentBlocks } from '@/components/ContentBlocks';
-import { getPageContent } from '@/model/getPageContent';
 import { getAllPagesSlugs } from '@/model/getAllPagesSlugs';
 import { notFound } from 'next/navigation';
 import { draftMode } from 'next/headers';
 import { Hero } from '@focusreactive/cms-kit';
+import { token } from '@/model/sanityFetch';
+import { PageDynamicContent } from '@/components/PageDynamicContent';
+import { getPageContent } from '@/model/getPageContent';
 
 export async function generateStaticParams() {
   const slugs = await getAllPagesSlugs();
@@ -13,9 +14,10 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: { params: { slug?: string[] } }) {
   const { slug } = params;
-  const { isEnabled } = draftMode();
+  const isDraftMode = draftMode().isEnabled;
+  const pageSlug = slug ? slug.join('/') : '/';
 
-  const page = await getPageContent({ slug: slug ? slug.join('/') : '/', isDraftMode: isEnabled });
+  const page = await getPageContent({ slug: pageSlug });
 
   if (!page) return notFound();
 
@@ -36,7 +38,7 @@ export default async function Page({ params }: { params: { slug?: string[] } }) 
         isHomePage
         bgColor="blue400"
       />
-      <ContentBlocks blocks={page.content} />
+      <PageDynamicContent page={page} pageSlug={pageSlug} token={token} isDraftMode={isDraftMode} />
     </main>
   );
 }

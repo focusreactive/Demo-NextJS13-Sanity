@@ -2,10 +2,12 @@ import { getDefaultImageUrl } from '@/sanity/utils/getDefaultImageUrl';
 import { RichText } from '@/components/RichText';
 
 const image = (image: any) => {
+  if (!image) return null;
   return { src: getDefaultImageUrl(image.asset._ref), alt: image.alt };
 };
 
 const imageWithAlt = (data: any) => {
+  if (!data) return null;
   return { src: getDefaultImageUrl(data.image.asset._ref), alt: data.alt };
 };
 
@@ -22,6 +24,7 @@ const richText = (blocks: any) => {
 };
 
 const button = (block: any) => {
+  if (!block) return null;
   return {
     title: block.title,
     link: block.uri,

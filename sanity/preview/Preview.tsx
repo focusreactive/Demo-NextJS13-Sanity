@@ -11,6 +11,7 @@ const remoteUrl = `https://mvp-nextjs-sanity.vercel.app`;
 const localUrl = `http://localhost:3000`;
 
 export const PreviewIFrame: UserViewComponent = (props) => {
+  const isReloadEnabled = false;
   const { document } = props;
   const [id, setId] = useState(1);
   const { displayed: currentDocument } = document;
@@ -31,7 +32,7 @@ export const PreviewIFrame: UserViewComponent = (props) => {
   const debouncedChangeHandler = useCallback(debounce(reloadIframe, 500), []);
 
   useEffect(() => {
-    if (debouncedChangeHandler) {
+    if (debouncedChangeHandler && isReloadEnabled) {
       debouncedChangeHandler();
     }
   }, [currentDocument._updatedAt, debouncedChangeHandler]);

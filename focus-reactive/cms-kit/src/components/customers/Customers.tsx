@@ -166,7 +166,11 @@ type CustomersProps = {
 };
 
 export const Customers = (props: CustomersProps) => {
-  const selectedItem = props.items[0];
+  if (!props.items) return null;
+
+  const selectedItem = props.items?.[0];
+
+  if (!selectedItem) return null;
 
   return (
     <>
@@ -176,13 +180,13 @@ export const Customers = (props: CustomersProps) => {
           <div>
             <StyledLogos>
               {props.items.map((item, index) => (
-                <Customer key={index} src={selectedItem.logo.src} alt={selectedItem.logo.alt} />
+                <Customer key={index} src={selectedItem.logo?.src} alt={selectedItem.logo?.alt} />
               ))}
             </StyledLogos>
 
             <StyledContent>
               <StyledImage>
-                <img src={selectedItem.photo.src} alt={selectedItem.photo.alt} />
+                <img src={selectedItem.photo?.src} alt={selectedItem.photo?.alt} />
               </StyledImage>
 
               <StyledText>
@@ -193,16 +197,16 @@ export const Customers = (props: CustomersProps) => {
                 </p>
               </StyledText>
 
-              <img src={selectedItem.logoInText.src} alt={selectedItem.logoInText.alt} />
+              <img src={selectedItem.logoInText?.src} alt={selectedItem.logoInText?.alt} />
             </StyledContent>
           </div>
 
           <div>
-            <img src={selectedItem.photo.src} alt={selectedItem.photo.alt} />
+            <img src={selectedItem.photo?.src} alt={selectedItem.photo?.alt} />
           </div>
         </StyledCustomersSection>
 
-        <CustomLink>{props.button.title}</CustomLink>
+        <CustomLink>{props.button?.title}</CustomLink>
       </div>
     </>
   );
@@ -213,7 +217,7 @@ export const CustomersPropsConverter = {
     return {
       title: converters.title(block.title),
       button: converters.button(block.button),
-      items: block.spotlight.map((item: any) => ({
+      items: block.spotlight?.map?.((item: any) => ({
         title: converters.title(item.title),
         description: converters.richText(item.description),
         photo: converters.imageWithAlt(item.photo),

@@ -175,7 +175,7 @@ const Capability = ({ title, description, button, bgColor }: CapabilityProps) =>
 
       {description}
 
-      <Button>{button.title}</Button>
+      <Button>{button?.title}</Button>
     </div>
 
     <div>
@@ -194,7 +194,7 @@ export const Capabilities = (props: CapabilitiesProps) => {
     <div>
       <SectionHead title={props.title} icon="https://i.ibb.co/fCKR73f/Group-407.png" />
       <StyledCapabilities>
-        {props.list.map((item, index) => (
+        {props.list && props.list.map((item, index) => (
           <Capability key={index} {...item} />
         ))}
       </StyledCapabilities>
@@ -206,7 +206,7 @@ export const CapabilitiesPropsConverter = {
   sanity: (block: any) => {
     return {
       title: converters.title(block.title),
-      list: block.list.map((item: any) => ({
+      list: block.list?.map?.((item: any) => ({
         title: converters.title(item.title),
         description: converters.richText(item.description),
         button: converters.button(item.button),

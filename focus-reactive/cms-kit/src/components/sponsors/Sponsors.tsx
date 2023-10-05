@@ -74,12 +74,12 @@ export const Sponsors = ({ logos, button }: SponsorsProps) => {
   return (
     <StyledSponsors>
       <div>
-        {logos.map((logo, index) => (
+        {logos?.map?.((logo, index) => (
           <Sponsor key={index} {...logo} />
         ))}
       </div>
 
-      <CustomLink>{button.title}</CustomLink>
+      <CustomLink>{button?.title}</CustomLink>
     </StyledSponsors>
   );
 };
@@ -87,7 +87,7 @@ export const Sponsors = ({ logos, button }: SponsorsProps) => {
 export const SponsorsPropsConverter = {
   sanity: (block: any) => {
     return {
-      logos: block.logos.map((logo: any) => converters.imageWithAlt(logo.imageWithAlt)),
+      logos: block.logos?.map?.((logo: any) => converters.imageWithAlt(logo.imageWithAlt)),
       button: converters.button(block.button),
     };
   },
