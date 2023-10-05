@@ -58,7 +58,7 @@ type Logo = { src: string; alt: string };
 
 const Sponsor = ({ src, alt }: Logo) => (
   <div>
-    <img src={src} alt={alt} />
+    <img src={src} alt={alt} loading="lazy" />
   </div>
 );
 
@@ -73,11 +73,7 @@ type SponsorsProps = {
 export const Sponsors = ({ logos, button }: SponsorsProps) => {
   return (
     <StyledSponsors>
-      <div>
-        {logos?.map?.((logo, index) => (
-          <Sponsor key={index} {...logo} />
-        ))}
-      </div>
+      <div>{logos?.map?.((logo, index) => <Sponsor key={index} {...logo} />)}</div>
 
       <CustomLink>{button?.title}</CustomLink>
     </StyledSponsors>
