@@ -241,11 +241,11 @@ export const Hero = (props: any) => {
     >
       <HeroBox>
         <HeroLeft>
-          <FloatUp>
-            {/* make h1 */}
-            <SectionHead title={title}></SectionHead>
-            <HeroTitle tip={titleTip} icon={titleIcon} color={titleColor} variant={titleVariant} />
-          </FloatUp>
+          {/* <FloatUp> */}
+          {/* make h1 */}
+          <SectionHead title={title}></SectionHead>
+          <HeroTitle tip={titleTip} icon={titleIcon} color={titleColor} variant={titleVariant} />
+          {/* </FloatUp> */}
           {/* <FloatUp> */}
           {description ? (
             <DescriptionBlock color={descriptionColor} text={description} variant={descriptionVariant} />
@@ -260,17 +260,17 @@ export const Hero = (props: any) => {
           <HeroDecor data-variant={variant}>
             {secondSrc ? (
               <>
-                <SlightParallax disabled={false} amplitude={0.02}>
-                  <NextImage priority src={src} alt={alt} fill unoptimized objectFit="contain" />
-                </SlightParallax>
-                <SlightParallax disabled={false} amplitude={0.1}>
-                  <NextImage priority src={secondSrc} alt={alt} fill unoptimized objectFit="contain" />
-                </SlightParallax>
+                {/* <SlightParallax disabled={false} amplitude={0.02}> */}
+                <NextImage priority src={src} alt={alt} fill unoptimized objectFit="contain" />
+                {/* </SlightParallax> */}
+                {/* <SlightParallax disabled={false} amplitude={0.1}> */}
+                <NextImage priority src={secondSrc} alt={alt} fill unoptimized objectFit="contain" />
+                {/* </SlightParallax> */}
               </>
             ) : (
-              <SlightParallax disabled={!hasParallax}>
-                <NextImage priority src={src} alt={alt} fill unoptimized objectFit="contain" />
-              </SlightParallax>
+              // <SlightParallax disabled={!hasParallax}>
+              <NextImage priority src={src} alt={alt} fill unoptimized objectFit="contain" />
+              // </SlightParallax>
             )}
           </HeroDecor>
         ) : null}
