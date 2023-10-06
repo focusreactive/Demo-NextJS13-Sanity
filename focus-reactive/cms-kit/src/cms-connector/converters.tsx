@@ -23,7 +23,7 @@ const richText = (blocks: any) => {
 
 const button = (block: any) => {
   return {
-    title: block.title,
+    text: block.title,
     link: block.uri,
   };
 };
