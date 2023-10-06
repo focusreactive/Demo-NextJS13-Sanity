@@ -29,7 +29,7 @@ const StyledCapability = styled.div<{ color?: string }>`
   position: relative;
   z-index: 2;
 
-  & > div:first-child { 
+  & > div:first-child {
     width: 58%;
     border-radius: 20px;
     background: ${({ color }) => (color ? color : '#4d62d6')};
@@ -169,17 +169,17 @@ type CapabilityProps = {
 const Capability = ({ title, description, button, bgColor }: CapabilityProps) => (
   <StyledCapability color={brandColors[bgColor as keyof typeof brandColors]}>
     <div>
-      <img src="https://i.ibb.co/G5m44G0/Vector.png" alt="" />
+      <img src="https://i.ibb.co/G5m44G0/Vector.png" alt="" loading="lazy" />
 
       <h3>{title}</h3>
 
       {description}
 
-      <Button>{button.title}</Button>
+      <Button>{button?.title}</Button>
     </div>
 
     <div>
-      <img src="https://i.ibb.co/XFqXynH/Sc1-1.png" alt="" />
+      <img src="https://i.ibb.co/XFqXynH/Sc1-1.png" alt="" loading="lazy" />
     </div>
   </StyledCapability>
 );
@@ -194,9 +194,7 @@ export const Capabilities = (props: CapabilitiesProps) => {
     <div>
       <SectionHead title={props.title} icon="https://i.ibb.co/fCKR73f/Group-407.png" />
       <StyledCapabilities>
-        {props.list.map((item, index) => (
-          <Capability key={index} {...item} />
-        ))}
+        {props.list && props.list.map((item, index) => <Capability key={index} {...item} />)}
       </StyledCapabilities>
     </div>
   );
@@ -206,7 +204,7 @@ export const CapabilitiesPropsConverter = {
   sanity: (block: any) => {
     return {
       title: converters.title(block.title),
-      list: block.list.map((item: any) => ({
+      list: block.list?.map?.((item: any) => ({
         title: converters.title(item.title),
         description: converters.richText(item.description),
         button: converters.button(item.button),

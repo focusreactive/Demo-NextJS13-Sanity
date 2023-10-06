@@ -26,7 +26,7 @@ const StyledHeading = styled.div`
 const SectionHead = ({ icon, title }: SectionHeadProps) => {
   return (
     <StyledHeading>
-      {icon && <img src={icon} alt="" />}
+      {icon && <img src={icon} alt="" loading="lazy" />}
       <h2>{title}</h2>
     </StyledHeading>
   );

@@ -1,16 +1,12 @@
-import { groq } from 'next-sanity';
-import { client } from '@/sanity/client';
+import { sanityFetch } from '@/model/sanityFetch';
+import { SanityDocument } from 'sanity';
+import { PAGE_CONTENT_QUERY } from '@/model/queries';
 
-import { basePageFields } from './fragments';
-
-export const getPageContent = async ({ slug, isDraftMode }: { slug: string; isDraftMode?: boolean }) => {
-  const query = groq`
-    * [_type == 'dynamicPage' && !(_id in path('drafts.**')) && slug.current == $slug] {
-      ${basePageFields}
-      content[]
-    }[0]
-  `;
-
-  // TODO: return cache
-  return await client.fetch(query, { slug }, { perspective: isDraftMode ? 'previewDrafts' : 'published' });
+export const getPageContent = async ({ slug }: { slug: string }) => {
+  return await sanityFetch<SanityDocument>({
+    query: PAGE_CONTENT_QUERY,
+    params: {
+      slug,
+    },
+  });
 };

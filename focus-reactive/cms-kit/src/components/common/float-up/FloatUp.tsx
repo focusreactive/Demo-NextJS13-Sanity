@@ -30,6 +30,7 @@ const FloatUpComponent = ({ children, animationProps = BASE_PROPS, tag = 'div', 
 };
 
 const FloatUp = (props: any) => {
+  return <>{props.children}</>;
   const { onlyAnimated = true } = props;
   if (onlyAnimated) {
     return (

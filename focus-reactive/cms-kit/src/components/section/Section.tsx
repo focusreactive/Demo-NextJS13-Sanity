@@ -11,6 +11,7 @@ interface SectionProps {
     prev: string;
     next: string;
   };
+  padding?: string;
 }
 
 const getSectionBgColor = (bgColor?: string) => {
@@ -36,8 +37,13 @@ const getSiblingBg = ({ siblingBg, radius }: Pick<SectionProps, 'siblingBg' | 'r
   return 'none';
 };
 
-const StyledSection = styled.section<{ siblingBg?: SectionProps['siblingBg']; bgColor?: string; radius?: string }>`
-  padding: clamp(80px, 15vw, 160px) 0;
+const StyledSection = styled.section<{
+  siblingBg?: SectionProps['siblingBg'];
+  bgColor?: string;
+  radius?: string;
+  padding?: string;
+}>`
+  padding: ${({ padding }) => (padding ? padding : 'clamp(80px, 15vw, 160px) 0')};
   position: relative;
   z-index: 2;
   overflow: hidden;
@@ -63,11 +69,11 @@ const StyledSection = styled.section<{ siblingBg?: SectionProps['siblingBg']; bg
     flex-direction: column;
     gap: clamp(80px, 10vw, 160px) 0;
   }
-`; 
+`;
 
 export const StyledContainer = styled.div`
   position: relative;
-  padding: 20px;
+  padding: 0 20px;
   margin: auto;
   box-sizing: border-box;
 
@@ -84,9 +90,9 @@ export const StyledContainer = styled.div`
   }
 `;
 
-export const Section = ({ children, bgColor, radius, siblingBg }: SectionProps) => {
+export const Section = ({ children, bgColor, radius, siblingBg, padding }: SectionProps) => {
   return (
-    <StyledSection siblingBg={siblingBg} bgColor={bgColor} radius={radius}>
+    <StyledSection siblingBg={siblingBg} bgColor={bgColor} radius={radius} padding={padding}>
       <StyledContainer>{children}</StyledContainer>
     </StyledSection>
   );
