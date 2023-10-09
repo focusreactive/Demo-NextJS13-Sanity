@@ -271,7 +271,7 @@ const HeaderNavMobile = (props: any) => {
         </Menu>
 
         <Bottom>
-          <Contacts contacts={contacts} />
+          <Contacts contacts={contacts} color={appTheme.colors.blue400} />
           <Buttons buttons={buttons} />
         </Bottom>
       </MobileNav>

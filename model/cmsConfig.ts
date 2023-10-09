@@ -3,7 +3,7 @@ import {
   AdvertisePropsConverter,
   Capabilities,
   CapabilitiesPropsConverter,
-  Customers,
+  CustomersWrapper,
   CustomersPropsConverter,
   Sponsors,
   SponsorsPropsConverter,
@@ -37,7 +37,7 @@ export const config: CmsConfig = {
       cmsDataToProps: CapabilitiesPropsConverter,
     },
     customerSpotlight: {
-      Component: Customers,
+      Component: CustomersWrapper,
       cmsDataToProps: CustomersPropsConverter,
     },
   },

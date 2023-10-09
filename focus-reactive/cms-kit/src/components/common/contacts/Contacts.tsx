@@ -22,10 +22,10 @@ const ContactImage = styled.img<{ width?: number }>`
   height: 16px;
 `;
 
-const ContactsItemWrap = styled.div`
+const ContactsItemWrap = styled.div<{ color?: string }>`
   display: flex;
   align-items: center;
-  color: ${appTheme.colors.blue100};
+  color: ${({ color }) => (color ? color : appTheme.colors.white)};
 
   &:not(:first-child) {
     margin: 15px 0 0;
@@ -37,9 +37,9 @@ const ContactsItemWrap = styled.div`
   }
 `;
 
-const ContactsItem = ({ icon, title, width }: any) => {
+const ContactsItem = ({ icon, title, width, color }: any) => {
   return (
-    <ContactsItemWrap>
+    <ContactsItemWrap color={color}>
       <ContactImage loading="lazy" src={icon} alt={title} width={width} />
       {title}
     </ContactsItemWrap>
@@ -47,19 +47,20 @@ const ContactsItem = ({ icon, title, width }: any) => {
 };
 
 const Contacts = (props: any) => {
-  const { contacts } = props;
+  const { contacts, color } = props;
 
   return (
     <ContactsWrap>
       {(contacts || []).map((item: any, key: any) => (
         <CountrySwitchWrapper key={key}>
-          <ContactsItem {...item} width={12} />
+          <ContactsItem {...item} width={12} color={color} />
         </CountrySwitchWrapper>
       ))}
       <CountrySwitchWrapper>
         <ContactsItem
           title="English"
           icon="https://cdn.sanity.io/images/yaj9i7i6/production/b669cd88ded5c8362e9f7b099de5b6f984bbf9af-16x17.svg"
+          color={color}
         />
       </CountrySwitchWrapper>
     </ContactsWrap>

@@ -1,10 +1,17 @@
-import React, { ReactNode } from 'react';
-
+'use client';
+import React, { ReactNode, useState } from 'react';
 import SectionHead from '../section/head/SectionHead';
 import { styled } from '@linaria/react';
-import { CustomLink } from '../custom-lInk/CustomLink';
-import { converters } from '../../cms-connector/converters';
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { appTheme } from '../../theme';
+import ImageBlock from '../common/image-block/ImageBlock';
+import DescriptionBlock from '../common/description-block/DescriptionBlock';
+import Buttons from '../common/buttons/Buttons';
+import { FreeMode, Navigation, Thumbs, EffectFade } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
 const StyledCustomersSection = styled.div`
   display: flex;
   align-items: flex-end;
@@ -48,99 +55,235 @@ const StyledCustomersSection = styled.div`
   }
 `;
 
-const StyledLogos = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 20px 0;
-  margin: 0 -10px clamp(20px, 4vw, 40px);
+const CustomButtons = styled(Buttons)`
+  margin: 8px 0 0;
 
-  & > div {
-    width: 25%;
-    padding: 0 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 60px;
+  ${appTheme.media.lg} {
+    margin: 8px 0 0 30px;
+  }
+
+  ${appTheme.media.md} {
+    margin: 8px 0 0 48px;
+  }
+`;
+
+const SpotlightDescription = styled(DescriptionBlock)`
+  font-size: 20px;
+  line-height: 1.32;
+
+  ${appTheme.media.md} {
+    font-size: 24px;
+    line-height: 1.28;
+  }
+`;
+
+const SpotlightItemWrap = styled.div`
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  ${appTheme.media.md} {
+    flex-direction: row;
+  }
+`;
+
+const CommentBlock = styled.div<{ bgColor: string }>`
+  font-size: 20px;
+  line-height: 1.32;
+  margin: auto 0 0;
+  padding: 120px 20px 30px;
+  border-radius: 60px 60px 60px 0;
+  background-color: ${({ bgColor }) => bgColor || '#fff'};
+  color: ${appTheme.colors.white};
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+
+  ${appTheme.media.md} {
+    padding: 36px 50px;
+    flex: 0 0 66%;
+    min-height: 350px;
+  }
+`;
+
+const ImageWrap = styled.div`
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  width: 80px;
+  height: 80px;
+  margin: auto 0 0;
+
+  figure {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
 
     img {
+      position: absolute;
+      object-fit: cover;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
       display: block;
-      max-width: 100%;
-      max-height: 100%;
+      border-radius: 50%;
     }
   }
 
-  @media screen and (max-width: 767px) {
-    justify-content: center;
+  svg {
+    display: block;
+    width: 148px;
+    margin: -6px 0 0 auto;
+    display: none;
 
-    & > div {
-      width: 33.33%;
+    ${appTheme.media.md} {
+      display: block;
+    }
+
+    ${appTheme.media.lg} {
+      margin: -22px 0 0 auto;
     }
   }
-  @media screen and (max-width: 480px) {
-    gap: 15px 0;
 
-    & > div {
-      width: 50%;
-      height: 50px;
-    }
+  ${appTheme.media.md} {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    height: auto;
   }
 `;
 
-const StyledContent = styled.div`
-  border-radius: 60px 60px 60px 0px;
-  background: #ff473d;
-  padding: 30px 50px;
-  color: #fff;
+const ThumbsSlider = styled(Swiper)`
+  width: auto;
+  display: block;
+  margin: 45px -20px 26px -20px;
 
-  & > img {
-    margin-top: 20px;
-    max-width: 25%;
-  }
-  @media screen and (max-width: 1140px) {
-    padding: 30px;
-  }
-  @media screen and (max-width: 575px) {
-    margin-left: -10px;
-    margin-right: -10px;
-  }
-`;
-
-const StyledText = styled.div`
-  font-size: 24px;
-
-  p:not(:last-child) {
-    margin-bottom: 25px;
+  ${appTheme.media.md} {
+    margin: 65px auto 10px 0;
+    max-width: 66%;
   }
 
-  p:nth-child(2) {
-    font-size: 18px;
-    line-height: 1.5;
+  .swiper-container {
+    max-width: 66%;
   }
-  @media screen and (max-width: 1140px) {
-    font-size: 20px;
-    p:nth-child(2) {
-      font-size: 16px;
+
+  .swiper-slide {
+    height: 50px;
+    padding: 0 20px;
+    box-sizing: border-box;
+
+    ${appTheme.media.md} {
+      margin-right: 0 !important;
     }
   }
-`;
 
-const StyledImage = styled.div`
-  display: none;
-  width: 78px;
-  margin-bottom: 15px;
+  .swiper-slide-thumb-active {
+    img {
+      filter: grayscale(0) opacity(100%);
+    }
+  }
 
   img {
-    max-width: 100%;
     display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: grayscale(1) opacity(30%);
+    transition: all ease 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      filter: grayscale(0) opacity(100%);
+    }
   }
 
-  @media screen and (max-width: 767px) {
-    display: block;
-    margin-left: -10px;
-    margin-right: -10px;
+  .swiper-wrapper {
+    display: flex;
   }
 `;
+
+const DescriptionLogo = styled(ImageBlock)`
+  position: relative;
+  display: block;
+  width: 100px;
+  height: 36px;
+
+  img {
+    display: block;
+    height: 100%;
+    width: auto;
+  }
+`;
+
+const SpotlightSlider = styled(Swiper)`
+  display: block;
+  margin: 0 -20px;
+
+  ${appTheme.media.md} {
+    margin: 0;
+  }
+
+  ${appTheme.media.lg} {
+    margin: -10px 0 0;
+  }
+
+  .swiper-slide {
+    height: auto;
+    margin: auto 0 0;
+  }
+
+  .swiper-slide-active {
+    z-index: 1;
+  }
+
+  --swiper-navigation-color: white;
+  --swiper-pagination-color: white;
+`;
+
+const ThumbsImage = styled(ImageBlock)`
+  width: 100%;
+  height: 100%;
+
+  img {
+    object-fit: contain;
+  }
+`;
+
+const PhotoDecor = () => {
+  return (
+    <svg viewBox="0 0 147 74" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M-6.46929e-06 74C-5.61973e-06 64.2822 1.90112 54.6595 5.59484 45.6814C9.28857 36.7033 14.7025 28.5456 21.5277 21.6741C28.3528 14.8026 36.4553 9.35175 45.3728 5.63291C54.2902 1.91406 63.8478 -7.69417e-06 73.5 -6.42557e-06C83.1522 -5.15698e-06 92.7098 1.91406 101.627 5.63291C110.545 9.35176 118.647 14.8026 125.472 21.6741C132.297 28.5456 137.711 36.7033 141.405 45.6814C145.099 54.6595 147 64.2822 147 74L73.5 74L-6.46929e-06 74Z"
+        fill="#F2EFED"
+      />
+    </svg>
+  );
+};
+
+const SpotlightItem = (props: any) => {
+  const { bgColor, description, author, photo, logoInText, temp } = props;
+
+  return (
+    <SpotlightItemWrap>
+      <CommentBlock bgColor={bgColor ?? 'red'}>
+        <SpotlightDescription text={description[0].props.children[0]} />
+
+        <Customer text={`Slide number ${temp}  ${author[0][0]}`} />
+
+        {logoInText ? <DescriptionLogo loading="lazy" src={logoInText?.src} alt={logoInText.alt} /> : null}
+      </CommentBlock>
+      <ImageWrap>
+        <ImageBlock src={photo.src} alt={photo.alt} />
+        <PhotoDecor />
+      </ImageWrap>
+    </SpotlightItemWrap>
+  );
+};
 
 type CustomerProps = {
   title: string;
@@ -151,78 +294,83 @@ type CustomerProps = {
   author: string;
 };
 
-const Customer = ({ src, alt }: { src: string; alt: string }) => (
-  <div>
-    <img src={src} alt={alt} loading="lazy" />
-  </div>
-);
+const Customer = styled(DescriptionBlock)`
+  font-weight: bold;
+  margin: 24px 0 12px;
+`;
 
 type CustomersProps = {
-  title: ReactNode;
   button: { title: string };
+  title: string;
   items: CustomerProps[];
 };
 
-export const Customers = (props: CustomersProps) => {
-  if (!props.items) return null;
+export const Customers = ({ title, items, button }: CustomersProps) => {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  const selectedItem = props.items?.[0];
+  if (!items) return null;
+
+  const selectedItem = items?.[0];
 
   if (!selectedItem) return null;
 
   return (
-    <>
-      <div>
-        <SectionHead title={props.title} icon="https://i.ibb.co/fCKR73f/Group-407.png" />
-        <StyledCustomersSection>
-          <div>
-            <StyledLogos>
-              {props.items.map((item, index) => (
-                <Customer key={index} src={selectedItem.logo?.src} alt={selectedItem.logo?.alt} />
-              ))}
-            </StyledLogos>
+    <div>
+      <SectionHead title={title} icon="https://i.ibb.co/fCKR73f/Group-407.png" />
+      <StyledCustomersSection>
+        {items?.length !== 1 ? (
+          <ThumbsSlider
+            // @ts-ignore
+            onSwiper={setThumbsSwiper}
+            spaceBetween={20}
+            slidesPerView={2.5}
+            centeredSlides
+            modules={[FreeMode, Navigation, Thumbs, EffectFade]}
+            breakpoints={{
+              [appTheme.breakpoints.sm]: {
+                spaceBetween: 50,
+                slidesPerView: 3,
+                centeredSlides: false,
+              },
+              [appTheme.breakpoints.lg]: {
+                slidesPerView: 4,
+                spaceBetween: 50,
+                centeredSlides: false,
+              },
+            }}
+          >
+            {(items || []).map((slide: any, key: any) => (
+              <SwiperSlide key={key}>
+                <ThumbsImage loading="lazy" src={slide.logo.src} alt={slide.logo.alt} />
+              </SwiperSlide>
+            ))}
+          </ThumbsSlider>
+        ) : null}
+      </StyledCustomersSection>
+      <SpotlightSlider
+        spaceBetween={10}
+        navigation={true}
+        thumbs={{ swiper: thumbsSwiper }}
+        // @ts-ignore
+        modules={[FreeMode, Navigation, Thumbs]}
+      >
+        {(items || []).map((item: any, key: any) => (
+          <SwiperSlide key={key}>
+            <SpotlightItem {...item} temp={key} />
+          </SwiperSlide>
+        ))}
+      </SpotlightSlider>
 
-            <StyledContent>
-              <StyledImage>
-                <img src={selectedItem.photo?.src} alt={selectedItem.photo?.alt} loading="lazy" />
-              </StyledImage>
-
-              <StyledText>
-                {selectedItem.description}
-
-                <p>
-                  <strong>{selectedItem.author}</strong>
-                </p>
-              </StyledText>
-
-              <img src={selectedItem.logoInText?.src} alt={selectedItem.logoInText?.alt} loading="lazy" />
-            </StyledContent>
-          </div>
-
-          <div>
-            <img src={selectedItem.photo?.src} alt={selectedItem.photo?.alt} loading="lazy" />
-          </div>
-        </StyledCustomersSection>
-
-        <CustomLink>{props.button?.title}</CustomLink>
-      </div>
-    </>
+      <CustomButtons
+        buttons={[
+          {
+            link: 'https://www.trafficguard.ai/',
+            text: button?.title,
+            hasIcon: true,
+            variant: 'white',
+          },
+        ]}
+      />
+    </div>
   );
-};
-
-export const CustomersPropsConverter = {
-  sanity: (block: any) => {
-    return {
-      title: converters.title(block.title),
-      button: converters.button(block.button),
-      items: block.spotlight?.map?.((item: any) => ({
-        title: converters.title(item.title),
-        description: converters.richText(item.description),
-        photo: converters.imageWithAlt(item.photo),
-        logo: converters.imageWithAlt(item.logo),
-        logoInText: converters.imageWithAlt(item.logoInText),
-        author: converters.title(item.author),
-      })),
-    };
-  },
 };

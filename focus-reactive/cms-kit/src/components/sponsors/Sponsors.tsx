@@ -1,8 +1,7 @@
 import React from 'react';
-
 import { styled } from '@linaria/react';
-import { CustomLink } from '../custom-lInk/CustomLink';
 import { converters } from '../../cms-connector/converters';
+import Buttons from '../common/buttons/Buttons';
 
 const StyledSponsors = styled.div`
   & > div {
@@ -75,7 +74,9 @@ export const Sponsors = ({ logos, button }: SponsorsProps) => {
     <StyledSponsors>
       <div>{logos?.map?.((logo, index) => <Sponsor key={index} {...logo} />)}</div>
 
-      <CustomLink>{button?.title}</CustomLink>
+      <Buttons
+        buttons={[{ link: 'https://www.trafficguard.ai/', text: button?.title, hasIcon: true, variant: 'white' }]}
+      />
     </StyledSponsors>
   );
 };
