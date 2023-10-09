@@ -170,7 +170,7 @@ type CapabilityProps = {
 const Capability = ({ title, titleIcon, description, image, button, bgColor }: CapabilityProps) => (
   <StyledCapability color={brandColors[bgColor as keyof typeof brandColors]}>
     <div>
-      <img src={titleIcon.src} alt="" loading="lazy" />
+      <img src={titleIcon?.src} alt="" loading="lazy" />
 
       <h3>{title}</h3>
 
@@ -179,9 +179,7 @@ const Capability = ({ title, titleIcon, description, image, button, bgColor }: C
       <Button>{button?.title}</Button>
     </div>
 
-    <div>
-      <img src={image.src} alt={image.alt} loading="lazy" />
-    </div>
+    <div>{image && <img src={image.src} alt={image.alt} loading="lazy" />}</div>
   </StyledCapability>
 );
 
