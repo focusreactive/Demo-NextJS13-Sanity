@@ -1,7 +1,8 @@
 import { styled } from '@linaria/react';
 import React from 'react';
-import Article from '../article/Article';
 import { appTheme } from '../../../theme';
+
+import { RichText } from '@/components/RichText';
 
 const TitleBlockWrap = styled.div`
   position: relative;
@@ -124,7 +125,7 @@ const TitleBlock = ({ text, icon, tip, variant, color, className }: any) => {
       {tip ? <Tip>{tip}</Tip> : null}
       {text ? (
         <TitleWrap className="title" data-variant={variant}>
-          <Article textRaw={text} />
+          <RichText value={text} />
         </TitleWrap>
       ) : null}
     </TitleBlockWrap>

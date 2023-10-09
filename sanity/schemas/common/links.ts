@@ -2,6 +2,12 @@ import { defineField } from 'sanity';
 import { AiOutlineGlobal } from 'react-icons/ai';
 import { BiLink } from 'react-icons/bi';
 
+export const anchorLink = defineField({
+  name: 'anchorLink',
+  title: 'Anchor',
+  type: 'string',
+});
+
 export const innerLink = {
   name: 'innerLink',
   title: 'Internal Page',
@@ -76,10 +82,6 @@ export const button = {
       of: [{ type: innerLink.name }, { type: externalLink.name }],
       validation: (Rule) => Rule.max(1),
     }),
-    defineField({
-      name: 'anchorLink',
-      title: 'Anchor',
-      type: 'string',
-    }),
+    anchorLink,
   ],
 };

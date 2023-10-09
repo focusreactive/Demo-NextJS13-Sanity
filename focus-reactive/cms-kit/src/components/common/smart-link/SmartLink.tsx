@@ -15,7 +15,7 @@ const SmartLink = ({
   ...rest
 }: any) => {
   return (
-    <a href={url} {...rest}>
+    <a href={url || link} {...rest}>
       {children}
     </a>
   );

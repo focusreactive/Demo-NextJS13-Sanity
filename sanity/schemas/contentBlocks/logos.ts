@@ -17,9 +17,7 @@ const logo = defineType({
     },
     prepare: ({ title, alt, media }) => ({ title: title || alt, media }),
   },
-  fields: [
-    imageWithAltField,
-  ],
+  fields: [imageWithAltField],
 });
 
 export const logos = defineType({

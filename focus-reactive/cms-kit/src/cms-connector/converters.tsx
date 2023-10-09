@@ -26,7 +26,7 @@ const richText = (blocks: any) => {
 const button = (block: any) => {
   if (!block) return null;
   return {
-    title: block.title,
+    text: block.title,
     link: block.uri,
   };
 };
