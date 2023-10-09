@@ -5,7 +5,6 @@ import { Header } from '@focusreactive/cms-kit';
 import { token } from '@/model/sanityFetch';
 import { PageDynamicContent } from '@/components/PageDynamicContent';
 import { getPageContent } from '@/model/getPageContent';
-// import Head from 'next/head';
 import { Metadata } from 'next';
 import { getPageMetadata } from '@/model/getPageMetadata';
 
@@ -59,7 +58,6 @@ export default async function Page({ params }: Props) {
 
   if (!page) return notFound();
 
-  // const heroImage = 'https://i.ibb.co/d4yj9wx/image.png';
   return (
     <>
       <Header
@@ -70,10 +68,6 @@ export default async function Page({ params }: Props) {
         heroBackgroundColor="default"
       />
       <main>
-        {/* hero image is set in the CMS */}
-        {/* <Head>
-          <link rel="preload" href={heroImage} as="image" fetchPriority="high" />
-        </Head> */}
         <PageDynamicContent page={page} pageSlug={pageSlug} token={token} isDraftMode={isDraftMode} />
       </main>
     </>

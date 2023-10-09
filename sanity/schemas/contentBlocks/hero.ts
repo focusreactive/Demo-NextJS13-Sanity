@@ -1,4 +1,5 @@
 import { defineField } from 'sanity';
+import { BiDockTop } from 'react-icons/bi';
 
 import { titleField, titleColorField, titleIconField, titleVariantField, titleTipField } from '../common/title';
 import { descriptionField, descriptionColorField, descriptionVariantField } from '../common/description';
@@ -100,6 +101,13 @@ export const hero = defineField({
       of: [{ type: 'partnerNetworkDropDowns' }],
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      media: 'titleIcon',
+    },
+  },
+  icon: BiDockTop,
 });
 
 export default [hero, decor, partnerNetworkDropDowns];
