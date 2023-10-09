@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from '@linaria/react';
 import { converters } from '../../cms-connector/converters';
 import Buttons from '../common/buttons/Buttons';
+import { ImageWithAlt } from '@focusreactive/cms-kit';
 
 const StyledSponsors = styled.div`
   & > div {
@@ -53,16 +54,14 @@ const StyledSponsors = styled.div`
   }
 `;
 
-type Logo = { src: string; alt: string };
-
-const Sponsor = ({ src, alt }: Logo) => (
+const Sponsor = ({ src, alt }: ImageWithAlt) => (
   <div>
     <img src={src} alt={alt} loading="lazy" />
   </div>
 );
 
 type SponsorsProps = {
-  logos: Logo[];
+  logos: ImageWithAlt[];
   button: {
     title: string;
     link: string;

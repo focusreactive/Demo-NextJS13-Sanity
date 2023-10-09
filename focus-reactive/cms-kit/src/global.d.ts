@@ -10,3 +10,5 @@ export type TitleWithOptions = {
     src: string;
   };
 };
+
+export type ImageWithAlt = { src: string; alt: string };

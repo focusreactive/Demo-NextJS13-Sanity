@@ -2,14 +2,14 @@ import React, { ReactNode } from 'react';
 
 import { converters } from '../../cms-connector/converters';
 import { Customers } from './Customers';
-import { TitleWithOptions } from '@focusreactive/cms-kit';
+import { ImageWithAlt, TitleWithOptions } from '@focusreactive/cms-kit';
 
 type CustomerProps = {
   title: string;
   description: ReactNode;
-  photo: { src: string; alt: string };
-  logo: { src: string; alt: string };
-  logoInText: { src: string; alt: string };
+  photo: ImageWithAlt;
+  logo: ImageWithAlt;
+  logoInText: ImageWithAlt;
   author: string;
 };
 
