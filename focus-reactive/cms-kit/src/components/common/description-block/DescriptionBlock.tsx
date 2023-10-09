@@ -2,8 +2,6 @@ import { styled } from '@linaria/react';
 import React from 'react';
 import { appTheme } from '../../../theme';
 
-import { RichText } from '@/components/RichText';
-
 const DescrBlock = styled.div`
   font-size: 16px;
   line-height: 1.52;
@@ -210,7 +208,7 @@ const DescrBlock = styled.div`
 const DescriptionBlock = ({ className = '', text, variant, color, onClick }: any) => {
   return (
     <DescrBlock onClick={onClick} data-variant={variant} color={color} className={className}>
-      <RichText value={text} />
+      {text}
     </DescrBlock>
   );
 };

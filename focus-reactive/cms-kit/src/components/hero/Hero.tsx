@@ -197,11 +197,11 @@ export const Hero = (props: any) => {
     titleVariant,
     description,
     descriptionVariant,
+    descriptionColor,
     buttons = [],
     decor = {},
     titleColor,
-    descriptionColor,
-    isHomePage,
+    isHomePage = true,
     additionalElement,
   } = props;
 
@@ -251,13 +251,13 @@ export const Hero = (props: any) => {
         </HeroLeft>
         {decor ? (
           <HeroDecor data-variant={variant}>
-            {secondSrc ? (
+            {secondSrc || src ? (
               <>
                 {/* <SlightParallax disabled={false} amplitude={0.02}> */}
-                <NextImage priority src={src} alt={alt} fill unoptimized objectFit="contain" />
+                {src && <NextImage priority src={src} alt={alt} fill unoptimized objectFit="contain" />}
                 {/* </SlightParallax> */}
                 {/* <SlightParallax disabled={false} amplitude={0.1}> */}
-                <NextImage priority src={secondSrc} alt={alt} fill unoptimized objectFit="contain" />
+                {secondSrc && <NextImage priority src={secondSrc} alt={alt} fill unoptimized objectFit="contain" />}
                 {/* </SlightParallax> */}
               </>
             ) : (
