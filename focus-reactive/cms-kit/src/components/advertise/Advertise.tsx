@@ -7,6 +7,7 @@ const StyledAdvertise = styled.div<{ imageLeft?: boolean }>`
   display: flex;
   align-items: flex-end;
   gap: 50px 30px;
+  margin-bottom: clamp(80px, 15vw, 160px); // TODO: change section padding instead
 
   p {
     font-size: clamp(16px, 2vw, 18px);

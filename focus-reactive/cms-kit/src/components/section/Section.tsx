@@ -43,7 +43,7 @@ const StyledSection = styled.section<{
   radius?: string;
   padding?: string;
 }>`
-  padding: ${({ padding }) => (padding ? padding : 'clamp(80px, 15vw, 160px) 0')};
+  padding: ${({ padding }) => (padding ? padding : 'clamp(80px, 15vw, 160px) 0 0')};
   position: relative;
   z-index: 2;
   overflow: hidden;
