@@ -11,8 +11,31 @@ export const dynamicPage = defineType({
   title: 'Dynamic Page',
   type: 'document',
   icon: CgCollage,
+  groups: [
+    {
+      name: 'seoGroup',
+      title: 'SEO',
+    },
+  ],
+  fieldsets: [
+    {
+      name: 'seo',
+      title: 'SEO',
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+    },
+  ],
   fields: [
     documentTitleField,
+    defineField({
+      name: 'seo',
+      title: 'SEO & Metatags',
+      type: 'seo',
+      group: 'seoGroup',
+      fieldset: 'seo',
+    }),
     defineField({
       name: 'slug',
       title: 'Page Slug',
