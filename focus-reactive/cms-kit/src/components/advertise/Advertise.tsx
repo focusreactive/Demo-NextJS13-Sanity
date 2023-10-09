@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import SectionHead from '../section/head/SectionHead';
 import { styled } from '@linaria/react';
 import { converters } from '../../cms-connector/converters';
-import { TitleWithOptions } from '@focusreactive/cms-kit';
+import { ImageWithAlt, TitleWithOptions } from '@focusreactive/cms-kit';
 
 const StyledAdvertise = styled.div<{ imageLeft?: boolean }>`
   display: flex;
@@ -51,10 +51,7 @@ const StyledAdvertise = styled.div<{ imageLeft?: boolean }>`
 
 type AdvertiseProps = {
   description: ReactNode;
-  image: {
-    src: string;
-    alt: string;
-  };
+  image: ImageWithAlt;
   imagePosition?: string;
 } & TitleWithOptions;
 

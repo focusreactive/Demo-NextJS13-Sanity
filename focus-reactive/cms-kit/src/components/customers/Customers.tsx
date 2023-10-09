@@ -7,12 +7,13 @@ import { appTheme } from '../../theme';
 import ImageBlock from '../common/image-block/ImageBlock';
 import DescriptionBlock from '../common/description-block/DescriptionBlock';
 import Buttons from '../common/buttons/Buttons';
-import { FreeMode, Navigation, Thumbs, EffectFade } from 'swiper/modules';
+import { EffectFade, FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { TitleWithOptions } from '@focusreactive/cms-kit';
+import { ImageWithAlt, TitleWithOptions } from '@focusreactive/cms-kit';
+
 const StyledCustomersSection = styled.div`
   display: flex;
   align-items: flex-end;
@@ -289,9 +290,9 @@ const SpotlightItem = (props: any) => {
 type CustomerProps = {
   title: string;
   description: ReactNode;
-  photo: { src: string; alt: string };
-  logo: { src: string; alt: string };
-  logoInText: { src: string; alt: string };
+  photo: ImageWithAlt;
+  logo: ImageWithAlt;
+  logoInText: ImageWithAlt;
   author: string;
 };
 
