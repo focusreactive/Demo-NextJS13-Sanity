@@ -192,7 +192,7 @@ type CapabilitiesProps = {
 export const Capabilities = (props: CapabilitiesProps) => {
   return (
     <div>
-      <SectionHead title={props.title} icon={props.titleIcon.src} />
+      <SectionHead title={props.title} icon={props.titleIcon?.src} />
       <StyledCapabilities>
         {props.list && props.list.map((item, index) => <Capability key={index} {...item} />)}
       </StyledCapabilities>

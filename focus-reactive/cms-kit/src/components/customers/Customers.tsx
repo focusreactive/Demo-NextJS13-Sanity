@@ -277,12 +277,15 @@ const SpotlightItem = (props: any) => {
 
         <Customer text={`Slide number ${temp}  ${author[0][0]}`} />
 
-        {logoInText ? <DescriptionLogo loading="lazy" src={logoInText?.src} alt={logoInText.alt} /> : null}
+        {logoInText ? <DescriptionLogo loading="lazy" src={logoInText.src} alt={logoInText.alt} /> : null}
       </CommentBlock>
-      <ImageWrap>
-        <ImageBlock src={photo.src} alt={photo.alt} />
-        <PhotoDecor />
-      </ImageWrap>
+
+      {photo && (
+        <ImageWrap>
+          <ImageBlock src={photo.src} alt={photo.alt} />
+          <PhotoDecor />
+        </ImageWrap>
+      )}
     </SpotlightItemWrap>
   );
 };
@@ -317,7 +320,7 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersProps) =
 
   return (
     <div>
-      <SectionHead title={title} icon={titleIcon.src} />
+      <SectionHead title={title} icon={titleIcon?.src} />
       <StyledCustomersSection>
         {items?.length !== 1 ? (
           <ThumbsSlider
@@ -342,7 +345,7 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersProps) =
           >
             {(items || []).map((slide: any, key: any) => (
               <SwiperSlide key={key}>
-                <ThumbsImage loading="lazy" src={slide.logo.src} alt={slide.logo.alt} />
+                <ThumbsImage loading="lazy" src={slide.logo?.src} alt={slide.logo?.alt} />
               </SwiperSlide>
             ))}
           </ThumbsSlider>

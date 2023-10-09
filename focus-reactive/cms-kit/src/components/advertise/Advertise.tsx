@@ -59,7 +59,7 @@ export const Advertise = (props: AdvertiseProps) => {
   return (
     <StyledAdvertise imageLeft={props.imagePosition === 'left'}>
       <div>
-        <SectionHead title={props.title} icon={props.titleIcon.src} />
+        <SectionHead title={props.title} icon={props.titleIcon?.src} />
 
         {props.description}
       </div>
