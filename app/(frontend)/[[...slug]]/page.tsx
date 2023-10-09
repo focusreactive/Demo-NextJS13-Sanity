@@ -11,38 +11,38 @@ import { getPageMetadata } from '@/model/getPageMetadata';
 
 type Props = { params: { slug?: string[] } };
 
-// export async function generateMetadata({ params }: Props): Promise<Metadata> {
-//   const slug = params.slug ? `/${params.slug.join('/')}` : '/';
-//   const metadata = await getPageMetadata({ slug });
-//
-//   if (!metadata) return {};
-//
-//   const { ogTags, ogTwitter } = metadata;
-//
-//   return {
-//     title: metadata.title,
-//     description: metadata.description,
-//     keywords: metadata.keywords,
-//     alternates: {
-//       canonical: slug,
-//     },
-//     openGraph: {
-//       title: ogTags.title || metadata.title,
-//       description: ogTags.description || metadata.description,
-//       images: [ogTags.image],
-//       type: ogTags.type || 'website',
-//       url: slug,
-//       siteName: ogTags.siteName,
-//     },
-//     twitter: {
-//       card: ogTwitter.card || 'summary_large_image',
-//       title: ogTwitter.title,
-//       description: ogTwitter.description,
-//       images: [ogTwitter.image],
-//       site: ogTwitter.site,
-//     },
-//   };
-// }
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = params.slug ? `/${params.slug.join('/')}` : '/';
+  const metadata = await getPageMetadata({ slug });
+
+  if (!metadata) return {};
+
+  const { ogTags, ogTwitter } = metadata;
+
+  return {
+    title: metadata.title,
+    description: metadata.description,
+    keywords: metadata.keywords,
+    alternates: {
+      canonical: slug,
+    },
+    openGraph: {
+      title: ogTags?.title || metadata.title,
+      description: ogTags?.description || metadata.description,
+      images: ogTags.image ? [ogTags.image] : undefined,
+      type: ogTags?.type || 'website',
+      url: slug,
+      siteName: ogTags?.siteName,
+    },
+    twitter: {
+      card: ogTwitter?.card || 'summary_large_image',
+      title: ogTwitter?.title,
+      description: ogTwitter?.description,
+      images: ogTwitter.image ? [ogTwitter.image] : undefined,
+      site: ogTwitter?.site,
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const slugs = await getAllPagesSlugs();

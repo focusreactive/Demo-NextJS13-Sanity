@@ -25,8 +25,8 @@ export const CustomersWrapper = (props: CustomersWrapperProps) => {
 export const CustomersPropsConverter = {
   sanity: (block: any) => {
     return {
-      title: converters.title(block.titleWithOptions.title),
-      titleIcon: converters.image(block.titleWithOptions.titleIcon),
+      title: converters.title(block.titleWithOptions?.title),
+      titleIcon: converters.image(block.titleWithOptions?.titleIcon),
       button: converters.button(block.button),
       items: block.spotlight?.map?.((item: any) => ({
         title: converters.title(item.title),

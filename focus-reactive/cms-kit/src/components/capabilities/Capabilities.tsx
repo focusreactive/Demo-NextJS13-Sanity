@@ -170,7 +170,7 @@ type CapabilityProps = {
 const Capability = ({ title, titleIcon, description, image, button, bgColor }: CapabilityProps) => (
   <StyledCapability color={brandColors[bgColor as keyof typeof brandColors]}>
     <div>
-      <img src={titleIcon.src} alt="" loading="lazy" />
+      <img src={titleIcon?.src} alt="" loading="lazy" />
 
       <h3>{title}</h3>
 
@@ -179,9 +179,7 @@ const Capability = ({ title, titleIcon, description, image, button, bgColor }: C
       <Button>{button?.title}</Button>
     </div>
 
-    <div>
-      <img src={image.src} alt={image.alt} loading="lazy" />
-    </div>
+    <div>{image && <img src={image.src} alt={image.alt} loading="lazy" />}</div>
   </StyledCapability>
 );
 
@@ -192,7 +190,7 @@ type CapabilitiesProps = {
 export const Capabilities = (props: CapabilitiesProps) => {
   return (
     <div>
-      <SectionHead title={props.title} icon={props.titleIcon.src} />
+      <SectionHead title={props.title} icon={props.titleIcon?.src} />
       <StyledCapabilities>
         {props.list && props.list.map((item, index) => <Capability key={index} {...item} />)}
       </StyledCapabilities>
@@ -203,11 +201,11 @@ export const Capabilities = (props: CapabilitiesProps) => {
 export const CapabilitiesPropsConverter = {
   sanity: (block: any) => {
     return {
-      title: converters.title(block.titleWithOptions.title),
-      titleIcon: converters.image(block.titleWithOptions.titleIcon),
+      title: converters.title(block.titleWithOptions?.title),
+      titleIcon: converters.image(block.titleWithOptions?.titleIcon),
       list: block.list?.map?.((item: any) => ({
-        title: converters.title(item.titleWithOptions.title),
-        titleIcon: converters.image(item.titleWithOptions.titleIcon),
+        title: converters.title(item.titleWithOptions?.title),
+        titleIcon: converters.image(item.titleWithOptions?.titleIcon),
         description: converters.richText(item.description),
         image: converters.imageWithAlt(item.imageWithAlt),
         button: converters.button(item.button),
