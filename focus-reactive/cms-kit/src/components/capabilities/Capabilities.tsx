@@ -203,11 +203,11 @@ export const Capabilities = (props: CapabilitiesProps) => {
 export const CapabilitiesPropsConverter = {
   sanity: (block: any) => {
     return {
-      title: converters.title(block.titleWithOptions.title),
-      titleIcon: converters.image(block.titleWithOptions.titleIcon),
+      title: converters.title(block.titleWithOptions?.title),
+      titleIcon: converters.image(block.titleWithOptions?.titleIcon),
       list: block.list?.map?.((item: any) => ({
-        title: converters.title(item.titleWithOptions.title),
-        titleIcon: converters.image(item.titleWithOptions.titleIcon),
+        title: converters.title(item.titleWithOptions?.title),
+        titleIcon: converters.image(item.titleWithOptions?.titleIcon),
         description: converters.richText(item.description),
         image: converters.imageWithAlt(item.imageWithAlt),
         button: converters.button(item.button),

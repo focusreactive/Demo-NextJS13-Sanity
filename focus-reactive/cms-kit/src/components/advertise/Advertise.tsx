@@ -74,8 +74,8 @@ export const Advertise = (props: AdvertiseProps) => {
 export const AdvertisePropsConverter = {
   sanity: (block: any) => {
     return {
-      title: converters.title(block.titleWithOptions.title),
-      titleIcon: converters.image(block.titleWithOptions.titleIcon),
+      title: converters.title(block.titleWithOptions?.title),
+      titleIcon: converters.image(block.titleWithOptions?.titleIcon),
       description: converters.richText(block.description),
       image: converters.imageWithAlt(block.imageWithAlt),
       imagePosition: converters.plainText(block.imagePosition),
