@@ -159,18 +159,17 @@ const StyledCapability = styled.div<{ color?: string }>`
 `;
 
 type CapabilityProps = {
-  title: ReactNode;
   description: ReactNode;
   button: {
     title: string;
   };
   bgColor?: string;
-};
+} & TitleWithOptions;
 
-const Capability = ({ title, description, button, bgColor }: CapabilityProps) => (
+const Capability = ({ title, titleIcon, description, button, bgColor }: CapabilityProps) => (
   <StyledCapability color={brandColors[bgColor as keyof typeof brandColors]}>
     <div>
-      <img src="https://i.ibb.co/G5m44G0/Vector.png" alt="" loading="lazy" />
+      <img src={titleIcon.src} alt="" loading="lazy" />
 
       <h3>{title}</h3>
 
@@ -206,7 +205,8 @@ export const CapabilitiesPropsConverter = {
       title: converters.title(block.titleWithOptions.title),
       titleIcon: converters.image(block.titleWithOptions.titleIcon),
       list: block.list?.map?.((item: any) => ({
-        title: converters.title(item.title),
+        title: converters.title(item.titleWithOptions.title),
+        titleIcon: converters.image(item.titleWithOptions.titleIcon),
         description: converters.richText(item.description),
         button: converters.button(item.button),
         bgColor: converters.plainText(item.bgColor),

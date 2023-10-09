@@ -25,7 +25,7 @@ export const titleColorField = defineField({
 
 export const titleIconField = defineField({
   name: 'titleIcon',
-  title: 'Title Image',
+  title: 'Title Icon',
   type: 'image',
 });
 
