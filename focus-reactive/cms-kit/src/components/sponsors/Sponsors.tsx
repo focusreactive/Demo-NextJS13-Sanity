@@ -2,7 +2,7 @@ import React from 'react';
 import { styled } from '@linaria/react';
 import { converters } from '../../cms-connector/converters';
 import Buttons from '../common/buttons/Buttons';
-import { ImageWithAlt } from '@focusreactive/cms-kit';
+import { ImageWithAlt } from '../../global';
 
 const StyledSponsors = styled.div`
   & > div {

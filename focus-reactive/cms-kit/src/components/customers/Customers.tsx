@@ -12,7 +12,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { ImageWithAlt, TitleWithOptions } from '@focusreactive/cms-kit';
+import { ImageWithAlt, TitleWithOptions } from '../../global';
 
 const StyledCustomersSection = styled.div`
   display: flex;

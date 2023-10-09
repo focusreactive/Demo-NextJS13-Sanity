@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 
 import { converters } from '../../cms-connector/converters';
 import { Customers } from './Customers';
-import { ImageWithAlt, TitleWithOptions } from '@focusreactive/cms-kit';
+import { ImageWithAlt, TitleWithOptions } from '../../global';
 
 type CustomerProps = {
   title: string;

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { styled } from '@linaria/react';
-import { sectionBgColors, sectionTextColorsByBg } from '@focusreactive/cms-kit/src/components/section/colors';
+import { sectionBgColors, sectionTextColorsByBg } from './colors';
 
 interface SectionProps {
   children: ReactNode;

@@ -2,9 +2,9 @@ import React, { ReactNode } from 'react';
 import SectionHead from '../section/head/SectionHead';
 import { Button } from '../button/Button';
 import { styled } from '@linaria/react';
-import { brandColors } from '@focusreactive/cms-kit/src/components/capabilities/colors';
+import { brandColors } from './colors';
 import { converters } from '../../cms-connector/converters';
-import { ImageWithAlt, TitleWithOptions } from '@focusreactive/cms-kit';
+import { ImageWithAlt, TitleWithOptions } from '../../global';
 
 const StyledCapabilities = styled.div`
   display: flex;
