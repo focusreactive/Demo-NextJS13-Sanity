@@ -7,9 +7,10 @@ import Logo from '../common/logo/Logo';
 import { appTheme } from '../../theme';
 import SmartLink from '../common/smart-link/SmartLink';
 import Buttons from '../common/buttons/Buttons';
-import Article from '../common/article/Article';
 import ImageBlock from '../common/image-block/ImageBlock';
 import Contacts from '../common/contacts/Contacts';
+
+import { RichText } from '@/components/RichText';
 
 const IconArrow = styled.svg`
   position: relative;
@@ -260,7 +261,7 @@ const HeaderNavMobile = (props: any) => {
                     <MenuItem key={linkKey} link={href} onClick={onClose}>
                       <ImageBlock src={iconSrc} alt={iconAlt} />
                       <MenuText>
-                        <Article textRaw={title} />
+                        <RichText value={title} />
                       </MenuText>
                     </MenuItem>
                   );

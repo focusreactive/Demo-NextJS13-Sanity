@@ -3,7 +3,6 @@ import React from 'react';
 import Buttons from '../common/buttons/Buttons';
 import ImageBlock from '../common/image-block/ImageBlock';
 import FloatUp from '../common/float-up/FloatUp';
-import Article from '../common/article/Article';
 import SmartLink from '../common/smart-link/SmartLink';
 import TitleBlock from '../common/title-block/TitleBlock';
 import { appTheme } from '../../theme';
@@ -246,9 +245,7 @@ const Promo = ({ image, title, buttons }: any) => {
       <FloatUp>
         <ImageBlock {...image} />
         <PromoContent>
-          <Description>
-            <Article textRaw={title} />
-          </Description>
+          <Description>{title}</Description>
           <Buttons buttons={buttons} />
         </PromoContent>
       </FloatUp>
@@ -258,11 +255,16 @@ const Promo = ({ image, title, buttons }: any) => {
 
 const NavItem = ({ links, ...restProps }: any) => {
   return (links || []).map((item: any, key: any) => {
-    const { iconAlt, iconSrc, title, description, ...rest } = item;
+    const {
+      imageWithAlt: { src, alt },
+      title,
+      description,
+      ...rest
+    } = item;
 
     return (
       <NavItemWrap key={key.iconAlt} {...restProps} {...rest}>
-        <ImageBlock src={iconSrc} alt={iconAlt} />
+        <ImageBlock src={src} alt={alt} />
         <NavTitle text={title} />
         <NavDescription text={description} color="gray700" />
       </NavItemWrap>
@@ -275,11 +277,16 @@ const NavItemCols = ({ navTitle, links, mainKey, ...restProps }: any) => {
     <NavItemColsWrap>
       <h3>{navTitle}</h3>
       {(links || []).map((item: any, key: any) => {
-        const { iconAlt, iconSrc, title, description, ...rest } = item;
+        const {
+          imageWithAlt: { src, alt },
+          title,
+          description,
+          ...rest
+        } = item;
 
         return (
           <NavItemColsList key={key} {...restProps} {...rest}>
-            <ImageBlock src={iconSrc} alt={iconAlt} />
+            <ImageBlock src={src} alt={alt} />
             <NavTitle text={title} />
             <NavDescription text={description} color="gray700" />
           </NavItemColsList>

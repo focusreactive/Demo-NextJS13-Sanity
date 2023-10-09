@@ -229,7 +229,7 @@ export const Hero = (props: any) => {
       data-display={isHomePage ? 'block' : 'none'}
       data-disabledOverflow={Boolean(additionalElement)}
       bgColor="blue"
-      neighborBg="#32408b"
+      neighborBg="red"
       padding="clamp(80px, 15vw, 160px) 0 0"
     >
       <HeroBox>

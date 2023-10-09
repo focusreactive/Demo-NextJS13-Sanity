@@ -11,6 +11,7 @@ import { getUniqElements } from '../../utils/arrayUtils';
 import HeaderNav from './HeaderNav';
 import HeaderNavMobile from './HeaderMobileNav';
 import { StyledContainer } from '../section/Section';
+import { converters } from '../../cms-connector/converters';
 
 const CustomButtons = styled(Buttons)`
   & > * {
@@ -239,7 +240,7 @@ const COLORS = {
   },
 };
 
-export const Header = ({
+export const HeaderComponent = ({
   menu = [],
   buttons = [],
   buttonsColor,
@@ -391,4 +392,30 @@ export const Header = ({
       </StyledWrapper>
     </StyledLayout>
   );
+};
+
+export const Header = (props: any) => {
+  const convertedProps = headerPropsConverter.sanity(props);
+
+  return <HeaderComponent {...(convertedProps as any)} />;
+};
+
+export const headerPropsConverter = {
+  sanity: (block: any) => {
+    const { ctaCard, menu, buttons, ...rest } = block;
+
+    return {
+      ...rest,
+      ctaCard: {
+        image: converters.imageWithAlt(ctaCard.imageWithAlt),
+        title: converters.title(ctaCard.title),
+        buttons: ctaCard.buttons.map((btn: any) => converters.button(btn)),
+      },
+      menu: menu.map((v: any) => ({
+        ...v,
+        links: v.links.map((link: any) => ({ ...link, imageWithAlt: converters.imageWithAlt(link.imageWithAlt) })),
+      })),
+      buttons: buttons.map(converters.button),
+    };
+  },
 };
