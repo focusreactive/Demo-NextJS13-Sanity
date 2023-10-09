@@ -1,5 +1,5 @@
 import { descriptionField } from '../common/description';
-import { documentTitleField, titleField } from '../common/title';
+import { documentTitleField, titleWithOptionsField } from '../common/title';
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { RiFocus3Line } from 'react-icons/ri';
 import { sectionConfigField } from '../common/section';
@@ -49,7 +49,7 @@ export const customerSpotlight = defineType({
   icon: RiFocus3Line,
   ...getContentBlockDefaultOptions(),
   fields: [
-    titleField,
+    titleWithOptionsField,
     defineField({
       name: 'button',
       title: 'Button',

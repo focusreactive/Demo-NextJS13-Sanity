@@ -1,5 +1,5 @@
-import { colorOptions, sizeOptions } from '../../../sanity/constants';
-import { defineField } from 'sanity';
+import { colorOptions, sizeOptions } from '@/sanity/constants';
+import { defineField, defineType } from 'sanity';
 
 export const documentTitleField = defineField({
   name: 'documentTitle',
@@ -42,4 +42,17 @@ export const titleTipField = defineField({
   name: 'titleTip',
   title: 'Title Tip',
   type: 'string',
+});
+
+export const titleWithOptions = defineType({
+  name: 'titleWithOptions',
+  title: 'Title',
+  type: 'object',
+  fields: [titleField, titleIconField],
+});
+
+export const titleWithOptionsField = defineType({
+  name: 'titleWithOptions',
+  title: 'Title',
+  type: titleWithOptions.name,
 });

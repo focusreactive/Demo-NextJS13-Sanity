@@ -1,6 +1,6 @@
-import { colorOptions } from '../../../sanity/constants';
+import { colorOptions } from '@/sanity/constants';
 import { descriptionField } from '../common/description';
-import { titleField } from '../common/title';
+import { titleField, titleWithOptionsField } from '../common/title';
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { GiStrong } from 'react-icons/gi';
 import { button } from '../common/links';
@@ -43,7 +43,7 @@ export const capabilities = defineType({
   icon: GiStrong,
   ...getContentBlockDefaultOptions(),
   fields: [
-    titleField,
+    titleWithOptionsField,
     defineField({
       name: 'list',
       title: 'Capabilities',

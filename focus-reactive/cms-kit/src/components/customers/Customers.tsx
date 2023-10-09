@@ -12,6 +12,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
+import { TitleWithOptions } from '@focusreactive/cms-kit';
 const StyledCustomersSection = styled.div`
   display: flex;
   align-items: flex-end;
@@ -301,11 +302,10 @@ const Customer = styled(DescriptionBlock)`
 
 type CustomersProps = {
   button: { title: string };
-  title: string;
   items: CustomerProps[];
-};
+} & TitleWithOptions;
 
-export const Customers = ({ title, items, button }: CustomersProps) => {
+export const Customers = ({ title, titleIcon, items, button }: CustomersProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   if (!items) return null;
@@ -316,7 +316,7 @@ export const Customers = ({ title, items, button }: CustomersProps) => {
 
   return (
     <div>
-      <SectionHead title={title} icon="https://i.ibb.co/fCKR73f/Group-407.png" />
+      <SectionHead title={title} icon={titleIcon.src} />
       <StyledCustomersSection>
         {items?.length !== 1 ? (
           <ThumbsSlider

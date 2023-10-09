@@ -14,3 +14,9 @@ export const PAGE_CONTENT_QUERY = groq`
       content[]
     }[0]
   `;
+
+export const PAGE_METADATA_QUERY = groq`
+    * [_type == 'dynamicPage' && !(_id in path('drafts.**')) && slug.current == $slug] {
+      seo
+    }[0].seo
+  `;
