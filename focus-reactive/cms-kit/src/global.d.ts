@@ -1,3 +1,3 @@
 export enum SupportedCms {
-    sanity = 'sanity',
+  sanity = 'sanity',
 }

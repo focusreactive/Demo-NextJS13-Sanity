@@ -28,7 +28,13 @@ export default async function Page({ params }: { params: { slug?: string[] } }) 
 
   return (
     <>
-      <Header {...page.header} isFixed={false} buttonsColor="" linksColor="white" heroBackgroundColor="default" />
+      <Header
+        {...(page.header as any)}
+        isFixed={false}
+        buttonsColor=""
+        linksColor="white"
+        heroBackgroundColor="default"
+      />
       <main>
         <Head>
           <link rel="preload" href={heroImage} as="image" fetchPriority="high" />

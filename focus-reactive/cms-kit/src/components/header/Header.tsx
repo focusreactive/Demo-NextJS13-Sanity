@@ -407,7 +407,7 @@ export const headerPropsConverter = {
     return {
       ...rest,
       ctaCard: {
-        image: converters.imageWithAlt({ ...ctaCard.imageWithAlt.image, ...ctaCard.imageWithAlt }),
+        image: converters.imageWithAlt(ctaCard.imageWithAlt),
         title: converters.title(ctaCard.title),
         buttons: ctaCard.buttons.map((btn: any) => converters.button(btn)),
       },
