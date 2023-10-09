@@ -12,12 +12,15 @@ import { getPageMetadata } from '@/model/getPageMetadata';
 type Props = { params: { slug?: string[] } };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  console.log('\n\nSLUG', { params }, '\n\n');
   const slug = params.slug ? `/${params.slug.join('/')}` : '/';
   const metadata = await getPageMetadata({ slug });
 
-  console.log('\n\nSLUG', { slug }, '\n\n');
 
-  return {};
+  return {
+    title: '...',
+    description: '...',
+  };
   if (!metadata) return {};
 
   const { ogTags, ogTwitter } = metadata;
