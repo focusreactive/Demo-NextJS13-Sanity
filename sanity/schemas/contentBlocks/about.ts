@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity';
-import { titleField } from '../common/title';
+import { titleWithOptionsField } from '../common/title';
 import { descriptionField } from '../common/description';
 import { BiInfoCircle } from 'react-icons/bi';
 import { sectionConfigField } from '../common/section';
@@ -13,7 +13,7 @@ export const about = defineType({
   icon: BiInfoCircle,
   ...getContentBlockDefaultOptions(),
   fields: [
-    titleField,
+    titleWithOptionsField,
     descriptionField,
     imageWithAltField,
     defineField({
