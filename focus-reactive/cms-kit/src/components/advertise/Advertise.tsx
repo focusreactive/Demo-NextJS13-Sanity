@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import SectionHead from '../section/head/SectionHead';
 import { styled } from '@linaria/react';
 import { converters } from '../../cms-connector/converters';
+import { TitleWithOptions } from '@focusreactive/cms-kit';
 
 const StyledAdvertise = styled.div<{ imageLeft?: boolean }>`
   display: flex;
@@ -49,20 +50,19 @@ const StyledAdvertise = styled.div<{ imageLeft?: boolean }>`
 `;
 
 type AdvertiseProps = {
-  title: ReactNode;
   description: ReactNode;
   image: {
     src: string;
     alt: string;
   };
   imagePosition?: string;
-};
+} & TitleWithOptions;
 
 export const Advertise = (props: AdvertiseProps) => {
   return (
     <StyledAdvertise imageLeft={props.imagePosition === 'left'}>
       <div>
-        <SectionHead title={props.title} icon="https://i.ibb.co/fCKR73f/Group-407.png" />
+        <SectionHead title={props.title} icon={props.titleIcon.src} />
 
         {props.description}
       </div>
@@ -77,7 +77,8 @@ export const Advertise = (props: AdvertiseProps) => {
 export const AdvertisePropsConverter = {
   sanity: (block: any) => {
     return {
-      title: converters.title(block.title),
+      title: converters.title(block.titleWithOptions.title),
+      titleIcon: converters.image(block.titleWithOptions.titleIcon),
       description: converters.richText(block.description),
       image: converters.imageWithAlt(block.imageWithAlt),
       imagePosition: converters.plainText(block.imagePosition),

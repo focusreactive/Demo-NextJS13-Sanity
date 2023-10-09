@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 
 import { converters } from '../../cms-connector/converters';
 import { Customers } from './Customers';
+import { TitleWithOptions } from '@focusreactive/cms-kit';
 
 type CustomerProps = {
   title: string;
@@ -14,9 +15,8 @@ type CustomerProps = {
 
 type CustomersWrapperProps = {
   button: { title: string };
-  title: string;
   items: CustomerProps[];
-};
+} & TitleWithOptions;
 
 export const CustomersWrapper = (props: CustomersWrapperProps) => {
   return <Customers {...props} />;
@@ -25,7 +25,8 @@ export const CustomersWrapper = (props: CustomersWrapperProps) => {
 export const CustomersPropsConverter = {
   sanity: (block: any) => {
     return {
-      title: converters.title(block.title),
+      title: converters.title(block.titleWithOptions.title),
+      titleIcon: converters.image(block.titleWithOptions.titleIcon),
       button: converters.button(block.button),
       items: block.spotlight?.map?.((item: any) => ({
         title: converters.title(item.title),
