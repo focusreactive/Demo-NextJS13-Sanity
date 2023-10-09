@@ -14,11 +14,11 @@ const capability = {
   icon: BiMedal,
   preview: {
     select: {
-      title: 'title',
+      title: "titleWithOptions.title",
     },
   },
   fields: [
-    titleField,
+    titleWithOptionsField,
     descriptionField,
     defineField({
       name: 'button',
