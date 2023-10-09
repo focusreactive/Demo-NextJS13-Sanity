@@ -4,6 +4,7 @@ import { Button } from '../button/Button';
 import { styled } from '@linaria/react';
 import { brandColors } from '@focusreactive/cms-kit/src/components/capabilities/colors';
 import { converters } from '../../cms-connector/converters';
+import { TitleWithOptions } from '@focusreactive/cms-kit';
 
 const StyledCapabilities = styled.div`
   display: flex;
@@ -185,14 +186,13 @@ const Capability = ({ title, description, button, bgColor }: CapabilityProps) =>
 );
 
 type CapabilitiesProps = {
-  title: ReactNode;
   list: CapabilityProps[];
-};
+} & TitleWithOptions;
 
 export const Capabilities = (props: CapabilitiesProps) => {
   return (
     <div>
-      <SectionHead title={props.title} icon="https://i.ibb.co/fCKR73f/Group-407.png" />
+      <SectionHead title={props.title} icon={props.titleIcon.src} />
       <StyledCapabilities>
         {props.list && props.list.map((item, index) => <Capability key={index} {...item} />)}
       </StyledCapabilities>
@@ -203,7 +203,8 @@ export const Capabilities = (props: CapabilitiesProps) => {
 export const CapabilitiesPropsConverter = {
   sanity: (block: any) => {
     return {
-      title: converters.title(block.title),
+      title: converters.title(block.titleWithOptions.title),
+      titleIcon: converters.image(block.titleWithOptions.titleIcon),
       list: block.list?.map?.((item: any) => ({
         title: converters.title(item.title),
         description: converters.richText(item.description),
