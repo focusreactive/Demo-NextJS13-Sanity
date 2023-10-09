@@ -4,7 +4,7 @@ import { Button } from '../button/Button';
 import { styled } from '@linaria/react';
 import { brandColors } from '@focusreactive/cms-kit/src/components/capabilities/colors';
 import { converters } from '../../cms-connector/converters';
-import { TitleWithOptions } from '@focusreactive/cms-kit';
+import { ImageWithAlt, TitleWithOptions } from '@focusreactive/cms-kit';
 
 const StyledCapabilities = styled.div`
   display: flex;
@@ -160,13 +160,14 @@ const StyledCapability = styled.div<{ color?: string }>`
 
 type CapabilityProps = {
   description: ReactNode;
+  image: ImageWithAlt;
   button: {
     title: string;
   };
   bgColor?: string;
 } & TitleWithOptions;
 
-const Capability = ({ title, titleIcon, description, button, bgColor }: CapabilityProps) => (
+const Capability = ({ title, titleIcon, description, image, button, bgColor }: CapabilityProps) => (
   <StyledCapability color={brandColors[bgColor as keyof typeof brandColors]}>
     <div>
       <img src={titleIcon.src} alt="" loading="lazy" />
@@ -179,7 +180,7 @@ const Capability = ({ title, titleIcon, description, button, bgColor }: Capabili
     </div>
 
     <div>
-      <img src="https://i.ibb.co/XFqXynH/Sc1-1.png" alt="" loading="lazy" />
+      <img src={image.src} alt={image.alt} loading="lazy" />
     </div>
   </StyledCapability>
 );
@@ -208,6 +209,7 @@ export const CapabilitiesPropsConverter = {
         title: converters.title(item.titleWithOptions.title),
         titleIcon: converters.image(item.titleWithOptions.titleIcon),
         description: converters.richText(item.description),
+        image: converters.imageWithAlt(item.imageWithAlt),
         button: converters.button(item.button),
         bgColor: converters.plainText(item.bgColor),
       })),
