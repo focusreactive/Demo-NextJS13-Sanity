@@ -48,7 +48,6 @@ const LinkContainer = styled(SmartLink)`
   box-sizing: border-box;
   display: flex;
   min-height: 45px;
-  min-width: 122px;
   border-radius: 45px;
   font-family: 'DM Sans', sans-serif;
   align-items: center;
@@ -59,7 +58,7 @@ const LinkContainer = styled(SmartLink)`
   line-height: 0.95;
   letter-spacing: normal;
   cursor: pointer;
-  padding: 0 20px;
+  padding: 0 10px;
   transition: all ease 0.1s;
   text-align: center;
   max-width: 100%;
@@ -72,6 +71,11 @@ const LinkContainer = styled(SmartLink)`
   --borderColor: ${appTheme.colors.transparent};
   --shadowColor: var(--backgroundColor);
   color: var(--textColor);
+
+  ${appTheme.media.sm} {
+    min-width: 122px;
+    padding: 0 20px;
+  }
 
   ${appTheme.media.md} {
     min-width: 138px;
@@ -153,7 +157,7 @@ const LinkContainer = styled(SmartLink)`
   }
 
   &[data-variant='white'] {
-    --textColor: ${appTheme.colors.black};
+    --textColor: ${appTheme.colors.blue400};
     --backgroundColor: ${appTheme.colors.white};
     --borderColor: ${appTheme.colors.transparent};
   }

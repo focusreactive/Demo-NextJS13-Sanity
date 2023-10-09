@@ -74,7 +74,6 @@ const HeroBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  margin-bottom: clamp(-40px, -30px, -70px);
 
   ${appTheme.media.md} {
     flex-direction: row;
@@ -85,7 +84,6 @@ const HeroBox = styled.div`
 
   ${appTheme.media.lg} {
     min-height: 466px;
-    margin-bottom: -50px;
   }
 `;
 
@@ -100,7 +98,7 @@ const HeroLeft = styled.div`
 
     ${appTheme.media.md} {
       & > * {
-        margin-right: 28px;
+        margin-right: 22px;
       }
     }
 
@@ -146,11 +144,6 @@ const HeroDecor = styled.div`
     max-width: 50%;
     display: block;
     margin-left: auto;
-    margin-right: -20px;
-
-    ${appTheme.media.sm} {
-      margin-right: calc((100% - 556px) / 2);
-    }
 
     ${appTheme.media.md} {
       max-height: none;
