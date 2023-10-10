@@ -5,21 +5,13 @@ import Buttons from '../common/buttons/Buttons';
 import Image from 'next/image';
 import { ButtonOrLink, ImageWithAlt } from '../../global';
 
-const StyledSponsors = styled.div`
-  & > div {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    margin: 0 -10px;
-    justify-content: center;
-  }
-`;
+const StyledSponsors = styled.div``;
 
 const StyledImage = styled.div`
   position: relative;
   width: 24%;
   height: 80px;
-  margin: 0 47px;
+  margin: 0 40px;
   max-width: 140px;
 
   @media screen and (max-width: 1140px) {
@@ -30,14 +22,22 @@ const StyledImage = styled.div`
 
   @media screen and (max-width: 767px) {
     width: 33.33%;
+    margin: 0 20px;
   }
 
   @media screen and (max-width: 480px) {
     width: 33%;
     height: 60px;
     max-width: 100px;
-    margin: 0 20px;
+    margin: 0;
   }
+`;
+
+const StyledLogos = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-evenly;
 `;
 
 const Sponsor = ({ src, alt }: ImageWithAlt) => {
@@ -56,7 +56,7 @@ type SponsorsProps = {
 export const Sponsors = ({ logos, button }: SponsorsProps) => {
   return (
     <StyledSponsors>
-      <div>{logos?.map?.((logo, index) => <Sponsor key={index} {...logo} />)}</div>
+      <StyledLogos>{logos?.map?.((logo, index) => <Sponsor key={index} {...logo} />)}</StyledLogos>
 
       <Buttons
         buttons={[{ link: 'https://www.trafficguard.ai/', text: button?.text, hasIcon: true, variant: 'white' }]}

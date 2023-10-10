@@ -114,10 +114,10 @@ const HeroDecor = styled.div`
   width: 100%;
   margin: 34px 0 0;
   position: relative;
+  height: clamp(200px, 50vw, 440px);
 
   div {
     width: 100%;
-    height: clamp(200px, 50vw, 400px);
 
     ${appTheme.media.md} {
       height: 100%;
@@ -131,6 +131,7 @@ const HeroDecor = styled.div`
   }
 
   ${appTheme.media.md} {
+    height: auto;
     margin: 0 0 0 40px;
     flex: 1 0 calc(46% - 20px);
   }
@@ -262,7 +263,7 @@ export const Hero = (props: any) => {
               </>
             ) : (
               // <SlightParallax disabled={!hasParallax}>
-              <NextImage priority src={src} alt={alt} fill objectFit="contain" />
+              <NextImage priority src={src} alt={alt} fill objectFit="contain" sizes="(max-width: 414px) 50vw, 400px" />
               // </SlightParallax>
             )}
           </HeroDecor>
