@@ -1,10 +1,9 @@
-'use client';
 import React from 'react';
 import NextImage from 'next/image';
 
 import TitleBlock from '../common/title-block/TitleBlock';
 import { Section } from '../section/Section';
-import styled from 'styled-components';
+import { styled } from '@linaria/react';
 import FloatUp from '../common/float-up/FloatUp';
 import DescriptionBlock from '../common/description-block/DescriptionBlock';
 import { appTheme } from '../../theme';
