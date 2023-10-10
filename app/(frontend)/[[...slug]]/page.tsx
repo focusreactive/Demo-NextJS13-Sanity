@@ -1,7 +1,7 @@
 import { getAllPagesSlugs } from '@/model/getAllPagesSlugs';
 import { notFound } from 'next/navigation';
 import { draftMode } from 'next/headers';
-import { Header } from '@focusreactive/cms-kit';
+import { Header, Footer } from '@focusreactive/cms-kit';
 import { token } from '@/model/sanityFetch';
 import { PageDynamicContent } from '@/components/PageDynamicContent';
 import { getPageContent } from '@/model/getPageContent';
@@ -70,6 +70,7 @@ export default async function Page({ params }: Props) {
       <main>
         <PageDynamicContent page={page} pageSlug={pageSlug} token={token} isDraftMode={isDraftMode} />
       </main>
+      <Footer {...(page.footer as any)} />
     </>
   );
 }

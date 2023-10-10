@@ -7,6 +7,7 @@ import SmartLink from '../common/smart-link/SmartLink';
 import Contacts from '../common/contacts/Contacts';
 import Socials from '../common/socials/Socials';
 import { StyledContainer } from '../section/Section';
+import { converters } from '../../cms-connector/converters';
 
 const CustomButtons = styled(Buttons)``;
 
@@ -264,10 +265,11 @@ const Member = styled.div`
 `;
 
 const TopMenuItem = (props: any) => {
-  const { title, ...rest } = props;
+  const { text, ...rest } = props;
+
   return (
     <li>
-      <SmartLink {...rest}>{title}</SmartLink>
+      <SmartLink {...rest}>{text}</SmartLink>
     </li>
   );
 };
@@ -286,10 +288,11 @@ const TopMenuList = ({ title, list }: any) => {
 };
 
 const NavItem = (props: any) => {
-  const { title, ...rest } = props;
+  const { text, ...rest } = props;
+
   return (
     <li>
-      <SmartLink {...rest}>{title}</SmartLink>
+      <SmartLink {...rest}>{text}</SmartLink>
     </li>
   );
 };
@@ -320,7 +323,7 @@ const FDecor1 = () => {
   );
 };
 
-export const Footer = (props: any) => {
+export const FooterComponent = (props: any) => {
   const { menus, nav, socials, buttons, copyright, contacts } = props;
 
   return (
@@ -350,7 +353,7 @@ export const Footer = (props: any) => {
             <sub>i</sub>MVP
           </b>
         </Member>
-        <Copyright>© Copyright 2021 TerrificYard</Copyright>
+        <Copyright>{copyright}</Copyright>
         <Nav>
           {(nav || []).map((item: any, key: any) => (
             <NavItem key={key} {...item} />
@@ -361,4 +364,34 @@ export const Footer = (props: any) => {
       <FDecor1 />
     </FooterBox>
   );
+};
+
+export const Footer = (props: any) => {
+  const convertedProps = footerPropsConverter.sanity(props);
+
+  return <FooterComponent {...(convertedProps as any)} />;
+};
+
+export const footerPropsConverter = {
+  sanity: (block: any) => {
+    const { buttons, contacts, menus, nav, socials, ...rest } = block;
+
+    return {
+      ...rest,
+      contacts: contacts.map((v: any) => ({
+        ...v,
+        icon: converters.image(v.icon)?.src,
+      })),
+      nav: nav.map(converters.button),
+      menus: menus.map((v: any) => ({
+        ...v,
+        list: v.list.map(converters.button),
+      })),
+      buttons: buttons.map(converters.button),
+      socials: socials.map((v: any) => ({
+        ...v,
+        link: v.externalLink.link,
+      })),
+    };
+  },
 };

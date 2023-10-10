@@ -1,5 +1,5 @@
 import { defineField } from 'sanity';
-import { BiDockTop } from 'react-icons/bi';
+import { RiLayoutRowFill } from 'react-icons/ri';
 
 import { titleField, titleColorField, titleIconField, titleVariantField, titleTipField } from '../common/title';
 import { descriptionField, descriptionColorField, descriptionVariantField } from '../common/description';
@@ -107,7 +107,7 @@ export const hero = defineField({
       media: 'titleIcon',
     },
   },
-  icon: BiDockTop,
+  icon: RiLayoutRowFill,
 });
 
 export default [hero, decor, partnerNetworkDropDowns];

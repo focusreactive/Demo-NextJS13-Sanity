@@ -1,5 +1,7 @@
 import { defineField } from 'sanity';
 
+import { BiDockTop } from 'react-icons/bi';
+
 import { imageWithAlt } from '../common/imageWithAlt';
 import { documentTitleField, titleField } from '../common/title';
 import { descriptionField } from '../common/description';
@@ -71,6 +73,7 @@ export const header = {
   name: 'header',
   title: 'Header',
   type: 'document',
+  icon: BiDockTop,
   fields: [
     defineField({
       name: 'title',
