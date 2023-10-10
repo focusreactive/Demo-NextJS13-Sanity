@@ -4,7 +4,7 @@ import { Button } from '../button/Button';
 import { styled } from '@linaria/react';
 import { brandColors } from './colors';
 import { converters } from '../../cms-connector/converters';
-import { ImageWithAlt, TitleWithOptions } from '../../global';
+import { ButtonOrLink, ImageWithAlt, TitleWithOptions } from '../../global';
 
 const StyledCapabilities = styled.div`
   display: flex;
@@ -161,9 +161,7 @@ const StyledCapability = styled.div<{ color?: string }>`
 type CapabilityProps = {
   description: ReactNode;
   image: ImageWithAlt;
-  button: {
-    title: string;
-  };
+  button: ButtonOrLink;
   bgColor?: string;
 } & TitleWithOptions;
 
@@ -188,7 +186,6 @@ type CapabilitiesProps = {
 } & TitleWithOptions;
 
 export const Capabilities = (props: CapabilitiesProps) => {
-  console.log(props.list)
   return (
     <div>
       <SectionHead title={props.title} icon={props.titleIcon?.src} />

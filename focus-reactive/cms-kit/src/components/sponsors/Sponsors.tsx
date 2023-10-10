@@ -3,7 +3,7 @@ import { styled } from '@linaria/react';
 import { converters } from '../../cms-connector/converters';
 import Buttons from '../common/buttons/Buttons';
 import Image from 'next/image';
-import { ImageWithAlt } from '../../global';
+import { ButtonOrLink, ImageWithAlt } from '../../global';
 
 const StyledSponsors = styled.div`
   & > div {
@@ -48,10 +48,7 @@ const Sponsor = ({ src, alt }: ImageWithAlt) => {
 
 type SponsorsProps = {
   logos: ImageWithAlt[];
-  button: {
-    title: string;
-    link: string;
-  };
+  button: ButtonOrLink;
 };
 
 export const Sponsors = ({ logos, button }: SponsorsProps) => {

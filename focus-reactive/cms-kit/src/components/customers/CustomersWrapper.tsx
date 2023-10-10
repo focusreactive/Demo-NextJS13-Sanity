@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 
 import { converters } from '../../cms-connector/converters';
 import { Customers } from './Customers';
-import { ImageWithAlt, TitleWithOptions } from '../../global';
+import { ButtonOrLink, ImageWithAlt, TitleWithOptions } from '../../global';
 
 type CustomerProps = {
   title: string;
@@ -14,7 +14,7 @@ type CustomerProps = {
 };
 
 type CustomersWrapperProps = {
-  button: { title: string };
+  button: ButtonOrLink;
   items: CustomerProps[];
 } & TitleWithOptions;
 

@@ -12,3 +12,5 @@ export type TitleWithOptions = {
 };
 
 export type ImageWithAlt = { src: string; alt: string };
+
+export type ButtonOrLink = { text: string; link: string };
