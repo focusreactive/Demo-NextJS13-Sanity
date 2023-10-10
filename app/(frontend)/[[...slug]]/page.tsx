@@ -2,7 +2,7 @@ import { getAllPagesSlugs } from '@/model/getAllPagesSlugs';
 import { notFound } from 'next/navigation';
 import { draftMode } from 'next/headers';
 import { Hero, Header } from '@focusreactive/cms-kit';
-import { token } from '@/model/sanityFetch';
+import { sanityApiToken } from '@/environment';
 import { PageDynamicContent } from '@/components/PageDynamicContent';
 import { getPageContent } from '@/model/getPageContent';
 import { Metadata } from 'next';
@@ -86,7 +86,7 @@ export default async function Page({ params }: Props) {
           isHomePage
           bgColor="blue400"
         />
-        <PageDynamicContent page={page} pageSlug={pageSlug} token={token} isDraftMode={isDraftMode} />
+        <PageDynamicContent page={page} pageSlug={pageSlug} token={sanityApiToken} isDraftMode={isDraftMode} />
       </main>
     </>
   );
