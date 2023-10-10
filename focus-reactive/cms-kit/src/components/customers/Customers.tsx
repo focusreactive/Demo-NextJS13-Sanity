@@ -7,7 +7,7 @@ import { appTheme } from '../../theme';
 import ImageBlock from '../common/image-block/ImageBlock';
 import DescriptionBlock from '../common/description-block/DescriptionBlock';
 import Buttons from '../common/buttons/Buttons';
-import { EffectFade, FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import { EffectFade, Thumbs } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
@@ -243,8 +243,8 @@ const SpotlightSlider = styled(Swiper)`
     z-index: 1;
   }
 
-  --swiper-navigation-color: white;
-  --swiper-pagination-color: white;
+  --swiper-navigation-color: transparent;
+  --swiper-pagination-color: transparent;
 `;
 
 const ThumbsImage = styled(ImageBlock)`
@@ -268,14 +268,14 @@ const PhotoDecor = () => {
 };
 
 const SpotlightItem = (props: any) => {
-  const { bgColor, description, author, photo, logoInText, temp } = props;
+  const { bgColor, description, author, photo, logoInText } = props;
 
   return (
     <SpotlightItemWrap>
       <CommentBlock bgColor={bgColor ?? 'red'}>
-        <SpotlightDescription text={description[0].props.children[0]} />
+        <SpotlightDescription text={description} />
 
-        <Customer text={`Slide number ${temp}  ${author[0][0]}`} />
+        <Customer text={author} />
 
         {logoInText ? <DescriptionLogo src={logoInText.src} alt={logoInText.alt} /> : null}
       </CommentBlock>
@@ -329,7 +329,7 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersProps) =
             spaceBetween={20}
             slidesPerView={2.5}
             centeredSlides
-            modules={[FreeMode, Navigation, Thumbs, EffectFade]}
+            modules={[Thumbs, EffectFade]}
             breakpoints={{
               [appTheme.breakpoints.sm]: {
                 spaceBetween: 50,
@@ -356,7 +356,7 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersProps) =
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
         // @ts-ignore
-        modules={[FreeMode, Navigation, Thumbs]}
+        modules={[Thumbs]}
       >
         {(items || []).map((item: any, key: any) => (
           <SwiperSlide key={key}>
