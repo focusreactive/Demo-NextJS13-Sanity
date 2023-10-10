@@ -25,6 +25,11 @@ export const customerSpotlightArticle = defineType({
       type: 'customRichText',
     }),
     defineField({
+      name: 'bgColor',
+      title: 'Background Color',
+      type: 'color',
+    }),
+    defineField({
       name: 'photo',
       title: 'Photo',
       type: imageWithAlt.name,
