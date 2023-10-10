@@ -272,10 +272,10 @@ const SpotlightItem = (props: any) => {
 
   return (
     <SpotlightItemWrap>
-      <CommentBlock bgColor={bgColor ?? 'red'}>
-        <SpotlightDescription text={description} />
+      <CommentBlock bgColor={bgColor ?? '#FF473D'}>
+        <SpotlightDescription text={description} color="white" />
 
-        <Customer text={author} />
+        <Customer text={author} color="white" />
 
         {logoInText ? <DescriptionLogo src={logoInText.src} alt={logoInText.alt} /> : null}
       </CommentBlock>
@@ -360,7 +360,7 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersProps) =
       >
         {(items || []).map((item: any, key: any) => (
           <SwiperSlide key={key}>
-            <SpotlightItem {...item} temp={key} />
+            <SpotlightItem {...item} />
           </SwiperSlide>
         ))}
       </SpotlightSlider>

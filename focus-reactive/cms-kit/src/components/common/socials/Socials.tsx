@@ -6,7 +6,7 @@ import { appTheme } from '../../../theme';
 const Container = styled.ul<{ linkSize?: string; iconSize?: string }>`
   padding: 0;
   display: flex;
-  margin: 15px 12px;
+  gap: 15px;
   flex-wrap: wrap;
   list-style: none;
 

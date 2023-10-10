@@ -2,10 +2,10 @@ import { styled } from '@linaria/react';
 import React from 'react';
 import { appTheme } from '../../../theme';
 
-const DescrBlock = styled.div`
+const DescrBlock = styled.div<{ color?: string }>`
   font-size: 16px;
   line-height: 1.52;
-  color: ${appTheme.colors.gray400};
+  color: ${({ color }) => (color ? color : appTheme.colors.gray400)};
 
   ${appTheme.media.md} {
     font-size: 18px;
