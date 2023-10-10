@@ -2,17 +2,16 @@ import { Box, Button, Card, Flex, Spinner, Text, ThemeProvider } from '@sanity/u
 import { AiOutlineReload } from 'react-icons/ai';
 import { BiLinkExternal } from 'react-icons/bi';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import resolveProductionUrl from './resolveProductionUrl';
+import { resolvePreviewUrl } from './resolvePreviewUrl';
 import { UserViewComponent } from 'sanity/desk';
 import debounce from 'lodash.debounce';
 
-// TODO: move to .env
-const remoteUrl = `https://mvp-nextjs-sanity.vercel.app`;
-const localUrl = `http://localhost:3000`;
+const remoteUrl = process.env.VERCEL_URL as string;
+const localUrl = `http://localhost:${process.env.PORT}`;
 
 export const PreviewIFrame: UserViewComponent = (props) => {
   const isReloadEnabled = false;
-  const { document } = props;
+  const { document, options } = props;
   const [id, setId] = useState(1);
   const { displayed: currentDocument } = document;
   const [displayUrl, setDisplayUrl] = useState('');
@@ -43,12 +42,11 @@ export const PreviewIFrame: UserViewComponent = (props) => {
   }
 
   useEffect(() => {
-    function getUrl() {
-      const { privateUrl, publicUrl } = resolveProductionUrl(currentDocument, baseUrl) ?? '';
+    (async () => {
+      const { privateUrl, publicUrl } = (await resolvePreviewUrl(currentDocument, options.client, baseUrl)) ?? {};
       setDisplayUrl(privateUrl);
       setPublicUrl(publicUrl);
-    }
-    getUrl();
+    })();
   }, [currentDocument]);
 
   if (displayUrl === '')
