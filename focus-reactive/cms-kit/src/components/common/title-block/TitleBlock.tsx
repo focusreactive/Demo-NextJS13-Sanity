@@ -4,10 +4,10 @@ import { appTheme } from '../../../theme';
 
 import { RichText } from '@/components/RichText';
 
-const TitleBlockWrap = styled.div`
+const TitleBlockWrap = styled.div<{ color?: string }>`
   position: relative;
   width: 100%;
-  --titleColor: ${appTheme.colors.black};
+  --titleColor: ${({ color }) => (color ? color : appTheme.colors.black)};
 `;
 
 const Tip = styled.p`

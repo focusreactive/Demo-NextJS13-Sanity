@@ -10,6 +10,7 @@ import { appTheme } from '../../theme';
 import Buttons from '../common/buttons/Buttons';
 import SlightParallax from '../common/slight-parallax/SlightParallax';
 import SectionHead from '../section/head/SectionHead';
+import { brandColors } from '../capabilities/colors';
 
 const HeroTitle = styled(TitleBlock)`
   .title {
@@ -236,11 +237,11 @@ export const Hero = (props: any) => {
           <FloatUp>
             {/* make h1 */}
             <SectionHead title={title}></SectionHead>
-            <HeroTitle tip={titleTip} icon={titleIcon} color={titleColor} variant={titleVariant} />
+            <HeroTitle tip={titleTip} icon={titleIcon} color="white" variant={titleVariant} />
           </FloatUp>
           <FloatUp>
             {description ? (
-              <DescriptionBlock color={descriptionColor} text={description} variant={descriptionVariant} />
+              <DescriptionBlock color={brandColors.blue100} text={description} variant={descriptionVariant} />
             ) : null}
           </FloatUp>
 

@@ -7,7 +7,7 @@ import { appTheme } from '../../theme';
 import ImageBlock from '../common/image-block/ImageBlock';
 import DescriptionBlock from '../common/description-block/DescriptionBlock';
 import Buttons from '../common/buttons/Buttons';
-import { EffectFade, FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import { EffectFade, Thumbs } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
@@ -243,8 +243,8 @@ const SpotlightSlider = styled(Swiper)`
     z-index: 1;
   }
 
-  --swiper-navigation-color: white;
-  --swiper-pagination-color: white;
+  --swiper-navigation-color: transparent;
+  --swiper-pagination-color: transparent;
 `;
 
 const ThumbsImage = styled(ImageBlock)`
@@ -272,7 +272,7 @@ const SpotlightItem = (props: CustomerProps) => {
 
   return (
     <SpotlightItemWrap>
-      <CommentBlock bgColor={bgColor?.hex ?? 'red'}>
+      <CommentBlock bgColor={bgColor?.hex ?? '#FF473D'}>
         <SpotlightDescription text={description} color={'#fff'} />
 
         <Customer text={author} color={'#fff'} />
@@ -311,7 +311,7 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersWrapperP
             spaceBetween={20}
             slidesPerView={2.5}
             centeredSlides
-            modules={[FreeMode, Navigation, Thumbs, EffectFade]}
+            modules={[Thumbs, EffectFade]}
             breakpoints={{
               [appTheme.breakpoints.sm]: {
                 spaceBetween: 50,
@@ -338,7 +338,7 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersWrapperP
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
         // @ts-ignore
-        modules={[FreeMode, Navigation, Thumbs]}
+        modules={[Thumbs]}
       >
         {(items || []).map((item: any, key: any) => (
           <SwiperSlide key={key}>

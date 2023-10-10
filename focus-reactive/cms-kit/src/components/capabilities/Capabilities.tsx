@@ -30,6 +30,10 @@ const StyledCapability = styled.div<{ color?: string }>`
   position: relative;
   z-index: 2;
 
+  & > div {
+    box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+  }
+
   & > div:first-child {
     width: 58%;
     border-radius: 20px;
@@ -158,6 +162,10 @@ const StyledCapability = styled.div<{ color?: string }>`
   }
 `;
 
+const StyledWrapper = styled.div`
+  margin-bottom: clamp(80px, 15vw, 160px); // TODO: change section padding instead
+`;
+
 type CapabilityProps = {
   description: ReactNode;
   image: ImageWithAlt;
@@ -189,12 +197,12 @@ type CapabilitiesProps = {
 
 export const Capabilities = (props: CapabilitiesProps) => {
   return (
-    <div>
+    <StyledWrapper>
       <SectionHead title={props.title} icon={props.titleIcon?.src} />
       <StyledCapabilities>
         {props.list && props.list.map((item, index) => <Capability key={index} {...item} />)}
       </StyledCapabilities>
-    </div>
+    </StyledWrapper>
   );
 };
 
