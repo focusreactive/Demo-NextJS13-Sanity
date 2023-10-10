@@ -2,14 +2,14 @@ import React, { ReactNode } from 'react';
 
 import { converters } from '../../cms-connector/converters';
 import { Customers } from './Customers';
-import { TitleWithOptions } from '@focusreactive/cms-kit';
+import { ImageWithAlt, TitleWithOptions } from '../../global';
 
 type CustomerProps = {
   title: string;
   description: ReactNode;
-  photo: { src: string; alt: string };
-  logo: { src: string; alt: string };
-  logoInText: { src: string; alt: string };
+  photo: ImageWithAlt;
+  logo: ImageWithAlt;
+  logoInText: ImageWithAlt;
   author: string;
 };
 
@@ -25,8 +25,8 @@ export const CustomersWrapper = (props: CustomersWrapperProps) => {
 export const CustomersPropsConverter = {
   sanity: (block: any) => {
     return {
-      title: converters.title(block.titleWithOptions.title),
-      titleIcon: converters.image(block.titleWithOptions.titleIcon),
+      title: converters.title(block.titleWithOptions?.title),
+      titleIcon: converters.image(block.titleWithOptions?.titleIcon),
       button: converters.button(block.button),
       items: block.spotlight?.map?.((item: any) => ({
         title: converters.title(item.title),

@@ -7,12 +7,13 @@ import { appTheme } from '../../theme';
 import ImageBlock from '../common/image-block/ImageBlock';
 import DescriptionBlock from '../common/description-block/DescriptionBlock';
 import Buttons from '../common/buttons/Buttons';
-import { FreeMode, Navigation, Thumbs, EffectFade } from 'swiper/modules';
+import { EffectFade, FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { TitleWithOptions } from '@focusreactive/cms-kit';
+import { ImageWithAlt, TitleWithOptions } from '../../global';
+
 const StyledCustomersSection = styled.div`
   display: flex;
   align-items: flex-end;
@@ -276,12 +277,15 @@ const SpotlightItem = (props: any) => {
 
         <Customer text={`Slide number ${temp}  ${author[0][0]}`} />
 
-        {logoInText ? <DescriptionLogo loading="lazy" src={logoInText?.src} alt={logoInText.alt} /> : null}
+        {logoInText ? <DescriptionLogo loading="lazy" src={logoInText.src} alt={logoInText.alt} /> : null}
       </CommentBlock>
-      <ImageWrap>
-        <ImageBlock src={photo.src} alt={photo.alt} />
-        <PhotoDecor />
-      </ImageWrap>
+
+      {photo && (
+        <ImageWrap>
+          <ImageBlock src={photo.src} alt={photo.alt} />
+          <PhotoDecor />
+        </ImageWrap>
+      )}
     </SpotlightItemWrap>
   );
 };
@@ -289,9 +293,9 @@ const SpotlightItem = (props: any) => {
 type CustomerProps = {
   title: string;
   description: ReactNode;
-  photo: { src: string; alt: string };
-  logo: { src: string; alt: string };
-  logoInText: { src: string; alt: string };
+  photo: ImageWithAlt;
+  logo: ImageWithAlt;
+  logoInText: ImageWithAlt;
   author: string;
 };
 
@@ -316,7 +320,7 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersProps) =
 
   return (
     <div>
-      <SectionHead title={title} icon={titleIcon.src} />
+      <SectionHead title={title} icon={titleIcon?.src} />
       <StyledCustomersSection>
         {items?.length !== 1 ? (
           <ThumbsSlider
@@ -341,7 +345,7 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersProps) =
           >
             {(items || []).map((slide: any, key: any) => (
               <SwiperSlide key={key}>
-                <ThumbsImage loading="lazy" src={slide.logo.src} alt={slide.logo.alt} />
+                <ThumbsImage loading="lazy" src={slide.logo?.src} alt={slide.logo?.alt} />
               </SwiperSlide>
             ))}
           </ThumbsSlider>
@@ -350,7 +354,8 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersProps) =
       <SpotlightSlider
         spaceBetween={10}
         navigation={true}
-        thumbs={{ swiper: thumbsSwiper }}
+        // @ts-ignore
+        thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
         // @ts-ignore
         modules={[FreeMode, Navigation, Thumbs]}
       >

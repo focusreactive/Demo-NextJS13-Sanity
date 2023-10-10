@@ -20,3 +20,10 @@ export const PAGE_METADATA_QUERY = groq`
       seo
     }[0].seo
   `;
+
+export const PAGE_SITEMAP_DATA_QUERY = groq`
+    * [_type == 'dynamicPage' && !(_id in path('drafts.**'))] {
+      "slug": slug.current,
+      "updatedAt": _updatedAt
+    }[]
+  `;

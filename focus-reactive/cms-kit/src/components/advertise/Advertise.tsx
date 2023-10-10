@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import SectionHead from '../section/head/SectionHead';
 import { styled } from '@linaria/react';
 import { converters } from '../../cms-connector/converters';
-import { TitleWithOptions } from '@focusreactive/cms-kit';
+import { ImageWithAlt, TitleWithOptions } from '../../global';
 
 const StyledAdvertise = styled.div<{ imageLeft?: boolean }>`
   display: flex;
@@ -51,10 +51,7 @@ const StyledAdvertise = styled.div<{ imageLeft?: boolean }>`
 
 type AdvertiseProps = {
   description: ReactNode;
-  image: {
-    src: string;
-    alt: string;
-  };
+  image: ImageWithAlt;
   imagePosition?: string;
 } & TitleWithOptions;
 
@@ -62,7 +59,7 @@ export const Advertise = (props: AdvertiseProps) => {
   return (
     <StyledAdvertise imageLeft={props.imagePosition === 'left'}>
       <div>
-        <SectionHead title={props.title} icon={props.titleIcon.src} />
+        <SectionHead title={props.title} icon={props.titleIcon?.src} />
 
         {props.description}
       </div>
@@ -77,8 +74,8 @@ export const Advertise = (props: AdvertiseProps) => {
 export const AdvertisePropsConverter = {
   sanity: (block: any) => {
     return {
-      title: converters.title(block.titleWithOptions.title),
-      titleIcon: converters.image(block.titleWithOptions.titleIcon),
+      title: converters.title(block.titleWithOptions?.title),
+      titleIcon: converters.image(block.titleWithOptions?.titleIcon),
       description: converters.richText(block.description),
       image: converters.imageWithAlt(block.imageWithAlt),
       imagePosition: converters.plainText(block.imagePosition),

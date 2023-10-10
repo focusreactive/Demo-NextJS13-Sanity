@@ -1,12 +1,13 @@
 import { colorOptions } from '@/sanity/constants';
 import { descriptionField } from '../common/description';
-import { titleField, titleWithOptionsField } from '../common/title';
+import { titleWithOptionsField } from '../common/title';
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { GiStrong } from 'react-icons/gi';
 import { button } from '../common/links';
 import { sectionConfigField } from '../common/section';
 import { BiMedal } from 'react-icons/bi';
 import { getContentBlockDefaultOptions } from '../utils/getContentBlockDefaultOptions';
+import { imageWithAltField } from '@/sanity/schemas/common/imageWithAlt';
 
 const capability = {
   name: 'capability',
@@ -14,12 +15,13 @@ const capability = {
   icon: BiMedal,
   preview: {
     select: {
-      title: 'title',
+      title: 'titleWithOptions.title',
     },
   },
   fields: [
-    titleField,
+    titleWithOptionsField,
     descriptionField,
+    imageWithAltField,
     defineField({
       name: 'button',
       title: 'Button',
