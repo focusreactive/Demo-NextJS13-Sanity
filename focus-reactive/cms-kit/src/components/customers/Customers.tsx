@@ -369,7 +369,7 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersProps) =
         buttons={[
           {
             link: 'https://www.trafficguard.ai/',
-            text: button?.title,
+            text: button?.text,
             hasIcon: true,
             variant: 'white',
           },

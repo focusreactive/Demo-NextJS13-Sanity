@@ -176,7 +176,7 @@ const Capability = ({ title, titleIcon, description, image, button, bgColor }: C
 
       {description}
 
-      <Button>{button?.title}</Button>
+      <Button>{button?.text}</Button>
     </div>
 
     <div>{image && <img src={image.src} alt={image.alt} loading="lazy" />}</div>
@@ -188,6 +188,7 @@ type CapabilitiesProps = {
 } & TitleWithOptions;
 
 export const Capabilities = (props: CapabilitiesProps) => {
+  console.log(props.list)
   return (
     <div>
       <SectionHead title={props.title} icon={props.titleIcon?.src} />
