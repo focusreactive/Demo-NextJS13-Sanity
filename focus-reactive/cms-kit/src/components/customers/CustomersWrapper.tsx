@@ -3,17 +3,19 @@ import React, { ReactNode } from 'react';
 import { converters } from '../../cms-connector/converters';
 import { Customers } from './Customers';
 import { ButtonOrLink, ImageWithAlt, TitleWithOptions } from '../../global';
+import type { ColorValue } from '@sanity/color-input';
 
-type CustomerProps = {
+export type CustomerProps = {
   title: string;
   description: ReactNode;
+  bgColor: ColorValue;
   photo: ImageWithAlt;
   logo: ImageWithAlt;
   logoInText: ImageWithAlt;
   author: string;
 };
 
-type CustomersWrapperProps = {
+export type CustomersWrapperProps = {
   button: ButtonOrLink;
   items: CustomerProps[];
 } & TitleWithOptions;
@@ -31,6 +33,7 @@ export const CustomersPropsConverter = {
       items: block.spotlight?.map?.((item: any) => ({
         title: converters.title(item.title),
         description: converters.richText(item.description),
+        bgColor: item.bgColor,
         photo: converters.imageWithAlt(item.photo),
         logo: converters.imageWithAlt(item.logo),
         logoInText: converters.imageWithAlt(item.logoInText),

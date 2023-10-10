@@ -1,5 +1,5 @@
 'use client';
-import React, { ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 import SectionHead from '../section/head/SectionHead';
 import { styled } from '@linaria/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -12,7 +12,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { ButtonOrLink, ImageWithAlt, TitleWithOptions } from '../../global';
+import { CustomerProps, CustomersWrapperProps } from '@focusreactive/cms-kit';
 
 const StyledCustomersSection = styled.div`
   display: flex;
@@ -267,15 +267,15 @@ const PhotoDecor = () => {
   );
 };
 
-const SpotlightItem = (props: any) => {
+const SpotlightItem = (props: CustomerProps) => {
   const { bgColor, description, author, photo, logoInText } = props;
 
   return (
     <SpotlightItemWrap>
-      <CommentBlock bgColor={bgColor ?? '#FF473D'}>
-        <SpotlightDescription text={description} color="white" />
+      <CommentBlock bgColor={bgColor?.hex ?? '#FF473D'}>
+        <SpotlightDescription text={description} color={'#fff'} />
 
-        <Customer text={author} color="white" />
+        <Customer text={author} color={'#fff'} />
 
         {logoInText ? <DescriptionLogo src={logoInText.src} alt={logoInText.alt} /> : null}
       </CommentBlock>
@@ -290,33 +290,15 @@ const SpotlightItem = (props: any) => {
   );
 };
 
-type CustomerProps = {
-  title: string;
-  description: ReactNode;
-  photo: ImageWithAlt;
-  logo: ImageWithAlt;
-  logoInText: ImageWithAlt;
-  author: string;
-};
-
 const Customer = styled(DescriptionBlock)`
   font-weight: bold;
   margin: 24px 0 12px;
 `;
 
-type CustomersProps = {
-  button: ButtonOrLink;
-  items: CustomerProps[];
-} & TitleWithOptions;
-
-export const Customers = ({ title, titleIcon, items, button }: CustomersProps) => {
+export const Customers = ({ title, titleIcon, items, button }: CustomersWrapperProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   if (!items) return null;
-
-  const selectedItem = items?.[0];
-
-  if (!selectedItem) return null;
 
   return (
     <div>
