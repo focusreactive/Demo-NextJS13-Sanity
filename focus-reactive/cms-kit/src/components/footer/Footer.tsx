@@ -326,8 +326,6 @@ const FDecor1 = () => {
 export const FooterComponent = (props: any) => {
   if (props === null) return null;
 
-  console.log(props);
-
   const { menus, nav, socials, buttons, copyright, contacts } = props;
 
   return (

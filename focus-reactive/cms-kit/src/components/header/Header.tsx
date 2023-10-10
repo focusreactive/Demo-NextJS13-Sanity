@@ -419,7 +419,12 @@ export const headerPropsConverter = {
       },
       menu: menu.map((v: any) => ({
         ...v,
-        links: v.links.map((link: any) => ({ ...link, imageWithAlt: converters.imageWithAlt(link.imageWithAlt) })),
+        links: v.links.map((link: any) => ({
+          ...link,
+          title: converters.title(link.title),
+          description: converters.richText(link.description),
+          imageWithAlt: converters.imageWithAlt(link.imageWithAlt),
+        })),
       })),
       buttons: buttons.map(converters.button),
     };
