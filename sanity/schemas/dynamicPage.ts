@@ -52,14 +52,12 @@ export const dynamicPage = defineType({
       title: 'Header',
       type: 'reference',
       to: [{ type: header.name }],
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'footer',
       title: 'Footer',
       type: 'reference',
       to: [{ type: footer.name }],
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'content',

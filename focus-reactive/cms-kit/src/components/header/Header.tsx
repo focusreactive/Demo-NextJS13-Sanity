@@ -397,12 +397,18 @@ export const HeaderComponent = ({
 export const Header = (props: any) => {
   const convertedProps = headerPropsConverter.sanity(props);
 
+  if (convertedProps === null) return null;
+
   return <HeaderComponent {...(convertedProps as any)} />;
 };
 
 export const headerPropsConverter = {
   sanity: (block: any) => {
     const { ctaCard, menu, buttons, ...rest } = block;
+
+    if (!rest._id) {
+      return null;
+    }
 
     return {
       ...rest,

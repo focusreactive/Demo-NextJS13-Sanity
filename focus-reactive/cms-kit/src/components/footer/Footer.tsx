@@ -324,6 +324,10 @@ const FDecor1 = () => {
 };
 
 export const FooterComponent = (props: any) => {
+  if (props === null) return null;
+
+  console.log(props);
+
   const { menus, nav, socials, buttons, copyright, contacts } = props;
 
   return (
@@ -369,12 +373,18 @@ export const FooterComponent = (props: any) => {
 export const Footer = (props: any) => {
   const convertedProps = footerPropsConverter.sanity(props);
 
+  if (convertedProps === null) return null;
+
   return <FooterComponent {...(convertedProps as any)} />;
 };
 
 export const footerPropsConverter = {
   sanity: (block: any) => {
     const { buttons, contacts, menus, nav, socials, ...rest } = block;
+
+    if (!rest._id) {
+      return null;
+    }
 
     return {
       ...rest,
