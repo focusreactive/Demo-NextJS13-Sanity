@@ -5,9 +5,9 @@ import { Hero, Header } from '@focusreactive/cms-kit';
 import { token } from '@/model/sanityFetch';
 import { PageDynamicContent } from '@/components/PageDynamicContent';
 import { getPageContent } from '@/model/getPageContent';
-import Head from 'next/head';
 import { Metadata } from 'next';
 import { getPageMetadata } from '@/model/getPageMetadata';
+import heroDesktop from '../../../focus-reactive/cms-kit/src/assets/hero-desktop.svg';
 
 type Props = { params: { slug?: string[] } };
 
@@ -59,7 +59,6 @@ export default async function Page({ params }: Props) {
 
   if (!page) return notFound();
 
-  const heroImage = 'https://i.ibb.co/d4yj9wx/image.png';
   const description =
     'By verifying advertising engagement and protecting budgets, we help businesses get the clarity they need to unlock the best advertising results.';
   return (
@@ -72,9 +71,6 @@ export default async function Page({ params }: Props) {
         heroBackgroundColor="default"
       />
       <main>
-        <Head>
-          <link rel="preload" href={heroImage} as="image" fetchPriority="high" />
-        </Head>
         <Hero
           title="Clarity beyond measure."
           description={description}
@@ -83,7 +79,7 @@ export default async function Page({ params }: Props) {
             { link: 'https://www.trafficguard.ai/', text: 'Contact sales', hasIcon: true },
           ]}
           decor={{
-            src: heroImage,
+            src: heroDesktop,
             hasParallax: true,
             // secondSrc: 'https://i.ibb.co/d4yj9wx/image.png',
           }}
