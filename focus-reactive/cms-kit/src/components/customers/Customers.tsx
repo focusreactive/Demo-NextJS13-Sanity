@@ -277,7 +277,7 @@ const SpotlightItem = (props: any) => {
 
         <Customer text={`Slide number ${temp}  ${author[0][0]}`} />
 
-        {logoInText ? <DescriptionLogo loading="lazy" src={logoInText.src} alt={logoInText.alt} /> : null}
+        {logoInText ? <DescriptionLogo src={logoInText.src} alt={logoInText.alt} /> : null}
       </CommentBlock>
 
       {photo && (

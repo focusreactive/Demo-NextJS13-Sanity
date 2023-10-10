@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import { styled } from '@linaria/react';
 import { appTheme } from '../../../theme';
 
 const Container = styled.div`
