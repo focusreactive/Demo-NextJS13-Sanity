@@ -351,7 +351,7 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersWrapperP
         buttons={[
           {
             link: 'https://www.trafficguard.ai/',
-            text: button?.title,
+            text: button?.text,
             hasIcon: true,
             variant: 'white',
           },
