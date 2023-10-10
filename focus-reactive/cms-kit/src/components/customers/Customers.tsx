@@ -12,7 +12,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { ImageWithAlt, TitleWithOptions } from '../../global';
+import { ButtonOrLink, ImageWithAlt, TitleWithOptions } from '../../global';
 
 const StyledCustomersSection = styled.div`
   display: flex;
@@ -305,7 +305,7 @@ const Customer = styled(DescriptionBlock)`
 `;
 
 type CustomersProps = {
-  button: { title: string };
+  button: ButtonOrLink;
   items: CustomerProps[];
 } & TitleWithOptions;
 
@@ -369,7 +369,7 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersProps) =
         buttons={[
           {
             link: 'https://www.trafficguard.ai/',
-            text: button?.title,
+            text: button?.text,
             hasIcon: true,
             variant: 'white',
           },
