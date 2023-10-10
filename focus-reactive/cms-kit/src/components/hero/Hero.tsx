@@ -254,15 +254,15 @@ export const Hero = (props: any) => {
             {secondSrc ? (
               <>
                 {/* <SlightParallax disabled={false} amplitude={0.02}> */}
-                <NextImage priority src={src} alt={alt} fill unoptimized objectFit="contain" />
+                <NextImage priority src={src} alt={alt} fill objectFit="contain" />
                 {/* </SlightParallax> */}
                 {/* <SlightParallax disabled={false} amplitude={0.1}> */}
-                <NextImage priority src={secondSrc} alt={alt} fill unoptimized objectFit="contain" />
+                <NextImage priority src={secondSrc} alt={alt} fill objectFit="contain" />
                 {/* </SlightParallax> */}
               </>
             ) : (
               // <SlightParallax disabled={!hasParallax}>
-              <NextImage priority src={src} alt={alt} fill unoptimized objectFit="contain" />
+              <NextImage priority src={src} alt={alt} fill objectFit="contain" />
               // </SlightParallax>
             )}
           </HeroDecor>

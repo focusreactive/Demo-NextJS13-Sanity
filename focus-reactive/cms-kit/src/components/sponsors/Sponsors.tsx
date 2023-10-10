@@ -2,63 +2,49 @@ import React from 'react';
 import { styled } from '@linaria/react';
 import { converters } from '../../cms-connector/converters';
 import Buttons from '../common/buttons/Buttons';
+import Image from 'next/image';
 import { ImageWithAlt } from '../../global';
 
 const StyledSponsors = styled.div`
   & > div {
     display: flex;
     flex-wrap: wrap;
-    gap: 40px 0;
+    gap: 40px;
     margin: 0 -10px;
-
-    & > div {
-      width: 24%;
-      padding: 0 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 80px;
-    }
-  }
-  img {
-    max-width: 140px;
-    max-height: 100%;
-    display: block;
-    border: none;
-  }
-
-  @media screen and (max-width: 1140px) {
-    & > div > div {
-      width: 25%;
-      height: 70px;
-    }
-    img {
-      max-width: 120px;
-    }
-  }
-
-  @media screen and (max-width: 767px) {
-    & > div > div {
-      width: 33.33%;
-    }
-  }
-
-  @media screen and (max-width: 480px) {
-    & > div > div {
-      width: 50%;
-      height: 60px;
-    }
-    img {
-      max-width: 100px;
-    }
   }
 `;
 
-const Sponsor = ({ src, alt }: ImageWithAlt) => (
-  <div>
-    <img src={src} alt={alt} loading="lazy" />
-  </div>
-);
+const StyledImage = styled.div`
+  position: relative;
+  width: 24%;
+  height: 80px;
+  margin: 0 47px;
+  max-width: 140px;
+
+  @media screen and (max-width: 1140px) {
+    width: 25%;
+    height: 70px;
+    max-width: 120px;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 33.33%;
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 50%;
+    height: 60px;
+    max-width: 100px;
+  }
+`;
+
+const Sponsor = ({ src, alt }: ImageWithAlt) => {
+  return (
+    <StyledImage>
+      <Image src={src} alt={alt} fill sizes="140px" objectFit="contain" quality={50} />
+    </StyledImage>
+  );
+};
 
 type SponsorsProps = {
   logos: ImageWithAlt[];
