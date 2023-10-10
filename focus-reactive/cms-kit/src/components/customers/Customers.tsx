@@ -354,7 +354,8 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersProps) =
       <SpotlightSlider
         spaceBetween={10}
         navigation={true}
-        thumbs={{ swiper: thumbsSwiper }}
+        // @ts-ignore
+        thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
         // @ts-ignore
         modules={[FreeMode, Navigation, Thumbs]}
       >
