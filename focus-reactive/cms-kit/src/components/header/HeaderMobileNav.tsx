@@ -260,9 +260,7 @@ const HeaderNavMobile = (props: any) => {
                   return (
                     <MenuItem key={linkKey} link={href} onClick={onClose}>
                       <ImageBlock src={iconSrc} alt={iconAlt} />
-                      <MenuText>
-                        <RichText value={title} />
-                      </MenuText>
+                      <MenuText>{title}</MenuText>
                     </MenuItem>
                   );
                 })}
