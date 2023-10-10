@@ -3,7 +3,7 @@ import { styled } from '@linaria/react';
 import { converters } from '../../cms-connector/converters';
 import Buttons from '../common/buttons/Buttons';
 import Image from 'next/image';
-import { ImageWithAlt } from '../../global';
+import { ButtonOrLink, ImageWithAlt } from '../../global';
 
 const StyledSponsors = styled.div``;
 
@@ -50,10 +50,7 @@ const Sponsor = ({ src, alt }: ImageWithAlt) => {
 
 type SponsorsProps = {
   logos: ImageWithAlt[];
-  button: {
-    title: string;
-    link: string;
-  };
+  button: ButtonOrLink;
 };
 
 export const Sponsors = ({ logos, button }: SponsorsProps) => {
@@ -62,7 +59,7 @@ export const Sponsors = ({ logos, button }: SponsorsProps) => {
       <StyledLogos>{logos?.map?.((logo, index) => <Sponsor key={index} {...logo} />)}</StyledLogos>
 
       <Buttons
-        buttons={[{ link: 'https://www.trafficguard.ai/', text: button?.title, hasIcon: true, variant: 'white' }]}
+        buttons={[{ link: 'https://www.trafficguard.ai/', text: button?.text, hasIcon: true, variant: 'white' }]}
       />
     </StyledSponsors>
   );

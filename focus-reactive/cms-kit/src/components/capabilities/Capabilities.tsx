@@ -4,7 +4,7 @@ import { Button } from '../button/Button';
 import { styled } from '@linaria/react';
 import { brandColors } from './colors';
 import { converters } from '../../cms-connector/converters';
-import { ImageWithAlt, TitleWithOptions } from '../../global';
+import { ButtonOrLink, ImageWithAlt, TitleWithOptions } from '../../global';
 
 const StyledCapabilities = styled.div`
   display: flex;
@@ -169,9 +169,7 @@ const StyledWrapper = styled.div`
 type CapabilityProps = {
   description: ReactNode;
   image: ImageWithAlt;
-  button: {
-    title: string;
-  };
+  button: ButtonOrLink;
   bgColor?: string;
 } & TitleWithOptions;
 
@@ -184,7 +182,7 @@ const Capability = ({ title, titleIcon, description, image, button, bgColor }: C
 
       {description}
 
-      <Button>{button?.title}</Button>
+      <Button>{button?.text}</Button>
     </div>
 
     <div>{image && <img src={image.src} alt={image.alt} loading="lazy" />}</div>
