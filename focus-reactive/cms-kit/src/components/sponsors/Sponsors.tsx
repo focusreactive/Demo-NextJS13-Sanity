@@ -11,6 +11,7 @@ const StyledSponsors = styled.div`
     flex-wrap: wrap;
     gap: 40px;
     margin: 0 -10px;
+    justify-content: center;
   }
 `;
 
@@ -32,9 +33,10 @@ const StyledImage = styled.div`
   }
 
   @media screen and (max-width: 480px) {
-    width: 50%;
+    width: 33%;
     height: 60px;
     max-width: 100px;
+    margin: 0 20px;
   }
 `;
 
