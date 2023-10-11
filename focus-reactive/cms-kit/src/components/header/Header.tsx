@@ -375,7 +375,7 @@ export const HeaderComponent = ({
               </HeadMenu>
               <CustomButtons buttons={buttons.length ? updatedButtons : []} buttonsColor={correctColors.buttonsColor} />
             </HeaderGroup>
-            <Hamburger burgerColor={burgerColor} onClick={() => setIsMobileMenuOpen(true)}>
+            <Hamburger burgerColor={burgerColor} onClick={() => setIsMobileMenuOpen(true)} aria-label="burger menu">
               <span />
               <span />
               <span />

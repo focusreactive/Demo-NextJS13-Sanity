@@ -97,6 +97,8 @@ const HeroLeft = styled.div`
     margin-top: 36px;
 
     ${appTheme.media.md} {
+      margin-bottom: 94px;
+
       & > * {
         margin-right: 22px;
       }
@@ -114,7 +116,7 @@ const HeroDecor = styled.div`
   width: 100%;
   margin: 34px 0 0;
   position: relative;
-  height: clamp(200px, 50vw, 440px);
+  height: clamp(155px, 50vw, 440px);
 
   div {
     width: 100%;
@@ -236,14 +238,11 @@ export const Hero = (props: any) => {
       <HeroBox>
         <HeroLeft>
           <FloatUp>
-            {/* make h1 */}
-            <SectionHead title={title}></SectionHead>
+            <SectionHead title={title} isH1 />
             <HeroTitle tip={titleTip} icon={titleIcon} color="white" variant={titleVariant} />
           </FloatUp>
           <FloatUp>
-            {description ? (
-              <DescriptionBlock color={brandColors.blue100} text={description} variant={descriptionVariant} />
-            ) : null}
+            {description ? <DescriptionBlock color={brandColors.blue100} text={description} variant="large" /> : null}
           </FloatUp>
 
           {/* {form ? <FormBlock form={form} /> : null} */}
@@ -255,15 +254,22 @@ export const Hero = (props: any) => {
             {secondSrc ? (
               <>
                 {/* <SlightParallax disabled={false} amplitude={0.02}> */}
-                <NextImage priority src={src} alt={alt} fill objectFit="contain" />
+                <NextImage priority src={src} alt={alt ?? 'hero image'} fill objectFit="contain" />
                 {/* </SlightParallax> */}
                 {/* <SlightParallax disabled={false} amplitude={0.1}> */}
-                <NextImage priority src={secondSrc} alt={alt} fill objectFit="contain" />
+                <NextImage priority src={secondSrc} alt={alt ?? 'hero image'} fill objectFit="contain" />
                 {/* </SlightParallax> */}
               </>
             ) : (
               // <SlightParallax disabled={!hasParallax}>
-              <NextImage priority src={src} alt={alt} fill objectFit="contain" sizes="(max-width: 414px) 50vw, 400px" />
+              <NextImage
+                priority
+                src={src}
+                alt={alt ?? 'hero image'}
+                fill
+                objectFit="contain"
+                sizes="(max-width: 414px) 50vw, 400px"
+              />
               // </SlightParallax>
             )}
           </HeroDecor>

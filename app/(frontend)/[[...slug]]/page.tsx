@@ -23,6 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: metadata.title,
     description: metadata.description,
     keywords: metadata.keywords,
+    metadataBase: new URL('https://mvp-nextjs-sanity.vercel.app/'),
     alternates: {
       canonical: slug,
     },
