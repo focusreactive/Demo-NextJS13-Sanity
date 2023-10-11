@@ -163,10 +163,10 @@ const ImageWrap = styled.div`
 const ThumbsSlider = styled(Swiper)`
   width: auto;
   display: block;
-  margin: 45px -20px 26px -20px;
+  margin: 0 -20px 26px -20px;
 
   ${appTheme.media.md} {
-    margin: 65px auto 10px 0;
+    margin: 0 auto 10px 0;
     max-width: 66%;
   }
 
@@ -236,7 +236,7 @@ const SpotlightSlider = styled(Swiper)`
 
   .swiper-slide {
     height: auto;
-    margin: auto 0 0;
+    margin: 10px 0 0;
   }
 
   .swiper-slide-active {
@@ -295,13 +295,17 @@ const Customer = styled(DescriptionBlock)`
   margin: 24px 0 12px;
 `;
 
+const StyledWrapper = styled.div`
+  margin-bottom: clamp(80px, 15vw, 160px); // TODO: change section padding instead
+`;
+
 export const Customers = ({ title, titleIcon, items, button }: CustomersWrapperProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   if (!items) return null;
 
   return (
-    <div>
+    <StyledWrapper>
       <SectionHead title={title} icon={titleIcon?.src} />
       <StyledCustomersSection>
         {items?.length !== 1 ? (
@@ -357,6 +361,6 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersWrapperP
           },
         ]}
       />
-    </div>
+    </StyledWrapper>
   );
 };

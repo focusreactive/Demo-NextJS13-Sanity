@@ -247,7 +247,7 @@ const HeaderNavMobile = (props: any) => {
         <LogoLink href={'/'}>
           <Logo bgColor="white" />
         </LogoLink>
-        <Hamburger onClick={onClose}>
+        <Hamburger onClick={onClose} aria-label="close menu">
           <Arrow />
         </Hamburger>
         <Menu>
@@ -257,8 +257,9 @@ const HeaderNavMobile = (props: any) => {
               <MenuList data-open={openedId === key ? 'true' : 'false'}>
                 {(item.links || []).map((link: any, linkKey: any) => {
                   const { iconSrc, iconAlt, title, link: href } = link;
+
                   return (
-                    <MenuItem key={linkKey} link={href} onClick={onClose}>
+                    <MenuItem key={linkKey} link={href ?? 'https://hardcodedmenuitem.com'} onClick={onClose}>
                       <ImageBlock src={iconSrc} alt={iconAlt} />
                       <MenuText>
                         <RichText value={title} />

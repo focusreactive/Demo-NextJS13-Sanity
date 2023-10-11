@@ -5,7 +5,11 @@ import Buttons from '../common/buttons/Buttons';
 import Image from 'next/image';
 import { ButtonOrLink, ImageWithAlt } from '../../global';
 
-const StyledSponsors = styled.div``;
+const StyledSponsors = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+`;
 
 const StyledImage = styled.div`
   position: relative;
