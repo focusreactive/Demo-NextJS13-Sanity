@@ -369,8 +369,8 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersProps) =
       <CustomButtons
         buttons={[
           {
-            link: 'https://www.trafficguard.ai/',
-            text: button?.title,
+            link: { _type: 'externalLink', link: 'https://www.trafficguard.ai/' },
+            text: 'button.?.title',
             hasIcon: true,
             variant: 'white',
           },

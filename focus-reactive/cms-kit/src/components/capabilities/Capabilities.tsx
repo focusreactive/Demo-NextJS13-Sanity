@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import SectionHead from '../section/head/SectionHead';
-import { Button } from '../button/Button';
+import Button from '../common/button/Button';
+
 import { styled } from '@linaria/react';
 import { brandColors } from './colors';
 import { converters } from '../../cms-connector/converters';
@@ -161,9 +162,7 @@ const StyledCapability = styled.div<{ color?: string }>`
 type CapabilityProps = {
   description: ReactNode;
   image: ImageWithAlt;
-  button: {
-    title: string;
-  };
+  button: any;
   bgColor?: string;
 } & TitleWithOptions;
 
@@ -171,12 +170,9 @@ const Capability = ({ title, titleIcon, description, image, button, bgColor }: C
   <StyledCapability color={brandColors[bgColor as keyof typeof brandColors]}>
     <div>
       <img src={titleIcon?.src} alt="" loading="lazy" />
-
       <h3>{title}</h3>
-
       {description}
-
-      <Button>{button?.title}</Button>
+      <Button link={button?.link}>{button?.text}</Button>
     </div>
 
     <div>{image && <img src={image.src} alt={image.alt} loading="lazy" />}</div>

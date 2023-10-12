@@ -274,7 +274,7 @@ const Button = ({
     <>
       {link ? (
         <LinkContainer
-          url={link}
+          link={link}
           className={className}
           data-variant={variant}
           data-size={size}

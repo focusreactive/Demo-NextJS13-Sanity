@@ -5,7 +5,7 @@ import { BiDockTop } from 'react-icons/bi';
 import { imageWithAlt } from '../common/imageWithAlt';
 import { documentTitleField, titleField } from '../common/title';
 import { descriptionField } from '../common/description';
-import { innerLink, externalLink, anchorLink, button } from '../common/links';
+import { innerLink, externalLink, button } from '../common/links';
 
 export const headerLink = {
   name: 'headerLink',
@@ -20,7 +20,6 @@ export const headerLink = {
       of: [{ type: innerLink.name }, { type: externalLink.name }],
       validation: (Rule) => Rule.max(1),
     }),
-    anchorLink,
     descriptionField,
     imageWithAlt,
   ],
@@ -48,7 +47,7 @@ export const headerMenuLinksGroup = {
       name: 'links',
       title: 'Links',
       type: 'array',
-      of: [{ type: 'headerLink' }],
+      of: [{ type: headerLink.name }],
     }),
   ],
   // preview: getCommonPreview(),

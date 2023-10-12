@@ -404,7 +404,7 @@ export const Header = (props: any) => {
 
 export const headerPropsConverter = {
   sanity: (block: any) => {
-    const { ctaCard, menu, buttons, ...rest } = block;
+    const { ctaCard, menu, ...rest } = block;
 
     if (!rest._id) {
       return null;
@@ -413,9 +413,9 @@ export const headerPropsConverter = {
     return {
       ...rest,
       ctaCard: {
+        ...ctaCard,
         image: converters.imageWithAlt(ctaCard.imageWithAlt),
         title: converters.title(ctaCard.title),
-        buttons: ctaCard.buttons.map((btn: any) => converters.button(btn)),
       },
       menu: menu.map((v: any) => ({
         ...v,
@@ -426,7 +426,6 @@ export const headerPropsConverter = {
           imageWithAlt: converters.imageWithAlt(link.imageWithAlt),
         })),
       })),
-      buttons: buttons.map(converters.button),
     };
   },
 };

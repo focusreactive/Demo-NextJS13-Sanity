@@ -343,7 +343,7 @@ export const FooterComponent = (props: any) => {
           <LogoLink href={'/'}>
             <Logo bgColor="blue100" />
           </LogoLink>
-          <CustomButtons buttons={buttons} />
+          <CustomButtons fromFooter buttons={buttons} />
           <Contacts contacts={contacts} />
         </FooterTopR>
       </FooterTop>
@@ -378,7 +378,7 @@ export const Footer = (props: any) => {
 
 export const footerPropsConverter = {
   sanity: (block: any) => {
-    const { buttons, contacts, menus, nav, socials, ...rest } = block;
+    const { contacts, socials, ...rest } = block;
 
     if (!rest._id) {
       return null;
@@ -390,14 +390,9 @@ export const footerPropsConverter = {
         ...v,
         icon: converters.image(v.icon)?.src,
       })),
-      nav: nav.map(converters.button),
-      menus: menus.map((v: any) => ({
-        ...v,
-        list: v.list.map(converters.button),
-      })),
-      buttons: buttons.map(converters.button),
       socials: socials.map((v: any) => ({
         ...v,
+        // check if props have valid fields
         link: v.externalLink.link,
       })),
     };

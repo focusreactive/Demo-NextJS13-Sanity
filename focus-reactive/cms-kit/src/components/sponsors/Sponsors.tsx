@@ -74,7 +74,14 @@ export const Sponsors = ({ logos, button }: SponsorsProps) => {
       <div>{logos?.map?.((logo, index) => <Sponsor key={index} {...logo} />)}</div>
 
       <Buttons
-        buttons={[{ link: 'https://www.trafficguard.ai/', text: button?.title, hasIcon: true, variant: 'white' }]}
+        buttons={[
+          {
+            link: { _type: 'externalLink', link: 'https://www.trafficguard.ai/' },
+            text: 'button?.title',
+            hasIcon: true,
+            variant: 'white',
+          },
+        ]}
       />
     </StyledSponsors>
   );

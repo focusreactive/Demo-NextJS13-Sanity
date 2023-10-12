@@ -23,11 +23,12 @@ const richText = (blocks: any) => {
   return <RichText value={blocks} />;
 };
 
-const button = (block: any) => {
-  if (!block) return null;
+const button = (data: any) => {
+  if (!data) return null;
+
   return {
-    text: block.title,
-    link: block.uri,
+    text: data.title,
+    link: data.uri[0],
   };
 };
 
