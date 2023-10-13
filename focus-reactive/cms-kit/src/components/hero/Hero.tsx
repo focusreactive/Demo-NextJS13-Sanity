@@ -11,6 +11,7 @@ import Buttons from '../common/buttons/Buttons';
 import SlightParallax from '../common/slight-parallax/SlightParallax';
 import SectionHead from '../section/head/SectionHead';
 import { brandColors } from '../capabilities/colors';
+import { HeroImage } from './HeroImage';
 
 const HeroTitle = styled(TitleBlock)`
   .title {
@@ -116,10 +117,10 @@ const HeroDecor = styled.div`
   width: 100%;
   margin: 34px 0 0;
   position: relative;
-  height: clamp(155px, 50vw, 440px);
 
   div {
     width: 100%;
+    height: clamp(155px, 50vw, 440px);
 
     ${appTheme.media.md} {
       height: 100%;
@@ -253,24 +254,11 @@ export const Hero = (props: any) => {
           <HeroDecor data-variant={variant}>
             {secondSrc ? (
               <>
-                {/* <SlightParallax disabled={false} amplitude={0.02}> */}
-                <NextImage priority src={src} alt={alt ?? 'hero image'} fill objectFit="contain" />
-                {/* </SlightParallax> */}
-                {/* <SlightParallax disabled={false} amplitude={0.1}> */}
-                <NextImage priority src={secondSrc} alt={alt ?? 'hero image'} fill objectFit="contain" />
-                {/* </SlightParallax> */}
+                <HeroImage disable={!hasParallax} src={src} alt={alt} amplitude={0.2} />
+                <HeroImage disable={!hasParallax} src={src} alt={alt} amplitude={0.1} />
               </>
             ) : (
-              // <SlightParallax disabled={!hasParallax}>
-              <NextImage
-                priority
-                src={src}
-                alt={alt ?? 'hero image'}
-                fill
-                objectFit="contain"
-                sizes="(max-width: 414px) 50vw, 400px"
-              />
-              // </SlightParallax>
+              <HeroImage disable={!hasParallax} src={src} alt={alt} />
             )}
           </HeroDecor>
         ) : null}
