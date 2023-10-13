@@ -1,16 +1,26 @@
 import { draftMode } from 'next/headers';
 import { redirect } from 'next/navigation';
-
-// TODO: move to .env
-const SANITY_PREVIEW_SECRET = 'secret';
+import { getSecret } from '@/sanity/utils/getSecret';
+import { client } from '@/sanity/client';
+import { previewSecretId, sanityReadToken } from '@/environment';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const secret = searchParams.get('secret');
   const slug = searchParams.get('slug');
 
-  if (secret !== SANITY_PREVIEW_SECRET || !slug) {
-    return new Response('Invalid token', { status: 401 });
+  if (!slug) {
+    return new Response('Missing slug', { status: 400 });
+  }
+
+  const secret = await getSecret(client.withConfig({ useCdn: false, token: sanityReadToken }), previewSecretId);
+  const requestSecret = searchParams.get('secret');
+
+  if (!requestSecret) {
+    return new Response('Missing secret', { status: 400 });
+  }
+
+  if (requestSecret !== secret) {
+    return new Response('Invalid secret', { status: 401 });
   }
 
   const draft = draftMode();

@@ -43,7 +43,7 @@ const FooterBottom = styled(StyledContainer)`
   position: relative;
   display: flex;
   flex-direction: column-reverse;
-  color: ${appTheme.colors.gray400};
+  color: ${appTheme.colors.black};
   z-index: 1;
 
   .socials {
@@ -165,7 +165,7 @@ const TopMenu = styled.div`
     }
   }
 
-  h5 {
+  h3 {
     font-weight: 400;
     font-size: 18px;
     line-height: 1.28;
@@ -197,7 +197,7 @@ const TopMenu = styled.div`
   }
 `;
 
-const Nav = styled.div`
+const Nav = styled.ul`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -226,7 +226,7 @@ const Nav = styled.div`
   }
 
   a {
-    color: ${appTheme.colors.gray400};
+    color: ${appTheme.colors.black};
     transition: all ease 0.2s;
 
     &:hover {
@@ -277,7 +277,7 @@ const TopMenuItem = (props: any) => {
 const TopMenuList = ({ title, list }: any) => {
   return (
     <div className="f-list">
-      <h5>{title}</h5>
+      <h3>{title}</h3>
       <ul>
         {(list || []).map((item: any, key: any) => (
           <TopMenuItem key={key} {...item} />

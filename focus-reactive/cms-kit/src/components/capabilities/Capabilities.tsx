@@ -5,7 +5,7 @@ import Button from '../common/button/Button';
 import { styled } from '@linaria/react';
 import { brandColors } from './colors';
 import { converters } from '../../cms-connector/converters';
-import { ImageWithAlt, TitleWithOptions } from '../../global';
+import { ButtonOrLink, ImageWithAlt, TitleWithOptions } from '../../global';
 
 const StyledCapabilities = styled.div`
   display: flex;
@@ -30,6 +30,10 @@ const StyledCapability = styled.div<{ color?: string }>`
   width: 100%;
   position: relative;
   z-index: 2;
+
+  & > div {
+    box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+  }
 
   & > div:first-child {
     width: 58%;
@@ -159,10 +163,14 @@ const StyledCapability = styled.div<{ color?: string }>`
   }
 `;
 
+const StyledWrapper = styled.div`
+  margin-bottom: clamp(80px, 15vw, 160px); // TODO: change section padding instead
+`;
+
 type CapabilityProps = {
   description: ReactNode;
   image: ImageWithAlt;
-  button: any;
+  button: ButtonOrLink;
   bgColor?: string;
 } & TitleWithOptions;
 
@@ -185,12 +193,12 @@ type CapabilitiesProps = {
 
 export const Capabilities = (props: CapabilitiesProps) => {
   return (
-    <div>
+    <StyledWrapper>
       <SectionHead title={props.title} icon={props.titleIcon?.src} />
       <StyledCapabilities>
         {props.list && props.list.map((item, index) => <Capability key={index} {...item} />)}
       </StyledCapabilities>
-    </div>
+    </StyledWrapper>
   );
 };
 

@@ -2,7 +2,7 @@ import { getAllPagesSlugs } from '@/model/getAllPagesSlugs';
 import { notFound } from 'next/navigation';
 import { draftMode } from 'next/headers';
 import { Header, Footer } from '@focusreactive/cms-kit';
-import { token } from '@/model/sanityFetch';
+import { sanityReadToken } from '@/environment';
 import { PageDynamicContent } from '@/components/PageDynamicContent';
 import { getPageContent } from '@/model/getPageContent';
 import { Metadata } from 'next';
@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: metadata.title,
     description: metadata.description,
     keywords: metadata.keywords,
+    metadataBase: new URL('https://mvp-nextjs-sanity.vercel.app/'),
     alternates: {
       canonical: slug,
     },
@@ -68,7 +69,7 @@ export default async function Page({ params }: Props) {
         heroBackgroundColor="default"
       />
       <main>
-        <PageDynamicContent page={page} pageSlug={pageSlug} token={token} isDraftMode={isDraftMode} />
+        <PageDynamicContent page={page} pageSlug={pageSlug} token={sanityReadToken} isDraftMode={isDraftMode} />
       </main>
       <Footer {...(page.footer as any)} />
     </>

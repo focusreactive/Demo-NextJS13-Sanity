@@ -1,16 +1,17 @@
-'use client';
 import React from 'react';
 import NextImage from 'next/image';
 
 import TitleBlock from '../common/title-block/TitleBlock';
 import { Section } from '../section/Section';
-import styled from 'styled-components';
+import { styled } from '@linaria/react';
 import FloatUp from '../common/float-up/FloatUp';
 import DescriptionBlock from '../common/description-block/DescriptionBlock';
 import { appTheme } from '../../theme';
 import Buttons from '../common/buttons/Buttons';
 import SlightParallax from '../common/slight-parallax/SlightParallax';
 import SectionHead from '../section/head/SectionHead';
+import { brandColors } from '../capabilities/colors';
+import { HeroImage } from './HeroImage';
 
 const HeroTitle = styled(TitleBlock)`
   .title {
@@ -97,6 +98,8 @@ const HeroLeft = styled.div`
     margin-top: 36px;
 
     ${appTheme.media.md} {
+      margin-bottom: 94px;
+
       & > * {
         margin-right: 22px;
       }
@@ -117,7 +120,7 @@ const HeroDecor = styled.div`
 
   div {
     width: 100%;
-    height: clamp(200px, 50vw, 400px);
+    height: clamp(155px, 50vw, 440px);
 
     ${appTheme.media.md} {
       height: 100%;
@@ -131,6 +134,7 @@ const HeroDecor = styled.div`
   }
 
   ${appTheme.media.md} {
+    height: auto;
     margin: 0 0 0 40px;
     flex: 1 0 calc(46% - 20px);
   }
@@ -235,14 +239,11 @@ export const Hero = (props: any) => {
       <HeroBox>
         <HeroLeft>
           <FloatUp>
-            {/* make h1 */}
-            <SectionHead title={title}></SectionHead>
-            <HeroTitle tip={titleTip} icon={titleIcon} color={titleColor} variant={titleVariant} />
+            <SectionHead title={title} isH1 />
+            <HeroTitle tip={titleTip} icon={titleIcon} color="white" variant={titleVariant} />
           </FloatUp>
           <FloatUp>
-            {description ? (
-              <DescriptionBlock color={descriptionColor} text={description} variant={descriptionVariant} />
-            ) : null}
+            {description ? <DescriptionBlock color={brandColors.blue100} text={description} variant="large" /> : null}
           </FloatUp>
 
           {/* {form ? <FormBlock form={form} /> : null} */}
@@ -253,17 +254,11 @@ export const Hero = (props: any) => {
           <HeroDecor data-variant={variant}>
             {secondSrc || src ? (
               <>
-                {/* <SlightParallax disabled={false} amplitude={0.02}> */}
-                {src && <NextImage priority src={src} alt={alt} fill unoptimized objectFit="contain" />}
-                {/* </SlightParallax> */}
-                {/* <SlightParallax disabled={false} amplitude={0.1}> */}
-                {secondSrc && <NextImage priority src={secondSrc} alt={alt} fill unoptimized objectFit="contain" />}
-                {/* </SlightParallax> */}
+                <HeroImage disable={!hasParallax} src={src} alt={alt} amplitude={0.2} />
+                <HeroImage disable={!hasParallax} src={src} alt={alt} amplitude={0.1} />
               </>
             ) : (
-              // <SlightParallax disabled={!hasParallax}>
-              <NextImage priority src={src} alt={alt} fill unoptimized objectFit="contain" />
-              // </SlightParallax>
+              <HeroImage disable={!hasParallax} src={src} alt={alt} />
             )}
           </HeroDecor>
         ) : null}

@@ -6,7 +6,7 @@ import { appTheme } from '../../../theme';
 const Container = styled.ul<{ linkSize?: string; iconSize?: string }>`
   padding: 0;
   display: flex;
-  margin: 15px 12px;
+  gap: 15px;
   flex-wrap: wrap;
   list-style: none;
 
@@ -136,7 +136,7 @@ const Item = ({ icon, link }: { icon: keyof typeof iconsSet; link: string }) => 
   const Icon = iconsSet[icon];
 
   return (
-    <Link href={link} target="_blank">
+    <Link href={link || 'https://harcodedsocials.com'} target="_blank" aria-label={icon}>
       {/* @ts-ignore */}
       <Icon />
     </Link>
@@ -147,9 +147,11 @@ const Socials = ({ socials, linkSize, iconSize }: any) => {
   return (
     <Container className="socials" linkSize={linkSize} iconSize={iconSize}>
       {(socials || []).map((item: any, key: any) => (
-        <FloatUp delay={50 * key} tag="li" key={key}>
-          <Item key={key} {...item} />
-        </FloatUp>
+        <li key={key}>
+          <FloatUp delay={50 * key} tag="li" key={key}>
+            <Item {...item} />
+          </FloatUp>
+        </li>
       ))}
     </Container>
   );

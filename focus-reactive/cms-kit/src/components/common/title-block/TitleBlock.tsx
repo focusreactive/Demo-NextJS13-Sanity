@@ -2,10 +2,10 @@ import { styled } from '@linaria/react';
 import React from 'react';
 import { appTheme } from '../../../theme';
 
-const TitleBlockWrap = styled.div`
+const TitleBlockWrap = styled.div<{ color?: string }>`
   position: relative;
   width: 100%;
-  --titleColor: ${appTheme.colors.black};
+  --titleColor: ${({ color }) => (color ? color : appTheme.colors.black)};
 `;
 
 const Tip = styled.p`

@@ -2,76 +2,65 @@ import React from 'react';
 import { styled } from '@linaria/react';
 import { converters } from '../../cms-connector/converters';
 import Buttons from '../common/buttons/Buttons';
-import { ImageWithAlt } from '../../global';
+import Image from 'next/image';
+import { ButtonOrLink, ImageWithAlt } from '../../global';
 
 const StyledSponsors = styled.div`
-  & > div {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px 0;
-    margin: 0 -10px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+`;
 
-    & > div {
-      width: 24%;
-      padding: 0 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 80px;
-    }
-  }
-  img {
-    max-width: 140px;
-    max-height: 100%;
-    display: block;
-    border: none;
-  }
+const StyledImage = styled.div`
+  position: relative;
+  width: 24%;
+  height: 80px;
+  margin: 0 40px;
+  max-width: 140px;
 
   @media screen and (max-width: 1140px) {
-    & > div > div {
-      width: 25%;
-      height: 70px;
-    }
-    img {
-      max-width: 120px;
-    }
+    width: 25%;
+    height: 70px;
+    max-width: 120px;
   }
 
   @media screen and (max-width: 767px) {
-    & > div > div {
-      width: 33.33%;
-    }
+    width: 33.33%;
+    margin: 0 20px;
   }
 
   @media screen and (max-width: 480px) {
-    & > div > div {
-      width: 50%;
-      height: 60px;
-    }
-    img {
-      max-width: 100px;
-    }
+    width: 33%;
+    height: 60px;
+    max-width: 100px;
+    margin: 0;
   }
 `;
 
-const Sponsor = ({ src, alt }: ImageWithAlt) => (
-  <div>
-    <img src={src} alt={alt} loading="lazy" />
-  </div>
-);
+const StyledLogos = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-evenly;
+`;
+
+const Sponsor = ({ src, alt }: ImageWithAlt) => {
+  return (
+    <StyledImage>
+      <Image src={src} alt={alt} fill sizes="140px" objectFit="contain" quality={50} />
+    </StyledImage>
+  );
+};
 
 type SponsorsProps = {
   logos: ImageWithAlt[];
-  button: {
-    title: string;
-    link: string;
-  };
+  button: ButtonOrLink;
 };
 
 export const Sponsors = ({ logos, button }: SponsorsProps) => {
   return (
     <StyledSponsors>
-      <div>{logos?.map?.((logo, index) => <Sponsor key={index} {...logo} />)}</div>
+      <StyledLogos>{logos?.map?.((logo, index) => <Sponsor key={index} {...logo} />)}</StyledLogos>
 
       <Buttons
         buttons={[

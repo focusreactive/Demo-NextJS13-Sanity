@@ -49,7 +49,7 @@ const LinkContainer = styled(SmartLink)`
   display: flex;
   min-height: 45px;
   border-radius: 45px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: inherit;
   align-items: center;
   justify-content: center;
   font-size: 16px;

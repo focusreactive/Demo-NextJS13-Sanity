@@ -2,23 +2,19 @@ import { Box, Button, Card, Flex, Spinner, Text, ThemeProvider } from '@sanity/u
 import { AiOutlineReload } from 'react-icons/ai';
 import { BiLinkExternal } from 'react-icons/bi';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import resolveProductionUrl from './resolveProductionUrl';
+import { resolvePreviewUrl } from './resolvePreviewUrl';
 import { UserViewComponent } from 'sanity/desk';
 import debounce from 'lodash.debounce';
 
-// TODO: move to .env
-const remoteUrl = `https://mvp-nextjs-sanity.vercel.app`;
-const localUrl = `http://localhost:3000`;
-
 export const PreviewIFrame: UserViewComponent = (props) => {
   const isReloadEnabled = false;
-  const { document } = props;
+  const { document, options } = props;
   const [id, setId] = useState(1);
   const { displayed: currentDocument } = document;
-  const [displayUrl, setDisplayUrl] = useState('');
+  const [privateUrl, setPrivateUrl] = useState('');
   const [publicUrl, setPublicUrl] = useState('');
   const iframe = useRef<HTMLIFrameElement>(null);
-  const baseUrl = window.location.hostname === 'localhost' ? localUrl : remoteUrl;
+  const baseUrl = window.location.origin;
 
   const reloadIframe = () => {
     const iframeNode = iframe.current;
@@ -43,15 +39,14 @@ export const PreviewIFrame: UserViewComponent = (props) => {
   }
 
   useEffect(() => {
-    function getUrl() {
-      const { privateUrl, publicUrl } = resolveProductionUrl(currentDocument, baseUrl) ?? '';
-      setDisplayUrl(privateUrl);
+    (async () => {
+      const { privateUrl, publicUrl } = (await resolvePreviewUrl(currentDocument, options.client, baseUrl)) ?? {};
+      setPrivateUrl(privateUrl);
       setPublicUrl(publicUrl);
-    }
-    getUrl();
+    })();
   }, [currentDocument]);
 
-  if (displayUrl === '')
+  if (privateUrl === '')
     return (
       <ThemeProvider>
         <Flex padding={5} align="center" justify="center">
@@ -87,7 +82,7 @@ export const PreviewIFrame: UserViewComponent = (props) => {
                 padding={[2]}
                 text="Open"
                 tone="primary"
-                onClick={() => window.open(displayUrl)}
+                onClick={() => window.open(privateUrl)}
               />
             </Flex>
           </Flex>
@@ -99,7 +94,7 @@ export const PreviewIFrame: UserViewComponent = (props) => {
               ref={iframe}
               title="preview"
               style={{ width: '100%', height: `100%`, maxHeight: `100%`, border: 0 }}
-              src={displayUrl}
+              src={privateUrl}
               referrerPolicy="origin-when-cross-origin"
             />
           </Flex>
