@@ -255,7 +255,7 @@ export const Hero = (props: any) => {
             {secondSrc || src ? (
               <>
                 <HeroImage disable={!hasParallax} src={src} alt={alt} amplitude={0.2} />
-                <HeroImage disable={!hasParallax} src={src} alt={alt} amplitude={0.1} />
+                <HeroImage disable={!hasParallax} src={secondSrc} alt={alt} amplitude={0.1} />
               </>
             ) : (
               <HeroImage disable={!hasParallax} src={src} alt={alt} />
