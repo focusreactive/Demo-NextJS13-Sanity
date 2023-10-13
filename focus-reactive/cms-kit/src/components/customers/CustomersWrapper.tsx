@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 
-import { converters } from '../../cms-connector/converters';
+import { ImageWithAlt, converters } from '../../cms-connector/converters';
 import { Customers } from './Customers';
-import { ButtonOrLink, ImageWithAlt, TitleWithOptions } from '../../global';
+import { ButtonOrLink, TitleWithOptions } from '../../global';
 import type { ColorValue } from '@sanity/color-input';
 
 export type CustomerProps = {

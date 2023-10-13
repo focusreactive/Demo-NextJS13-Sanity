@@ -277,12 +277,12 @@ const SpotlightItem = (props: CustomerProps) => {
 
         <Customer text={author} color={'#fff'} />
 
-        {logoInText ? <DescriptionLogo src={logoInText.src} alt={logoInText.alt} /> : null}
+        {logoInText ? <DescriptionLogo image={logoInText} /> : null}
       </CommentBlock>
 
       {photo && (
         <ImageWrap>
-          <ImageBlock src={photo.src} alt={photo.alt} />
+          <ImageBlock image={photo} />
           <PhotoDecor />
         </ImageWrap>
       )}
@@ -306,7 +306,7 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersWrapperP
 
   return (
     <StyledWrapper>
-      <SectionHead title={title} icon={titleIcon?.src} />
+      <SectionHead title={title} icon={titleIcon} />
       <StyledCustomersSection>
         {items?.length !== 1 ? (
           <ThumbsSlider
@@ -331,7 +331,7 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersWrapperP
           >
             {(items || []).map((slide: any, key: any) => (
               <SwiperSlide key={key}>
-                <ThumbsImage loading="lazy" src={slide.logo?.src} alt={slide.logo?.alt} />
+                <ThumbsImage image={slide.logo} />
               </SwiperSlide>
             ))}
           </ThumbsSlider>

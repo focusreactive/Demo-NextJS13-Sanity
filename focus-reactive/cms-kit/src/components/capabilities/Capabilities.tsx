@@ -3,8 +3,9 @@ import SectionHead from '../section/head/SectionHead';
 import { Button } from '../button/Button';
 import { styled } from '@linaria/react';
 import { brandColors } from './colors';
-import { converters } from '../../cms-connector/converters';
-import { ButtonOrLink, ImageWithAlt, TitleWithOptions } from '../../global';
+import { ImageWithAlt, converters } from '../../cms-connector/converters';
+import { ButtonOrLink, TitleWithOptions } from '../../global';
+import Image from 'next/image';
 
 const StyledCapabilities = styled.div`
   display: flex;
@@ -88,6 +89,8 @@ const StyledCapability = styled.div<{ color?: string }>`
       display: block;
       max-width: 100%;
       border-radius: 20px;
+      height: 100%;
+      width: 100%;
     }
   }
   @media screen and (max-width: 1140px) {
@@ -173,21 +176,23 @@ type CapabilityProps = {
   bgColor?: string;
 } & TitleWithOptions;
 
-const Capability = ({ title, titleIcon, description, image, button, bgColor }: CapabilityProps) => (
-  <StyledCapability color={brandColors[bgColor as keyof typeof brandColors]}>
-    <div>
-      <img src={titleIcon?.src} alt="" loading="lazy" />
+const Capability = ({ title, titleIcon, description, image, button, bgColor }: CapabilityProps) => {
+  return (
+    <StyledCapability color={brandColors[bgColor as keyof typeof brandColors]}>
+      <div>
+        <Image src={titleIcon?.src ?? ''} alt={titleIcon?.alt} width={titleIcon?.width} height={titleIcon?.height} />
 
-      <h3>{title}</h3>
+        <h3>{title}</h3>
 
-      {description}
+        {description}
 
-      <Button>{button?.text}</Button>
-    </div>
+        <Button>{button?.text}</Button>
+      </div>
 
-    <div>{image && <img src={image.src} alt={image.alt} loading="lazy" />}</div>
-  </StyledCapability>
-);
+      <div>{image && <Image src={image.src} alt={image.alt} width={image.width} height={image.height} />}</div>
+    </StyledCapability>
+  );
+};
 
 type CapabilitiesProps = {
   list: CapabilityProps[];
@@ -196,7 +201,7 @@ type CapabilitiesProps = {
 export const Capabilities = (props: CapabilitiesProps) => {
   return (
     <StyledWrapper>
-      <SectionHead title={props.title} icon={props.titleIcon?.src} />
+      <SectionHead title={props.title} icon={props.titleIcon} />
       <StyledCapabilities>
         {props.list && props.list.map((item, index) => <Capability key={index} {...item} />)}
       </StyledCapabilities>

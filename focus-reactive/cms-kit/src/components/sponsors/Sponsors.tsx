@@ -1,9 +1,9 @@
 import React from 'react';
 import { styled } from '@linaria/react';
-import { converters } from '../../cms-connector/converters';
+import { ImageWithAlt, converters } from '../../cms-connector/converters';
 import Buttons from '../common/buttons/Buttons';
 import Image from 'next/image';
-import { ButtonOrLink, ImageWithAlt } from '../../global';
+import { ButtonOrLink } from '../../global';
 
 const StyledSponsors = styled.div`
   display: flex;
@@ -44,10 +44,10 @@ const StyledLogos = styled.div`
   justify-content: space-evenly;
 `;
 
-const Sponsor = ({ src, alt }: ImageWithAlt) => {
+const Sponsor = ({ image }: { image: ImageWithAlt }) => {
   return (
     <StyledImage>
-      <Image src={src} alt={alt} fill sizes="140px" objectFit="contain" quality={50} />
+      <Image src={image?.src ?? ''} alt={image?.alt} fill sizes="140px" objectFit="contain" quality={50} />
     </StyledImage>
   );
 };
@@ -60,7 +60,7 @@ type SponsorsProps = {
 export const Sponsors = ({ logos, button }: SponsorsProps) => {
   return (
     <StyledSponsors>
-      <StyledLogos>{logos?.map?.((logo, index) => <Sponsor key={index} {...logo} />)}</StyledLogos>
+      <StyledLogos>{logos?.map?.((logo, index) => <Sponsor key={index} image={logo} />)}</StyledLogos>
 
       <Buttons
         buttons={[{ link: 'https://www.trafficguard.ai/', text: button?.text, hasIcon: true, variant: 'white' }]}
