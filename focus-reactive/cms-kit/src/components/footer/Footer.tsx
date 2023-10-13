@@ -343,7 +343,7 @@ export const FooterComponent = (props: any) => {
           <LogoLink href={'/'}>
             <Logo bgColor="blue100" />
           </LogoLink>
-          <CustomButtons fromFooter buttons={buttons} />
+          <CustomButtons buttons={buttons} />
           <Contacts contacts={contacts} />
         </FooterTopR>
       </FooterTop>
@@ -392,7 +392,6 @@ export const footerPropsConverter = {
       })),
       socials: socials.map((v: any) => ({
         ...v,
-        // check if props have valid fields
         link: v.externalLink.link,
       })),
     };
