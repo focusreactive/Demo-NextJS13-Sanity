@@ -1,14 +1,12 @@
 const SmartLink = ({ children, link, ...rest }: any) => {
-  let correctUrl = '/[innerLink]';
+  let correctUrl = '/';
   switch (link?._type) {
     case 'externalLink':
       correctUrl = link.link;
       break;
     case 'innerLink':
-      // todo:
-      // correctUrl = link.reference.slug.current;
+      correctUrl = link.ref.slug.current;
       break;
-    default:
   }
 
   return (

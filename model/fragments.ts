@@ -3,7 +3,10 @@ export const getButtonsFragment = (fieldName = 'buttons') => {
       ${fieldName}[] {
         ...,
         "text": title,
-        "link": uri[0]
+        "link": uri[0] {
+          "ref": reference->,
+          ...
+        },
       }
     `;
 };
@@ -19,7 +22,10 @@ export const headerAndFooter = `
           ...,
           "iconSrc": image.asset,
           "iconAlt": image.alt,
-          "link": link[0]
+          "link": link[0] {
+            "ref": reference->,
+            ...
+          },
         }
       },
       ctaCard {
