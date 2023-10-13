@@ -5,7 +5,7 @@ const SmartLink = ({ children, link, ...rest }: any) => {
       correctUrl = link.link;
       break;
     case 'innerLink':
-      correctUrl = link.ref.slug.current;
+      correctUrl = link.ref?.slug?.current;
       break;
   }
 
