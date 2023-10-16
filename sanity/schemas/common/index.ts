@@ -5,6 +5,8 @@ import * as richText from './richText';
 import * as seo from './seo';
 import { sectionConfig } from './section';
 import { imageWithAlt } from './imageWithAlt';
+import * as header from './header';
+import * as footer from './footer';
 
 export default [
   titleWithOptions,
@@ -14,4 +16,6 @@ export default [
   ...Object.values(seo),
   sectionConfig,
   imageWithAlt,
+  ...Object.values(header),
+  ...Object.values(footer),
 ];

@@ -10,11 +10,7 @@ export const HeroPropsConverter = {
       titleIcon: converters.image(titleIcon)?.src,
       description: converters.richText(description),
       buttons: buttons.map(converters.button),
-      decor: {
-        ...decor,
-        src: converters.image(decor.src)?.src,
-        secondSrc: converters.image(decor.secondSrc)?.src,
-      },
+      decor: converters.imageWithAlt(decor),
     };
   },
 };

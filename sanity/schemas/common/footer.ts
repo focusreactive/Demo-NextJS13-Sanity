@@ -1,9 +1,9 @@
-import { commonSocialsList } from '@/sanity/constants';
+import { commonSocialsList } from '../../constants';
 import { defineField } from 'sanity';
 
 import { BiDockBottom } from 'react-icons/bi';
 
-import { externalLink } from '../common/links';
+import { externalLink } from './links';
 
 export const footer = {
   name: 'footer',
@@ -103,5 +103,3 @@ export const footer = {
     }),
   ],
 };
-
-export default [footer];

@@ -2,10 +2,10 @@ import { defineField } from 'sanity';
 
 import { BiDockTop } from 'react-icons/bi';
 
-import { imageWithAlt } from '../common/imageWithAlt';
-import { documentTitleField, titleField } from '../common/title';
-import { descriptionField } from '../common/description';
-import { innerLink, externalLink, button } from '../common/links';
+import { imageWithAlt } from './imageWithAlt';
+import { documentTitleField, titleField } from './title';
+import { descriptionField } from './description';
+import { innerLink, externalLink, button } from './links';
 
 export const headerLink = {
   name: 'headerLink',
@@ -106,5 +106,3 @@ export const header = {
     }),
   ],
 };
-
-export default [header, headerLink, headerMenuLinksGroup, headerInfoCard];

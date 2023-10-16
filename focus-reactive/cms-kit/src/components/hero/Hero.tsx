@@ -252,14 +252,15 @@ export const Hero = (props: any) => {
         </HeroLeft>
         {decor ? (
           <HeroDecor data-variant={variant}>
-            {secondSrc || src ? (
-              <>
-                <HeroImage disable={!hasParallax} src={src} alt={alt} amplitude={0.2} />
-                <HeroImage disable={!hasParallax} src={secondSrc} alt={alt} amplitude={0.1} />
-              </>
-            ) : (
-              <HeroImage disable={!hasParallax} src={src} alt={alt} />
-            )}
+            <HeroImage disable={!hasParallax} src={src} alt={alt} />
+            {/*{secondSrc || src ? (*/}
+            {/*  <>*/}
+            {/*    <HeroImage disable={!hasParallax} src={src} alt={alt} amplitude={0.2} />*/}
+            {/*    <HeroImage disable={!hasParallax} src={secondSrc} alt={alt} amplitude={0.1} />*/}
+            {/*  </>*/}
+            {/*) : (*/}
+            {/*  <HeroImage disable={!hasParallax} src={src} alt={alt} />*/}
+            {/*)}*/}
           </HeroDecor>
         ) : null}
       </HeroBox>

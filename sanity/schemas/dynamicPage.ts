@@ -6,8 +6,8 @@ import { hero } from './contentBlocks/hero';
 import { customerSpotlight } from './contentBlocks/customerSpotlight';
 import { documentTitleField } from './common/title';
 import { CgCollage } from 'react-icons/cg';
-import { header } from './contentBlocks/header';
-import { footer } from './contentBlocks/footer';
+import { header } from './common/header';
+import { footer } from './common/footer';
 
 export const dynamicPage = defineType({
   name: 'dynamicPage',

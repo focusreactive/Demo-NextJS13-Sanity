@@ -29,7 +29,7 @@ const button = (data: any) => {
   return {
     // to make links work, need to extend groq query (content[]) to include link ref
     text: data.title,
-    link: data.uri[0],
+    link: data?.uri?.[0],
   };
 };
 
