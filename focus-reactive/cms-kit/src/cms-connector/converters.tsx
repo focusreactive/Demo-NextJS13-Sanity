@@ -7,8 +7,9 @@ const image = (image: any) => {
 };
 
 const imageWithAlt = (data: any) => {
-  if (!data) return null;
-  return { src: getDefaultImageUrl(data.image.asset._ref), alt: data.alt };
+  const assetRef = data?.image?.asset?._ref;
+  if (!assetRef) return null;
+  return { src: getDefaultImageUrl(assetRef), alt: data.alt };
 };
 
 const plainText = (text: any) => {

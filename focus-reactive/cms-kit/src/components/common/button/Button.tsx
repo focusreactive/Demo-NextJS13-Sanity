@@ -265,7 +265,7 @@ const Button = ({
   hasIcon,
   background,
   borderColor,
-  handleClick,
+  // handleClick,
   noWaves,
   isActive,
   ...rest
@@ -302,7 +302,7 @@ const Button = ({
           borderColor={borderColor}
           as="button"
           type="button"
-          onClick={() => handleClick(value)}
+          // onClick={() => handleClick(value)}
           style={{
             '--btnFontWeight': weight,
           }}
