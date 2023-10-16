@@ -62,9 +62,18 @@ export const Sponsors = ({ logos, button }: SponsorsProps) => {
     <StyledSponsors>
       <StyledLogos>{logos?.map?.((logo, index) => <Sponsor key={index} {...logo} />)}</StyledLogos>
 
-      <Buttons
-        buttons={[{ link: 'https://www.trafficguard.ai/', text: button?.text, hasIcon: true, variant: 'white' }]}
-      />
+      {button && (
+        <Buttons
+          buttons={[
+            {
+              link: button.link,
+              text: button.text,
+              hasIcon: true,
+              variant: 'white',
+            },
+          ]}
+        />
+      )}
     </StyledSponsors>
   );
 };

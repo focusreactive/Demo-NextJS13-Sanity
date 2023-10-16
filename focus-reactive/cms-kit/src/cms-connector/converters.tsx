@@ -7,8 +7,9 @@ const image = (image: any) => {
 };
 
 const imageWithAlt = (data: any) => {
-  if (!data) return null;
-  return { src: getDefaultImageUrl(data.image.asset._ref), alt: data.alt };
+  const assetRef = data?.image?.asset?._ref;
+  if (!assetRef) return null;
+  return { src: getDefaultImageUrl(assetRef), alt: data.alt };
 };
 
 const plainText = (text: any) => {
@@ -23,11 +24,13 @@ const richText = (blocks: any) => {
   return <RichText value={blocks} />;
 };
 
-const button = (block: any) => {
-  if (!block) return null;
+const button = (data: any) => {
+  if (!data) return null;
+
   return {
-    text: block.title,
-    link: block.uri,
+    // to make links work, need to extend groq query (content[]) to include link ref
+    text: data.title,
+    link: data?.uri?.[0],
   };
 };
 

@@ -25,7 +25,7 @@ export const appTheme = {
     gray700: '#999999',
     blue100: '#ffa300',
     blue400: '#32408B',
-    blue700: '#393939',
+    blue700: '#32408B',
     yellow100: '#FFC766',
     yellow400: '#FFA300',
     green100: '#80CDB6',

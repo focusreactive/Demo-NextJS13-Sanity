@@ -1,6 +1,6 @@
 import { groq } from 'next-sanity';
 
-import { basePageFields } from './fragments';
+import { headerAndFooter } from './fragments';
 
 export const ALL_PAGES_SLUGS_QUERY = groq`
     * [_type == 'dynamicPage' && !(_id in path('drafts.**'))] {
@@ -10,7 +10,7 @@ export const ALL_PAGES_SLUGS_QUERY = groq`
 
 export const PAGE_CONTENT_QUERY = groq`
     * [_type == 'dynamicPage' && !(_id in path('drafts.**')) && slug.current == $slug] {
-      ${basePageFields}
+      ${headerAndFooter}
       content[]
     }[0]
   `;
