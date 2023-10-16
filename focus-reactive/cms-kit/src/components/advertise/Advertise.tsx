@@ -1,8 +1,9 @@
 import React, { ReactNode } from 'react';
 import SectionHead from '../section/head/SectionHead';
 import { styled } from '@linaria/react';
-import { converters } from '../../cms-connector/converters';
-import { ImageWithAlt, TitleWithOptions } from '../../global';
+import { ImageWithAlt, converters } from '../../cms-connector/converters';
+import { TitleWithOptions } from '../../global';
+import Image from 'next/image';
 
 const StyledAdvertise = styled.div<{ imageLeft?: boolean }>`
   display: flex;
@@ -25,12 +26,12 @@ const StyledAdvertise = styled.div<{ imageLeft?: boolean }>`
   & > div:nth-child(2) {
     flex: none;
     margin-bottom: calc(clamp(80px, 15vw, 160px) * -1);
-    max-width: 45%;
 
     img {
-      width: 100%;
+      width: 400px;
       max-width: 450px;
       display: block;
+      height: 100%;
     }
   }
 
@@ -43,8 +44,6 @@ const StyledAdvertise = styled.div<{ imageLeft?: boolean }>`
 
     & > div:nth-child(2) {
       margin-left: auto;
-      max-width: 80%;
-      margin-right: -40px;
     }
   }
 `;
@@ -56,16 +55,18 @@ type AdvertiseProps = {
 } & TitleWithOptions;
 
 export const Advertise = (props: AdvertiseProps) => {
+  const { image } = props;
+
   return (
     <StyledAdvertise imageLeft={props.imagePosition === 'left'}>
       <div>
-        <SectionHead title={props.title} icon={props.titleIcon?.src} />
+        <SectionHead title={props.title} icon={props.titleIcon} />
 
         {props.description}
       </div>
 
       <div>
-        <img src={props.image?.src} alt={props.image?.alt} loading="lazy" />
+        <Image src={image?.src ?? ''} alt={image?.alt} width={image?.width} height={image?.height} />
       </div>
     </StyledAdvertise>
   );

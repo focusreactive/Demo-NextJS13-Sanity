@@ -13,7 +13,7 @@ export const HeroImage = (props: any) => {
         src={src}
         alt={alt ?? 'hero image'}
         fill
-        objectFit="contain"
+        style={{objectFit: "contain"}}
         sizes="(max-width: 414px) 50vw, 400px"
       />
     // </SlightParallax>

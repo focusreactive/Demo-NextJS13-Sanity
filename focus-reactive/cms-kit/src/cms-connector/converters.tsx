@@ -1,16 +1,27 @@
 import { getDefaultImageUrl } from '@/sanity/utils/getDefaultImageUrl';
 import { RichText } from '@/components/RichText';
+import { getImageDimensions } from '../utils/getImageDimensions';
 
 const image = (image: any) => {
   if (!image) return null;
-  return { src: getDefaultImageUrl(image.asset._ref), alt: image.alt };
+
+  const src = getDefaultImageUrl(image.asset._ref);
+  const { width, height } = getImageDimensions(src);
+
+  return { src, alt: image.alt ?? '', width, height };
 };
 
 const imageWithAlt = (data: any) => {
   const assetRef = data?.image?.asset?._ref;
   if (!assetRef) return null;
-  return { src: getDefaultImageUrl(assetRef), alt: data.alt };
+
+  const src = getDefaultImageUrl(assetRef);
+  const { width, height } = getImageDimensions(src);
+
+  return { src, alt: data.alt, width, height };
 };
+
+export type ImageWithAlt = ReturnType<typeof imageWithAlt>;
 
 const plainText = (text: any) => {
   return text;

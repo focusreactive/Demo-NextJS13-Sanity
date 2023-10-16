@@ -256,11 +256,11 @@ const HeaderNavMobile = (props: any) => {
               <GroupTitle onClick={onItemClick(key)}>{item.documentTitle}</GroupTitle>
               <MenuList data-open={openedId === key ? 'true' : 'false'}>
                 {(item.links || []).map((link: any, linkKey: any) => {
-                  const { iconSrc, iconAlt, title, link: href } = link;
+                  const { title, link: href } = link;
 
                   return (
                     <MenuItem key={linkKey} link={href ?? 'https://hardcodedmenuitem.com'} onClick={onClose}>
-                      <ImageBlock src={iconSrc} alt={iconAlt} />
+                      <ImageBlock image={link.imageWithAlt} />
                       <MenuText>{title}</MenuText>
                     </MenuItem>
                   );

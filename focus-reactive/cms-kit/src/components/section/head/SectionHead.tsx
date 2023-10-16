@@ -1,8 +1,10 @@
 import React, { ReactNode } from 'react';
 import { styled } from '@linaria/react';
+import Image from 'next/image';
+import { ImageWithAlt } from '../../../cms-connector/converters';
 
 interface SectionHeadProps {
-  icon?: string;
+  icon?: ImageWithAlt;
   title: ReactNode;
   isH1?: boolean;
 }
@@ -28,7 +30,7 @@ const StyledHeading = styled.div`
 const SectionHead = ({ icon, title, isH1 }: SectionHeadProps) => {
   return (
     <StyledHeading>
-      {icon && <img src={icon} alt="" loading="lazy" />}
+      {icon && <Image src={icon.src} alt={icon.alt} width={icon.width} height={icon.height} />}
       {isH1 ? <h1>{title}</h1> : <h2>{title}</h2>}
     </StyledHeading>
   );
