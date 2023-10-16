@@ -47,7 +47,7 @@ const StyledLogos = styled.div`
 const Sponsor = ({ image }: { image: ImageWithAlt }) => {
   return (
     <StyledImage>
-      <Image src={image?.src ?? ''} alt={image?.alt} fill sizes="140px" objectFit="contain" quality={50} />
+      <Image src={image?.src ?? ''} alt={image?.alt} fill sizes="140px" style={{ objectFit: 'contain' }} quality={50} />
     </StyledImage>
   );
 };

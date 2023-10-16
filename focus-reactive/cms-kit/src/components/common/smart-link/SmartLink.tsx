@@ -1,4 +1,4 @@
-const SmartLink = ({ children, link, ...rest }: any) => {
+const SmartLink = ({ children, link, textColor, bgColor, borderColor, noWaves, ...rest }: any) => {
   let correctUrl = '/';
   switch (link?._type) {
     case 'externalLink':
