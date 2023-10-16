@@ -343,7 +343,7 @@ export const FooterComponent = (props: any) => {
           <LogoLink href={'/'}>
             <Logo bgColor="blue100" />
           </LogoLink>
-          <CustomButtons buttons={buttons} />
+          {buttons?.length && <CustomButtons buttons={buttons.map((b: any) => ({ ...b, variant: 'green' }))} />}
           <Contacts contacts={contacts} />
         </FooterTopR>
       </FooterTop>
