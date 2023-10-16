@@ -351,16 +351,18 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersWrapperP
         ))}
       </SpotlightSlider>
 
-      <CustomButtons
-        buttons={[
-          {
-            link: { _type: 'externalLink', link: 'https://www.trafficguard.ai/' },
-            text: 'button.?.title',
-            hasIcon: true,
-            variant: 'white',
-          },
-        ]}
-      />
+      {button && (
+        <CustomButtons
+          buttons={[
+            {
+              link: button.link,
+              text: button.text,
+              hasIcon: true,
+              variant: 'white',
+            },
+          ]}
+        />
+      )}
     </StyledWrapper>
   );
 };

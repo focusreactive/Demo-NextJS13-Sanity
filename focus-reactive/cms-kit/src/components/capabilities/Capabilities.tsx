@@ -65,7 +65,8 @@ const StyledCapability = styled.div<{ color?: string }>`
       }
     }
 
-    button {
+    button, a {
+      display: inline-flex;
       color: ${({ color }) => (color ? color : '#4d62d6')};
       margin-top: 20px;
 
@@ -180,7 +181,7 @@ const Capability = ({ title, titleIcon, description, image, button, bgColor }: C
       <img src={titleIcon?.src} alt="" loading="lazy" />
       <h3>{title}</h3>
       {description}
-      <Button link={button?.link}>{button?.text}</Button>
+      {button && <Button link={button.link} text={button.text} />}
     </div>
 
     <div>{image && <img src={image.src} alt={image.alt} loading="lazy" />}</div>
