@@ -1,13 +1,12 @@
 import { getAllPagesSlugs } from '@/model/getAllPagesSlugs';
 import { notFound } from 'next/navigation';
 import { draftMode } from 'next/headers';
-import { Hero, Header } from '@focusreactive/cms-kit';
+import { Header, Footer } from '@focusreactive/cms-kit';
 import { sanityReadToken } from '@/environment';
 import { PageDynamicContent } from '@/components/PageDynamicContent';
 import { getPageContent } from '@/model/getPageContent';
 import { Metadata } from 'next';
 import { getPageMetadata } from '@/model/getPageMetadata';
-import heroDesktop from '../../../focus-reactive/cms-kit/src/assets/hero-desktop.svg';
 
 type Props = { params: { slug?: string[] } };
 
@@ -60,8 +59,6 @@ export default async function Page({ params }: Props) {
 
   if (!page) return notFound();
 
-  const description =
-    'By verifying advertising engagement and protecting budgets, we help businesses get the clarity they need to unlock the best advertising results.';
   return (
     <>
       <Header
@@ -72,23 +69,9 @@ export default async function Page({ params }: Props) {
         heroBackgroundColor="default"
       />
       <main>
-        <Hero
-          title="Clarity beyond measure."
-          description={description}
-          buttons={[
-            { link: 'https://www.trafficguard.ai/', text: 'Start now' },
-            { link: 'https://www.trafficguard.ai/', text: 'Contact sales', hasIcon: true },
-          ]}
-          decor={{
-            src: heroDesktop,
-            hasParallax: true,
-            // secondSrc: 'https://i.ibb.co/d4yj9wx/image.png',
-          }}
-          isHomePage
-          bgColor="blue400"
-        />
         <PageDynamicContent page={page} pageSlug={pageSlug} token={sanityReadToken} isDraftMode={isDraftMode} />
       </main>
+      <Footer {...(page.footer as any)} />
     </>
   );
 }

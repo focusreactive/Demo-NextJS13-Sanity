@@ -28,6 +28,10 @@ export const ContentBlocks = ({ blocks }: { blocks: BlockType[] }) => {
       next: blocks[index + 1]?.sectionConfig?.backgroundColor || null,
     };
 
+    if (block._type === 'hero') {
+      return <Component key={block._key} {...props} />;
+    }
+
     return (
       <Section
         key={block._key}

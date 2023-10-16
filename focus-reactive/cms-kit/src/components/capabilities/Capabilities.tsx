@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import SectionHead from '../section/head/SectionHead';
-import { Button } from '../button/Button';
+import Button from '../common/button/Button';
+
 import { styled } from '@linaria/react';
 import { brandColors } from './colors';
 import { ImageWithAlt, converters } from '../../cms-connector/converters';
@@ -65,7 +66,8 @@ const StyledCapability = styled.div<{ color?: string }>`
       }
     }
 
-    button {
+    button, a {
+      display: inline-flex;
       color: ${({ color }) => (color ? color : '#4d62d6')};
       margin-top: 20px;
 
@@ -186,7 +188,7 @@ const Capability = ({ title, titleIcon, description, image, button, bgColor }: C
 
         {description}
 
-        <Button>{button?.text}</Button>
+       {button && <Button link={button.link} text={button.text} />}
       </div>
 
       <div>{image && <Image src={image.src} alt={image.alt} width={image.width} height={image.height} />}</div>

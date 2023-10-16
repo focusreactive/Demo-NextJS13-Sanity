@@ -8,6 +8,8 @@ import {
   Sponsors,
   SponsorsPropsConverter,
   SupportedCms,
+  Hero,
+  HeroPropsConverter,
 } from '@focusreactive/cms-kit';
 import { ReactNode } from 'react';
 
@@ -39,6 +41,10 @@ export const config: CmsConfig = {
     customerSpotlight: {
       Component: CustomersWrapper,
       cmsDataToProps: CustomersPropsConverter,
+    },
+    hero: {
+      Component: Hero,
+      cmsDataToProps: HeroPropsConverter,
     },
   },
 };

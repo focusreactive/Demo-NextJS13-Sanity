@@ -12,9 +12,10 @@ const image = (image: any) => {
 };
 
 const imageWithAlt = (data: any) => {
-  if (!data) return null;
+  const assetRef = data?.image?.asset?._ref;
+  if (!assetRef) return null;
 
-  const src = getDefaultImageUrl(data.image.asset._ref);
+  const src = getDefaultImageUrl(assetRef);
   const { width, height } = getImageDimensions(src);
 
   return { src, alt: data.alt, width, height };
@@ -34,11 +35,13 @@ const richText = (blocks: any) => {
   return <RichText value={blocks} />;
 };
 
-const button = (block: any) => {
-  if (!block) return null;
+const button = (data: any) => {
+  if (!data) return null;
+
   return {
-    text: block.title,
-    link: block.uri,
+    // to make links work, need to extend groq query (content[]) to include link ref
+    text: data.title,
+    link: data?.uri?.[0],
   };
 };
 

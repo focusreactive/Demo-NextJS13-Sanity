@@ -24,12 +24,12 @@ const Buttons = ({ buttons, className, initialAnimationDelay = 100, animationSte
     <ButtonsBox className={className}>
       {(buttons || []).map((btn: any, key: any) => {
         if (btn.isAnimationDisabled) {
-          return <Button {...btn} key={key} link={btn.link || btn.externalLink} />;
+          return <Button {...btn} key={key} link={btn.link} />;
         }
 
         return (
           <FloatUp delay={initialAnimationDelay + animationStep * key} key={key}>
-            <Button {...btn} key={key} link={btn.link || btn.externalLink} />
+            <Button {...btn} key={key} link={btn.link} />
           </FloatUp>
         );
       })}
