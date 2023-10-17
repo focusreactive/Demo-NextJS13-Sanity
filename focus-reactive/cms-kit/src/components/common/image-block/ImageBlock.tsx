@@ -1,6 +1,7 @@
 import { styled } from '@linaria/react';
 import React from 'react';
 import { appTheme } from '../../../theme';
+import Image from 'next/image';
 
 const ImageWrap = styled.figure<{ maxWidth?: number; hoverEffect?: boolean }>`
   padding: 0;
@@ -35,10 +36,11 @@ const ImageWrap = styled.figure<{ maxWidth?: number; hoverEffect?: boolean }>`
 `;
 
 const ImageBlock = (props: any) => {
-  const { className, variant, src, alt, maxWidth, hoverEffect } = props;
+  const { className, variant, image, maxWidth, hoverEffect } = props;
+
   return (
     <ImageWrap className={className} data-variant={variant} maxWidth={maxWidth} hoverEffect={hoverEffect}>
-      <img loading="lazy" src={src} alt={alt} />
+      <Image src={image?.src ?? ''} alt={image?.alt} width={image?.width} height={image?.height} />
     </ImageWrap>
   );
 };

@@ -1,9 +1,11 @@
 import { defineField } from 'sanity';
 
-import { imageWithAlt } from '../common/imageWithAlt';
-import { documentTitleField, titleField } from '../common/title';
-import { descriptionField } from '../common/description';
-import { innerLink, externalLink, anchorLink, button } from '../common/links';
+import { BiDockTop } from 'react-icons/bi';
+
+import { imageWithAlt } from './imageWithAlt';
+import { documentTitleField, titleField } from './title';
+import { descriptionField } from './description';
+import { innerLink, externalLink, button } from './links';
 
 export const headerLink = {
   name: 'headerLink',
@@ -18,7 +20,6 @@ export const headerLink = {
       of: [{ type: innerLink.name }, { type: externalLink.name }],
       validation: (Rule) => Rule.max(1),
     }),
-    anchorLink,
     descriptionField,
     imageWithAlt,
   ],
@@ -46,7 +47,7 @@ export const headerMenuLinksGroup = {
       name: 'links',
       title: 'Links',
       type: 'array',
-      of: [{ type: 'headerLink' }],
+      of: [{ type: headerLink.name }],
     }),
   ],
   // preview: getCommonPreview(),
@@ -71,6 +72,7 @@ export const header = {
   name: 'header',
   title: 'Header',
   type: 'document',
+  icon: BiDockTop,
   fields: [
     defineField({
       name: 'title',
@@ -104,5 +106,3 @@ export const header = {
     }),
   ],
 };
-
-export default [header, headerLink, headerMenuLinksGroup, headerInfoCard];

@@ -1,5 +1,5 @@
 'use client';
-import React, { ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 import SectionHead from '../section/head/SectionHead';
 import { styled } from '@linaria/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -7,12 +7,12 @@ import { appTheme } from '../../theme';
 import ImageBlock from '../common/image-block/ImageBlock';
 import DescriptionBlock from '../common/description-block/DescriptionBlock';
 import Buttons from '../common/buttons/Buttons';
-import { EffectFade, FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import { EffectFade, Thumbs } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { ImageWithAlt, TitleWithOptions } from '../../global';
+import { CustomerProps, CustomersWrapperProps } from '@focusreactive/cms-kit';
 
 const StyledCustomersSection = styled.div`
   display: flex;
@@ -163,10 +163,10 @@ const ImageWrap = styled.div`
 const ThumbsSlider = styled(Swiper)`
   width: auto;
   display: block;
-  margin: 45px -20px 26px -20px;
+  margin: 0 -20px 26px -20px;
 
   ${appTheme.media.md} {
-    margin: 65px auto 10px 0;
+    margin: 0 auto 10px 0;
     max-width: 66%;
   }
 
@@ -236,15 +236,15 @@ const SpotlightSlider = styled(Swiper)`
 
   .swiper-slide {
     height: auto;
-    margin: auto 0 0;
+    margin: 10px 0 0;
   }
 
   .swiper-slide-active {
     z-index: 1;
   }
 
-  --swiper-navigation-color: white;
-  --swiper-pagination-color: white;
+  --swiper-navigation-color: transparent;
+  --swiper-pagination-color: transparent;
 `;
 
 const ThumbsImage = styled(ImageBlock)`
@@ -267,22 +267,22 @@ const PhotoDecor = () => {
   );
 };
 
-const SpotlightItem = (props: any) => {
-  const { bgColor, description, author, photo, logoInText, temp } = props;
+const SpotlightItem = (props: CustomerProps) => {
+  const { bgColor, description, author, photo, logoInText } = props;
 
   return (
     <SpotlightItemWrap>
-      <CommentBlock bgColor={bgColor ?? 'red'}>
-        <SpotlightDescription text={description[0].props.children[0]} />
+      <CommentBlock bgColor={bgColor?.hex ?? '#FF473D'}>
+        <SpotlightDescription text={description} color={'#fff'} />
 
-        <Customer text={`Slide number ${temp}  ${author[0][0]}`} />
+        <Customer text={author} color={'#fff'} />
 
-        {logoInText ? <DescriptionLogo loading="lazy" src={logoInText.src} alt={logoInText.alt} /> : null}
+        {logoInText ? <DescriptionLogo image={logoInText} /> : null}
       </CommentBlock>
 
       {photo && (
         <ImageWrap>
-          <ImageBlock src={photo.src} alt={photo.alt} />
+          <ImageBlock image={photo} />
           <PhotoDecor />
         </ImageWrap>
       )}
@@ -290,37 +290,23 @@ const SpotlightItem = (props: any) => {
   );
 };
 
-type CustomerProps = {
-  title: string;
-  description: ReactNode;
-  photo: ImageWithAlt;
-  logo: ImageWithAlt;
-  logoInText: ImageWithAlt;
-  author: string;
-};
-
 const Customer = styled(DescriptionBlock)`
   font-weight: bold;
   margin: 24px 0 12px;
 `;
 
-type CustomersProps = {
-  button: { title: string };
-  items: CustomerProps[];
-} & TitleWithOptions;
+const StyledWrapper = styled.div`
+  margin-bottom: clamp(80px, 15vw, 160px); // TODO: change section padding instead
+`;
 
-export const Customers = ({ title, titleIcon, items, button }: CustomersProps) => {
+export const Customers = ({ title, titleIcon, items, button }: CustomersWrapperProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   if (!items) return null;
 
-  const selectedItem = items?.[0];
-
-  if (!selectedItem) return null;
-
   return (
-    <div>
-      <SectionHead title={title} icon={titleIcon?.src} />
+    <StyledWrapper>
+      <SectionHead title={title} icon={titleIcon} />
       <StyledCustomersSection>
         {items?.length !== 1 ? (
           <ThumbsSlider
@@ -329,7 +315,7 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersProps) =
             spaceBetween={20}
             slidesPerView={2.5}
             centeredSlides
-            modules={[FreeMode, Navigation, Thumbs, EffectFade]}
+            modules={[Thumbs, EffectFade]}
             breakpoints={{
               [appTheme.breakpoints.sm]: {
                 spaceBetween: 50,
@@ -345,7 +331,7 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersProps) =
           >
             {(items || []).map((slide: any, key: any) => (
               <SwiperSlide key={key}>
-                <ThumbsImage loading="lazy" src={slide.logo?.src} alt={slide.logo?.alt} />
+                <ThumbsImage image={slide.logo} />
               </SwiperSlide>
             ))}
           </ThumbsSlider>
@@ -357,25 +343,27 @@ export const Customers = ({ title, titleIcon, items, button }: CustomersProps) =
         // @ts-ignore
         thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
         // @ts-ignore
-        modules={[FreeMode, Navigation, Thumbs]}
+        modules={[Thumbs]}
       >
         {(items || []).map((item: any, key: any) => (
           <SwiperSlide key={key}>
-            <SpotlightItem {...item} temp={key} />
+            <SpotlightItem {...item} />
           </SwiperSlide>
         ))}
       </SpotlightSlider>
 
-      <CustomButtons
-        buttons={[
-          {
-            link: 'https://www.trafficguard.ai/',
-            text: button?.title,
-            hasIcon: true,
-            variant: 'white',
-          },
-        ]}
-      />
-    </div>
+      {button && (
+        <CustomButtons
+          buttons={[
+            {
+              link: button.link,
+              text: button.text,
+              hasIcon: true,
+              variant: 'white',
+            },
+          ]}
+        />
+      )}
+    </StyledWrapper>
   );
 };

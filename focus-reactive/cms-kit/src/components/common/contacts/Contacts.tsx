@@ -2,6 +2,9 @@ import { styled } from '@linaria/react';
 import React from 'react';
 import { appTheme } from '../../../theme';
 import CountrySwitchWrapper from './CountrySwitchWrapper';
+import Image from 'next/image';
+import globe from '../../../assets/globe.svg';
+import location from '../../../assets/location.svg';
 
 const ContactsWrap = styled.div`
   display: flex;
@@ -37,10 +40,11 @@ const ContactsItemWrap = styled.div<{ color?: string }>`
   }
 `;
 
-const ContactsItem = ({ icon, title, width, color }: any) => {
+const ContactsItem = ({ icon, title, color }: any) => {
   return (
     <ContactsItemWrap color={color}>
-      <ContactImage loading="lazy" src={icon} alt={title} width={width} />
+      <Image src={icon} alt={title} />
+
       {title}
     </ContactsItemWrap>
   );
@@ -53,15 +57,11 @@ const Contacts = (props: any) => {
     <ContactsWrap>
       {(contacts || []).map((item: any, key: any) => (
         <CountrySwitchWrapper key={key}>
-          <ContactsItem {...item} width={12} color={color} />
+          <ContactsItem {...item} color={color} icon={location} />
         </CountrySwitchWrapper>
       ))}
       <CountrySwitchWrapper>
-        <ContactsItem
-          title="English"
-          icon="https://cdn.sanity.io/images/yaj9i7i6/production/b669cd88ded5c8362e9f7b099de5b6f984bbf9af-16x17.svg"
-          color={color}
-        />
+        <ContactsItem title="English" icon={globe} color={color} />
       </CountrySwitchWrapper>
     </ContactsWrap>
   );

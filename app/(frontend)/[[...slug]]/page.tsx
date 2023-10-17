@@ -1,11 +1,10 @@
 import { getAllPagesSlugs } from '@/model/getAllPagesSlugs';
 import { notFound } from 'next/navigation';
 import { draftMode } from 'next/headers';
-import { Hero, Header } from '@focusreactive/cms-kit';
-import { token } from '@/model/sanityFetch';
+import { Header, Footer } from '@focusreactive/cms-kit';
+import { sanityReadToken } from '@/environment';
 import { PageDynamicContent } from '@/components/PageDynamicContent';
 import { getPageContent } from '@/model/getPageContent';
-import Head from 'next/head';
 import { Metadata } from 'next';
 import { getPageMetadata } from '@/model/getPageMetadata';
 
@@ -23,6 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: metadata.title,
     description: metadata.description,
     keywords: metadata.keywords,
+    metadataBase: new URL('https://mvp-nextjs-sanity.vercel.app/'),
     alternates: {
       canonical: slug,
     },
@@ -59,9 +59,6 @@ export default async function Page({ params }: Props) {
 
   if (!page) return notFound();
 
-  const heroImage = 'https://i.ibb.co/d4yj9wx/image.png';
-  const description =
-    'By verifying advertising engagement and protecting budgets, we help businesses get the clarity they need to unlock the best advertising results.';
   return (
     <>
       <Header
@@ -72,26 +69,9 @@ export default async function Page({ params }: Props) {
         heroBackgroundColor="default"
       />
       <main>
-        <Head>
-          <link rel="preload" href={heroImage} as="image" fetchPriority="high" />
-        </Head>
-        <Hero
-          title="Clarity beyond measure."
-          description={description}
-          buttons={[
-            { link: 'https://www.trafficguard.ai/', text: 'Start now' },
-            { link: 'https://www.trafficguard.ai/', text: 'Contact sales', hasIcon: true },
-          ]}
-          decor={{
-            src: heroImage,
-            hasParallax: true,
-            // secondSrc: 'https://i.ibb.co/d4yj9wx/image.png',
-          }}
-          isHomePage
-          bgColor="blue400"
-        />
-        <PageDynamicContent page={page} pageSlug={pageSlug} token={token} isDraftMode={isDraftMode} />
+        <PageDynamicContent page={page} pageSlug={pageSlug} token={sanityReadToken} isDraftMode={isDraftMode} />
       </main>
+      <Footer {...(page.footer as any)} />
     </>
   );
 }

@@ -49,7 +49,7 @@ const LinkContainer = styled(SmartLink)`
   display: flex;
   min-height: 45px;
   border-radius: 45px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: inherit;
   align-items: center;
   justify-content: center;
   font-size: 16px;
@@ -265,7 +265,7 @@ const Button = ({
   hasIcon,
   background,
   borderColor,
-  handleClick,
+  // handleClick,
   noWaves,
   isActive,
   ...rest
@@ -274,7 +274,7 @@ const Button = ({
     <>
       {link ? (
         <LinkContainer
-          url={link}
+          link={link}
           className={className}
           data-variant={variant}
           data-size={size}
@@ -302,7 +302,7 @@ const Button = ({
           borderColor={borderColor}
           as="button"
           type="button"
-          onClick={() => handleClick(value)}
+          // onClick={() => handleClick(value)}
           style={{
             '--btnFontWeight': weight,
           }}

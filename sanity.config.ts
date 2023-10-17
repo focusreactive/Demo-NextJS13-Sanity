@@ -1,7 +1,7 @@
 import { defineConfig } from 'sanity';
 import { deskTool } from 'sanity/desk';
 import { visionTool } from '@sanity/vision';
-import { simplerColorInput } from 'sanity-plugin-simpler-color-input';
+import { colorInput } from '@sanity/color-input';
 import { media } from 'sanity-plugin-media';
 
 import { schemaTypes } from '@/sanity/schemas';
@@ -23,7 +23,7 @@ export default defineConfig({
     }),
     visionTool(),
     media(),
-    simplerColorInput(),
+    colorInput(),
   ],
 
   schema: {

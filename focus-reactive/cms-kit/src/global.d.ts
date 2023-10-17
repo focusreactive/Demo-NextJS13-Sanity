@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { ImageWithAlt } from './cms-connector/converters';
 
 export enum SupportedCms {
   sanity = 'sanity',
@@ -6,9 +7,7 @@ export enum SupportedCms {
 
 export type TitleWithOptions = {
   title: ReactNode;
-  titleIcon: {
-    src: string;
-  };
+  titleIcon: ImageWithAlt;
 };
 
-export type ImageWithAlt = { src: string; alt: string };
+export type ButtonOrLink = { text: string; link: string };

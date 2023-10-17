@@ -2,12 +2,10 @@ import { styled } from '@linaria/react';
 import React from 'react';
 import { appTheme } from '../../../theme';
 
-import { RichText } from '@/components/RichText';
-
-const TitleBlockWrap = styled.div`
+const TitleBlockWrap = styled.div<{ color?: string }>`
   position: relative;
   width: 100%;
-  --titleColor: ${appTheme.colors.black};
+  --titleColor: ${({ color }) => (color ? color : appTheme.colors.black)};
 `;
 
 const Tip = styled.p`
@@ -125,7 +123,7 @@ const TitleBlock = ({ text, icon, tip, variant, color, className }: any) => {
       {tip ? <Tip>{tip}</Tip> : null}
       {text ? (
         <TitleWrap className="title" data-variant={variant}>
-          <RichText value={text} />
+          {text}
         </TitleWrap>
       ) : null}
     </TitleBlockWrap>

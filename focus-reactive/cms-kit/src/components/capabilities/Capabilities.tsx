@@ -1,10 +1,12 @@
 import React, { ReactNode } from 'react';
 import SectionHead from '../section/head/SectionHead';
-import { Button } from '../button/Button';
+import Button from '../common/button/Button';
+
 import { styled } from '@linaria/react';
 import { brandColors } from './colors';
-import { converters } from '../../cms-connector/converters';
-import { ImageWithAlt, TitleWithOptions } from '../../global';
+import { ImageWithAlt, converters } from '../../cms-connector/converters';
+import { ButtonOrLink, TitleWithOptions } from '../../global';
+import Image from 'next/image';
 
 const StyledCapabilities = styled.div`
   display: flex;
@@ -29,6 +31,10 @@ const StyledCapability = styled.div<{ color?: string }>`
   width: 100%;
   position: relative;
   z-index: 2;
+
+  & > div {
+    box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+  }
 
   & > div:first-child {
     width: 58%;
@@ -60,7 +66,8 @@ const StyledCapability = styled.div<{ color?: string }>`
       }
     }
 
-    button {
+    button, a {
+      display: inline-flex;
       color: ${({ color }) => (color ? color : '#4d62d6')};
       margin-top: 20px;
 
@@ -84,6 +91,8 @@ const StyledCapability = styled.div<{ color?: string }>`
       display: block;
       max-width: 100%;
       border-radius: 20px;
+      height: 100%;
+      width: 100%;
     }
   }
   @media screen and (max-width: 1140px) {
@@ -158,30 +167,34 @@ const StyledCapability = styled.div<{ color?: string }>`
   }
 `;
 
+const StyledWrapper = styled.div`
+  margin-bottom: clamp(80px, 15vw, 160px); // TODO: change section padding instead
+`;
+
 type CapabilityProps = {
   description: ReactNode;
   image: ImageWithAlt;
-  button: {
-    title: string;
-  };
+  button: ButtonOrLink;
   bgColor?: string;
 } & TitleWithOptions;
 
-const Capability = ({ title, titleIcon, description, image, button, bgColor }: CapabilityProps) => (
-  <StyledCapability color={brandColors[bgColor as keyof typeof brandColors]}>
-    <div>
-      <img src={titleIcon?.src} alt="" loading="lazy" />
+const Capability = ({ title, titleIcon, description, image, button, bgColor }: CapabilityProps) => {
+  return (
+    <StyledCapability color={brandColors[bgColor as keyof typeof brandColors]}>
+      <div>
+        <Image src={titleIcon?.src ?? ''} alt={titleIcon?.alt} width={titleIcon?.width} height={titleIcon?.height} />
 
-      <h3>{title}</h3>
+        <h3>{title}</h3>
 
-      {description}
+        {description}
 
-      <Button>{button?.title}</Button>
-    </div>
+       {button && <Button link={button.link} text={button.text} />}
+      </div>
 
-    <div>{image && <img src={image.src} alt={image.alt} loading="lazy" />}</div>
-  </StyledCapability>
-);
+      <div>{image && <Image src={image.src} alt={image.alt} width={image.width} height={image.height} />}</div>
+    </StyledCapability>
+  );
+};
 
 type CapabilitiesProps = {
   list: CapabilityProps[];
@@ -189,12 +202,12 @@ type CapabilitiesProps = {
 
 export const Capabilities = (props: CapabilitiesProps) => {
   return (
-    <div>
-      <SectionHead title={props.title} icon={props.titleIcon?.src} />
+    <StyledWrapper>
+      <SectionHead title={props.title} icon={props.titleIcon} />
       <StyledCapabilities>
         {props.list && props.list.map((item, index) => <Capability key={index} {...item} />)}
       </StyledCapabilities>
-    </div>
+    </StyledWrapper>
   );
 };
 

@@ -375,7 +375,7 @@ export const HeaderComponent = ({
               </HeadMenu>
               <CustomButtons buttons={buttons.length ? updatedButtons : []} buttonsColor={correctColors.buttonsColor} />
             </HeaderGroup>
-            <Hamburger burgerColor={burgerColor} onClick={() => setIsMobileMenuOpen(true)}>
+            <Hamburger burgerColor={burgerColor} onClick={() => setIsMobileMenuOpen(true)} aria-label="burger menu">
               <span />
               <span />
               <span />
@@ -397,25 +397,35 @@ export const HeaderComponent = ({
 export const Header = (props: any) => {
   const convertedProps = headerPropsConverter.sanity(props);
 
+  if (convertedProps === null) return null;
+
   return <HeaderComponent {...(convertedProps as any)} />;
 };
 
 export const headerPropsConverter = {
   sanity: (block: any) => {
-    const { ctaCard, menu, buttons, ...rest } = block;
+    const { ctaCard, menu, ...rest } = block;
+
+    if (!rest._id) {
+      return null;
+    }
 
     return {
       ...rest,
       ctaCard: {
+        ...ctaCard,
         image: converters.imageWithAlt(ctaCard.imageWithAlt),
         title: converters.title(ctaCard.title),
-        buttons: ctaCard.buttons.map((btn: any) => converters.button(btn)),
       },
       menu: menu.map((v: any) => ({
         ...v,
-        links: v.links.map((link: any) => ({ ...link, imageWithAlt: converters.imageWithAlt(link.imageWithAlt) })),
+        links: v.links.map((link: any) => ({
+          ...link,
+          title: converters.title(link.title),
+          description: converters.richText(link.description),
+          imageWithAlt: converters.imageWithAlt(link.imageWithAlt),
+        })),
       })),
-      buttons: buttons.map(converters.button),
     };
   },
 };

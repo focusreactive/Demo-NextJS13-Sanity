@@ -7,6 +7,7 @@ import SmartLink from '../common/smart-link/SmartLink';
 import Contacts from '../common/contacts/Contacts';
 import Socials from '../common/socials/Socials';
 import { StyledContainer } from '../section/Section';
+import { converters } from '../../cms-connector/converters';
 
 const CustomButtons = styled(Buttons)``;
 
@@ -42,7 +43,7 @@ const FooterBottom = styled(StyledContainer)`
   position: relative;
   display: flex;
   flex-direction: column-reverse;
-  color: ${appTheme.colors.gray400};
+  color: ${appTheme.colors.black};
   z-index: 1;
 
   .socials {
@@ -164,7 +165,7 @@ const TopMenu = styled.div`
     }
   }
 
-  h5 {
+  h3 {
     font-weight: 400;
     font-size: 18px;
     line-height: 1.28;
@@ -196,7 +197,7 @@ const TopMenu = styled.div`
   }
 `;
 
-const Nav = styled.div`
+const Nav = styled.ul`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -225,7 +226,7 @@ const Nav = styled.div`
   }
 
   a {
-    color: ${appTheme.colors.gray400};
+    color: ${appTheme.colors.black};
     transition: all ease 0.2s;
 
     &:hover {
@@ -264,10 +265,11 @@ const Member = styled.div`
 `;
 
 const TopMenuItem = (props: any) => {
-  const { title, ...rest } = props;
+  const { text, ...rest } = props;
+
   return (
     <li>
-      <SmartLink {...rest}>{title}</SmartLink>
+      <SmartLink {...rest}>{text}</SmartLink>
     </li>
   );
 };
@@ -275,7 +277,7 @@ const TopMenuItem = (props: any) => {
 const TopMenuList = ({ title, list }: any) => {
   return (
     <div className="f-list">
-      <h5>{title}</h5>
+      <h3>{title}</h3>
       <ul>
         {(list || []).map((item: any, key: any) => (
           <TopMenuItem key={key} {...item} />
@@ -286,10 +288,11 @@ const TopMenuList = ({ title, list }: any) => {
 };
 
 const NavItem = (props: any) => {
-  const { title, ...rest } = props;
+  const { text, ...rest } = props;
+
   return (
     <li>
-      <SmartLink {...rest}>{title}</SmartLink>
+      <SmartLink {...rest}>{text}</SmartLink>
     </li>
   );
 };
@@ -320,7 +323,9 @@ const FDecor1 = () => {
   );
 };
 
-export const Footer = (props: any) => {
+export const FooterComponent = (props: any) => {
+  if (props === null) return null;
+
   const { menus, nav, socials, buttons, copyright, contacts } = props;
 
   return (
@@ -338,7 +343,7 @@ export const Footer = (props: any) => {
           <LogoLink href={'/'}>
             <Logo bgColor="blue100" />
           </LogoLink>
-          <CustomButtons buttons={buttons} />
+          {buttons?.length && <CustomButtons buttons={buttons.map((b: any) => ({ ...b, variant: 'green' }))} />}
           <Contacts contacts={contacts} />
         </FooterTopR>
       </FooterTop>
@@ -350,7 +355,7 @@ export const Footer = (props: any) => {
             <sub>i</sub>MVP
           </b>
         </Member>
-        <Copyright>© Copyright 2021 TerrificYard</Copyright>
+        <Copyright>{copyright}</Copyright>
         <Nav>
           {(nav || []).map((item: any, key: any) => (
             <NavItem key={key} {...item} />
@@ -361,4 +366,34 @@ export const Footer = (props: any) => {
       <FDecor1 />
     </FooterBox>
   );
+};
+
+export const Footer = (props: any) => {
+  const convertedProps = footerPropsConverter.sanity(props);
+
+  if (convertedProps === null) return null;
+
+  return <FooterComponent {...(convertedProps as any)} />;
+};
+
+export const footerPropsConverter = {
+  sanity: (block: any) => {
+    const { contacts, socials, ...rest } = block;
+
+    if (!rest._id) {
+      return null;
+    }
+
+    return {
+      ...rest,
+      contacts: contacts.map((v: any) => ({
+        ...v,
+        icon: converters.image(v.icon)?.src,
+      })),
+      socials: socials.map((v: any) => ({
+        ...v,
+        link: v.externalLink.link,
+      })),
+    };
+  },
 };

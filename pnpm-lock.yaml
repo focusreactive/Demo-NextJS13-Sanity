@@ -26,6 +26,9 @@ dependencies:
   '@sanity/client':
     specifier: ^6.4.12
     version: 6.4.12
+  '@sanity/color-input':
+    specifier: ^3.1.0
+    version: 3.1.0(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.17.0)(styled-components@5.3.11)
   '@sanity/image-url':
     specifier: ^1.0.2
     version: 1.0.2
@@ -89,9 +92,6 @@ dependencies:
   sanity-plugin-media:
     specifier: ^2.2.2
     version: 2.2.2(@types/react@18.2.27)(react-dom@18.2.0)(react-is@18.2.0)(react-native@0.72.5)(react@18.2.0)(sanity@3.17.0)(styled-components@5.3.11)
-  sanity-plugin-simpler-color-input:
-    specifier: ^1.1.0
-    version: 1.1.0(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.17.0)(styled-components@5.3.11)
   suspend-react:
     specifier: ^0.1.3
     version: 0.1.3(react@18.2.0)
@@ -3124,6 +3124,27 @@ packages:
       rxjs: 7.8.1
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@sanity/color-input@3.1.0(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.17.0)(styled-components@5.3.11):
+    resolution: {integrity: sha512-eHLrULBA53OIM/76JeEkQdM72gnBOR/CjnTpQUcu+x6PB6d4lghkeU75ESLLIISdyTc4U6cO2N6CMW8bDNuUVg==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: ^18
+      sanity: ^3
+      styled-components: ^5.2
+    dependencies:
+      '@sanity/icons': 2.5.0(react@18.2.0)
+      '@sanity/incompatible-plugin': 1.0.4(react-dom@18.2.0)(react@18.2.0)
+      '@sanity/ui': 1.8.2(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
+      lodash: 4.17.21
+      react: 18.2.0
+      react-color: 2.19.3(react@18.2.0)
+      sanity: 3.17.0(@types/node@20.8.4)(@types/react@18.2.27)(react-dom@18.2.0)(react@18.2.0)(styled-components@5.3.11)
+      styled-components: 5.3.11(@babel/core@7.23.0)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+    transitivePeerDependencies:
+      - react-dom
+      - react-is
     dev: false
 
   /@sanity/color@2.2.5:
@@ -9233,25 +9254,6 @@ packages:
       - '@types/react'
       - react-is
       - react-native
-    dev: false
-
-  /sanity-plugin-simpler-color-input@1.1.0(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.17.0)(styled-components@5.3.11):
-    resolution: {integrity: sha512-OkZzoVdsCzIPBDEggSgHs0JbK3+ittohTU0C47xlAQPJPlc5S70POyITkld+14AiKZzKbJWAYm7HGN8JHKgg9w==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      react: ^18
-      sanity: ^3
-    dependencies:
-      '@sanity/icons': 2.5.0(react@18.2.0)
-      '@sanity/incompatible-plugin': 1.0.4(react-dom@18.2.0)(react@18.2.0)
-      '@sanity/ui': 1.8.2(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
-      react: 18.2.0
-      react-color: 2.19.3(react@18.2.0)
-      sanity: 3.17.0(@types/node@20.8.4)(@types/react@18.2.27)(react-dom@18.2.0)(react@18.2.0)(styled-components@5.3.11)
-    transitivePeerDependencies:
-      - react-dom
-      - react-is
-      - styled-components
     dev: false
 
   /sanity@3.17.0(@types/node@20.8.4)(@types/react@18.2.27)(react-dom@18.2.0)(react@18.2.0)(styled-components@5.3.11):

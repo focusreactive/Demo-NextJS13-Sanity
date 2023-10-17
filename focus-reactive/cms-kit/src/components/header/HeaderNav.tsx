@@ -243,7 +243,7 @@ const Promo = ({ image, title, buttons }: any) => {
   return (
     <PromoWrap>
       <FloatUp>
-        <ImageBlock {...image} />
+        <ImageBlock image={image} />
         <PromoContent>
           <Description>{title}</Description>
           <Buttons buttons={buttons} />
@@ -255,16 +255,11 @@ const Promo = ({ image, title, buttons }: any) => {
 
 const NavItem = ({ links, ...restProps }: any) => {
   return (links || []).map((item: any, key: any) => {
-    const {
-      imageWithAlt: { src, alt },
-      title,
-      description,
-      ...rest
-    } = item;
+    const { title, description, ...rest } = item;
 
     return (
       <NavItemWrap key={key.iconAlt} {...restProps} {...rest}>
-        <ImageBlock src={src} alt={alt} />
+        <ImageBlock image={item.imageWithAlt} />
         <NavTitle text={title} />
         <NavDescription text={description} color="gray700" />
       </NavItemWrap>
@@ -277,16 +272,11 @@ const NavItemCols = ({ navTitle, links, mainKey, ...restProps }: any) => {
     <NavItemColsWrap>
       <h3>{navTitle}</h3>
       {(links || []).map((item: any, key: any) => {
-        const {
-          imageWithAlt: { src, alt },
-          title,
-          description,
-          ...rest
-        } = item;
+        const { title, description, ...rest } = item;
 
         return (
           <NavItemColsList key={key} {...restProps} {...rest}>
-            <ImageBlock src={src} alt={alt} />
+            <ImageBlock image={item.imageWithAlt} />
             <NavTitle text={title} />
             <NavDescription text={description} color="gray700" />
           </NavItemColsList>

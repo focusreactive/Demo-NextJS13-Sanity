@@ -2,12 +2,10 @@ import { styled } from '@linaria/react';
 import React from 'react';
 import { appTheme } from '../../../theme';
 
-import { RichText } from '@/components/RichText';
-
-const DescrBlock = styled.div`
+const DescrBlock = styled.div<{ color?: string }>`
   font-size: 16px;
   line-height: 1.52;
-  color: ${appTheme.colors.gray400};
+  color: ${({ color }) => color || appTheme.colors.gray400};
 
   ${appTheme.media.md} {
     font-size: 18px;
@@ -210,7 +208,7 @@ const DescrBlock = styled.div`
 const DescriptionBlock = ({ className = '', text, variant, color, onClick }: any) => {
   return (
     <DescrBlock onClick={onClick} data-variant={variant} color={color} className={className}>
-      <RichText value={text} />
+      {text}
     </DescrBlock>
   );
 };

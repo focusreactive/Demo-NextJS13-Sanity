@@ -1,21 +1,16 @@
-import React from 'react';
+const SmartLink = ({ children, link, textColor, bgColor, borderColor, noWaves, ...rest }: any) => {
+  let correctUrl = '/';
+  switch (link?._type) {
+    case 'externalLink':
+      correctUrl = link.link;
+      break;
+    case 'innerLink':
+      correctUrl = link.ref?.slug?.current;
+      break;
+  }
 
-const SmartLink = ({
-  children,
-  url,
-
-  // TODO: select props instead of exclusion
-  link,
-  externalLink,
-  hash,
-  textColor,
-  bgColor,
-  borderColor,
-  noWaves,
-  ...rest
-}: any) => {
   return (
-    <a href={url || link} {...rest}>
+    <a href={correctUrl} {...rest}>
       {children}
     </a>
   );

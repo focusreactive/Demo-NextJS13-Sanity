@@ -1,15 +1,27 @@
 import { getDefaultImageUrl } from '@/sanity/utils/getDefaultImageUrl';
 import { RichText } from '@/components/RichText';
+import { getImageDimensions } from '../utils/getImageDimensions';
 
 const image = (image: any) => {
   if (!image) return null;
-  return { src: getDefaultImageUrl(image.asset._ref), alt: image.alt };
+
+  const src = getDefaultImageUrl(image.asset._ref);
+  const { width, height } = getImageDimensions(src);
+
+  return { src, alt: image.alt ?? '', width, height };
 };
 
 const imageWithAlt = (data: any) => {
-  if (!data) return null;
-  return { src: getDefaultImageUrl(data.image.asset._ref), alt: data.alt };
+  const assetRef = data?.image?.asset?._ref;
+  if (!assetRef) return null;
+
+  const src = getDefaultImageUrl(assetRef);
+  const { width, height } = getImageDimensions(src);
+
+  return { src, alt: data.alt, width, height };
 };
+
+export type ImageWithAlt = ReturnType<typeof imageWithAlt>;
 
 const plainText = (text: any) => {
   return text;
@@ -23,11 +35,13 @@ const richText = (blocks: any) => {
   return <RichText value={blocks} />;
 };
 
-const button = (block: any) => {
-  if (!block) return null;
+const button = (data: any) => {
+  if (!data) return null;
+
   return {
-    text: block.title,
-    link: block.uri,
+    // to make links work, need to extend groq query (content[]) to include link ref
+    text: data.title,
+    link: data?.uri?.[0],
   };
 };
 
