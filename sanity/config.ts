@@ -1,6 +1,6 @@
 const config = {
-  projectId: 'q7v95rg2',
-  dataset: 'production',
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
   useCdn: false,
   apiVersion: '2021-10-21',
 };
