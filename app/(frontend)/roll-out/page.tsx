@@ -1,15 +1,22 @@
 import { styled } from '@linaria/react';
 
-import { createSanityProject } from './services';
+import { createSanityProject } from './sanity-api';
+import { createVercelProject } from './vercel-api';
 
 export default function RollOutPage() {
   const triggerDeploy = async () => {
     'use server';
+    const sanityData = await createSanityProject();
 
-    const data = await createSanityProject();
+    if (sanityData) {
+      const vercelData = await createVercelProject({
+        sanityProjectId: sanityData.projectId,
+        sanityDatasetName: sanityData.datasetName,
+      });
 
-    console.log('data');
-    console.log(data);
+      console.log('vercel project data');
+      console.log(vercelData);
+    }
   };
 
   return (
