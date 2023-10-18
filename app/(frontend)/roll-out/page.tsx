@@ -1,9 +1,15 @@
 import { styled } from '@linaria/react';
 
+import { createSanityProject } from './services';
+
 export default function RollOutPage() {
   const triggerDeploy = async () => {
     'use server';
-    console.log('deploying the apps');
+
+    const data = await createSanityProject();
+
+    console.log('data');
+    console.log(data);
   };
 
   return (
@@ -20,13 +26,13 @@ const Container = styled.div`
   background: rgb(141, 136, 228);
   background: linear-gradient(90deg, rgba(141, 136, 228, 1) 0%, rgba(0, 212, 255, 1) 100%);
   width: 100%;
-  padding: 50px;
+  padding: 100px;
   min-height: 100vh;
 
   h2 {
     text-align: center;
     font-weight: 700;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
   }
 
   button {
