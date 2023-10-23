@@ -1,9 +1,9 @@
-import { ContentBlocks } from '@/components/ContentBlocks';
-import { PreviewContentBlocks } from '@/components/PreviewContentBlocks';
+import { PreviewPage } from '@/components/PreviewPage';
 import { PreviewProvider } from '@/components/PreviewProvider';
 import { SanityDocument } from 'sanity';
+import { Page } from '@/components/Page';
 
-export const PageDynamicContent = ({
+export const DynamicPage = ({
   page,
   pageSlug,
   isDraftMode,
@@ -17,11 +17,11 @@ export const PageDynamicContent = ({
   if (isDraftMode && token) {
     return (
       <PreviewProvider token={token}>
-        <PreviewContentBlocks page={page} params={{ slug: pageSlug }} />
+        <PreviewPage initialPage={page} params={{ slug: pageSlug }} />
       </PreviewProvider>
     );
   }
 
   // @ts-ignore
-  return <ContentBlocks blocks={page.content} />;
+  return <Page page={page} />;
 };

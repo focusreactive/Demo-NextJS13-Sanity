@@ -1,9 +1,8 @@
 import { getAllPagesSlugs } from '@/model/getAllPagesSlugs';
 import { notFound } from 'next/navigation';
 import { draftMode } from 'next/headers';
-import { Header, Footer } from '@focusreactive/cms-kit';
 import { sanityReadToken } from '@/environment';
-import { PageDynamicContent } from '@/components/PageDynamicContent';
+import { DynamicPage } from '@/components/DynamicPage';
 import { getPageContent } from '@/model/getPageContent';
 import { Metadata } from 'next';
 import { getPageMetadata } from '@/model/getPageMetadata';
@@ -59,19 +58,5 @@ export default async function Page({ params }: Props) {
 
   if (!page) return notFound();
 
-  return (
-    <>
-      <Header
-        {...(page.header as any)}
-        isFixed={false}
-        buttonsColor=""
-        linksColor="white"
-        heroBackgroundColor="default"
-      />
-      <main>
-        <PageDynamicContent page={page} pageSlug={pageSlug} token={sanityReadToken} isDraftMode={isDraftMode} />
-      </main>
-      <Footer {...(page.footer as any)} />
-    </>
-  );
+  return <DynamicPage page={page} pageSlug={pageSlug} token={sanityReadToken} isDraftMode={isDraftMode} />;
 }
