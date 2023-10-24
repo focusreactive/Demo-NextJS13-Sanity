@@ -7,7 +7,7 @@ export default function RollOutPage() {
   const triggerDeploy = async (data: FormData) => {
     'use server';
     const username = (data.get('email') as string).split('@')[0].toLowerCase();
-    const cleanUsername = username.replace(/[^a-zA-Z0-9]/g, '').slice(0, 90);
+    const cleanUsername = username.replace(/[^a-z0-9]/g, '').slice(0, 90);
 
     const sanityData = await createSanityProject(cleanUsername);
 
