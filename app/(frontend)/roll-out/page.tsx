@@ -6,13 +6,14 @@ import { createVercelProject } from './vercel-api';
 export default function RollOutPage() {
   const triggerDeploy = async (data: FormData) => {
     'use server';
-    const userEmail = data.get('email') as string;
+    const username = (data.get('email') as string).split('@')[0].toLowerCase();
+    const cleanUsername = username.replace(/[^a-zA-Z0-9]/g, '').slice(0, 90);
 
-    const sanityData = await createSanityProject(userEmail);
+    const sanityData = await createSanityProject(cleanUsername);
 
     if (sanityData) {
       const vercelData = await createVercelProject({
-        userEmail,
+        username: cleanUsername,
         sanityProjectId: sanityData.projectId,
         sanityDatasetName: sanityData.datasetName,
       });
