@@ -1,5 +1,5 @@
 // todo: add logs
-export const createSanityProject = async () => {
+export const createSanityProject = async (userEmail: string) => {
   try {
     console.log('creating sanity project 🏎');
     const response = await fetch('https://api.sanity.io/v2021-06-07/projects', {
@@ -9,8 +9,7 @@ export const createSanityProject = async () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        // todo: name based on user's email
-        displayName: 'test project from cli',
+        displayName: `${userEmail}-${process.env.PROJECT_NAME}`,
         organizationId: process.env.SANITY_ORGANIZATION_ID,
       }),
     });

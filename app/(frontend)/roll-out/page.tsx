@@ -4,12 +4,15 @@ import { createSanityProject } from './sanity-api';
 import { createVercelProject } from './vercel-api';
 
 export default function RollOutPage() {
-  const triggerDeploy = async () => {
+  const triggerDeploy = async (data: FormData) => {
     'use server';
-    const sanityData = await createSanityProject();
+    const userEmail = data.get('email') as string;
+
+    const sanityData = await createSanityProject(userEmail);
 
     if (sanityData) {
       const vercelData = await createVercelProject({
+        userEmail,
         sanityProjectId: sanityData.projectId,
         sanityDatasetName: sanityData.datasetName,
       });
@@ -23,6 +26,7 @@ export default function RollOutPage() {
     <Container>
       <h2>Get access to your own demo app in minutes</h2>
       <form action={triggerDeploy}>
+        <input type="email" required name="email" />
         <button type="submit">Deploy to FocusReactive 😌</button>
       </form>
     </Container>
@@ -42,6 +46,17 @@ const Container = styled.div`
     margin-bottom: 50px;
   }
 
+  input {
+    max-width: 350px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
   button {
     padding: 10px 15px
     background: white;
@@ -50,5 +65,7 @@ const Container = styled.div`
     font-size: 18px;
     display: block;
     cursor: pointer;
+    width: 100%;
+    max-width: 350px;
   }
 `;
