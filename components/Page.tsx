@@ -2,11 +2,23 @@ import { Footer, Header } from '@focusreactive/cms-kit';
 import { ContentBlocks } from '@/components/ContentBlocks';
 import { SanityDocument } from 'sanity';
 
+const addEditableAttrs = (page: SanityDocument): SanityDocument => {
+  if (Array.isArray(page.content)) {
+    page.content.forEach((block, i) => {
+      block.studioUrl = `/admin/intent/edit/id=${page._id};type=${page._type};path=content[${i}]`;
+    });
+  }
+
+  return page;
+};
+
 export const Page = ({ page }: { page: SanityDocument }) => {
+  const editablePage = addEditableAttrs(page);
+
   return (
     <>
       <Header
-        {...(page?.header as any)}
+        {...(editablePage?.header as any)}
         isFixed={false}
         buttonsColor=""
         linksColor="white"
@@ -14,10 +26,10 @@ export const Page = ({ page }: { page: SanityDocument }) => {
       />
 
       <main>
-        <ContentBlocks blocks={page?.content as any} />;
+        <ContentBlocks blocks={editablePage?.content as any} />;
       </main>
 
-      <Footer {...(page?.footer as any)} />
+      <Footer {...(editablePage?.footer as any)} />
     </>
   );
 };

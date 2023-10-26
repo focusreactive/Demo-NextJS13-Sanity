@@ -2,6 +2,12 @@ import { getDefaultImageUrl } from '@/sanity/utils/getDefaultImageUrl';
 import { RichText } from '@/components/RichText';
 import { getImageDimensions } from '../utils/getImageDimensions';
 
+const editableFields = (block: any) => {
+  return {
+    studioUrl: block.studioUrl,
+  };
+};
+
 const image = (image: any) => {
   if (!image) return null;
 
@@ -46,6 +52,7 @@ const button = (data: any) => {
 };
 
 export const converters = {
+  editableFields,
   image,
   imageWithAlt,
   title,
