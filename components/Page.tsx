@@ -5,7 +5,7 @@ import { SanityDocument } from 'sanity';
 const addEditableAttrs = (page: SanityDocument): SanityDocument => {
   if (Array.isArray(page.content)) {
     page.content.forEach((block, i) => {
-      block.studioUrl = `/admin/intent/edit/id=${page._id};type=${page._type};path=content[${i}]`;
+      block.studioUrl = `/admin/intent/edit/id=${page._id};type=${page._type};view=preview;path=content[${i}]`;
     });
   }
 
