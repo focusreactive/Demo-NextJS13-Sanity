@@ -1,6 +1,6 @@
 import { headers } from 'next/headers';
 
-import { createVercelProjectDeployment } from '../../roll-out/vercel-api';
+import { createVercelProjectDeployment } from '../../(frontend)/roll-out/vercel-api';
 
 export async function POST(req: Request, res: Response) {
   const authHeader = headers().get('authorization');
