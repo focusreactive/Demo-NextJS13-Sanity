@@ -104,3 +104,50 @@ export async function addUserEmailToMembers({ projectId, email }: { projectId: s
     console.log('error adding member :(');
   }
 }
+
+export async function createDocumentWebhook({
+  sanityProjectId,
+  vercelProjectId,
+  vercelProjectName,
+}: {
+  sanityProjectId: string;
+  vercelProjectId: string;
+  vercelProjectName: string;
+}) {
+  console.log('adding webhook 🏎');
+
+  try {
+    const result = await fetch(`https://api.sanity.io/v2021-10-04/hooks/projects/${sanityProjectId}`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${process.env.SANITY_PERSONAL_AUTH_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        type: 'document',
+        name: 'Sanity Studio',
+        url: `https://${vercelProjectName}.vercel.app/api/sanity-deploy?projectId=${vercelProjectId}&projectName=${vercelProjectName}`,
+        httpMethod: 'POST',
+        apiVersion: 'v2021-03-25',
+        includeDrafts: false,
+        dataset: '*',
+        rule: {
+          on: ['create', 'update', 'delete'],
+          filter: "_type == 'article'",
+          projection: '{_id}',
+        },
+        headers: {
+          Authorization: `Bearer ${process.env.VERCEL_PERSONAL_AUTH_TOKEN}`,
+        },
+      }),
+    });
+
+    const data = await result.json();
+
+    console.log('webhook added');
+    console.log('webhook data:');
+    console.log(data);
+  } catch (e) {
+    console.log(e);
+  }
+}

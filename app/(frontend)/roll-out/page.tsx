@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 
-import { createSanityProject, createCorsEntry, addUserEmailToMembers } from './sanity-api';
+import { createSanityProject, createCorsEntry, addUserEmailToMembers, createDocumentWebhook } from './sanity-api';
 import { createVercelProject } from './vercel-api';
 
 export default function RollOutPage() {
@@ -29,12 +29,13 @@ export default function RollOutPage() {
             projectId: sanityData.projectId,
             email,
           }),
+          createDocumentWebhook({
+            sanityProjectId: sanityData.projectId,
+            vercelProjectId: projectData.projectId,
+            vercelProjectName: projectData.projectName,
+          }),
         ]);
       }
-
-      // todo: create vercel deployment hook
-
-      // todo: set vercel deploiyment hook to sanity
 
       // todo: send notification to slack chennel that project is created for user with email: real user email
     }

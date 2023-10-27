@@ -7,13 +7,14 @@ type VercelProjectOptions = {
 export async function createVercelProject({ sanityProjectId, sanityDatasetName, username }: VercelProjectOptions) {
   console.log('creating vercel project 🏎');
   try {
+    const projectName = `${username}-${process.env.PROJECT_NAME}`;
     const result = await fetch(`https://api.vercel.com/v9/projects?teamId=${process.env.VERCEL_FR_TEAM_ID}`, {
       headers: {
         Authorization: `Bearer ${process.env.VERCEL_PERSONAL_AUTH_TOKEN}`,
       },
       method: 'POST',
       body: JSON.stringify({
-        name: `${username}-${process.env.PROJECT_NAME}`,
+        name: projectName,
         environmentVariables: [
           {
             key: 'NEXT_PUBLIC_SANITY_PROJECT_ID',
@@ -46,16 +47,19 @@ export async function createVercelProject({ sanityProjectId, sanityDatasetName, 
     const triggeredDeploymentData = await createVercelProjectDeployment({
       projectId: projectData.id,
       projectName: projectData.name,
-      repoId: projectData.link.repoId,
-      productionBranch: projectData.link.productionBranch,
-      type: projectData.link.type,
     });
 
     console.log('vercel triggered deployment data');
     console.log(triggeredDeploymentData);
 
-    return { deploymentUrl: `https://${triggeredDeploymentData.name}.vercel.app`, projectId: projectData.id };
-
+    return {
+      projectId: projectData.id,
+      projectName: projectData.name,
+      repoId: projectData.link.repoId,
+      productionBranch: projectData.link.productionBranch,
+      type: projectData.link.type,
+      deploymentUrl: `https://${triggeredDeploymentData.name}.vercel.app`,
+    };
     // project data
     // ________________
     // {
@@ -282,17 +286,11 @@ export async function createVercelProject({ sanityProjectId, sanityDatasetName, 
 }
 
 export const createVercelProjectDeployment = async ({
-  repoId,
-  productionBranch,
-  type,
   projectName,
   projectId,
 }: {
   projectId: string;
   projectName: string;
-  repoId: number;
-  productionBranch: string;
-  type: string;
 }) => {
   console.log('creating deployment');
   try {
@@ -305,9 +303,9 @@ export const createVercelProjectDeployment = async ({
         name: projectName,
         project: projectId,
         gitSource: {
-          repoId,
-          ref: productionBranch,
-          type,
+          repoId: process.env.GITHUB_REPO_ID,
+          ref: process.env.GITHUB_REPO_PRODUCTION_BRANCH,
+          type: process.env.REPO_TYPE,
         },
         target: 'production',
       }),
