@@ -19,18 +19,13 @@ export async function createSanityProject(userEmail: string) {
 
     const projectId = data.id;
 
-    const datasetName = await createDataset(projectId, 'production');
-
-    return {
-      projectId,
-      datasetName,
-    };
+    return projectId;
   } catch (e) {
     console.log(e);
   }
 }
 
-async function createDataset(projectId: string, datasetName: string) {
+export async function createDataset(projectId: string, datasetName: string) {
   try {
     console.log('creating project dataset project 🏎');
     const response = await fetch(`https://api.sanity.io/v2021-06-07/projects/${projectId}/datasets/${datasetName}`, {
@@ -72,7 +67,7 @@ export async function createCorsEntry({ projectId, deploymentUrl }: { projectId:
     const data = await result.json();
 
     console.log('cors entry data:');
-    console.log(data);
+    // console.log(data);
 
     console.log('finish adding cors ✅✅✅✅✅');
   } catch (e) {
@@ -96,7 +91,7 @@ export async function addUserEmailToMembers({ projectId, email }: { projectId: s
     const data = await result.json();
 
     console.log('members data:');
-    console.log(data);
+    // console.log(data);
 
     console.log('finish adding member ✅✅✅✅✅');
   } catch (e) {
@@ -146,7 +141,7 @@ export async function createDocumentWebhook({
 
     console.log('webhook added');
     console.log('webhook data:');
-    console.log(data);
+    // console.log(data);
   } catch (e) {
     console.log(e);
   }

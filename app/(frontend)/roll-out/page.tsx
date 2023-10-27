@@ -1,6 +1,12 @@
 import { styled } from '@linaria/react';
 
-import { createSanityProject, createCorsEntry, addUserEmailToMembers, createDocumentWebhook } from './sanity-api';
+import {
+  createSanityProject,
+  createCorsEntry,
+  addUserEmailToMembers,
+  createDocumentWebhook,
+  createDataset,
+} from './sanity-api';
 import { createVercelProject } from './vercel-api';
 
 export default function RollOutPage() {
@@ -10,27 +16,29 @@ export default function RollOutPage() {
     const username = email.split('@')[0].toLowerCase();
     const cleanUsername = username.replace(/[^a-z0-9]/g, '').slice(0, 90);
 
-    const sanityData = await createSanityProject(cleanUsername);
+    const sanityProjectId = await createSanityProject(cleanUsername);
 
-    if (sanityData) {
+    // dataset should be created before vercel deployment
+    if (sanityProjectId) {
       const projectData = await createVercelProject({
         username: cleanUsername,
-        sanityProjectId: sanityData.projectId,
-        sanityDatasetName: sanityData.datasetName,
+        sanityProjectId: sanityProjectId,
+        sanityDatasetName: 'production',
       });
 
       if (projectData?.deploymentUrl) {
         await Promise.all([
+          createDataset(sanityProjectId, 'production'),
           createCorsEntry({
-            projectId: sanityData.projectId,
+            projectId: sanityProjectId,
             deploymentUrl: projectData.deploymentUrl,
           }),
           addUserEmailToMembers({
-            projectId: sanityData.projectId,
+            projectId: sanityProjectId,
             email,
           }),
           createDocumentWebhook({
-            sanityProjectId: sanityData.projectId,
+            sanityProjectId: sanityProjectId,
             vercelProjectId: projectData.projectId,
             vercelProjectName: projectData.projectName,
           }),

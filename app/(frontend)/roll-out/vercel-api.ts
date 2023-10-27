@@ -42,15 +42,15 @@ export async function createVercelProject({ sanityProjectId, sanityDatasetName, 
     const projectData = await result.json();
 
     console.log('vercel project data');
-    console.log(projectData);
+    // console.log(projectData);
 
     const triggeredDeploymentData = await createVercelProjectDeployment({
       projectId: projectData.id,
       projectName: projectData.name,
     });
 
-    console.log('vercel triggered deployment data');
-    console.log(triggeredDeploymentData);
+    // console.log('vercel triggered deployment data');
+    // console.log(triggeredDeploymentData);
 
     return {
       projectId: projectData.id,
