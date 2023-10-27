@@ -20,7 +20,7 @@ export default function RollOutPage() {
       });
 
       if (projectData?.deploymentUrl) {
-        Promise.all([
+        await Promise.all([
           createCorsEntry({
             projectId: sanityData.projectId,
             deploymentUrl: projectData.deploymentUrl,
