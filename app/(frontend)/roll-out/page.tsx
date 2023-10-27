@@ -1,25 +1,42 @@
 import { styled } from '@linaria/react';
 
-import { createSanityProject } from './sanity-api';
+import { createSanityProject, createCorsEntry, addUserEmailToMembers } from './sanity-api';
 import { createVercelProject } from './vercel-api';
 
 export default function RollOutPage() {
   const triggerDeploy = async (data: FormData) => {
     'use server';
-    const username = (data.get('email') as string).split('@')[0].toLowerCase();
+    const email = data.get('email') as string;
+    const username = email.split('@')[0].toLowerCase();
     const cleanUsername = username.replace(/[^a-z0-9]/g, '').slice(0, 90);
 
     const sanityData = await createSanityProject(cleanUsername);
 
     if (sanityData) {
-      const vercelData = await createVercelProject({
+      const projectData = await createVercelProject({
         username: cleanUsername,
         sanityProjectId: sanityData.projectId,
         sanityDatasetName: sanityData.datasetName,
       });
 
-      console.log('vercel project data');
-      console.log(vercelData);
+      if (projectData?.deploymentUrl) {
+        Promise.all([
+          createCorsEntry({
+            projectId: sanityData.projectId,
+            deploymentUrl: projectData.deploymentUrl,
+          }),
+          addUserEmailToMembers({
+            projectId: sanityData.projectId,
+            email,
+          }),
+        ]);
+      }
+
+      // todo: create vercel deployment hook
+
+      // todo: set vercel deploiyment hook to sanity
+
+      // todo: send notification to slack chennel that project is created for user with email: real user email
     }
   };
 
