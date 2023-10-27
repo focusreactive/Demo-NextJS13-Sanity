@@ -30,7 +30,7 @@ export async function createVercelProject({ sanityProjectId, sanityDatasetName, 
           },
           {
             key: 'GITHUB_REPO_ID',
-            value: 684968839,
+            value: '684968839',
             target: ['production', 'preview', 'development'],
             type: 'encrypted',
           },
@@ -73,9 +73,6 @@ export async function createVercelProject({ sanityProjectId, sanityDatasetName, 
     return {
       projectId: projectData.id,
       projectName: projectData.name,
-      repoId: projectData.link.repoId,
-      productionBranch: projectData.link.productionBranch,
-      type: projectData.link.type,
       deploymentUrl: `https://${triggeredDeploymentData.name}.vercel.app`,
     };
     // project data
