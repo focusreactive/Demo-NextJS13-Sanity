@@ -15,10 +15,14 @@ export async function POST() {
   };
 
   if (token === process.env.VERCEL_PERSONAL_AUTH_TOKEN) {
+    console.log({ deploymentData });
     const result = await createVercelProjectDeployment(deploymentData);
+    console.log('{ deploymentData }');
 
     return Response.json(result);
   }
+
+  console.log('token invalid, pass if block');
 
   return new Response('Invalid vercel token', { status: 401 });
 }

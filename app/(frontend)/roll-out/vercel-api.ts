@@ -305,7 +305,7 @@ export const createVercelProjectDeployment = async ({
   projectId: string;
   projectName: string;
 }) => {
-  console.log('creating deployment');
+  console.log('creating deployment ');
   try {
     const result = await fetch(`https://api.vercel.com/v13/deployments?teamId=${process.env.VERCEL_FR_TEAM_ID}`, {
       headers: {
@@ -323,7 +323,7 @@ export const createVercelProjectDeployment = async ({
         target: 'production',
       }),
     });
-    console.log('triggered deployment creation');
+    console.log('deployment result is ready 🔥');
 
     const data = await result.json();
 
