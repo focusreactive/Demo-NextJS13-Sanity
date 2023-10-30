@@ -326,6 +326,7 @@ export const createVercelProjectDeployment = async ({
     console.log('deployment result is ready 🔥');
 
     const data = await result.json();
+    console.log(data);
 
     return data;
   } catch {
@@ -337,29 +338,40 @@ export const addVercelProjectEnvs = async ({ projectName, projectId }: { project
   try {
     console.log('start adding envs to vercel🏎');
 
-    await fetch(
-      `https://api.vercel.com/v10/projects/${projectId}/env?teamId=${process.env.VERCEL_FR_TEAM_ID}&upsert=true`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.VERCEL_PERSONAL_AUTH_TOKEN}`,
-        },
-        method: 'POST',
-        body: JSON.stringify([
-          {
+    await Promise.all([
+      fetch(
+        `https://api.vercel.com/v10/projects/${projectId}/env?teamId=${process.env.VERCEL_FR_TEAM_ID}&upsert=true`,
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.VERCEL_PERSONAL_AUTH_TOKEN}`,
+            'Content-type': 'application/json',
+          },
+          method: 'POST',
+          body: JSON.stringify({
             key: 'VERCEL_PROJECT_ID',
             value: process.env.VERCEL_PROJECT_ID,
             target: ['production', 'preview', 'development'],
             type: 'encrypted',
+          }),
+        },
+      ),
+      fetch(
+        `https://api.vercel.com/v10/projects/${projectId}/env?teamId=${process.env.VERCEL_FR_TEAM_ID}&upsert=true`,
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.VERCEL_PERSONAL_AUTH_TOKEN}`,
+            'Content-type': 'application/json',
           },
-          {
+          method: 'POST',
+          body: JSON.stringify({
             key: 'VERCEL_PROJECT_NAME',
             value: process.env.VERCEL_PROJECT_NAME,
             target: ['production', 'preview', 'development'],
             type: 'encrypted',
-          },
-        ]),
-      },
-    );
+          }),
+        },
+      ),
+    ]);
 
     console.log('finish adding envs to vercel ✅✅✅✅✅');
   } catch (e) {
