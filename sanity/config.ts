@@ -3,8 +3,6 @@ const config = {
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
   useCdn: false,
   apiVersion: '2021-10-21',
-  studioUrl: '/admin',
-  logger: console,
 };
 
 export default config;
