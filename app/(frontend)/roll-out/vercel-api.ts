@@ -36,7 +36,7 @@ export async function createVercelProject({ sanityProjectId, sanityDatasetName, 
           },
           {
             key: 'GITHUB_REPO_PRODUCTION_BRANCH',
-            value: 'main',
+            value: 'auto-roll-out',
             target: ['production', 'preview', 'development'],
             type: 'encrypted',
           },
