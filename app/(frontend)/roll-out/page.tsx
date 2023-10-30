@@ -7,7 +7,7 @@ import {
   createDocumentWebhook,
   createDataset,
 } from './sanity-api';
-import { createVercelProject } from './vercel-api';
+import { createVercelProject, addVercelProjectEnvs, createVercelProjectDeployment } from './vercel-api';
 
 export default function RollOutPage() {
   const triggerDeploy = async (data: FormData) => {
@@ -28,6 +28,8 @@ export default function RollOutPage() {
 
       if (projectData?.deploymentUrl) {
         await Promise.all([
+          createVercelProjectDeployment(projectData),
+          addVercelProjectEnvs(projectData),
           createDataset(sanityProjectId, 'production'),
           createCorsEntry({
             projectId: sanityProjectId,
@@ -39,7 +41,6 @@ export default function RollOutPage() {
           }),
           createDocumentWebhook({
             sanityProjectId: sanityProjectId,
-            vercelProjectId: projectData.projectId,
             vercelProjectName: projectData.projectName,
           }),
         ]);

@@ -90,7 +90,7 @@ export async function addUserEmailToMembers({ projectId, email }: { projectId: s
 
     const data = await result.json();
 
-    console.log('members data:');
+    // console.log('members data:');
     // console.log(data);
 
     console.log('finish adding member ✅✅✅✅✅');
@@ -102,11 +102,9 @@ export async function addUserEmailToMembers({ projectId, email }: { projectId: s
 
 export async function createDocumentWebhook({
   sanityProjectId,
-  vercelProjectId,
   vercelProjectName,
 }: {
   sanityProjectId: string;
-  vercelProjectId: string;
   vercelProjectName: string;
 }) {
   console.log('adding webhook 🏎');
@@ -121,7 +119,7 @@ export async function createDocumentWebhook({
       body: JSON.stringify({
         type: 'document',
         name: 'Sanity Studio',
-        url: `https://${vercelProjectName}.vercel.app/api/sanity-deploy?projectId=${vercelProjectId}&projectName=${vercelProjectName}`,
+        url: `https://${vercelProjectName}.vercel.app/api/sanity-deploy`,
         httpMethod: 'POST',
         apiVersion: 'v2021-03-25',
         includeDrafts: false,
@@ -137,8 +135,7 @@ export async function createDocumentWebhook({
 
     const data = await result.json();
 
-    console.log('webhook added');
-    console.log('webhook data:');
+    console.log('webhook added ✅✅✅');
     // console.log(data);
   } catch (e) {
     console.log(e);
