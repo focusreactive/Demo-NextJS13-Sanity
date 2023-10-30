@@ -349,7 +349,7 @@ export const addVercelProjectEnvs = async ({ projectName, projectId }: { project
           method: 'POST',
           body: JSON.stringify({
             key: 'VERCEL_PROJECT_ID',
-            value: process.env.VERCEL_PROJECT_ID,
+            value: projectId,
             target: ['production', 'preview', 'development'],
             type: 'encrypted',
           }),
@@ -365,7 +365,7 @@ export const addVercelProjectEnvs = async ({ projectName, projectId }: { project
           method: 'POST',
           body: JSON.stringify({
             key: 'VERCEL_PROJECT_NAME',
-            value: process.env.VERCEL_PROJECT_NAME,
+            value: projectName,
             target: ['production', 'preview', 'development'],
             type: 'encrypted',
           }),
