@@ -10,6 +10,8 @@ export async function POST(req: Request, res: Response) {
   console.log(authHeader);
   console.log('token');
   console.log(token);
+  console.log('process.env.VERCEL_PERSONAL_AUTH_TOKEN');
+  console.log(process.env.VERCEL_PERSONAL_AUTH_TOKEN);
 
   const urlParams = new URLSearchParams(req.url.split('?')[1]);
 
