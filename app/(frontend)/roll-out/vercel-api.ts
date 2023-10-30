@@ -326,7 +326,7 @@ export const createVercelProjectDeployment = async ({
     console.log('deployment result is ready 🔥');
 
     const data = await result.json();
-    console.log(data);
+    console.log(!data?.alias && data);
 
     return data;
   } catch {
