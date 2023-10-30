@@ -128,8 +128,6 @@ export async function createDocumentWebhook({
         dataset: '*',
         rule: {
           on: ['create', 'update', 'delete'],
-          filter: "_type == 'article'",
-          projection: '{_id}',
         },
         headers: {
           Authorization: `Bearer ${process.env.VERCEL_PERSONAL_AUTH_TOKEN}`,

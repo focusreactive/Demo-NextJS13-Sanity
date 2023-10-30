@@ -6,6 +6,11 @@ export async function POST(req: Request, res: Response) {
   const authHeader = headers().get('authorization');
   const token = authHeader?.split(' ')[1];
 
+  console.log('authHeader');
+  console.log(authHeader);
+  console.log('token');
+  console.log(token);
+
   const urlParams = new URLSearchParams(req.url.split('?')[1]);
 
   const deploymentData = {
@@ -22,5 +27,5 @@ export async function POST(req: Request, res: Response) {
     return Response.json(result);
   }
 
-  return new Response('Invalid vercel token', { status: 401 });
+  return new Response('Invalid vercel token', { status: 402 });
 }
