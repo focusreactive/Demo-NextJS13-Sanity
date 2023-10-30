@@ -46,6 +46,12 @@ export async function createVercelProject({ sanityProjectId, sanityDatasetName, 
             target: ['production', 'preview', 'development'],
             type: 'encrypted',
           },
+          {
+            key: 'VERCEL_PERSONAL_AUTH_TOKEN',
+            value: process.env.VERCEL_PERSONAL_AUTH_TOKEN,
+            target: ['production', 'preview', 'development'],
+            type: 'encrypted',
+          },
         ],
         framework: 'nextjs',
         gitRepository: {
@@ -59,21 +65,13 @@ export async function createVercelProject({ sanityProjectId, sanityDatasetName, 
 
     const projectData = await result.json();
 
-    console.log('vercel project data');
+    // console.log('vercel project data');
     // console.log(projectData);
-
-    const triggeredDeploymentData = await createVercelProjectDeployment({
-      projectId: projectData.id,
-      projectName: projectData.name,
-    });
-
-    // console.log('vercel triggered deployment data');
-    // console.log(triggeredDeploymentData);
 
     return {
       projectId: projectData.id,
       projectName: projectData.name,
-      deploymentUrl: `https://${triggeredDeploymentData.name}.vercel.app`,
+      deploymentUrl: `https://${projectData.name}.vercel.app`,
     };
     // project data
     // ________________
@@ -332,5 +330,39 @@ export const createVercelProjectDeployment = async ({
     return data;
   } catch {
     console.log('error creating deployment');
+  }
+};
+
+export const addVercelProjectEnvs = async ({ projectName, projectId }: { projectId: string; projectName: string }) => {
+  try {
+    console.log('start adding envs to vercel🏎');
+
+    await fetch(
+      `https://api.vercel.com/v10/projects/${projectId}/env?teamId=${process.env.VERCEL_FR_TEAM_ID}&upsert=true`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.VERCEL_PERSONAL_AUTH_TOKEN}`,
+        },
+        method: 'POST',
+        body: JSON.stringify([
+          {
+            key: 'VERCEL_PROJECT_ID',
+            value: process.env.VERCEL_PROJECT_ID,
+            target: ['production', 'preview', 'development'],
+            type: 'encrypted',
+          },
+          {
+            key: 'VERCEL_PROJECT_NAME',
+            value: process.env.VERCEL_PROJECT_NAME,
+            target: ['production', 'preview', 'development'],
+            type: 'encrypted',
+          },
+        ]),
+      },
+    );
+
+    console.log('finish adding envs to vercel ✅✅✅✅✅');
+  } catch (e) {
+    console.log(e);
   }
 };
