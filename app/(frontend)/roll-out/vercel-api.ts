@@ -52,6 +52,12 @@ export async function createVercelProject({ sanityProjectId, sanityDatasetName, 
             target: ['production', 'preview', 'development'],
             type: 'encrypted',
           },
+          {
+            key: 'VERCEL_FR_TEAM_ID',
+            value: process.env.VERCEL_FR_TEAM_ID,
+            target: ['production', 'preview', 'development'],
+            type: 'encrypted',
+          },
         ],
         framework: 'nextjs',
         gitRepository: {
