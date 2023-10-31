@@ -305,7 +305,11 @@ export const createVercelProjectDeployment = async ({
   projectId: string;
   projectName: string;
 }) => {
-  console.log('creating deployment ');
+  console.log('creating deployment, token:');
+
+  console.log({
+    Authorization: `Bearer ${process.env.VERCEL_PERSONAL_AUTH_TOKEN}`,
+  });
   try {
     const result = await fetch(`https://api.vercel.com/v13/deployments?teamId=${process.env.VERCEL_FR_TEAM_ID}`, {
       headers: {
