@@ -61,8 +61,6 @@ type SponsorsProps = {
 export const Sponsors = (block: SponsorsProps) => {
   const { logos, button } = block;
 
-  console.log(block)
-
   return (
     <StyledSponsors>
       <StyledLogos>
