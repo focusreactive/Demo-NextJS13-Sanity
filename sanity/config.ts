@@ -4,6 +4,7 @@ const config = {
   useCdn: false,
   apiVersion: '2021-10-21',
   studioUrl: '/admin',
+  encodeSourceMap: true,
   logger: console,
 };
 

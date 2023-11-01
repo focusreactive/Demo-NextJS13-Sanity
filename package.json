@@ -19,6 +19,7 @@
     "@sanity/client": "^6.4.9",
     "@sanity/color-input": "^3.1.0",
     "@sanity/image-url": "^1.0.2",
+    "@sanity/overlays": "^1.0.6",
     "@sanity/preview-kit": "^3.1.6",
     "@sanity/ui": "^1.8.2",
     "@sanity/vision": "^3.16.5",

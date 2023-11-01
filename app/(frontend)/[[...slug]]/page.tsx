@@ -58,7 +58,5 @@ export default async function Page({ params }: Props) {
 
   if (!page) return notFound();
 
-  console.log({ page });
-
   return <DynamicPage page={page} pageSlug={pageSlug} token={sanityReadToken} isDraftMode={isDraftMode} />;
 }
