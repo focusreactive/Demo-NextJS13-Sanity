@@ -5,6 +5,7 @@ type GenericObject = { [key: string]: any };
 export function patchStringFields(
   obj: GenericObject,
   patchCb: (value: string, path: string) => string,
+  excludedPaths: (string | RegExp)[] = [],
   path: string = '',
   isRichText = false,
 ): void {
@@ -15,26 +16,46 @@ export function patchStringFields(
     const value = obj[key];
 
     if (typeof value === 'string') {
-      if (key[0] === '_' || (isRichText && key === 'style')) continue;
+      if (key[0] === '_' || (isRichText && key === 'style') || /https?:\/\//.test(value)) continue;
+      const isExcludedPath = excludedPaths.some((excludedPath) =>
+        excludedPath instanceof RegExp ? excludedPath.test(currentPath) : excludedPath === currentPath,
+      );
+      if (isExcludedPath) continue;
       obj[key] = patchCb(value, currentPath);
     } else if (Array.isArray(value)) {
       value.forEach((item, index) => {
         const hidePath = item?._type === 'block' || isRichText;
         if (typeof item === 'object' && item !== null) {
-          patchStringFields(item, patchCb, hidePath ? currentPath : `${currentPath}[${index}]`, hidePath);
+          patchStringFields(
+            item,
+            patchCb,
+            excludedPaths,
+            hidePath ? currentPath : `${currentPath}[${index}]`,
+            hidePath,
+          );
         }
       });
     } else if (typeof value === 'object' && value !== null) {
-      patchStringFields(value, patchCb, currentPath, isRichText);
+      patchStringFields(value, patchCb, excludedPaths, currentPath, isRichText);
     }
   }
 }
 
-export function patchDataWithStega(data: GenericObject, documentId: string) {
+export function patchDataWithStega({
+  data,
+  documentId,
+  excludedPaths,
+}: {
+  data: GenericObject;
+  documentId: string;
+  excludedPaths?: (string | RegExp)[];
+}) {
   const openInSanityUrl = `/admin/intent/edit/id=${documentId}`;
 
-  patchStringFields(data, (value, path) =>
-    vercelStegaCombine(value, { origin: 'sanity.io', href: `${openInSanityUrl};path=${path}` }),
+  patchStringFields(
+    data,
+    (value, path) => vercelStegaCombine(value, { origin: 'sanity.io', href: `${openInSanityUrl};path=${path}` }),
+    excludedPaths,
   );
 
   return data;

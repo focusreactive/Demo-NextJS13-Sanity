@@ -804,19 +804,19 @@
           },
           {
             "text": "link 2+++@+++",
-            "link": { "ref": null, "link": "https://1.com+++@+++", "_key": "365e2e537c1b", "_type": "externalLink" },
+            "link": { "ref": null, "link": "https://1.com", "_key": "365e2e537c1b", "_type": "externalLink" },
             "_type": "button",
             "_key": "daa100175bad9a91bcffbca673e2aca6",
             "title": "link 2+++@+++",
-            "uri": [{ "link": "https://1.com+++@+++", "_key": "365e2e537c1b", "_type": "externalLink" }]
+            "uri": [{ "link": "https://1.com", "_key": "365e2e537c1b", "_type": "externalLink" }]
           },
           {
             "_key": "6adb054ca40eeb43b3e0bdb6785ee1ad",
             "title": "link 2+++@+++",
-            "uri": [{ "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" }],
+            "uri": [{ "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" }],
             "_type": "button",
             "text": "link 2+++@+++",
-            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" }
+            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" }
           }
         ]
       },
@@ -827,23 +827,23 @@
             "_type": "button",
             "_key": "ff579d616903",
             "title": "l33232323+++@+++",
-            "uri": [{ "link": "https://1.com+++@+++", "_key": "365e2e537c1b", "_type": "externalLink" }],
+            "uri": [{ "link": "https://1.com", "_key": "365e2e537c1b", "_type": "externalLink" }],
             "text": "l33232323+++@+++",
-            "link": { "ref": null, "link": "https://1.com+++@+++", "_key": "365e2e537c1b", "_type": "externalLink" }
+            "link": { "ref": null, "link": "https://1.com", "_key": "365e2e537c1b", "_type": "externalLink" }
           },
           {
             "_key": "daa100175bad9a91bcffbca673e2aca6",
             "title": "dffffff+++@+++",
-            "uri": [{ "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" }],
+            "uri": [{ "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" }],
             "text": "dffffff+++@+++",
-            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" },
+            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" },
             "_type": "button"
           },
           {
             "title": "mksmks+++@+++",
-            "uri": [{ "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" }],
+            "uri": [{ "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" }],
             "text": "mksmks+++@+++",
-            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" },
+            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" },
             "_type": "button",
             "_key": "6adb054ca40eeb43b3e0bdb6785ee1ad"
           }
@@ -1910,7 +1910,7 @@
                         ]
                       },
                       {
-                        "markDefs": [{ "_type": "link", "href": "https://hdwdwd.com+++@+++", "_key": "170e71c8ac2e" }],
+                        "markDefs": [{ "_type": "link", "href": "https://hdwdwd.com", "_key": "170e71c8ac2e" }],
                         "children": [
                           {
                             "text": "wdwdwdwd+++@+++",
@@ -2018,7 +2018,7 @@
                         "button": {
                           "title": "another capability button+++@+++",
                           "uri": [
-                            { "_type": "externalLink", "link": "https://gopogle.com+++@+++", "_key": "3c27540192d4" }
+                            { "_type": "externalLink", "link": "https://gopogle.com", "_key": "3c27540192d4" }
                           ],
                           "_type": "button"
                         },
@@ -2228,7 +2228,7 @@
                     "button": {
                       "_type": "button",
                       "title": "external link+++@+++",
-                      "uri": [{ "_type": "externalLink", "link": "https://hwdwdwd.com+++@+++", "_key": "91ce62912b01" }]
+                      "uri": [{ "_type": "externalLink", "link": "https://hwdwdwd.com", "_key": "91ce62912b01" }]
                     },
                     "titleWithOptions": {
                       "_type": "titleWithOptions",
@@ -2306,25 +2306,25 @@
         "list": [
           {
             "text": "l33232323+++@+++",
-            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" },
+            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" },
             "_type": "button",
             "_key": "ff579d616903",
             "title": "l33232323+++@+++",
-            "uri": [{ "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" }]
+            "uri": [{ "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" }]
           },
           {
             "text": "dffffff+++@+++",
-            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" },
+            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" },
             "_type": "button",
             "_key": "daa100175bad9a91bcffbca673e2aca6",
             "title": "dffffff+++@+++",
-            "uri": [{ "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" }]
+            "uri": [{ "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" }]
           },
           {
-            "uri": [{ "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" }],
+            "uri": [{ "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" }],
             "_type": "button",
             "text": "mksmks+++@+++",
-            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" },
+            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" },
             "_key": "6adb054ca40eeb43b3e0bdb6785ee1ad",
             "title": "mksmks+++@+++"
           }
@@ -2336,24 +2336,24 @@
           {
             "_key": "ff579d616903",
             "text": "l33232323+++@+++",
-            "link": { "ref": null, "_key": "365e2e537c1b", "_type": "externalLink", "link": "https://1.com+++@+++" },
+            "link": { "ref": null, "_key": "365e2e537c1b", "_type": "externalLink", "link": "https://1.com" },
             "title": "l33232323+++@+++",
-            "uri": [{ "_key": "365e2e537c1b", "_type": "externalLink", "link": "https://1.com+++@+++" }],
+            "uri": [{ "_key": "365e2e537c1b", "_type": "externalLink", "link": "https://1.com" }],
             "_type": "button"
           },
           {
-            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" },
+            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" },
             "_type": "button",
             "_key": "daa100175bad9a91bcffbca673e2aca6",
             "title": "dffffff+++@+++",
-            "uri": [{ "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" }],
+            "uri": [{ "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" }],
             "text": "dffffff+++@+++"
           },
           {
-            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" },
+            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" },
             "_key": "6adb054ca40eeb43b3e0bdb6785ee1ad",
             "title": "mksmks+++@+++",
-            "uri": [{ "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" }],
+            "uri": [{ "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" }],
             "_type": "button",
             "text": "mksmks+++@+++"
           }
@@ -2365,25 +2365,25 @@
           {
             "_key": "ff579d616903",
             "title": "l33232323+++@+++",
-            "uri": [{ "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" }],
+            "uri": [{ "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" }],
             "_type": "button",
             "text": "l33232323+++@+++",
-            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" }
+            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" }
           },
           {
-            "link": { "ref": null, "link": "https://1.com+++@+++", "_key": "365e2e537c1b", "_type": "externalLink" },
+            "link": { "ref": null, "link": "https://1.com", "_key": "365e2e537c1b", "_type": "externalLink" },
             "_type": "button",
             "_key": "daa100175bad9a91bcffbca673e2aca6",
             "title": "dffffff+++@+++",
-            "uri": [{ "link": "https://1.com+++@+++", "_key": "365e2e537c1b", "_type": "externalLink" }],
+            "uri": [{ "link": "https://1.com", "_key": "365e2e537c1b", "_type": "externalLink" }],
             "text": "dffffff+++@+++"
           },
           {
-            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" },
+            "link": { "ref": null, "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" },
             "_type": "button",
             "_key": "6adb054ca40eeb43b3e0bdb6785ee1ad",
             "title": "mksmks+++@+++",
-            "uri": [{ "_type": "externalLink", "link": "https://1.com+++@+++", "_key": "365e2e537c1b" }],
+            "uri": [{ "_type": "externalLink", "link": "https://1.com", "_key": "365e2e537c1b" }],
             "text": "mksmks+++@+++"
           }
         ]
@@ -2392,18 +2392,18 @@
     "copyright": "copyright label 2222@@@@+++@+++",
     "nav": [
       {
-        "uri": [{ "link": "https://1c.com+++@+++", "_key": "eb357b50bdc4", "_type": "externalLink" }],
+        "uri": [{ "link": "https://1c.com", "_key": "eb357b50bdc4", "_type": "externalLink" }],
         "_type": "button",
         "text": "nav link+++@+++",
-        "link": { "ref": null, "link": "https://1c.com+++@+++", "_key": "eb357b50bdc4", "_type": "externalLink" },
+        "link": { "ref": null, "link": "https://1c.com", "_key": "eb357b50bdc4", "_type": "externalLink" },
         "_key": "1e8a0f557039",
         "title": "nav link+++@+++"
       },
       {
         "title": "nav link+++@+++",
-        "uri": [{ "_type": "externalLink", "link": "https://1c.com+++@+++", "_key": "eb357b50bdc4" }],
+        "uri": [{ "_type": "externalLink", "link": "https://1c.com", "_key": "eb357b50bdc4" }],
         "text": "nav link+++@+++",
-        "link": { "ref": null, "_type": "externalLink", "link": "https://1c.com+++@+++", "_key": "eb357b50bdc4" },
+        "link": { "ref": null, "_type": "externalLink", "link": "https://1c.com", "_key": "eb357b50bdc4" },
         "_type": "button",
         "_key": "bcc6c4a1f13c76fff7ca77bd98611199"
       }
@@ -2411,9 +2411,9 @@
     "buttons": [
       {
         "text": "button 1+++@+++",
-        "link": { "ref": null, "_type": "externalLink", "link": "https://1c.com+++@+++", "_key": "1e91cc574cbe" },
+        "link": { "ref": null, "_type": "externalLink", "link": "https://1c.com", "_key": "1e91cc574cbe" },
         "title": "button 1+++@+++",
-        "uri": [{ "_type": "externalLink", "link": "https://1c.com+++@+++", "_key": "1e91cc574cbe" }],
+        "uri": [{ "_type": "externalLink", "link": "https://1c.com", "_key": "1e91cc574cbe" }],
         "_type": "button",
         "_key": "f89edcab9a50"
       },
@@ -5347,7 +5347,7 @@
               "ref": null,
               "_key": "f16e3484296c",
               "_type": "externalLink",
-              "link": "https://google2222.com+++@+++"
+              "link": "https://google2222.com"
             },
             "description": [
               {
