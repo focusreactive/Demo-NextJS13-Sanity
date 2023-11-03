@@ -17,6 +17,7 @@
     "ts-node": "^10.9.1"
   },
   "dependencies": {
+    "@sanity/overlays": "^1.0.6",
     "@vercel/stega": "^0.1.0",
     "typescript": "^5.2.2"
   }
