@@ -4,7 +4,6 @@ import { styled } from '@linaria/react';
 import { ImageWithAlt, converters } from '../../cms-connector/converters';
 import { TitleWithOptions } from '../../global';
 import Image from 'next/image';
-import { Editable } from '@/components/Editable';
 
 const StyledAdvertise = styled.div<{ imageLeft?: boolean }>`
   display: flex;
@@ -61,19 +60,13 @@ export const Advertise = (props: AdvertiseProps) => {
   return (
     <StyledAdvertise imageLeft={props.imagePosition === 'left'}>
       <div>
-        <Editable block={props} path={'titleWithOptions'}>
-          <SectionHead title={props.title} icon={props.titleIcon} />
-        </Editable>
+        <SectionHead title={props.title} icon={props.titleIcon} />
 
-        <Editable block={props} path={'description'}>
-          {props.description}
-        </Editable>
+        {props.description}
       </div>
 
       <div>
-        <Editable block={props} path={'imageWithAlt.image'}>
-          <Image src={image?.src ?? ''} alt={image?.alt} width={image?.width} height={image?.height} />
-        </Editable>
+        <Image src={image?.src ?? ''} alt={image?.alt} width={image?.width} height={image?.height} />
       </div>
     </StyledAdvertise>
   );
@@ -82,7 +75,6 @@ export const Advertise = (props: AdvertiseProps) => {
 export const AdvertisePropsConverter = {
   sanity: (block: any) => {
     return {
-      ...converters.editableFields(block),
       title: converters.title(block.titleWithOptions?.title),
       titleIcon: converters.image(block.titleWithOptions?.titleIcon),
       description: converters.richText(block.description),

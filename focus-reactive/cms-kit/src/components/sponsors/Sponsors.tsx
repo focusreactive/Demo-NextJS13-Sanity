@@ -4,7 +4,6 @@ import { ImageWithAlt, converters } from '../../cms-connector/converters';
 import Buttons from '../common/buttons/Buttons';
 import Image from 'next/image';
 import { ButtonOrLink } from '../../global';
-import { Editable } from '@/components/Editable';
 
 const StyledSponsors = styled.div`
   display: flex;
@@ -58,18 +57,10 @@ type SponsorsProps = {
   button: ButtonOrLink;
 };
 
-export const Sponsors = (block: SponsorsProps) => {
-  const { logos, button } = block;
-
+export const Sponsors = ({ logos, button }: SponsorsProps) => {
   return (
     <StyledSponsors>
-      <StyledLogos>
-        {logos?.map?.((logo, index) => (
-          <Editable key={index} block={block} path={`logos[${index}]`}>
-            <Sponsor image={logo} />
-          </Editable>
-        ))}
-      </StyledLogos>
+      <StyledLogos>{logos?.map?.((logo, index) => <Sponsor key={index} image={logo} />)}</StyledLogos>
 
       {button && (
         <Buttons
@@ -90,7 +81,6 @@ export const Sponsors = (block: SponsorsProps) => {
 export const SponsorsPropsConverter = {
   sanity: (block: any) => {
     return {
-      ...converters.editableFields(block),
       logos: block.logos?.map?.((logo: any) => converters.imageWithAlt(logo.imageWithAlt)),
       button: converters.button(block.button),
     };

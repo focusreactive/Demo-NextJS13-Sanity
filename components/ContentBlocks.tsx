@@ -1,7 +1,6 @@
 import { config } from '@/model/cmsConfig';
 import { Section } from '@focusreactive/cms-kit';
 import { sectionBgColors } from '@focusreactive/cms-kit/src/components/section/colors';
-import { Editable } from '@/components/Editable';
 
 type BlockType = { [k in string]: any };
 
@@ -30,11 +29,7 @@ export const ContentBlocks = ({ blocks }: { blocks: BlockType[] }) => {
     };
 
     if (block._type === 'hero') {
-      return (
-        <Editable key={block._key} block={block}>
-          <Component {...props} />
-        </Editable>
-      );
+      return <Component key={block._key} {...props} />;
     }
 
     return (
@@ -44,9 +39,7 @@ export const ContentBlocks = ({ blocks }: { blocks: BlockType[] }) => {
         radius={sectionConfig.roundCorner}
         siblingBg={siblingBg}
       >
-        <Editable block={block}>
-          <Component {...props} />
-        </Editable>
+        <Component {...props} />
       </Section>
     );
   });
