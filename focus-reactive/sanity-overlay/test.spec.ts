@@ -1,4 +1,4 @@
-import { patchStringFields } from './src/patchDataWithStega';
+import { patchStringFields } from './src/enableVisualEditing';
 import { expect, it } from '@jest/globals';
 import * as fs from 'fs';
 

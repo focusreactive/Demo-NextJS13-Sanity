@@ -1,4 +1,4 @@
-import { patchDataWithStega } from './src/patchDataWithStega';
+import { enableVisualEditing } from './src/enableVisualEditing';
 import { VisualEditingOverlay } from './src/VisualEditingOverlay';
 
-export { patchDataWithStega, VisualEditingOverlay };
+export { enableVisualEditing, VisualEditingOverlay };

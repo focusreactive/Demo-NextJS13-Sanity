@@ -41,7 +41,7 @@ export function patchStringFields(
   }
 }
 
-export function patchDataWithStega({
+export function enableVisualEditing({
   data,
   documentId,
   excludedPaths,
