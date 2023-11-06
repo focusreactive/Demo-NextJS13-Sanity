@@ -32,11 +32,7 @@ export async function createDataset(projectId: string, datasetName: string) {
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${process.env.SANITY_PERSONAL_AUTH_TOKEN}`,
-        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        aclMode: 'private',
-      }),
     });
     console.log('project dataset successfully created 🔥');
 

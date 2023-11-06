@@ -30,7 +30,6 @@ export default function RollOutPage() {
         await addVercelProjectEnvs(projectData);
         await Promise.all([
           createVercelProjectDeployment(projectData),
-
           createDataset(sanityProjectId, 'production'),
           createCorsEntry({
             projectId: sanityProjectId,
