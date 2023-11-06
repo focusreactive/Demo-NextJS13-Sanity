@@ -25,6 +25,24 @@ export const PAGE_CONTENT_QUERY = groq`
               }
             }
           }
+        },
+        _type == 'logos' => {
+          ...,
+          button {
+            ...,
+            uri[]{
+              'ref': reference->
+            }
+          }
+        },
+        _type == 'customerSpotlight' => {
+          ...,
+          button {
+            ...,
+            uri[]{
+              'ref': reference->
+            }
+          }
         }
       }
     }[0]
