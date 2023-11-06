@@ -72,7 +72,6 @@ const StyledCapability = styled.div<{ color?: string }>`
       margin-top: 20px;
 
       &:hover {
-        color: #fff;
         background: ${({ color }) => (color ? color : '#4d62d6')};
       }
     }
