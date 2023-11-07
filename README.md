@@ -27,6 +27,16 @@ Welcome to the Next-Sanity Demo repository! This project showcases our cutting-e
 
 ![image](https://github.com/focusreactive/Demo-NextJS13-Sanity/assets/14885189/2d123859-66d3-4b78-9aed-3ed134c2d280)
 
+## Performance 
+
+![Pagespeed metrics](https://github.com/focusreactive/Demo-NextJS13-Sanity/assets/14885189/2d2ec80a-c15d-4ff6-8920-6a58424c9073)
+
+At FocusReactive, we excel in performance and SEO optimization. Our demo project showcases our expertise in these areas, implementing a performance-wise development strategy and conducting necessary performance checks. We prioritize data fetching, separate code into server and client sides, and carefully manage the loading of resources, including the use of lazy loading and minimizing the amount of JS code executed during page loading. While the screenshots provided here serve as a visual representation, we recommend running the analysis using the provided link to have an own vision. For reliable results, we suggest running the analysis multiple times consecutively.
+
+[Run the performance analysis](https://pagespeed.web.dev/analysis/https-mvp-nextjs-sanity-vercel-app/1crhxzdktn?form_factor=mobile)
+
+It is important to note that this page contains several performance-influencing elements, including multiple pictures, a significant amount of content received from the CMS, numerous animations, and JS code for navigation functionality. While these factors can typically have a negative impact on performance, we have designed our applications to overcome these challenges without compromising UX quality. If your app experiences any of these issues, there's no need to give up on performance. Instead, you can [contact us](https://focusreactive.com/#mail-us) and request our expertise in performance optimization to overcome these challenges.
+
 ## Demo
 The frontend is deployed on Vecel for public preview https://mvp-nextjs-sanity.vercel.app/ 
 
