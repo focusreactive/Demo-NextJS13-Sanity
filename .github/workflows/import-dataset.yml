@@ -1,4 +1,4 @@
-name: Upload dataset for cloned project
+name: Upload data to sanity project
 
 on:
   workflow_dispatch:
@@ -11,7 +11,7 @@ on:
         type: string
 
 jobs:
-  backup-dataset:
+  upload-dataset:
     runs-on: ubuntu-latest
     env:
       NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ inputs.sanity-project-id }}
@@ -28,14 +28,7 @@ jobs:
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         with:
-          args: . dataset export production backups/backup.tar.gz
-      - name: Upload backup.tar.gz
-        uses: actions/upload-artifact@v2
-        with:
-          name: backup-tarball
-          path: backups/backup.tar.gz
-          # Fails the workflow if no files are found; defaults to 'warn'
-          if-no-files-found: error
+          args: . debug --secrets
 # jobs:
 #   upload-dataset:
 #     runs-on: ubuntu-latest
