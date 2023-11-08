@@ -13,6 +13,9 @@ on:
 jobs:
   backup-dataset:
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ inputs.sanity-project-id }}
+      NEXT_PUBLIC_SANITY_DATASET: ${{ inputs.sanity-project-dataset }}
     name: Backup dataset
     steps:
       - uses: actions/checkout@v4
@@ -21,7 +24,7 @@ jobs:
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         with:
-          args: dataset export production backups/backup.tar.gz
+          args: . dataset export production backups/backup.tar.gz
       - name: Upload backup.tar.gz
         uses: actions/upload-artifact@v2
         with:
