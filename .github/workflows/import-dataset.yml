@@ -19,6 +19,10 @@ jobs:
     name: Backup dataset
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm install
       - name: Export dataset
         uses: sanity-io/github-action-sanity@v0.4
         env:
