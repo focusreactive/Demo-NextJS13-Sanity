@@ -18,6 +18,7 @@ jobs:
       NEXT_PUBLIC_SANITY_DATASET: ${{ inputs.sanity-project-dataset }}
     name: Upload data
     steps:
+      - uses: actions/checkout@v4
       - name: Upload dataset
         uses: sanity-io/github-action-sanity@v0.4
         env:
