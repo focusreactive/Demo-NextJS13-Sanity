@@ -1,4 +1,4 @@
-name: Import dataset for cloned project
+name: Upload dataset for cloned project
 
 on:
   workflow_dispatch:
@@ -11,15 +11,48 @@ on:
         type: string
 
 jobs:
-  import-dataset:
+  upload-dataset:
     runs-on: ubuntu-latest
     env:
       NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ inputs.sanity-project-id }}
       NEXT_PUBLIC_SANITY_DATASET: ${{ inputs.sanity-project-dataset }}
+      SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - uses: sanity-io/github-action-sanity@v0.2-alpha
         with:
-          node-version: '18'
-      - run: npm install
-      - run: npx sanity debug --secrets
+          args: debug --secret
+
+      # jobs:
+      #   backup-dataset:
+      #     name: Backup dataset
+      #     steps:
+      #       - uses: actions/checkout@v2
+      #       - name: Export dataset
+      #         uses: sanity-io/github-action-sanity@v0.2-alpha
+      #         env:
+      #           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+      #         with:
+      #           args: dataset export production backups/backup.tar.gz
+      #       - name: Upload backup.tar.gz
+      #         uses: actions/upload-artifact@v2
+      #         with:
+      #           name: backup-tarball
+      #           path: backups/backup.tar.gz
+      #           # Fails the workflow if no files are found; defaults to 'warn'
+      #           if-no-files-found: error
+#       name: Deploy Sanity
+# on:
+#   push:
+#     branches: [main]
+# jobs:
+#   sanity-deploy:
+#     runs-on: ubuntu-latest
+#     name: Deploy Sanity
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: sanity-io/github-action-sanity@v0.2-alpha
+#         env:
+#           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+#         with:
+#           args: deploy
