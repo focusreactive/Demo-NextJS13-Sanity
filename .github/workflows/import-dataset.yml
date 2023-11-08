@@ -22,5 +22,4 @@ jobs:
         with:
           node-version: '18'
       - run: npm install
-      - run: npx sanity debug
-      - run: echo ${{ env }}
+      - run: npx sanity debug --secrets
