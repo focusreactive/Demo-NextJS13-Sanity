@@ -1,7 +1,7 @@
 name: Import dataset for cloned project
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       sanity-project-id:
         required: true
@@ -9,15 +9,12 @@ on:
       sanity-project-dataset:
         required: true
         type: string
-    secrets:
-      sanity-write-token:
-        required: true
 
 jobs:
   import-dataset:
     runs-on: ubuntu-latest
     env:
-      SANITY_PERSONAL_AUTH_TOKEN: ${{ secrets.sanity-write-token }}
+      SANITY_PERSONAL_AUTH_TOKEN: sk9cQPE91BdSU1gRdPKWXGWJXWJUmih3sleVursTdC7LoUD6Z4GcJBAerzafND0daKrCKBqi6Iidg7yo7
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
