@@ -14,8 +14,8 @@ jobs:
   import-dataset:
     runs-on: ubuntu-latest
     env:
-      NEXT_PUBLIC_SANITY_PROJECT_ID: inputs.sanity-project-id
-      NEXT_PUBLIC_SANITY_DATASET: inputs.sanity-project-dataset
+      NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ inputs.sanity-project-id }}
+      NEXT_PUBLIC_SANITY_DATASET: ${{ inputs.sanity-project-dataset }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
