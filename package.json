@@ -52,11 +52,5 @@
     "eslint": "^8.6.0",
     "prettier": "^3.0.3",
     "typescript": "^5.1.6"
-  },
-  "engines": {
-    "pnpm": ">=8"
-  },
-  "volta": {
-    "node": "18.18.0"
   }
 }
