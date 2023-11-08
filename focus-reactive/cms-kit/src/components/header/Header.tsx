@@ -171,8 +171,8 @@ const Hamburger = styled.button<{ burgerColor?: string }>`
   }
 `;
 
-const MenuLinkContainer = styled.span<{ color: string }>`
-  color: ${({ color }) => color};
+const MenuLinkContainer = styled.span<{ isActive: boolean }>`
+  color: ${({ isActive }) => (isActive ? 'white' : '#32408B')};
   position: relative;
   display: flex;
   height: 40px;
@@ -182,15 +182,10 @@ const MenuLinkContainer = styled.span<{ color: string }>`
   cursor: default;
 `;
 
-const MenuItem = ({ text, isActive, color, ...restProps }: any) => {
-  const correctColors = {
-    color: isActive ? 'white' : color,
-    bgColor: isActive ? 'blue700' : '',
-  };
-
+const MenuItem = ({ text, isActive, isAllActive, color, ...restProps }: any) => {
   return (
     <li>
-      <MenuLinkContainer {...restProps} {...correctColors}>
+      <MenuLinkContainer {...restProps} isActive={isActive || !isAllActive}>
         {text}
       </MenuLinkContainer>
     </li>
@@ -359,8 +354,8 @@ export const HeaderComponent = ({
             </LogoLink>
 
             <HeaderGroup>
+              <BigCircle as={animated.div} style={animStyles as any} />
               <HeadMenu>
-                <BigCircle as={animated.div} style={animStyles as any} />
                 {menu.map((item, key) => (
                   <MenuItem
                     text={item.group}
@@ -369,6 +364,7 @@ export const HeaderComponent = ({
                     onMouseEnter={({ currentTarget }: any) => {
                       menuItemHandler({ currentTarget, item: item.group });
                     }}
+                    isAllActive={Boolean(activeTab)}
                     isActive={activeTab === item.group}
                   />
                 ))}
