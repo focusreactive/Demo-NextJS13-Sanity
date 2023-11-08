@@ -16,10 +16,12 @@ jobs:
     env:
       NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ inputs.sanity-project-id }}
       NEXT_PUBLIC_SANITY_DATASET: ${{ inputs.sanity-project-dataset }}
-      SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      - uses: sanity-io/github-action-sanity@v0.2-alpha
+      - name: Upload dataset
+        uses: sanity-io/github-action-sanity@v0.2-alpha
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         with:
           args: debug --secret
 
