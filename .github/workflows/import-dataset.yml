@@ -21,4 +21,4 @@ jobs:
         with:
           node-version: '18'
       - run: npm install -g sanity
-      - run: echo ${{ inputs.sanity-project-id }} ${{ inputs.sanity-project-dataset }} $env.SANITY_PERSONAL_AUTH_TOKEN
+      - run: echo ${{ inputs.sanity-project-id }} ||| ${{ inputs.sanity-project-dataset }} ||| ${{ env.SANITY_PERSONAL_AUTH_TOKEN }}
