@@ -11,40 +11,18 @@ on:
         type: string
 
 jobs:
-  upload-dataset:
+  upload-data:
     runs-on: ubuntu-latest
     env:
       NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ inputs.sanity-project-id }}
       NEXT_PUBLIC_SANITY_DATASET: ${{ inputs.sanity-project-dataset }}
-    name: Backup dataset
+    name: Upload data
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-      - run: npm install
-      - name: Export dataset
+      - name: Upload dataset
         uses: sanity-io/github-action-sanity@v0.4
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         with:
           args: . debug --secrets
-# jobs:
-#   upload-dataset:
-#     runs-on: ubuntu-latest
-#     env:
-#       NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ inputs.sanity-project-id }}
-#       NEXT_PUBLIC_SANITY_DATASET: ${{ inputs.sanity-project-dataset }}
-#     steps:
-#       - uses: sanity-io/github-action-sanity@v0.6-alpha
-#       env:
-#         SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
-# implementation WITHOUT sanity action
-#   - uses: actions/checkout@v4
-#   - uses: actions/setup-node@v3
-#     with:
-#       node-version: '18'
-#   - run: npm install
-#   - run: SANITY_AUTH_TOKEN=tokent npx sanity debug --secrets
-
-# implementation WITH sanity action
+      - name: Add sanity webhook
+        run: echo "Add sanity webhook"
