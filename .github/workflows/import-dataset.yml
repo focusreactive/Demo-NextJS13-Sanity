@@ -23,7 +23,7 @@ jobs:
       #     node-version: '18'
       # - run: npm install
       - name: Upload dataset
-        uses: sanity-io/github-action-sanity@v0.7-alpha
+        uses: sanity-io/github-action-sanity@v0.4-alpha
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         with:
