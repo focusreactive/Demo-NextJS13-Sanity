@@ -18,16 +18,22 @@ jobs:
       NEXT_PUBLIC_SANITY_DATASET: ${{ inputs.sanity-project-dataset }}
     steps:
       - uses: actions/checkout@v4
-      # - uses: actions/setup-node@v3
-      #   with:
-      #     node-version: '18'
-      # - run: npm install
-      - name: Upload dataset
-        uses: sanity-io/github-action-sanity@v0.4-alpha
-        env:
-          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+      - uses: actions/setup-node@v3
         with:
-          args: debug --secret
+          node-version: '18'
+      - run: npm install
+      - run: SANITY_AUTH_TOKEN=tokent npx sanity debug --secrets
+      # - uses: actions/checkout@v4
+      # # - uses: actions/setup-node@v3
+      # #   with:
+      # #     node-version: '18'
+      # # - run: npm install
+      # - name: Upload dataset
+      #   uses: sanity-io/github-action-sanity@v0.4-alpha
+      # env:
+      #   SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+      #   with:
+      #     args: debug --secret
 
       # jobs:
       #   backup-dataset:
