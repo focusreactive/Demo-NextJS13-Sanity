@@ -11,60 +11,40 @@ on:
         type: string
 
 jobs:
-  upload-dataset:
+  backup-dataset:
     runs-on: ubuntu-latest
-    env:
-      NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ inputs.sanity-project-id }}
-      NEXT_PUBLIC_SANITY_DATASET: ${{ inputs.sanity-project-dataset }}
+    name: Backup dataset
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - name: Export dataset
+        uses: sanity-io/github-action-sanity@v0.6-alpha
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         with:
-          node-version: '18'
-      - run: npm install
-      - run: SANITY_AUTH_TOKEN=tokent npx sanity debug --secrets
-      # - uses: actions/checkout@v4
-      # # - uses: actions/setup-node@v3
-      # #   with:
-      # #     node-version: '18'
-      # # - run: npm install
-      # - name: Upload dataset
-      #   uses: sanity-io/github-action-sanity@v0.4-alpha
-      # env:
-      #   SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
-      #   with:
-      #     args: debug --secret
-
-      # jobs:
-      #   backup-dataset:
-      #     name: Backup dataset
-      #     steps:
-      #       - uses: actions/checkout@v2
-      #       - name: Export dataset
-      #         uses: sanity-io/github-action-sanity@v0.2-alpha
-      #         env:
-      #           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
-      #         with:
-      #           args: dataset export production backups/backup.tar.gz
-      #       - name: Upload backup.tar.gz
-      #         uses: actions/upload-artifact@v2
-      #         with:
-      #           name: backup-tarball
-      #           path: backups/backup.tar.gz
-      #           # Fails the workflow if no files are found; defaults to 'warn'
-      #           if-no-files-found: error
-#       name: Deploy Sanity
-# on:
-#   push:
-#     branches: [main]
+          args: dataset export production backups/backup.tar.gz
+      - name: Upload backup.tar.gz
+        uses: actions/upload-artifact@v2
+        with:
+          name: backup-tarball
+          path: backups/backup.tar.gz
+          # Fails the workflow if no files are found; defaults to 'warn'
+          if-no-files-found: error
 # jobs:
-#   sanity-deploy:
+#   upload-dataset:
 #     runs-on: ubuntu-latest
-#     name: Deploy Sanity
+#     env:
+#       NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ inputs.sanity-project-id }}
+#       NEXT_PUBLIC_SANITY_DATASET: ${{ inputs.sanity-project-dataset }}
 #     steps:
-#       - uses: actions/checkout@v2
-#       - uses: sanity-io/github-action-sanity@v0.2-alpha
-#         env:
-#           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
-#         with:
-#           args: deploy
+#       - uses: sanity-io/github-action-sanity@v0.6-alpha
+#       env:
+#         SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+# implementation WITHOUT sanity action
+#   - uses: actions/checkout@v4
+#   - uses: actions/setup-node@v3
+#     with:
+#       node-version: '18'
+#   - run: npm install
+#   - run: SANITY_AUTH_TOKEN=tokent npx sanity debug --secrets
+
+# implementation WITH sanity action
