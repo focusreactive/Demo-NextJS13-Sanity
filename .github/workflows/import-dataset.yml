@@ -27,6 +27,10 @@ jobs:
           # args: . debug --secrets
           # args: . dataset list
           #  dataset import prod-copy.tar.gz production
+
+          # correct CLI command (env sanity project should be with empty dataset):
+          # sanity dataset import prod-copy.tar.gz production
+
           args: . dataset import prod-copy.tar.gz production
       - name: Add sanity webhook
         run: echo "Add sanity webhook"

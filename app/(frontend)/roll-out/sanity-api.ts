@@ -13,9 +13,11 @@ export async function createSanityProject(userEmail: string) {
         organizationId: process.env.SANITY_ORGANIZATION_ID,
       }),
     });
-    console.log('creating sanity successfully created 🔥');
+    // should be correct token to success request
+    console.log('creating sanity response 🔥');
 
     const data = await response.json();
+    console.log(data);
 
     const projectId = data.id;
 
