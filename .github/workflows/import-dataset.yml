@@ -13,6 +13,9 @@ on:
 jobs:
   upload-data:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
     env:
       NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ inputs.sanity-project-id }}
       NEXT_PUBLIC_SANITY_DATASET: ${{ inputs.sanity-project-dataset }}
@@ -30,16 +33,6 @@ jobs:
 
           # correct CLI command (env sanity project should be with empty dataset):
           # sanity dataset import prod-copy.tar.gz production
-          args: . dataset import ./prod-copy.tar.gz production
+          args: dataset import prod-copy.tar.gz production
       - name: Add sanity webhook
         run: ls
-
-        # run `npm fund` for details
-
-        # 3 vulnerabilities (1 low, 2 moderate)
-
-        # To address all issues, run:
-        #   npm audit fix --force
-
-        # Run `npm audit` for details.
-        # - Resolving latest versions
