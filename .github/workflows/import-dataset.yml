@@ -24,6 +24,6 @@ jobs:
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         with:
-          args: . debug --secrets
+          args: . dataset import prod-copy.tar.gz production
       - name: Add sanity webhook
         run: echo "Add sanity webhook"
