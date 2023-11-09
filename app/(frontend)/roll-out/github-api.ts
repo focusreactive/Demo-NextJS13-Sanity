@@ -1,7 +1,7 @@
 export async function trigerWorkflowtoFillDataset(sanityProjectId: string, sanityProjectDataset: string) {
   try {
     console.log('triger github workflow');
-    const response = await fetch(
+    await fetch(
       `https://api.github.com/repos/focusreactive/Demo-NextJS13-Sanity/actions/workflows/75419986/dispatches`,
       {
         method: 'POST',
@@ -11,15 +11,16 @@ export async function trigerWorkflowtoFillDataset(sanityProjectId: string, sanit
         },
         body: JSON.stringify({
           ref: 'auto-roll-out', // switch to main when merged
-          inputs: { 'sanity-project-id': sanityProjectId, 'sanity-project-dataset': sanityProjectDataset },
+          inputs: {
+            'sanity-project-id': sanityProjectId,
+            'sanity-project-dataset': sanityProjectDataset,
+          },
         }),
       },
     );
 
-    const data = response.json();
-    console.log('github workflow response: ', data);
+    console.log('github workflow triggered');
   } catch (e) {
     console.log(e);
   }
-  return null;
 }
