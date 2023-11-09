@@ -25,8 +25,18 @@ jobs:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         with:
           # args: . debug --secrets
-          args: . dataset list
+          # args: . dataset list
           #  dataset import prod-copy.tar.gz production
-          # args: . dataset import prod-copy.tar.gz production
+          args: . dataset import prod-copy.tar.gz production
       - name: Add sanity webhook
         run: echo "Add sanity webhook"
+
+        # run `npm fund` for details
+
+        # 3 vulnerabilities (1 low, 2 moderate)
+
+        # To address all issues, run:
+        #   npm audit fix --force
+
+        # Run `npm audit` for details.
+        # - Resolving latest versions
