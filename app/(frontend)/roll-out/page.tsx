@@ -4,9 +4,10 @@ import {
   createSanityProject,
   createCorsEntry,
   addUserEmailToMembers,
-  createDocumentWebhook,
+  // createDocumentWebhook,
   createDataset,
 } from './sanity-api';
+import { trigerWorkflowtoFillDataset } from './github-api';
 import { createVercelProject, addVercelProjectEnvs, createVercelProjectDeployment } from './vercel-api';
 
 export default function RollOutPage() {
@@ -31,6 +32,7 @@ export default function RollOutPage() {
         await Promise.all([
           createVercelProjectDeployment(projectData),
           createDataset(sanityProjectId, 'production'),
+          trigerWorkflowtoFillDataset(sanityProjectId, 'production'),
           createCorsEntry({
             projectId: sanityProjectId,
             deploymentUrl: projectData.deploymentUrl,
@@ -39,10 +41,10 @@ export default function RollOutPage() {
             projectId: sanityProjectId,
             email,
           }),
-          createDocumentWebhook({
-            sanityProjectId: sanityProjectId,
-            vercelProjectName: projectData.projectName,
-          }),
+          // createDocumentWebhook({
+          //   sanityProjectId: sanityProjectId,
+          //   vercelProjectName: projectData.projectName,
+          // }),
         ]);
       }
 
