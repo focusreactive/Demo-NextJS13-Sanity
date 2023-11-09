@@ -13,26 +13,30 @@ on:
 jobs:
   upload-data:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: .
     env:
       NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ inputs.sanity-project-id }}
       NEXT_PUBLIC_SANITY_DATASET: ${{ inputs.sanity-project-dataset }}
     name: Upload data
     steps:
       - uses: actions/checkout@v4
-      - name: Upload dataset
-        uses: sanity-io/github-action-sanity@v0.4
-        env:
-          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
-        with:
-          # args: . debug --secrets
-          # args: . dataset list
-          #  dataset import prod-copy.tar.gz production
+      - name: Install dependencies
+        run: npm install
+      - name: Export dataset
+        run: |
+          SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" \
+          npx sanity dataset import \
+          prod-copy.tar.gz production
+      # - name: Upload dataset
+      #   uses: sanity-io/github-action-sanity@v0.4
+      #   env:
+      #     SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+      #   with:
+      #     # args: . debug --secrets
+      #     # args: . dataset list
+      #     #  dataset import prod-copy.tar.gz production
 
-          # correct CLI command (env sanity project should be with empty dataset):
-          # sanity dataset import prod-copy.tar.gz production
-          args: dataset import prod-copy.tar.gz production
-      - name: Add sanity webhook
-        run: ls
+      #     # correct CLI command (env sanity project should be with empty dataset):
+      #     # sanity dataset import prod-copy.tar.gz production
+      #     args: . dataset import prod-copy.tar.gz production
+      # - name: Add sanity webhook
+      #   run: ls
