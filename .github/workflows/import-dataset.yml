@@ -66,6 +66,6 @@ jobs:
               "gitSource": {
                 "repoId": ${{ secrets.TEAM_GITHUB_REPO_ID }},
                 "ref": ${{ secrets.TEAM_GITHUB_REPO_PRODUCTION_BRANCH }},
-                "type": ${{ secrets.REPO_TYPE }},
-              },
+                "type": ${{ secrets.REPO_TYPE }}
+              }
             }'
