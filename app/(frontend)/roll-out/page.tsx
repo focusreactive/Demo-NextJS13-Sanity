@@ -1,14 +1,8 @@
 import { styled } from '@linaria/react';
 
-import {
-  createSanityProject,
-  createCorsEntry,
-  addUserEmailToMembers,
-  // createDocumentWebhook,
-  createDataset,
-} from './sanity-api';
+import { createSanityProject, createCorsEntry, addUserEmailToMembers, createDataset } from './sanity-api';
 import { trigerWorkflowtoFillDataset } from './github-api';
-import { createVercelProject, addVercelProjectEnvs, createVercelProjectDeployment } from './vercel-api';
+import { createVercelProject, addVercelProjectEnvs } from './vercel-api';
 
 export default function RollOutPage() {
   const triggerDeploy = async (data: FormData) => {
@@ -19,7 +13,6 @@ export default function RollOutPage() {
 
     const sanityProjectId = await createSanityProject(cleanUsername);
 
-    // dataset should be created before vercel deployment
     if (sanityProjectId) {
       const projectData = await createVercelProject({
         username: cleanUsername,
@@ -30,10 +23,13 @@ export default function RollOutPage() {
       if (projectData) {
         await addVercelProjectEnvs(projectData);
         await Promise.all([
-          createVercelProjectDeployment(projectData),
           createDataset(sanityProjectId, 'production'),
-          // wdwd
-          trigerWorkflowtoFillDataset(sanityProjectId, 'production', projectData.projectName),
+          trigerWorkflowtoFillDataset({
+            sanityProjectId,
+            sanityProjectDataset: 'production',
+            vercelProjectId: projectData.projectId,
+            vercelProjectName: projectData.projectName,
+          }),
           createCorsEntry({
             projectId: sanityProjectId,
             deploymentUrl: projectData.deploymentUrl,
@@ -42,14 +38,8 @@ export default function RollOutPage() {
             projectId: sanityProjectId,
             email,
           }),
-          // createDocumentWebhook({
-          //   sanityProjectId: sanityProjectId,
-          //   vercelProjectName: projectData.projectName,
-          // }),
         ]);
       }
-
-      // todo: send notification to slack chennel that project is created for user with email: real user email
     }
   };
 

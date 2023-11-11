@@ -12,6 +12,9 @@ on:
       vercel-project-name:
         required: true
         type: string
+      vercel-project-id:
+        required: true
+        type: string
 
 jobs:
   upload-data:
@@ -22,14 +25,16 @@ jobs:
     name: Upload data
     steps:
       - uses: actions/checkout@v4
-      # - name: Install dependencies
-      # run: npm install
-      # - name: Export dataset
-      #   run: |
-      #     SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" \
-      #     npx sanity dataset import \
-      #     prod-copy.tar.gz production
-      - name: Curl to add vercel deploy hook to sanity
+      - name: Install dependencies
+        run: npm install
+      - name: Export dataset
+        run: |
+          SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" \
+          npx sanity dataset import \
+          prod-copy.tar.gz production
+      # curls commands should be run after dataset is uploaded
+      # to make sure initial production deployment has correct data
+      - name: Curl command to add vercel deploy hook to sanity
         run: |
           curl -X POST "https://api.sanity.io/v2021-10-04/hooks/projects/${{ inputs.sanity-project-id }}" \
           -H "Authorization: Bearer ${{ secrets.SANITY_AUTH_TOKEN }}" \
@@ -49,19 +54,18 @@ jobs:
               "Authorization": "Bearer ${{ secrets.VERCEL_PERSONAL_AUTH_TOKEN }}"
             }
           }'
-      # - name: curl
-      # uses: enflo/curl-action@master
-      # with:
-      #   curl: ${{ CURL ARGUMENTS }}
-
-      #     # correct CLI command (env sanity project should be with empty dataset):
-      #     # sanity dataset import prod-copy.tar.gz production
-      #     args: . dataset import prod-copy.tar.gz production
-      # - name: Add sanity webhook
-      #   run: ls
-
-      # working code
-      # run: |
-      # SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" \
-      # npx sanity dataset import \
-      # prod-copy.tar.gz production
+      - name: Curl command to triger vercel initial deployment
+        run: |
+          curl -X POST "https://api.vercel.com/v13/deployments?teamId=${{ secrets.VERCEL_FR_TEAM_ID }}" \
+            -H "Authorization: Bearer ${{ secrets.VERCEL_PERSONAL_AUTH_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "name": "${{ inputs.vercel-project-name }}",
+              "project": "${{ inputs.vercel-project-id }}",
+              "target": "production",
+              "gitSource": {
+                "repoId": ${{ secrets.TEAM_GITHUB_REPO_ID }},
+                "ref": ${{ secrets.TEAM_GITHUB_REPO_PRODUCTION_BRANCH }},
+                "type": ${{ secrets.REPO_TYPE }},
+              },
+            }'

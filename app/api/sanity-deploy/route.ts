@@ -11,9 +11,9 @@ export async function POST() {
   const deploymentData = {
     projectId: process.env.VERCEL_PROJECT_ID || '',
     projectName: process.env.VERCEL_PROJECT_NAME || '',
-    repoId: Number(process.env.GITHUB_REPO_ID),
+    repoId: Number(process.env.TEAM_GITHUB_REPO_ID),
     type: process.env.REPO_TYPE || '',
-    productionBranch: process.env.GITHUB_REPO_PRODUCTION_BRANCH || '',
+    productionBranch: process.env.TEAM_GITHUB_REPO_PRODUCTION_BRANCH || '',
   };
 
   if (token === process.env.VERCEL_PERSONAL_AUTH_TOKEN) {
