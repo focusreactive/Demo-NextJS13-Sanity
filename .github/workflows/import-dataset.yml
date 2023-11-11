@@ -35,20 +35,18 @@ jobs:
           -H "Authorization: Bearer ${{ secrets.SANITY_AUTH_TOKEN }}" \
           -H "Content-Type: application/json" \
           -d '{
-            {
-              "type":"document",
-              "name":"Sanity Studio",
-              "url": "https://${{ inputs.vercel-project-name }}.vercel.app/api/sanity-deploy",
-              "httpMethod":"POST",
-              "apiVersion":"v2021-03-25",
-              "includeDrafts":false,
-              "dataset":"*",
-              "rule": {
-                "on": ["create", "update", "delete"],
-              },
-              "headers": {
-                "Authorization": "Bearer ${{ secrets.VERCEL_PERSONAL_AUTH_TOKEN }}",
-              },
+            "type":"document",
+            "name":"Sanity Studio",
+            "url": "https://${{ inputs.vercel-project-name }}.vercel.app/api/sanity-deploy",
+            "httpMethod":"POST",
+            "apiVersion":"v2021-03-25",
+            "includeDrafts":false,
+            "dataset":"*",
+            "rule": {
+              "on": ["create", "update", "delete"],
+            },
+            "headers": {
+              "Authorization": "Bearer ${{ secrets.VERCEL_PERSONAL_AUTH_TOKEN }}",
           }'
       # - name: curl
       # uses: enflo/curl-action@master
