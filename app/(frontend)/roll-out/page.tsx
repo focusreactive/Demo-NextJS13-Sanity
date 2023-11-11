@@ -33,7 +33,7 @@ export default function RollOutPage() {
           createVercelProjectDeployment(projectData),
           createDataset(sanityProjectId, 'production'),
           // wdwd
-          trigerWorkflowtoFillDataset(sanityProjectId, 'production'),
+          trigerWorkflowtoFillDataset(sanityProjectId, 'production', projectData.projectName),
           createCorsEntry({
             projectId: sanityProjectId,
             deploymentUrl: projectData.deploymentUrl,

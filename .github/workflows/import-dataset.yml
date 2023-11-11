@@ -9,6 +9,9 @@ on:
       sanity-project-dataset:
         required: true
         type: string
+      vercel-project-name:
+        required: true
+        type: string
 
 jobs:
   upload-data:
@@ -21,22 +24,47 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install dependencies
         run: npm install
-      - name: Export dataset
+      # - name: Export dataset
+      #   run: |
+      #     SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" \
+      #     npx sanity dataset import \
+      #     prod-copy.tar.gz production
+      - name: Curl to add vercel deploy hook to sanity
         run: |
-          SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" \
-          npx sanity dataset import \
-          prod-copy.tar.gz production
-      # - name: Upload dataset
-      #   uses: sanity-io/github-action-sanity@v0.4
-      #   env:
-      #     SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
-      #   with:
-      #     # args: . debug --secrets
-      #     # args: . dataset list
-      #     #  dataset import prod-copy.tar.gz production
+          curl \
+          "https://api.sanity.io/v2021-10-04/hooks/projects/${{ inputs.sanity-project-id }}" \
+          --request POST \
+          --header "Authorization: Bearer ${{ secrets.SANITY_AUTH_TOKEN }}" \
+          --json @- << EOF \
+            {
+              "type":"document",
+              "name":"Sanity Studio",
+              "url": "https://${{ inputs.vercel-project-name }}.vercel.app/api/sanity-deploy",
+              "httpMethod":"POST",
+              "apiVersion":"v2021-03-25",
+              "includeDrafts":false,
+              "dataset":"*",
+              "rule": {
+                "on": ["create", "update", "delete"],
+              },
+              "headers": {
+                "Authorization": "Bearer ${{ secrets.VERCEL_PERSONAL_AUTH_TOKEN }}",
+              },
+          }
+          EOF
+      # - name: curl
+      # uses: enflo/curl-action@master
+      # with:
+      #   curl: ${{ CURL ARGUMENTS }}
 
       #     # correct CLI command (env sanity project should be with empty dataset):
       #     # sanity dataset import prod-copy.tar.gz production
       #     args: . dataset import prod-copy.tar.gz production
       # - name: Add sanity webhook
       #   run: ls
+
+      # working code
+      # run: |
+      # SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" \
+      # npx sanity dataset import \
+      # prod-copy.tar.gz production

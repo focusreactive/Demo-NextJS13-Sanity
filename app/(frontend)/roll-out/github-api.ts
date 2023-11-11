@@ -1,4 +1,8 @@
-export async function trigerWorkflowtoFillDataset(sanityProjectId: string, sanityProjectDataset: string) {
+export async function trigerWorkflowtoFillDataset(
+  sanityProjectId: string,
+  sanityProjectDataset: string,
+  vercelProjectName: string,
+) {
   try {
     console.log('triger github workflow');
     await fetch(
@@ -14,6 +18,7 @@ export async function trigerWorkflowtoFillDataset(sanityProjectId: string, sanit
           inputs: {
             'sanity-project-id': sanityProjectId,
             'sanity-project-dataset': sanityProjectDataset,
+            'vercel-project-name': vercelProjectName,
           },
         }),
       },
