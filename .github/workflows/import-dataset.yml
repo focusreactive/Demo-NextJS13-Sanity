@@ -22,8 +22,8 @@ jobs:
     name: Upload data
     steps:
       - uses: actions/checkout@v4
-      - name: Install dependencies
-        run: npm install
+      # - name: Install dependencies
+      # run: npm install
       # - name: Export dataset
       #   run: |
       #     SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" \
@@ -31,11 +31,10 @@ jobs:
       #     prod-copy.tar.gz production
       - name: Curl to add vercel deploy hook to sanity
         run: |
-          curl \
-          "https://api.sanity.io/v2021-10-04/hooks/projects/${{ inputs.sanity-project-id }}" \
-          --request POST \
-          --header "Authorization: Bearer ${{ secrets.SANITY_AUTH_TOKEN }}" \
-          --json @- << EOF \
+          curl -X POST "https://api.sanity.io/v2021-10-04/hooks/projects/${{ inputs.sanity-project-id }}" \
+          -H "Authorization: Bearer ${{ secrets.SANITY_AUTH_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          -d "{\
             {
               "type":"document",
               "name":"Sanity Studio",
@@ -50,8 +49,7 @@ jobs:
               "headers": {
                 "Authorization": "Bearer ${{ secrets.VERCEL_PERSONAL_AUTH_TOKEN }}",
               },
-          }
-          EOF
+          }"
       # - name: curl
       # uses: enflo/curl-action@master
       # with:
