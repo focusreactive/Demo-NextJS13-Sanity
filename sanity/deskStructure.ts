@@ -1,5 +1,5 @@
 import { DefaultDocumentNodeContext, StructureBuilder, StructureResolver } from 'sanity/desk';
-import { PreviewIFrame } from '@/sanity/preview/Preview';
+import { PreviewIframe } from '@/sanity/preview/PreviewIframe';
 import { dynamicPage } from '@/sanity/schemas/dynamicPage';
 import config from '@/sanity/config';
 
@@ -14,7 +14,7 @@ export const defaultDocumentNode = (S: StructureBuilder, { schemaType, getClient
     return S.document().views([
       S.view.form(),
       S.view
-        .component(PreviewIFrame)
+        .component(PreviewIframe)
         .options({
           client: getClient({ apiVersion: config.apiVersion }),
         })

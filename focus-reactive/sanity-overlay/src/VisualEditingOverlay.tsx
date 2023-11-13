@@ -1,10 +1,10 @@
 'use client';
 
 import { useEffect } from 'react';
-import { enableVisualEditing } from '@sanity/overlays';
+import { enableOverlays } from './overlays';
 
 export const VisualEditingOverlay = () => {
-  useEffect(enableVisualEditing, []);
+  useEffect(enableOverlays, []);
 
   return null;
 };

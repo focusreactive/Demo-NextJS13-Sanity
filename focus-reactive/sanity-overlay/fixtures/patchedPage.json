@@ -2017,9 +2017,7 @@
                       {
                         "button": {
                           "title": "another capability button+++@+++",
-                          "uri": [
-                            { "_type": "externalLink", "link": "https://gopogle.com", "_key": "3c27540192d4" }
-                          ],
+                          "uri": [{ "_type": "externalLink", "link": "https://gopogle.com", "_key": "3c27540192d4" }],
                           "_type": "button"
                         },
                         "titleWithOptions": {

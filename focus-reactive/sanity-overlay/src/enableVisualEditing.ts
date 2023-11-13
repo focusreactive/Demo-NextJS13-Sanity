@@ -54,7 +54,8 @@ export function enableVisualEditing({
 
   patchStringFields(
     data,
-    (value, path) => vercelStegaCombine(value, { origin: 'sanity.io', href: `${openInSanityUrl};path=${path}` }),
+    (value, path) =>
+      vercelStegaCombine(value, { origin: 'sanity.io', href: `${openInSanityUrl};path=${path}`, data: { path } }),
     excludedPaths,
   );
 
