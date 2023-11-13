@@ -27,11 +27,11 @@ export const PreviewIframe: UserViewComponent = (props) => {
       panes: [
         [{ id: currentDocument._type }],
         [
-          { id: getPublishedId(documentId), params: { path } },
           {
             id: getPublishedId(documentId),
-            params: { view: 'preview', path: 'stub to not open the path' },
+            params: { view: 'preview' },
           },
+          { id: getPublishedId(documentId), params: { path } },
         ],
       ],
     });
