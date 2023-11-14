@@ -20,21 +20,9 @@ export const PreviewIframe: UserViewComponent = (props) => {
   const baseUrl = window.location.origin;
 
   const onEditOpen = useCallback((e: any) => {
-    const documentId = currentDocument._id;
-    const path = e?.detail?.data?.path as string;
-    if (!path || !documentId) return;
-    router.navigate({
-      panes: [
-        [{ id: currentDocument._type }],
-        [
-          {
-            id: getPublishedId(documentId),
-            params: { view: 'preview' },
-          },
-          { id: getPublishedId(documentId), params: { path } },
-        ],
-      ],
-    });
+    const href = e?.detail?.href;
+    if (!href) return;
+    router.navigateUrl({ path: href });
   }, []);
   const setIframe = (iframeNode: HTMLIFrameElement) => {
     // @ts-ignore

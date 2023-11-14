@@ -44,7 +44,7 @@ function tagElement(element: HTMLElement, { key, nodeToTag }: KeyedNode) {
     decoded.href = decoded.href?.replace('.alt', '');
   }
 
-  decoded.href += ';view=preview,';
+  // decoded.href += ';view=preview,';
 
   if (key !== 'title') {
     nodeToTagReal.dataset.sanityStega = JSON.stringify(decoded);

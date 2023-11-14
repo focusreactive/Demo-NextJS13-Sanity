@@ -32,7 +32,7 @@ export function VisualEditingOverlay(): JSX.Element {
 
             // if the entry is not intersecting, we can remove it from the elementRefs list
             if (!entry.isIntersecting) {
-              if (exists && !iframe) {
+              if (exists/* && !iframe*/) {
                 setElementRefs((prev) => prev.filter((el) => el.element !== target));
               }
 
@@ -46,7 +46,7 @@ export function VisualEditingOverlay(): JSX.Element {
                 continue;
               }
 
-              if (!exists && !iframe) {
+              if (!exists/* && !iframe*/) {
                 setElementRefs((prev) => [...prev, { element: target, id: nanoid(5) }]);
               }
             }
@@ -120,14 +120,14 @@ export function VisualEditingOverlay(): JSX.Element {
     if (typeof window === 'undefined') return;
 
     if (window.self !== window.top) {
-      // setIframe(true);
+      setIframe(true);
     }
   }, [mounted]);
 
   return (
     <ThemeProvider theme={studioTheme}>
       {elementRefs.map((elementRef) => {
-        return <EditTooltip key={elementRef.id} element={elementRef.element} />;
+        return <EditTooltip key={elementRef.id} element={elementRef.element} isLink={!iframe} />;
       })}
     </ThemeProvider>
   );

@@ -2,7 +2,7 @@ import { autoUpdate, useFloating } from '@floating-ui/react-dom';
 import { Button } from '@sanity/ui';
 import { type JSX, useEffect, useRef } from 'react';
 
-export function EditTooltip({ element }: { element: HTMLElement }): JSX.Element | null {
+export function EditTooltip({ element, isLink }: { element: HTMLElement; isLink: boolean }): JSX.Element | null {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const areaRef = useRef<HTMLDivElement>(null);
 
@@ -77,6 +77,8 @@ export function EditTooltip({ element }: { element: HTMLElement }): JSX.Element 
   const { width, height } = element.getBoundingClientRect();
   const { href, origin, data } = JSON.parse(element.dataset.sanityStega);
 
+  const isButton = !isLink;
+
   return (
     <div style={{ position: 'relative' }}>
       <div
@@ -108,15 +110,15 @@ export function EditTooltip({ element }: { element: HTMLElement }): JSX.Element 
           }}
         />
         <Button
-          as={data ? 'button' : 'a'}
-          href={data ? undefined : href}
-          target={data ? undefined : '_blank'}
-          rel={data ? undefined : 'noreferrer'}
+          as={isButton ? 'button' : 'a'}
+          href={isButton ? undefined : href}
+          target={isButton ? undefined : '_blank'}
+          rel={isButton ? undefined : 'noreferrer'}
           ref={buttonRef}
           fontSize={1}
           padding={2}
           tone="primary"
-          text={element.clientWidth > 200 && !data ? 'Edit in Sanity Studio' : 'Edit'}
+          text={element.clientWidth > 200 && !isButton ? 'Edit in Sanity Studio' : 'Edit'}
           onMouseLeave={() => {
             refs.floating.current?.style.setProperty('opacity', '0');
             buttonRef.current?.style.setProperty('display', 'none');
@@ -136,7 +138,7 @@ export function EditTooltip({ element }: { element: HTMLElement }): JSX.Element 
 
             const event = new CustomEvent('edit:open', {
               detail: {
-                data,
+                data: isButton,
                 href,
                 origin,
               },
