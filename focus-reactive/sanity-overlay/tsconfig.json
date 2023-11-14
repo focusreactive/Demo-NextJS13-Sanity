@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "es6",
     "jsx": "preserve",
     "module": "commonjs",
     "resolveJsonModule": true,
