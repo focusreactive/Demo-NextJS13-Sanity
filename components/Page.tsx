@@ -6,7 +6,6 @@ import { enableVisualEditing } from '@focusreactive/sanity-overlay';
 export const Page = ({ page }: { page: SanityDocument }) => {
   const editablePage = enableVisualEditing({
     data: page,
-    documentId: page._id,
     excludedPaths: [/.*footer\.socials\[\d+\]\.icon.*/, /.*\.(bgColor|sectionConfig)/],
   });
 
