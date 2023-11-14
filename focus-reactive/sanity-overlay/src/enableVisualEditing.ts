@@ -26,12 +26,13 @@ export function patchStringFields(
     const currentPath = path ? (isRichText ? path : `${path}.${key}`) : key;
     const value = obj[key];
 
+    const isExcludedPath = excludedPaths.some((excludedPath) =>
+      excludedPath instanceof RegExp ? excludedPath.test(currentPath) : excludedPath === currentPath,
+    );
+    if (isExcludedPath) continue;
+
     if (typeof value === 'string') {
       if (key[0] === '_' || (isRichText && key === 'style') || /https?:\/\//.test(value)) continue;
-      const isExcludedPath = excludedPaths.some((excludedPath) =>
-        excludedPath instanceof RegExp ? excludedPath.test(currentPath) : excludedPath === currentPath,
-      );
-      if (isExcludedPath) continue;
       if (!documentId) throw new Error('missing `documentId` during patching');
       obj[key] = patchCb(value, { id: documentId, type: documentType, path: currentPath });
     } else if (Array.isArray(value)) {
