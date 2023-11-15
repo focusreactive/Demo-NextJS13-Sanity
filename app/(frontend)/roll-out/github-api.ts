@@ -3,14 +3,19 @@ export async function trigerWorkflowtoFillDataset({
   sanityProjectDataset,
   vercelProjectId,
   vercelProjectName,
+  vercelDeploymentUrl,
+  email,
 }: {
   sanityProjectId: string;
   sanityProjectDataset: string;
   vercelProjectId: string;
   vercelProjectName: string;
+  vercelDeploymentUrl: string;
+  email: string;
 }) {
   try {
-    console.log('triger github workflow');
+    console.log('Triger github workflow ⏳⏳⏳');
+
     await fetch(
       `https://api.github.com/repos/focusreactive/Demo-NextJS13-Sanity/actions/workflows/75419986/dispatches`,
       {
@@ -20,18 +25,20 @@ export async function trigerWorkflowtoFillDataset({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ref: 'auto-roll-out', // switch to main when merged
+          ref: process.env.TEAM_GITHUB_REPO_PRODUCTION_BRANCH,
           inputs: {
+            email: email,
             'sanity-project-id': sanityProjectId,
             'sanity-project-dataset': sanityProjectDataset,
             'vercel-project-id': vercelProjectId,
             'vercel-project-name': vercelProjectName,
+            'vercel-deployment-url': vercelDeploymentUrl,
           },
         }),
       },
     );
 
-    console.log('github workflow triggered');
+    console.log('Github workflow triggered ✅✅✅');
   } catch (e) {
     console.log(e);
   }

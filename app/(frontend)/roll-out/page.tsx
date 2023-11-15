@@ -21,24 +21,14 @@ export default function RollOutPage() {
       });
 
       if (projectData) {
-        await addVercelProjectEnvs(projectData);
-        await Promise.all([
-          createDataset(sanityProjectId, 'production'),
-          trigerWorkflowtoFillDataset({
-            sanityProjectId,
-            sanityProjectDataset: 'production',
-            vercelProjectId: projectData.projectId,
-            vercelProjectName: projectData.projectName,
-          }),
-          createCorsEntry({
-            projectId: sanityProjectId,
-            deploymentUrl: projectData.deploymentUrl,
-          }),
-          addUserEmailToMembers({
-            projectId: sanityProjectId,
-            email,
-          }),
-        ]);
+        await trigerWorkflowtoFillDataset({
+          sanityProjectId,
+          sanityProjectDataset: 'production',
+          vercelProjectId: projectData.projectId,
+          vercelProjectName: projectData.projectName,
+          vercelDeploymentUrl: projectData.deploymentUrl,
+          email,
+        });
       }
     }
   };
