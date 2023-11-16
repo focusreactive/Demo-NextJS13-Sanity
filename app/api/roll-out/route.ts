@@ -4,9 +4,12 @@ import { createSanityProject, createVercelProject, triggerGithubWorkflow } from 
 import { isValidEmail } from '@/lib/email';
 
 export async function POST(request: Request) {
+  console.log('roll out aou ihit');
+
   if (headers().get('authorization') !== `Bearer ${process.env.ROLL_OUT_API_TOKEN}`) {
     return new Response('Invalid roll-out token', { status: 401 });
   }
+  console.log('authed with roll out token');
 
   const { email } = await request.json();
 
