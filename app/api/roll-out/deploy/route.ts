@@ -27,9 +27,9 @@ export async function POST() {
       throw new Error('Invalid vercel token');
     }
 
-    return Response.json({ ok: true, status: 200, statusText: 'Deployment triggered 📤' });
+    return new Response('Deployment triggered 📤', { status: 200 });
   } catch (error) {
     console.warn(error);
   }
-  return Response.json({ status: '503', statusText: 'Failed to trigger deployment 😿' });
+  return new Response('Failed to trigger deployment 😿', { status: 503 });
 }

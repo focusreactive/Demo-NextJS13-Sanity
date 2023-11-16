@@ -37,12 +37,12 @@ export async function POST(request: Request) {
           email,
         });
 
-        return Response.json({ ok: true, status: 200, statusText: 'All steps were successful 🎉' });
+        return new Response('All steps were successful 🎉', { status: 200 });
       }
     }
 
-    return Response.json({ status: '503', statusText: 'One of the steps was not successful😿' });
+    return new Response('One of the steps was not successful😿', { status: 503 });
   }
 
-  return Response.json({ status: '400', statusText: 'Email is not valid' });
+  return new Response('Email is not valid', { status: 400 });
 }
