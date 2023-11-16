@@ -75,6 +75,10 @@ export async function createVercelProject({
             key: 'VERCEL_FR_TEAM_ID',
             value: process.env.VERCEL_FR_TEAM_ID,
           },
+          {
+            key: 'ROLL_OUT_API_TOKEN',
+            value: process.env.ROLL_OUT_API_TOKEN,
+          },
         ].map((v) => ({ ...v, target: ['production', 'preview', 'development'], type: 'encrypted' })),
         framework: 'nextjs',
         gitRepository: {
