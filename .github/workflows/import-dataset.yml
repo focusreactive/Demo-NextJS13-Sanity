@@ -6,7 +6,7 @@ on:
       sanity-project-id:
         required: true
         type: string
-      sanity-project-dataset:
+      sanity-dataset-name:
         required: true
         type: string
       vercel-project-name:
@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ inputs.sanity-project-id }}
-      NEXT_PUBLIC_SANITY_DATASET: ${{ inputs.sanity-project-dataset }}
+      NEXT_PUBLIC_SANITY_DATASET: ${{ inputs.sanity-dataset-name }}
     name: Steps to deploy new project
     steps:
       - name: Checkout
