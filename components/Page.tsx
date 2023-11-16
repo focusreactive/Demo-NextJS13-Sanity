@@ -4,10 +4,12 @@ import { SanityDocument } from 'sanity';
 import { enableVisualEditing } from '@focusreactive/sanity-overlay';
 
 export const Page = ({ page }: { page: SanityDocument }) => {
+  const start = performance.now();
   const editablePage = enableVisualEditing({
     data: page,
     excludedPaths: [/.*footer\.socials\[\d+\]\.icon.*/, /.*\.(bgColor|sectionConfig)/],
   });
+  console.log('enableVisualEditing', performance.now() - start);
 
   return (
     <>

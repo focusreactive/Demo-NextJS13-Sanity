@@ -2,6 +2,8 @@ import { vercelStegaCombine } from '@vercel/stega';
 
 type GenericObject = { [key: string]: any };
 
+const cache = new Map<string, any>();
+
 export function patchStringFields(
   obj: GenericObject,
   context: {
@@ -52,6 +54,15 @@ export function patchStringFields(
       });
     } else if (typeof value === 'object' && value !== null) {
       if (['slug'].includes(value._type)) continue;
+
+      if (value._id && value._updatedAt) {
+        const cachedValue = cache.get(value._id);
+        if (cachedValue && cachedValue._updatedAt === value._updatedAt) {
+          obj[key] = cachedValue;
+          continue;
+        }
+        cache.set(value._id, value);
+      }
 
       patchStringFields(value, {
         patchCb,
