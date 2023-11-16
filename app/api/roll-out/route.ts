@@ -1,6 +1,6 @@
-import { createSanityProject, createVercelProject, triggerGithubWorkflow } from '@/lib/services';
 import { headers } from 'next/headers';
 
+import { createSanityProject, createVercelProject, triggerGithubWorkflow } from '@/lib/services';
 import { isValidEmail } from '@/lib/email';
 
 export async function POST(request: Request) {
