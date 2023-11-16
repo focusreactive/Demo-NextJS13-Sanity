@@ -100,7 +100,7 @@ jobs:
           -d '{
             "type":"document",
             "name":"Sanity Studio",
-            "url": "https://${{ inputs.vercel-project-name }}.vercel.app/api/sanity-deploy",
+            "url": "https://${{ inputs.vercel-project-name }}.vercel.app/api/roll-out/deploy",
             "httpMethod":"POST",
             "apiVersion":"v2021-03-25",
             "includeDrafts":false,
@@ -109,7 +109,7 @@ jobs:
               "on": ["create", "update", "delete"]
             },
             "headers": {
-              "Authorization": "Bearer ${{ secrets.VERCEL_PERSONAL_AUTH_TOKEN }}"
+              "Authorization": "Bearer ${{ secrets.ROLL_OUT_API_TOKEN }}"
             }
           }'
       - name: Curl command to triger vercel initial deployment

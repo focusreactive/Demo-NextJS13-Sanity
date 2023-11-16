@@ -57,15 +57,15 @@ export async function createVercelProject({
           },
           {
             key: 'TEAM_GITHUB_REPO_ID',
-            value: '684968839',
+            value: process.env.TEAM_GITHUB_REPO_ID,
           },
           {
             key: 'TEAM_GITHUB_REPO_PRODUCTION_BRANCH',
-            value: 'auto-roll-out',
+            value: process.env.TEAM_GITHUB_REPO_PRODUCTION_BRANCH,
           },
           {
             key: 'REPO_TYPE',
-            value: 'github',
+            value: process.env.REPO_TYPE,
           },
           {
             key: 'VERCEL_PERSONAL_AUTH_TOKEN',
