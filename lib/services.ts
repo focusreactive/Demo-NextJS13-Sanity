@@ -154,8 +154,6 @@ export async function triggerGithubWorkflow({
       },
     );
 
-    console.log(await response.json());
-
     if (response.status === 401) {
       throw new Error('Invalid github token');
     }
