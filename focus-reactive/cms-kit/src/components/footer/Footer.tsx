@@ -5,7 +5,6 @@ import Buttons from '../common/buttons/Buttons';
 import { appTheme } from '../../theme';
 import SmartLink from '../common/smart-link/SmartLink';
 import Contacts from '../common/contacts/Contacts';
-import Socials from '../common/socials/Socials';
 import { StyledContainer } from '../section/Section';
 import { converters } from '../../cms-connector/converters';
 
@@ -361,7 +360,6 @@ export const FooterComponent = (props: any) => {
             <NavItem key={key} {...item} />
           ))}
         </Nav>
-        <Socials linkSize="32px" iconSize="18px" socials={socials} />
       </FooterBottom>
       <FDecor1 />
     </FooterBox>
