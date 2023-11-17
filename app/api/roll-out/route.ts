@@ -28,7 +28,7 @@ export async function POST(request: Request) {
       });
 
       if (projectData) {
-        await triggerGithubWorkflow({
+        const result = await triggerGithubWorkflow({
           sanityProjectId,
           sanityDatasetName,
           vercelProjectId: projectData.projectId,
@@ -37,7 +37,9 @@ export async function POST(request: Request) {
           email,
         });
 
-        return new Response('All steps were successful 🎉', { status: 200 });
+        if (result === true) {
+          return new Response('All steps were successful 🎉', { status: 200 });
+        }
       }
     }
 
