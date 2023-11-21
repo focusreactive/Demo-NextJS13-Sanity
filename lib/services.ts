@@ -1,4 +1,4 @@
-export async function createSanityProject(email: string) {
+export async function createSanityProject(projectNamePrefix: string) {
   try {
     console.log('Start creating sanity💲 project...⏳');
 
@@ -9,7 +9,7 @@ export async function createSanityProject(email: string) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        displayName: `${email}-${process.env.PROJECT_NAME}`,
+        displayName: `${projectNamePrefix}-${process.env.PROJECT_NAME}`,
         organizationId: process.env.SANITY_ORGANIZATION_ID,
       }),
     });
@@ -111,7 +111,7 @@ export async function createVercelProject({
 // 2. Add sanity CORS entry
 // 3. Invite user to sanity project
 // 4. Create a new sanity dataset
-// 5. Fill the dataset with data from db/prod-copy.tar.gz
+// 5. Fill the dataset with data from prod-copy.tar.gz
 // 6. Add deploy hook(/api/roll-out/deploy) to sanity project
 // 7. Create a new vercel deployment
 export async function triggerGithubWorkflow({

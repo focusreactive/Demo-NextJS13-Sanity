@@ -22,6 +22,7 @@ Welcome to the Next-Sanity Demo repository! This project showcases our cutting-e
 - **Visual Editing**: No more searching for documents and fields in the CMS to edit specific elements. Our visual editing feature allows you to click on an element outline and automatically open the required document for easy editing.
 - **Static Site Generation (SSG) with Dynamic Elements**: Leverage the latest Next.js feature to combine static and dynamic rendering on a single page. Deliver content to users with maximum performance.
 - **Incremental Static Regeneration**: Our web hook connects Sanity Headless CMS with Vercel projects, triggering page regeneration upon content changes. This ensures minimal delay between content updates and production deployment.
+- **Automatic roll out**: The ability to create and deploy an individual project with 0 configuration. The user receives an invitation to the newly created project to try it in action and get acquainted with all the new features.
 
 ![image](https://github.com/focusreactive/Demo-NextJS13-Sanity/assets/14885189/2d123859-66d3-4b78-9aed-3ed134c2d280)
 
