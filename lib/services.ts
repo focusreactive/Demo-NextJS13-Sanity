@@ -56,12 +56,12 @@ export async function createVercelProject({
             value: sanityDatasetName,
           },
           {
-            key: 'TEAM_GITHUB_REPO_ID',
-            value: process.env.TEAM_GITHUB_REPO_ID,
+            key: 'REPO_ID',
+            value: process.env.REPO_ID,
           },
           {
-            key: 'TEAM_GITHUB_REPO_PRODUCTION_BRANCH',
-            value: process.env.TEAM_GITHUB_REPO_PRODUCTION_BRANCH,
+            key: 'REPO_PROD_BRANCH',
+            value: process.env.REPO_PROD_BRANCH,
           },
           {
             key: 'REPO_TYPE',
@@ -133,7 +133,7 @@ export async function triggerGithubWorkflow({
     console.log('Triggering github workflow...⏳');
 
     const response = await fetch(
-      `https://api.github.com/repos/focusreactive/Demo-NextJS13-Sanity/actions/workflows/75419986/dispatches`,
+      `https://api.github.com/repos/${process.env.REPO_NAME}/actions/workflows/${process.env.REPO_WORKFLOW_ID}/dispatches`,
       {
         method: 'POST',
         headers: {
@@ -141,7 +141,7 @@ export async function triggerGithubWorkflow({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ref: process.env.TEAM_GITHUB_REPO_PRODUCTION_BRANCH,
+          ref: process.env.REPO_PROD_BRANCH,
           inputs: {
             email: email,
             'sanity-project-id': sanityProjectId,

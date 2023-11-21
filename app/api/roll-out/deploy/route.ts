@@ -15,8 +15,8 @@ export async function POST() {
         name: process.env.VERCEL_PROJECT_ID,
         project: process.env.VERCEL_PROJECT_NAME,
         gitSource: {
-          repoId: process.env.TEAM_GITHUB_REPO_ID,
-          ref: process.env.TEAM_GITHUB_REPO_PRODUCTION_BRANCH,
+          repoId: process.env.REPO_ID,
+          ref: process.env.REPO_PROD_BRANCH,
           type: process.env.REPO_TYPE,
         },
         target: 'production',
