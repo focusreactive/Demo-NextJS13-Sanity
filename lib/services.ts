@@ -29,16 +29,16 @@ export async function createSanityProject(email: string) {
 export async function createVercelProject({
   sanityProjectId,
   sanityDatasetName,
-  projectNamePrifix,
+  projectNamePrefix,
 }: {
   sanityProjectId: string;
   sanityDatasetName: string;
-  projectNamePrifix: string;
+  projectNamePrefix: string;
 }) {
   try {
     console.log('Start creating vercel🔺 project...⏳');
 
-    const projectName = `${projectNamePrifix}-${process.env.PROJECT_NAME}`;
+    const projectName = `${projectNamePrefix}-${process.env.PROJECT_NAME}`;
     const response = await fetch(`https://api.vercel.com/v9/projects?teamId=${process.env.VERCEL_FR_TEAM_ID}`, {
       headers: {
         Authorization: `Bearer ${process.env.VERCEL_PERSONAL_AUTH_TOKEN}`,

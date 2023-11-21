@@ -49,7 +49,7 @@ To run the development server, follow these steps:
 
 1. Clone this repository.
 2. Install dependencies by running `pnpm install`.
-3. Start the development server with `pnpm install`.
+3. Start the development server with `pnpm dev`.
 4. Open [http://localhost:3000](http://localhost:3000/) in your browser to see the result.
 5. Start editing the page by modifying `app/page.tsx`. The page will auto-update as you make changes.
 

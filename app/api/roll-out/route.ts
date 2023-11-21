@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
     if (sanityProjectId) {
       const projectData = await createVercelProject({
-        projectNamePrifix: username,
+        projectNamePrefix: username,
         sanityProjectId: sanityProjectId,
         sanityDatasetName,
       });
