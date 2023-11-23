@@ -28,14 +28,46 @@ export async function createSanityProject(projectName: string) {
   }
 }
 
+export async function createSanityReadToken(projectId: string) {
+  try {
+    console.log('Creating read token 🔑 for sanity project...⏳');
+
+    const response = await fetch(`https://api.sanity.io/v2021-06-07/projects/${projectId}/tokens`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${process.env.SANITY_PERSONAL_AUTH_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        label: 'sanity preview read token',
+        roleName: 'viewer',
+      }),
+    });
+
+    if (response.status === 401) {
+      throw new Error('Invalid sanity token');
+    }
+
+    const data = await response.json();
+
+    console.log('Sanity read token 🔑 created...✅');
+
+    return data.key as string;
+  } catch (error) {
+    console.warn(error);
+  }
+}
+
 export async function createVercelProject({
   projectName,
   sanityProjectId,
   sanityDatasetName,
+  sanityReadToken,
 }: {
   projectName: string;
   sanityProjectId: string;
   sanityDatasetName: string;
+  sanityReadToken: string;
 }) {
   try {
     console.log('Start creating vercel🔺 project...⏳');
@@ -55,6 +87,10 @@ export async function createVercelProject({
           {
             key: 'NEXT_PUBLIC_SANITY_DATASET',
             value: sanityDatasetName,
+          },
+          {
+            key: 'SANITY_API_READ_TOKEN',
+            value: sanityReadToken,
           },
           {
             key: 'REPO_ID',

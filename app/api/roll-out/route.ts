@@ -1,6 +1,12 @@
 import { headers } from 'next/headers';
 
-import { createSanityProject, createVercelProject, triggerGithubWorkflow, getVercelProjects } from '@/lib/services';
+import {
+  createSanityProject,
+  createVercelProject,
+  triggerGithubWorkflow,
+  getVercelProjects,
+  createSanityReadToken,
+} from '@/lib/services';
 import { isValidEmail } from '@/lib/email';
 
 // todo: refactor status codes. because all 400 errors are not actual 400 errors
@@ -30,7 +36,10 @@ export async function POST(request: Request) {
       const sanityDatasetName = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production';
 
       if (sanityProjectId) {
+        const sanityReadToken = await createSanityReadToken(sanityProjectId);
+
         const projectData = await createVercelProject({
+          sanityReadToken: sanityReadToken || '',
           projectName: projectName,
           sanityProjectId: sanityProjectId,
           sanityDatasetName,
