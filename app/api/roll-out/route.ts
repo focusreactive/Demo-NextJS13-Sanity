@@ -1,8 +1,9 @@
 import { headers } from 'next/headers';
 
-import { createSanityProject, createVercelProject, triggerGithubWorkflow } from '@/lib/services';
+import { createSanityProject, createVercelProject, triggerGithubWorkflow, getVercelProjects } from '@/lib/services';
 import { isValidEmail } from '@/lib/email';
 
+// todo: refactor status codes. because all 400 errors are not actual 400 errors
 export async function POST(request: Request) {
   if (headers().get('authorization') !== `Bearer ${process.env.ROLL_OUT_API_TOKEN}`) {
     return new Response('Invalid roll-out token', { status: 401 });
@@ -16,34 +17,45 @@ export async function POST(request: Request) {
       .toLowerCase()
       .replace(/[^a-z0-9]/g, '') // prevent forbidden symbols
       .slice(0, 90); // prevent project name from being too long
+    const projectName = `${process.env.PROJECT_NAME}-${username}`;
 
-    const sanityProjectId = await createSanityProject(username);
-    const sanityDatasetName = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production';
+    const existingProjects = await getVercelProjects();
 
-    if (sanityProjectId) {
-      const projectData = await createVercelProject({
-        projectNamePrefix: username,
-        sanityProjectId: sanityProjectId,
-        sanityDatasetName,
-      });
+    const allowToCreateProject =
+      existingProjects && existingProjects.length < parseInt(process.env.MAX_NUMBER_OF_PROJECTS || '2');
+    const existingProject = existingProjects?.find((project) => project.name === projectName);
 
-      if (projectData) {
-        const result = await triggerGithubWorkflow({
-          sanityProjectId,
+    if (allowToCreateProject && !existingProject) {
+      const sanityProjectId = await createSanityProject(projectName);
+      const sanityDatasetName = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production';
+
+      if (sanityProjectId) {
+        const projectData = await createVercelProject({
+          projectName: projectName,
+          sanityProjectId: sanityProjectId,
           sanityDatasetName,
-          vercelProjectId: projectData.projectId,
-          vercelProjectName: projectData.projectName,
-          vercelDeploymentUrl: projectData.deploymentUrl,
-          email,
         });
 
-        if (result === true) {
-          return new Response('All steps were successful 🎉', { status: 200 });
+        if (projectData) {
+          const result = await triggerGithubWorkflow({
+            sanityProjectId,
+            sanityDatasetName,
+            vercelProjectId: projectData.projectId,
+            vercelProjectName: projectData.projectName,
+            vercelDeploymentUrl: projectData.deploymentUrl,
+            email,
+          });
+
+          if (result === true) {
+            return new Response('All steps were successful 🎉', { status: 200 });
+          }
         }
       }
+
+      return new Response('One of the steps was not successful😿', { status: 503 });
     }
 
-    return new Response('One of the steps was not successful😿', { status: 503 });
+    return new Response('Limit of the projects reached or project with this email is already exists', { status: 400 });
   }
 
   return new Response('Email is not valid', { status: 400 });

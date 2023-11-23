@@ -1,4 +1,4 @@
-export async function createSanityProject(projectNamePrefix: string) {
+export async function createSanityProject(projectName: string) {
   try {
     console.log('Start creating sanity💲 project...⏳');
 
@@ -9,7 +9,7 @@ export async function createSanityProject(projectNamePrefix: string) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        displayName: `${projectNamePrefix}-${process.env.PROJECT_NAME}`,
+        displayName: projectName,
         organizationId: process.env.SANITY_ORGANIZATION_ID,
       }),
     });
@@ -18,27 +18,28 @@ export async function createSanityProject(projectNamePrefix: string) {
       throw new Error('Invalid sanity token');
     }
 
+    const data = await response.json();
+
     console.log('Sanity💲 project created...✅');
 
-    return (await response.json()).id as string;
+    return data.id as string;
   } catch (error) {
     console.warn(error);
   }
 }
 
 export async function createVercelProject({
+  projectName,
   sanityProjectId,
   sanityDatasetName,
-  projectNamePrefix,
 }: {
+  projectName: string;
   sanityProjectId: string;
   sanityDatasetName: string;
-  projectNamePrefix: string;
 }) {
   try {
     console.log('Start creating vercel🔺 project...⏳');
 
-    const projectName = `${projectNamePrefix}-${process.env.PROJECT_NAME}`;
     const response = await fetch(`https://api.vercel.com/v9/projects?teamId=${process.env.VERCEL_FR_TEAM_ID}`, {
       headers: {
         Authorization: `Bearer ${process.env.VERCEL_PERSONAL_AUTH_TOKEN}`,
@@ -93,14 +94,44 @@ export async function createVercelProject({
       throw new Error('Invalid vercel token');
     }
 
+    const data = await response.json();
+
+    console.log(data);
+
     console.log('Vercel🔺 project created...✅');
-    const projectData = await response.json();
 
     return {
-      projectId: projectData.id as string,
-      projectName: projectData.name as string,
-      deploymentUrl: `https://${projectData.name}.vercel.app`,
+      projectId: data.id as string,
+      projectName: data.name as string,
+      deploymentUrl: `https://${data.name}.vercel.app`,
     };
+  } catch (error) {
+    console.warn(error);
+  }
+}
+
+export async function getVercelProjects() {
+  try {
+    console.log('Fetching vercel🔺 projects...⏳');
+
+    const response = await fetch(
+      `https://api.vercel.com/v9/projects?repoId=${process.env.REPO_ID}&teamId=${process.env.VERCEL_FR_TEAM_ID}&search=${process.env.PROJECT_NAME}`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.VERCEL_PERSONAL_AUTH_TOKEN}`,
+        },
+      },
+    );
+
+    if (response.status === 401) {
+      throw new Error('Invalid vercel token');
+    }
+
+    const data = await response.json();
+
+    console.log('Vercel🔺 projects fetched...✅');
+
+    return data.projects as any[];
   } catch (error) {
     console.warn(error);
   }
