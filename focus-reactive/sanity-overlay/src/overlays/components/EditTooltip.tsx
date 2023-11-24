@@ -1,9 +1,98 @@
 import { autoUpdate, useFloating } from '@floating-ui/react-dom';
 import { Button } from '@sanity/ui';
-import { type JSX, useEffect, useRef } from 'react';
+import { ComponentProps, CSSProperties, forwardRef, type JSX, PropsWithChildren, useEffect, useRef } from 'react';
+
+const OverlayButton = (
+  {
+    isButton,
+    href,
+    onMouseLeave,
+    onClick,
+    children,
+    tone,
+    style,
+    icon,
+  }: PropsWithChildren<
+    {
+      isButton: boolean;
+    } & Pick<ComponentProps<typeof Button>, 'tone' | 'onClick' | 'onMouseLeave' | 'href' | 'style' | 'icon'>
+  >,
+  ref: React.ForwardedRef<HTMLButtonElement>,
+) => {
+  return (
+    <Button
+      as={isButton ? 'button' : 'a'}
+      href={isButton ? undefined : href}
+      target={isButton ? undefined : '_blank'}
+      rel={isButton ? undefined : 'noreferrer'}
+      ref={ref}
+      fontSize={1}
+      padding={2}
+      tone={tone}
+      text={children}
+      onMouseLeave={onMouseLeave}
+      style={{
+        textDecoration: 'none',
+        outline: 'none',
+        position: 'static',
+        pointerEvents: 'auto',
+        ...style,
+      }}
+      onClick={onClick}
+      icon={icon}
+    />
+  );
+};
+
+const OverlayButtonRef = forwardRef(OverlayButton);
+
+const commonIconStyles = {
+  width: 18,
+  height: 'auto',
+  top: 1,
+  position: 'relative',
+  fill: '#fff',
+} satisfies CSSProperties;
+
+const CopyIcon = (
+  <svg
+    height="800px"
+    width="800px"
+    viewBox="0 0 24 24"
+    style={{
+      ...commonIconStyles,
+      width: 16,
+      top: 0,
+    }}
+  >
+    <path d="M24,24H6V6h18V24z M8,22h14V8H8V22z M4,18H0v-4h2v2h2V18z M2,12H0V6h2V12z M18,4h-2V2h-2V0h4V4z M2,4H0V0h4v2H2V4z M12,2    H6V0h6V2z" />
+  </svg>
+);
+
+const DuplicateIcon = (
+  <svg
+    style={{
+      ...commonIconStyles,
+      width: 17,
+    }}
+    width="800px"
+    height="800px"
+    viewBox="0 0 512 512"
+  >
+    <path d="M472,16H160a24.027,24.027,0,0,0-24,24V352a24.027,24.027,0,0,0,24,24H472a24.027,24.027,0,0,0,24-24V40A24.027,24.027,0,0,0,472,16Zm-8,328H168V48H464Z" />
+    <path d="M344,464H48V168h56V136H40a24.027,24.027,0,0,0-24,24V472a24.027,24.027,0,0,0,24,24H352a24.027,24.027,0,0,0,24-24V408H344Z" />
+  </svg>
+);
+
+const DeleteIcon = (
+  <svg style={commonIconStyles} width="800px" height="800px" viewBox="0 0 1024 1024">
+    <path d="M352 480h320a32 32 0 1 1 0 64H352a32 32 0 0 1 0-64z" />
+    <path d="M512 896a384 384 0 1 0 0-768 384 384 0 0 0 0 768zm0 64a448 448 0 1 1 0-896 448 448 0 0 1 0 896z" />
+  </svg>
+);
 
 export function EditTooltip({ element, isLink }: { element: HTMLElement; isLink: boolean }): JSX.Element | null {
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const actionsContainerRef = useRef<HTMLDivElement>(null);
   const areaRef = useRef<HTMLDivElement>(null);
 
   const { refs, floatingStyles } = useFloating({
@@ -18,7 +107,7 @@ export function EditTooltip({ element, isLink }: { element: HTMLElement; isLink:
   useEffect(() => {
     const onHover = () => {
       refs.floating.current?.style.setProperty('opacity', '1');
-      buttonRef.current?.style.setProperty('display', 'block');
+      actionsContainerRef.current?.style.setProperty('display', 'flex');
     };
 
     const onLeave = (event: MouseEvent) => {
@@ -33,7 +122,7 @@ export function EditTooltip({ element, isLink }: { element: HTMLElement; isLink:
       }
 
       refs.floating.current?.style.setProperty('opacity', '0');
-      buttonRef.current?.style.setProperty('display', 'none');
+      actionsContainerRef.current?.style.setProperty('display', 'none');
     };
 
     element.addEventListener('mouseenter', onHover);
@@ -46,26 +135,26 @@ export function EditTooltip({ element, isLink }: { element: HTMLElement; isLink:
   }, [element, refs.floating, areaRef]);
 
   useEffect(() => {
-    if (!areaRef.current || !buttonRef.current) return;
+    if (!areaRef.current || !actionsContainerRef.current) return;
 
     const onHover = () => {
       refs.floating.current?.style.setProperty('opacity', '1');
-      buttonRef.current?.style.setProperty('display', 'block');
+      actionsContainerRef.current?.style.setProperty('display', 'flex');
     };
 
     const onLeave = (event: MouseEvent) => {
-      if (!buttonRef.current) return;
+      if (!actionsContainerRef.current) return;
 
       // check if mouse is currently over buttonRef
       const { x, y } = event;
-      const { top, left, width, height } = buttonRef.current.getBoundingClientRect();
+      const { top, left, width, height } = actionsContainerRef.current.getBoundingClientRect();
 
       if (x >= left && x <= left + width && y >= top && y <= top + height) {
         return;
       }
 
       refs.floating.current?.style.setProperty('opacity', '0');
-      buttonRef.current?.style.setProperty('display', 'none');
+      actionsContainerRef.current?.style.setProperty('display', 'none');
     };
 
     areaRef.current?.addEventListener('mouseenter', onHover);
@@ -109,44 +198,54 @@ export function EditTooltip({ element, isLink }: { element: HTMLElement; isLink:
             height: 20,
           }}
         />
-        <Button
-          as={isButton ? 'button' : 'a'}
-          href={isButton ? undefined : href}
-          target={isButton ? undefined : '_blank'}
-          rel={isButton ? undefined : 'noreferrer'}
-          ref={buttonRef}
-          fontSize={1}
-          padding={2}
-          tone="primary"
-          text={element.clientWidth > 200 && !isButton ? 'Edit in Sanity Studio' : 'Edit'}
-          onMouseLeave={() => {
-            refs.floating.current?.style.setProperty('opacity', '0');
-            buttonRef.current?.style.setProperty('display', 'none');
-          }}
+
+        <div
           style={{
-            textDecoration: 'none',
-            outline: 'none',
             position: 'absolute',
-            top: -34,
-            right: -5,
             zIndex: 99,
-            pointerEvents: 'all',
-            display: 'none',
+            display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: 'flex-end',
+            transform: 'translateY(-100%)',
+            top: 0,
+            right: -5,
+            paddingBottom: 9,
+            gap: 3,
           }}
-          onClick={() => {
-            if (typeof window === 'undefined') return;
-
-            const event = new CustomEvent('edit:open', {
-              detail: {
-                data: isButton,
-                href,
-                origin,
-              },
-            });
-
-            window.dispatchEvent(event);
+          ref={actionsContainerRef}
+          onMouseLeave={(e) => {
+            // console.log(actionsContainerRef.current?.contains?.(e.relatedTarget as Node));
+            refs.floating.current?.style.setProperty('opacity', '0');
+            actionsContainerRef.current?.style.setProperty('display', 'none');
           }}
-        />
+        >
+          <OverlayButtonRef tone={'caution'} isButton={isButton} href={href} onClick={() => {}} icon={CopyIcon} />
+
+          <OverlayButtonRef tone={'positive'} isButton={isButton} href={href} onClick={() => {}} icon={DuplicateIcon} />
+
+          <OverlayButtonRef tone={'critical'} isButton={isButton} href={href} onClick={() => {}} icon={DeleteIcon} />
+
+          <OverlayButtonRef
+            tone={'primary'}
+            isButton={isButton}
+            href={href}
+            onClick={() => {
+              if (typeof window === 'undefined') return;
+
+              const event = new CustomEvent('edit:open', {
+                detail: {
+                  data: isButton,
+                  href,
+                  origin,
+                },
+              });
+
+              window.dispatchEvent(event);
+            }}
+          >
+            Edit
+          </OverlayButtonRef>
+        </div>
       </div>
     </div>
   );
