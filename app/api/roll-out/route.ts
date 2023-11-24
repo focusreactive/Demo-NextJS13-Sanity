@@ -1,4 +1,4 @@
-import { headers } from 'next/headers';
+// import { headers } from 'next/headers';
 
 import {
   createSanityProject,
@@ -11,10 +11,6 @@ import { isValidEmail } from '@/lib/email';
 
 // todo: refactor status codes. because all 400 errors are not actual 400 errors
 export async function POST(request: Request) {
-  if (headers().get('authorization') !== `Bearer ${process.env.ROLL_OUT_API_TOKEN}`) {
-    return new Response('Invalid roll-out token', { status: 401 });
-  }
-
   const { email } = await request.json();
 
   if (email && isValidEmail(email)) {
