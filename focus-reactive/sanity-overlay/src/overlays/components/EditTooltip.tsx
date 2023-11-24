@@ -223,8 +223,8 @@ export function EditTooltip({ element, isLink }: { element: HTMLElement; isLink:
         >
           <OverlayButtonRef
             tone={'caution'}
-            isButton={isButton}
-            href={href}
+            isButton={true}
+            // href={href}
             onClick={() => {}}
             icon={CopyIcon}
             title={'Copy'}
@@ -232,8 +232,8 @@ export function EditTooltip({ element, isLink }: { element: HTMLElement; isLink:
 
           <OverlayButtonRef
             tone={'positive'}
-            isButton={isButton}
-            href={href}
+            isButton={true}
+            // href={href}
             onClick={() => {}}
             icon={DuplicateIcon}
             title={'Duplicate'}
@@ -241,8 +241,8 @@ export function EditTooltip({ element, isLink }: { element: HTMLElement; isLink:
 
           <OverlayButtonRef
             tone={'critical'}
-            isButton={isButton}
-            href={href}
+            isButton={true}
+            // href={href}
             onClick={() => {}}
             icon={DeleteIcon}
             title={'Delete'}
