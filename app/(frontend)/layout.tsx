@@ -7,7 +7,8 @@ import { draftMode } from 'next/headers';
 const dmSans = DM_Sans({ subsets: ['latin'] });
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const isDraftMode = draftMode().isEnabled;
+  // const isDraftMode = draftMode().isEnabled;
+  const isDraftMode = true;
 
   return (
     <html lang="en">
