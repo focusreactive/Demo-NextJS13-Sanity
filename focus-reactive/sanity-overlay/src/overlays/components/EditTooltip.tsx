@@ -12,10 +12,11 @@ const OverlayButton = (
     tone,
     style,
     icon,
+    title,
   }: PropsWithChildren<
     {
-      isButton: boolean;
-    } & Pick<ComponentProps<typeof Button>, 'tone' | 'onClick' | 'onMouseLeave' | 'href' | 'style' | 'icon'>
+      isButton?: boolean;
+    } & Pick<ComponentProps<typeof Button>, 'tone' | 'onClick' | 'onMouseLeave' | 'href' | 'style' | 'icon' | 'title'>
   >,
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) => {
@@ -40,6 +41,7 @@ const OverlayButton = (
       }}
       onClick={onClick}
       icon={icon}
+      title={title}
     />
   );
 };
@@ -219,11 +221,32 @@ export function EditTooltip({ element, isLink }: { element: HTMLElement; isLink:
             actionsContainerRef.current?.style.setProperty('display', 'none');
           }}
         >
-          <OverlayButtonRef tone={'caution'} isButton={isButton} href={href} onClick={() => {}} icon={CopyIcon} />
+          <OverlayButtonRef
+            tone={'caution'}
+            isButton={isButton}
+            href={href}
+            onClick={() => {}}
+            icon={CopyIcon}
+            title={'Copy'}
+          />
 
-          <OverlayButtonRef tone={'positive'} isButton={isButton} href={href} onClick={() => {}} icon={DuplicateIcon} />
+          <OverlayButtonRef
+            tone={'positive'}
+            isButton={isButton}
+            href={href}
+            onClick={() => {}}
+            icon={DuplicateIcon}
+            title={'Duplicate'}
+          />
 
-          <OverlayButtonRef tone={'critical'} isButton={isButton} href={href} onClick={() => {}} icon={DeleteIcon} />
+          <OverlayButtonRef
+            tone={'critical'}
+            isButton={isButton}
+            href={href}
+            onClick={() => {}}
+            icon={DeleteIcon}
+            title={'Delete'}
+          />
 
           <OverlayButtonRef
             tone={'primary'}
