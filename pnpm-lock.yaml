@@ -94,9 +94,6 @@ dependencies:
   swiper:
     specifier: ^10.3.1
     version: 10.3.1
-  swr:
-    specifier: ^2.2.4
-    version: 2.2.4(react@18.2.0)
   typescript:
     specifier: 5.2.2
     version: 5.2.2
@@ -9875,16 +9872,6 @@ packages:
   /swiper@10.3.1:
     resolution: {integrity: sha512-24Wk3YUdZHxjc9faID97GTu6xnLNia+adMt6qMTZG/HgdSUt4fS0REsGUXJOgpTED0Amh/j+gRGQxsLayJUlBQ==}
     engines: {node: '>= 4.7.0'}
-    dev: false
-
-  /swr@2.2.4(react@18.2.0):
-    resolution: {integrity: sha512-njiZ/4RiIhoOlAaLYDqwz5qH/KZXVilRLvomrx83HjzCWTfa+InyfAjv05PSFxnmLzZkNO9ZfvgoqzAaEI4sGQ==}
-    peerDependencies:
-      react: ^16.11.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      client-only: 0.0.1
-      react: 18.2.0
-      use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
   /symbol-tree@3.2.4:
