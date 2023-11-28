@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@callstack/react-theme-provider": "^3.0.9",
+    "@focus-reactive/sanity-plugin-inline-svg-input": "^0.1.0",
     "@linaria/babel-preset": "^4.5.4",
     "@linaria/core": "^4.5.4",
     "@linaria/react": "^4.5.4",

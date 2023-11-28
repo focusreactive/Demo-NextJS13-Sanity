@@ -11,6 +11,9 @@ importers:
       '@callstack/react-theme-provider':
         specifier: ^3.0.9
         version: 3.0.9(react@18.2.0)
+      '@focus-reactive/sanity-plugin-inline-svg-input':
+        specifier: ^0.1.0
+        version: 0.1.0(react-dom@18.2.0)(react@18.2.0)(sanity@3.16.7)(styled-components@5.3.11)
       '@linaria/babel-preset':
         specifier: ^4.5.4
         version: 4.5.4(typescript@5.2.2)
@@ -2277,6 +2280,23 @@ packages:
 
   /@floating-ui/utils@0.1.2:
     resolution: {integrity: sha512-ou3elfqG/hZsbmF4bxeJhPHIf3G2pm0ujc39hYEZrfVqt7Vk/Zji6CXc3W0pmYM8BW1g40U+akTl9DKZhFhInQ==}
+    dev: false
+
+  /@focus-reactive/sanity-plugin-inline-svg-input@0.1.0(react-dom@18.2.0)(react@18.2.0)(sanity@3.16.7)(styled-components@5.3.11):
+    resolution: {integrity: sha512-Ym4awzuHmT/D6uTGNmJdH6TCi4wLi8tF14VVTzrMWwvjKmzphS3WsLIvyDN3JuzAQgQ8Iw00A4zZWCJLCCDLTg==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: ^18
+      sanity: ^3
+      styled-components: ^5
+    dependencies:
+      '@sanity/incompatible-plugin': 1.0.4(react-dom@18.2.0)(react@18.2.0)
+      dompurify: 3.0.6
+      react: 18.2.0
+      sanity: 3.16.7(@types/node@20.5.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)(styled-components@5.3.11)
+      styled-components: 5.3.11(@babel/core@7.22.17)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+    transitivePeerDependencies:
+      - react-dom
     dev: false
 
   /@hapi/hoek@9.3.0:
@@ -5607,6 +5627,10 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       webidl-conversions: 7.0.0
+    dev: false
+
+  /dompurify@3.0.6:
+    resolution: {integrity: sha512-ilkD8YEnnGh1zJ240uJsW7AzE+2qpbOUYjacomn3AvJ6J4JhKGSZ2nh4wUIXPZrEPppaCLx5jFe8T89Rk8tQ7w==}
     dev: false
 
   /dot-prop@5.3.0:
