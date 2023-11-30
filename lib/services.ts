@@ -132,8 +132,6 @@ export async function createVercelProject({
 
     const data = await response.json();
 
-    console.log(data);
-
     console.log('Vercel🔺 project created...✅');
 
     return {
