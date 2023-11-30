@@ -236,11 +236,11 @@ export const Hero = (props: any) => {
       <HeroBox>
         <HeroLeft>
           {/* <FloatUp> */}
-            <SectionHead title={title} isH1 />
-            <HeroTitle tip={titleTip} icon={titleIcon} color="white" variant={titleVariant} />
+          <SectionHead title={title} isH1 />
+          <HeroTitle tip={titleTip} icon={titleIcon} color="white" variant={titleVariant} />
           {/* </FloatUp> */}
           {/* <FloatUp> */}
-            {description ? <DescriptionBlock color={brandColors.blue100} text={description} variant="large" /> : null}
+          {description ? <DescriptionBlock color={brandColors.blue100} text={description} variant="large" /> : null}
           {/* </FloatUp> */}
 
           {/* {form ? <FormBlock form={form} /> : null} */}
