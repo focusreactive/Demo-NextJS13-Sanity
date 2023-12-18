@@ -135,6 +135,8 @@ const iconsSet = {
 const Item = ({ icon, link }: { icon: keyof typeof iconsSet; link: string }) => {
   const Icon = iconsSet[icon];
 
+  if (!Icon) return null;
+
   return (
     <Link href={link || 'https://harcodedsocials.com'} target="_blank" aria-label={icon}>
       {/* @ts-ignore */}

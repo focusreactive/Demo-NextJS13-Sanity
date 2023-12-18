@@ -5,16 +5,35 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { resolvePreviewUrl } from './resolvePreviewUrl';
 import { UserViewComponent } from 'sanity/desk';
 import debounce from 'lodash.debounce';
+import { useRouter } from 'sanity/router';
+import { getPublishedId } from 'sanity';
 
-export const PreviewIFrame: UserViewComponent = (props) => {
+export const PreviewIframe: UserViewComponent = (props) => {
   const isReloadEnabled = false;
   const { document, options } = props;
   const [id, setId] = useState(1);
   const { displayed: currentDocument } = document;
+  const router = useRouter();
   const [privateUrl, setPrivateUrl] = useState('');
   const [publicUrl, setPublicUrl] = useState('');
   const iframe = useRef<HTMLIFrameElement>(null);
   const baseUrl = window.location.origin;
+
+  const onEditOpen = useCallback((e: any) => {
+    const href = e?.detail?.href;
+    if (!href) return;
+    router.navigateUrl({ path: href });
+  }, []);
+  const setIframe = (iframeNode: HTMLIFrameElement) => {
+    // @ts-ignore
+    iframe.current = iframeNode;
+
+    if (!iframeNode || !iframeNode.contentWindow) return null;
+
+    const iframeWindow = iframeNode.contentWindow;
+
+    iframeWindow.addEventListener('edit:open', onEditOpen);
+  };
 
   const reloadIframe = () => {
     const iframeNode = iframe.current;
@@ -91,7 +110,7 @@ export const PreviewIFrame: UserViewComponent = (props) => {
           <Flex align="center" justify="center" style={{ height: `100%` }}>
             <iframe
               key={id}
-              ref={iframe}
+              ref={setIframe}
               title="preview"
               style={{ width: '100%', height: `100%`, maxHeight: `100%`, border: 0 }}
               src={privateUrl}
