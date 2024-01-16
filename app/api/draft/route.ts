@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { getSecret } from '@/sanity/utils/getSecret';
 import { client } from '@/sanity/client';
 import { previewSecretId, sanityReadToken } from '@/environment';
+import { SanityClient } from 'sanity';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -12,7 +13,9 @@ export async function GET(request: Request) {
     return new Response('Missing slug', { status: 400 });
   }
 
-  const secret = await getSecret(client.withConfig({ useCdn: false, token: sanityReadToken }), previewSecretId);
+  const clientWithConfig = client.withConfig({ useCdn: false, token: sanityReadToken });
+
+  const secret = await getSecret(clientWithConfig as SanityClient, previewSecretId);
   const requestSecret = searchParams.get('secret');
 
   if (!requestSecret) {
